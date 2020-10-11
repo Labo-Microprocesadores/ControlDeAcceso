@@ -66,9 +66,15 @@ bool SevenSegDisplay_ChangeCharacter(uint8_t screen_char, uint8_t new_char);
 
 void SevenSegDisplay_EraseScreen(void);
 
-bool SevenSegDisplay_ToggleBlinkScreen(void);
 
 void SevenSegDisplay_SetBright(bright_t new_bright);
+
+/**
+ * @brief places all digits on the state passed as a function parameter
+ * @param state, true for blink digits
+ * @return blink succeed, false if there was an error
+ */
+bool SevenSegDisplay_BlinkScreen(bool state);
 
 /**
  * @brief select a digit to blink or reset blinks

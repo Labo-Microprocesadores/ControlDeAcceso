@@ -46,9 +46,11 @@ static uint8_t blinkCounter = 0;
 
 static uint8_t bright = PERIOD;
 static bright_t brightness = MID;
+
 /************************************************
  * 		FUNCTION DEFINITION WITH GLOBAL SCOPE
  ************************************************/
+
 bool SevenSegDisplay_Init(void)
 {
 	static bool isInit = false;
@@ -88,13 +90,6 @@ bool SevenSegDisplay_ChangeCharacter(uint8_t screen_char, uint8_t new_char)
 	return true;
 }
 
-bool SevenSegDisplay_ToggleBlinkScreen(void)
-{
-	blink = !blink;
-	blinkCounter = blink ? BLINK_TIME:0;
-	return true;
-}
-
 void SevenSegDisplay_SetBright(bright_t new_bright)
 {
 	brightness = new_bright;
@@ -108,9 +103,6 @@ void SevenSegDisplay_EraseScreen(void)
 	}
 }
 
-/**************************************************
- * 			LOCAL FUNCTIONS DEFINITIONS
- **************************************************/
 
 bool SevenSegDisplay_PrintCharacter(uint8_t character)
 {
@@ -164,6 +156,17 @@ void SevenSegDisplay_PrintScreen(void)
 }
 
 
+bool SevenSegDisplay_BlinkScreen(bool state)
+{
+	//set all variables on state (true or false)
+	uint8_t count;
+	for(count=0; count<SCREEN_SIZE; count++)
+	{
+		screen[count].blink=state;
+	}
+	return true;
+}
+
 bool SevenSegDisplay_BlinkCharacter(uint8_t digit)
 {
 	//controls if the digit is valid
@@ -175,14 +178,20 @@ bool SevenSegDisplay_BlinkCharacter(uint8_t digit)
 		{
 			screen[count].blink=false;
 		}
-		//if i want to put a digit to blink
+		//if I want to put a digit to blink
 		if(digit!=RESET_BLINK)
 		{
 			screen[digit].blink=true;
 		}
 	}else
 	{
+		//if the digit wasn't validate return false
 		return false;
 	}
 	return true;
 }
+
+
+/**************************************************
+ * 			LOCAL FUNCTIONS DEFINITIONS
+ **************************************************/
