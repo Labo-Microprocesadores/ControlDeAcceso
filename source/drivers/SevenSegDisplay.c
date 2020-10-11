@@ -163,7 +163,26 @@ void SevenSegDisplay_PrintScreen(void)
 	}
 }
 
+
 bool SevenSegDisplay_BlinkCharacter(uint8_t digit)
 {
-
+	//controls if the digit is valid
+	if( digit>=0 && digit <=3 || digit == RESET_BLINK )
+	{
+		//if the digit is valid reset all blink variables
+		uint8_t count;
+		for(count=0; count<SCREEN_SIZE; count++)
+		{
+			screen[count].blink=false;
+		}
+		//if i want to put a digit to blink
+		if(digit!=RESET_BLINK)
+		{
+			screen[digit].blink=true;
+		}
+	}else
+	{
+		return false;
+	}
+	return true;
 }

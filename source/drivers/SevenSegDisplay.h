@@ -37,6 +37,8 @@
 #define SEG_LEN	8
 #define SEL_LEN	2
 
+#define RESET_BLINK -1
+
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
@@ -68,6 +70,11 @@ bool SevenSegDisplay_ToggleBlinkScreen(void);
 
 void SevenSegDisplay_SetBright(bright_t new_bright);
 
+/**
+ * @brief select a digit to blink or reset blinks
+ * @param digit, the number that corresponds to the 7segments display
+ * @return blink succeed, false if there was an error with the digit
+ */
 bool SevenSegDisplay_BlinkCharacter(uint8_t digit);
 
 //bool SevenSegDisplay_ShiftLeft(void);
