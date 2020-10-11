@@ -48,6 +48,12 @@ typedef enum {
 }bright_t;
 
 
+typedef  struct
+{
+	uint8_t character;
+	bool blink;
+}sevenSeg_t;
+
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
@@ -62,7 +68,7 @@ bool SevenSegDisplay_ToggleBlinkScreen(void);
 
 void SevenSegDisplay_SetBright(bright_t new_bright);
 
-//bool SevenSegDisplay_BlinkCharacter(void);
+bool SevenSegDisplay_BlinkCharacter(uint8_t digit);
 
 //bool SevenSegDisplay_ShiftLeft(void);
 

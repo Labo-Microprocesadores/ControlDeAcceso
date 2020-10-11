@@ -29,14 +29,14 @@ bool SevenSegDisplay_PrintCharacter(uint8_t character);
 /************************************************
  *  	VARIABLES WITH LOCAL SCOPE
  ************************************************/
-static uint8_t screen[SCREEN_SIZE] = {NONE, NONE, NONE, NONE};
+static sevenSeg_t screen[SCREEN_SIZE] = {{NONE, false},{NONE, false}, {NONE, false}, {NONE, false}};
 
 static pin_t displayPins[SEG_LEN] = {PIN_SEGA, PIN_SEGB, PIN_SEGC, PIN_SEGD,
 							 	 	 PIN_SEGE, PIN_SEGF, PIN_SEGG, PIN_SEGDP};
 static pin_t selectPins[SEL_LEN] = {PIN_SEL0, PIN_SEL1};
 
 /*
-static bool blink[SCREEN_SIZE] = {false, false, fasle};
+static bool blink[SCREEN_SIZE] = {false, false, false};
 static bool blinkState[SCREEN_SIZE] = {true, true, true, true};
 static uint8_t blinkCounter[SCREEN_SIZE] = {0,0,0,0};
 */
@@ -83,7 +83,7 @@ bool SevenSegDisplay_ChangeCharacter(uint8_t screen_char, uint8_t new_char)
 {
 	if (screen_char < SCREEN_SIZE)
 	{
-		screen[screen_char] = new_char;
+		screen[screen_char].character = new_char;
 	}
 	return true;
 }
@@ -102,9 +102,9 @@ void SevenSegDisplay_SetBright(bright_t new_bright)
 
 void SevenSegDisplay_EraseScreen(void)
 {
-	for(int i = 1; i<((int)(sizeof(screen)/sizeof(screen[0]))); i++)
+	for(int i = 1; i<SCREEN_SIZE; i++)
 	{
-		screen[i] = NONE;
+		screen[i].character = NONE;
 	}
 }
 
@@ -142,7 +142,7 @@ void SevenSegDisplay_PrintScreen(void)
 	static int8_t curr = MIN;
 	static uint8_t prevData = 0xFF;
 
-	uint8_t dataToPrint = (blinkState && (curr > 0)) ? screen[displayCounter]: NONE;
+	uint8_t dataToPrint = (blinkState && (curr > 0)) ? screen[displayCounter].character : NONE;
 	if(prevData != dataToPrint || bright == PERIOD)
 	{
 		SevenSegDisplay_PrintCharacter(dataToPrint);
@@ -163,4 +163,7 @@ void SevenSegDisplay_PrintScreen(void)
 	}
 }
 
+bool SevenSegDisplay_BlinkCharacter(uint8_t digit)
+{
 
+}
