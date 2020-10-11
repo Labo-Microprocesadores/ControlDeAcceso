@@ -17,6 +17,7 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 
+#define NONE	(uint8_t)0x00
 #define ZERO	(uint8_t)0x3F
 #define ONE		(uint8_t)0x06
 #define TWO		(uint8_t)0x5B
@@ -28,8 +29,10 @@
 #define EIGHT	(uint8_t)0x7F
 #define NINE	(uint8_t)0x6F
 #define LINE	(uint8_t)0x80
+
 #define MASK	(uint8_t)0x01
-#define NONE	(uint8_t)0x00
+
+#define CHARS 	{ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, LINE, NONE}
 
 #define SEG_LEN	8
 #define SEL_LEN	2

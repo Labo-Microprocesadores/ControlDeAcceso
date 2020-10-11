@@ -140,26 +140,27 @@ void SevenSegDisplay_PrintScreen(void)
 {
 	static uint8_t displayCounter = 0;
 	static int8_t curr = MIN;
-	//static uint8_t prev_data = 0;
+	static uint8_t prevData = 0xFF;
 
 	uint8_t dataToPrint = (blinkState && (curr > 0)) ? screen[displayCounter]: NONE;
-
-	SevenSegDisplay_PrintCharacter(dataToPrint);
-
+	if(prevData != dataToPrint || bright == PERIOD)
+	{
+		SevenSegDisplay_PrintCharacter(dataToPrint);
+		prevData = dataToPrint;
+		gpioWrite(selectPins[0], (displayCounter & (1   )) != 0);
+		gpioWrite(selectPins[1], (displayCounter & (1<<1)) != 0);
+	}
 	curr--;
 	bright--;
 	if (bright == 0)
 	{
+	//	prevData = 0xFF;
 		curr = brightness;
 		bright = PERIOD;
 		displayCounter++;
 
 		if(displayCounter == SCREEN_SIZE){displayCounter = 0;}
-
-		gpioWrite(selectPins[0], (displayCounter & (1   )) != 0);
-		gpioWrite(selectPins[1], (displayCounter & (1<<1)) != 0);
 	}
-
 }
 
 
