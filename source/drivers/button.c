@@ -68,7 +68,7 @@ static void systick_callback(void)
 void buttonsInit(void)
 {
 	//add buttons to .h
-	SysTick_AddCallback(&systick_callback, 50*SYSTICK_ISR_PERIOD_S);
+	SysTick_AddCallback(&systick_callback, 50);
 }
 
 
