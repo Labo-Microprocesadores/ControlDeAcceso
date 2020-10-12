@@ -240,47 +240,9 @@ static void Timer_PISR(void)
 				timerElements[i].counter = 0;	//Counter re-establishment.
 				if (timerElements[i].callOnce)
 					Timer_Delete(timerElements[i].callbackID);
-	}
-	return i;
-}
-
-
-static void Timer_PISR(void)
-{
-
-	for(int i=0; i<(getArrayEffectiveLength(timerElements)); i++)	//Iterates through all the elements.
-	{
-		if (!timerElements[i].paused)
-		{
-			if(timerElements[i].counter == timerElements[i].counterLimit)	//If the counter reaches the counterLimit the element's callback must be called.
-			{
-				(*timerElements[i].callback)();	//Callback's calling.
-				timerElements[i].counter = 0;	//Counter re-establishment.
-				if (timerElements[i].callOnce)
-					Timer_Delete(timerElements[i].callbackID);
-	}
-	return i;
-}
-
-
-static void Timer_PISR(void)
-{
-
-	for(int i=0; i<(getArrayEffectiveLength(timerElements)); i++)	//Iterates through all the elements.
-	{
-		if (!timerElements[i].paused)
-		{
-			if(timerElements[i].counter == timerElements[i].counterLimit)	//If the counter reaches the counterLimit the element's callback must be called.
-			{
-				(*timerElements[i].callback)();	//Callback's calling.
-				timerElements[i].counter = 0;	//Counter re-establishment.
-				if (timerElements[i].callOnce)
-					Timer_Delete(timerElements[i].callbackID);
 			}
 			timerElements[i].counter ++;
 		}
 
 	}
 }
-
-
