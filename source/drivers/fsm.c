@@ -13,7 +13,6 @@ STATE* fsm(STATE *p_tabla_estado,event evento_actual)
       (*p_tabla_estado -> p_rut_accion) ();          /*rutina de accion corresondiente*/
       p_tabla_estado=p_tabla_estado -> proximo_estado;   /*siguiente estado*/
 
-
       return(p_tabla_estado);
 
 }
