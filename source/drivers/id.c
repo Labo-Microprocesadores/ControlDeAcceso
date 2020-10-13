@@ -17,14 +17,13 @@
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
 static uint8_t id[ID_ARRAY_SIZE] = {[ 0 ... (ID_ARRAY_SIZE-1) ] = DEFAULT_ID_CHAR_VALUE};
-static uint8_t currentPos;
+static uint8_t currentPos = 0;
 
 
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
-static bool completeId(uint8_t position, uint8_t value);
 static void deleteLastChar(void);
 static int getEffectiveIDArrayLength(void);
 static bool checkArrayFormat(void);
@@ -34,6 +33,8 @@ static bool checkArrayFormat(void);
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
+//!OJO EN TODAS ESTA HABRIA QUE RESETEAR EL TIMER DE TIMEOUT Y EN ALGUNAS ACTUALIZAR EL DISPLAY
+//TODO AGREGAR ESO
 
 void increaseCurrent(void)
 {
@@ -58,11 +59,11 @@ void decreaseCurrent(void)
 
 void confirmID(void)
 {
-    
-    if (currentArrayLength!=ID_ARRAY_SIZE)
-        return; //!ERROR.
+    if (!checkArrayFormat())
+    {
+        //TODO Return ID_FAIL
+    }
 
-    
     //TODO faltan muchas cosas
     //si el id es conocido, emito un evento de id_ok (tengo database)
     //si el id no es conocido entonces emito evento de ID_FAIL
@@ -80,16 +81,7 @@ void timerTimeout(void)
     //mostrar timeout en display???
 }
 
-/*******************************************************************************
- *******************************************************************************
-                        LOCAL FUNCTION DEFINITIONS
- *******************************************************************************
- ******************************************************************************/
-
-//!OJO EN TODAS ESTA HABRIA QUE RESETEAR EL TIMER DE TIMEOUT Y EN ALGUNAS ACTUALIZAR EL DISPLAY
-//TODO AGREGAR ESO
-
-static void acceptNumber(void)
+void acceptNumber(void)
 {
     if (currentPos == ID_ARRAY_SIZE - 1)
         return;
@@ -106,7 +98,11 @@ static void acceptNumber(void)
     id[currentPos] = 0;
 }
 
-
+/*******************************************************************************
+ *******************************************************************************
+                        LOCAL FUNCTION DEFINITIONS
+ *******************************************************************************
+ ******************************************************************************/
 static void deleteLastChar(void)
 {
     int currentArrayLength = getEffectiveIDArrayLength();
@@ -115,7 +111,7 @@ static void deleteLastChar(void)
         //!VOLVER AL MENU ANTERIOR
     }else
     {
-        id[currentArrayLength] = DEFAULT_ID_CHAR_VALUE;
+        id[currentArrayLength - 1] = DEFAULT_ID_CHAR_VALUE;
     }
 }
 
@@ -125,7 +121,7 @@ static int getEffectiveIDArrayLength(void)
     bool foundLast = false;
     while(!foundLast && length < ID_ARRAY_SIZE)
     {
-        if (id[length] != -1)
+        if (id[length] != DEFAULT_ID_CHAR_VALUE)
             foundLast = true;
         else
             length ++;
@@ -137,11 +133,13 @@ static int getEffectiveIDArrayLength(void)
 static bool checkArrayFormat(void)
 {
     int currentArrayLength = getEffectiveIDArrayLength();
-    
+
     if (currentArrayLength!=ID_ARRAY_SIZE)
         return false;
     
-    if (id[ID_ARRAY_SIZE-1] == BACKSPACE)
+    //Checks if the last position is equal to BACKSPACE. Can only happen if confirmID() is called before acceptNumber()
+    //Previous positions cannot be equal to BACKSPACE because deleteLastChar() is called in acceptNumber().
+    if (id[ID_ARRAY_SIZE-1] == BACKSPACE)   
         return false;
 
     return true;
