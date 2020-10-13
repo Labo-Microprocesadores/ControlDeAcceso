@@ -17,34 +17,34 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 
-#define NONE	(uint8_t)0x00
-#define ZERO	(uint8_t)0x3F
-#define ONE		(uint8_t)0x06
-#define TWO		(uint8_t)0x5B
-#define THREE	(uint8_t)0x4F
-#define FOUR	(uint8_t)0x66
-#define FIVE	(uint8_t)0x6D
-#define SIX		(uint8_t)0x7D
-#define SEVEN	(uint8_t)0x07
-#define EIGHT	(uint8_t)0x7F
-#define NINE	(uint8_t)0x6F
-#define LINE	(uint8_t)0x80
+#define NONE			(uint8_t)0x00
+#define ZERO			(uint8_t)0x3F
+#define ONE				(uint8_t)0x06
+#define TWO				(uint8_t)0x5B
+#define THREE			(uint8_t)0x4F
+#define FOUR			(uint8_t)0x66
+#define FIVE			(uint8_t)0x6D
+#define SIX				(uint8_t)0x7D
+#define SEVEN			(uint8_t)0x07
+#define EIGHT			(uint8_t)0x7F
+#define NINE			(uint8_t)0x6F
+#define LINE			(uint8_t)0x08
 
-#define MASK	(uint8_t)0x01
+#define MASK			(uint8_t)0x01
 
-#define CHARS 	{ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, LINE, NONE}
+#define CHARS 			{ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, LINE, NONE}
 
-#define SEG_LEN	8
-#define SEL_LEN	2
+#define SEG_LEN			8
+#define SEL_LEN			2
 
-#define RESET_BLINK -1
+#define RESET_BLINK 	-1
 
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
 
 typedef enum {
-	MAX = 6,
+	MAX = 5,
 	MID = 3,
 	MIN = 1
 }bright_t;
@@ -54,20 +54,29 @@ typedef  struct
 {
 	uint8_t character;
 	bool blink;
+	bool blinkState;
+	uint8_t blinkCounter;
 }sevenSeg_t;
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
 
+/**
+ * @brief Initialize 7 Segment Display driver
+ */
 bool SevenSegDisplay_Init(void);
 
-bool SevenSegDisplay_ChangeCharacter(uint8_t screen_char, uint8_t new_char);
+/**
+ * @brief Set a character in a display position
+ * @param screen_char: screen position, new_char: character to print
+ */
+void SevenSegDisplay_ChangeCharacter(uint8_t screen_char, uint8_t new_char);
 
+/*
+ * @brief Clean screen
+ */
 void SevenSegDisplay_EraseScreen(void);
-
-
-void SevenSegDisplay_SetBright(bright_t new_bright);
 
 /**
  * @brief places all digits on the state passed as a function parameter
@@ -83,9 +92,11 @@ bool SevenSegDisplay_BlinkScreen(bool state);
  */
 bool SevenSegDisplay_BlinkCharacter(uint8_t digit);
 
-//bool SevenSegDisplay_ShiftLeft(void);
-
-//bool SevenSegDisplay_ShiftRight(void);
+/**
+ * @brief Change display brightness between MAX, MID, MIN
+ * @param new_bright: brightness to set
+ */
+void SevenSegDisplay_SetBright(bright_t new_bright);
 
 
 #endif /* SEVENSEGDISPLAY_H_ */

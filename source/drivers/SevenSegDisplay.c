@@ -4,7 +4,6 @@
   @author   Grupo 2
  ******************************************************************************/
 
-
 #include "SevenSegDisplay.h"
 #include "SysTick.h"
 #include "gpio.h"
@@ -15,42 +14,34 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 #define SCREEN_SIZE 4
-#define BLINK_TIME 40
-#define PERIOD 6
+#define BLINK_TIME 200
+#define PERIOD 5
 
 /*************************************************
  *  	LOCAL FUNCTION DECLARATION
  ************************************************/
 
 void SevenSegDisplay_PISR(void);
-void SevenSegDisplay_PrintScreen(void);
 bool SevenSegDisplay_PrintCharacter(uint8_t character);
 
 /************************************************
  *  	VARIABLES WITH LOCAL SCOPE
  ************************************************/
-static sevenSeg_t screen[SCREEN_SIZE] = {{NONE, false},{NONE, false}, {NONE, false}, {NONE, false}};
+static sevenSeg_t screen[SCREEN_SIZE] = { {NONE, false, true, 0},
+										  {NONE, false, true, 0},
+										  {NONE, false, true, 0},
+										  {NONE, false, true, 0} };
 
 static pin_t displayPins[SEG_LEN] = {PIN_SEGA, PIN_SEGB, PIN_SEGC, PIN_SEGD,
 							 	 	 PIN_SEGE, PIN_SEGF, PIN_SEGG, PIN_SEGDP};
+
 static pin_t selectPins[SEL_LEN] = {PIN_SEL0, PIN_SEL1};
 
-/*
-static bool blink[SCREEN_SIZE] = {false, false, false};
-static bool blinkState[SCREEN_SIZE] = {true, true, true, true};
-static uint8_t blinkCounter[SCREEN_SIZE] = {0,0,0,0};
-*/
-static bool blink = false;
-static bool blinkState = true;
-static uint8_t blinkCounter = 0;
-
-static uint8_t bright = PERIOD;
-static bright_t brightness = MID;
+static bright_t brightness = MAX;
 
 /************************************************
  * 		FUNCTION DEFINITION WITH GLOBAL SCOPE
  ************************************************/
-
 bool SevenSegDisplay_Init(void)
 {
 	static bool isInit = false;
@@ -70,7 +61,7 @@ bool SevenSegDisplay_Init(void)
 	    gpioWrite (selectPins[0], false);
 	    gpioWrite (selectPins[1], false);
 
-		int systickCallbackID = SysTick_AddCallback(&SevenSegDisplay_PISR, 1); //1ms
+		int systickCallbackID = SysTick_AddCallback(&SevenSegDisplay_PISR, 1); //1 ms
 		if (systickCallbackID < 0 ) // Error
 		{
 			return false;
@@ -81,80 +72,13 @@ bool SevenSegDisplay_Init(void)
 }
 
 
-bool SevenSegDisplay_ChangeCharacter(uint8_t screen_char, uint8_t new_char)
+void SevenSegDisplay_ChangeCharacter(uint8_t screen_char, uint8_t new_char)
 {
 	if (screen_char < SCREEN_SIZE)
 	{
 		screen[screen_char].character = new_char;
 	}
-	return true;
 }
-
-void SevenSegDisplay_SetBright(bright_t new_bright)
-{
-	brightness = new_bright;
-}
-
-void SevenSegDisplay_EraseScreen(void)
-{
-	for(int i = 1; i<SCREEN_SIZE; i++)
-	{
-		screen[i].character = NONE;
-	}
-}
-
-
-bool SevenSegDisplay_PrintCharacter(uint8_t character)
-{
-	int count;
-
-	for(count=0; count<SEG_LEN; count++)
-	{
-		gpioWrite(displayPins[count], (character & (1<<count)) != 0);
-	}
-	return 0;
-}
-
-void SevenSegDisplay_PISR(void)
-{
-	if(blink)
-	{
-		if(--blinkCounter == 0)
-		{
-			blinkState = !blinkState;
-			blinkCounter = PERIOD*BLINK_TIME;
-		}
-	}
-	SevenSegDisplay_PrintScreen();
-}
-
-void SevenSegDisplay_PrintScreen(void)
-{
-	static uint8_t displayCounter = 0;
-	static int8_t curr = MIN;
-	static uint8_t prevData = 0xFF;
-
-	uint8_t dataToPrint = (blinkState && (curr > 0)) ? screen[displayCounter].character : NONE;
-	if(prevData != dataToPrint || bright == PERIOD)
-	{
-		SevenSegDisplay_PrintCharacter(dataToPrint);
-		prevData = dataToPrint;
-		gpioWrite(selectPins[0], (displayCounter & (1   )) != 0);
-		gpioWrite(selectPins[1], (displayCounter & (1<<1)) != 0);
-	}
-	curr--;
-	bright--;
-	if (bright == 0)
-	{
-	//	prevData = 0xFF;
-		curr = brightness;
-		bright = PERIOD;
-		displayCounter++;
-
-		if(displayCounter == SCREEN_SIZE){displayCounter = 0;}
-	}
-}
-
 
 bool SevenSegDisplay_BlinkScreen(bool state)
 {
@@ -162,15 +86,18 @@ bool SevenSegDisplay_BlinkScreen(bool state)
 	uint8_t count;
 	for(count=0; count<SCREEN_SIZE; count++)
 	{
-		screen[count].blink=state;
+		screen[count].blink = state;
+		screen[count].blinkCounter = BLINK_TIME;
+		screen[count].blinkState = true;
 	}
+
 	return true;
 }
 
 bool SevenSegDisplay_BlinkCharacter(uint8_t digit)
 {
 	//controls if the digit is valid
-	if( digit>=0 && digit <=3 || digit == RESET_BLINK )
+	if( (digit>=0 && digit <=3) || (digit == RESET_BLINK) )
 	{
 		//if the digit is valid reset all blink variables
 		uint8_t count;
@@ -191,7 +118,74 @@ bool SevenSegDisplay_BlinkCharacter(uint8_t digit)
 	return true;
 }
 
-
+void SevenSegDisplay_SetBright(bright_t new_bright)
+{
+	brightness = new_bright;
+}
 /**************************************************
  * 			LOCAL FUNCTIONS DEFINITIONS
  **************************************************/
+
+/**
+ * @brief print one character on one 7 segments display
+ * @param character to print
+ * @param array with pins to 7 segments display
+ * @return printed succeed
+ */
+bool SevenSegDisplay_PrintCharacter(uint8_t character)
+{
+	int count;
+
+	for(count=0; count<SEG_LEN; count++)
+	{
+		gpioWrite(displayPins[count], (character & (1<<count)) != 0);
+	}
+	return 0;
+}
+
+void SevenSegDisplay_PISR(void)
+{
+	static uint8_t displayCounter = 0;
+	static int8_t  currBright = MAX;
+	static uint8_t window = PERIOD;
+
+	uint8_t dataToPrint = (screen[displayCounter].blinkState && (currBright > 0)) ? screen[displayCounter].character: NONE;
+
+	gpioWrite(selectPins[0], (displayCounter & (1   )) != 0);
+	gpioWrite(selectPins[1], (displayCounter & (1<<1)) != 0);
+	SevenSegDisplay_PrintCharacter(dataToPrint);
+
+	currBright--;
+
+	if(--window == 0)
+	{
+		displayCounter++;
+		window = PERIOD;
+		currBright = brightness;
+		if(displayCounter == SCREEN_SIZE)
+		{
+			displayCounter = 0;
+		}
+
+	}
+
+	if(screen[displayCounter].blink)
+	{
+		if(--screen[displayCounter].blinkCounter == 0)
+		{
+			screen[displayCounter].blinkCounter = BLINK_TIME;
+			screen[displayCounter].blinkState = !screen[displayCounter].blinkState;
+		}
+	}
+
+}
+
+void SevenSegDisplay_EraseScreen(void)
+{
+	for(int i = 1; i<((int)(sizeof(screen)/sizeof(screen[0]))); i++)
+	{
+		screen[i].character = NONE;
+	}
+}
+
+
