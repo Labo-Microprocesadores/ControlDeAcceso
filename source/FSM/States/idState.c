@@ -1,7 +1,7 @@
 /***************************************************************************//**
-  @file     id.c
-  @brief    id state
-  @author   Grupo 2
+  @file     idState.c
+  @brief    ID state functions
+  @author   Grupo 2 - Lab de Micros
  ******************************************************************************/
 
 /*******************************************************************************
@@ -24,8 +24,20 @@ static uint8_t currentPos = 0;
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
+/**
+ * @brief Function executed when a BACKSPACE is selected by the user. It deletes the current position of the id array (sets it to DEFAULT_ID_CHAR_VALUE).
+ */
 static void deleteLastChar(void);
+/**
+ * @brief Calculates how many elements of the "id" array are different to DEFAULT_ID_CHAR_VALUE. The not DEFAULT_ID_CHAR_VALUE must be consecutive.
+ * @return The amount of elements different from DEFAULT_ID_CHAR_VALUE in the "id" array (its effective length).
+ */
 static int getEffectiveIDArrayLength(void);
+
+/**
+ * @brief Checks if the "id" array format matches the format of an id. The array must be complete (length equal to ID_ARRAY_SIZE) and all elements must be numbers from 0 to 9.
+ * @return A bool indicating if the format is valid or not.
+ */
 static bool checkArrayFormat(void);
 
 /*******************************************************************************

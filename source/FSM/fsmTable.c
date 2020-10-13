@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "fsm.h"
 #include "fsmtable.h"
+#include "States\idState.h"
 
 
 /*Foward Declarations*/
@@ -19,7 +20,6 @@ extern STATE open[];
 
 
 // prototipos
-
 static void do_nothing(void);
 
 
@@ -29,9 +29,11 @@ static void do_nothing(void);
 
  STATE menu[]=
 {
-  	{ENCODER_RIGHT_EV,id,},
-    {ENCODER_LEFT_EV,id,},
-    {PRESS_EV,id,},
+  	{ENCODER_RIGHT_EV, id ,initLogin},
+    {ENCODER_LEFT_EV, id, initLogin},
+    {PRESS_EV, id, initLogin},
+	{LKP_EV, id, initLogin},
+	{CARD_SWIPE_EV, id, cardRead}
   	{FIN_TABLA,menu,do_nothing}
 };
 
@@ -105,7 +107,6 @@ STATE admin[] =
 STATE *FSM_GetInitState(void)
 {
  	return (ledAzul);
-}
 
 
 
