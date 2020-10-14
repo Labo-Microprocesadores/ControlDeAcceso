@@ -29,20 +29,20 @@
 
 
 // On Board User Switches
-#define PIN_SW2         PORTNUM2PIN(PC,6) // PTA4
+#define PIN_SW2         PORTNUM2PIN(PC,6) // PTC6
 #define PIN_SW3         PORTNUM2PIN(PA,4) // PTA4
 
 #define SW_ACTIVE       LOW
 #define SW_INPUT_TYPE   INPUT_PULLDOWN
 
 // Encoder pin's
-#define ENCODER_A		PORTNUM2PIN(PC,8)
-#define ENCODER_B		PORTNUM2PIN(PC,9)
+#define ENCODER_A		PORTNUM2PIN(PC,8) // PTC8
+#define ENCODER_B		PORTNUM2PIN(PC,9) // PTC9
 
 // Lector de tarjetas
-#define LECTOR_ENABLE 	PORTNUM2PIN(PA,2)
-#define LECTOR_DATA		PORTNUM2PIN(PA,1)
-#define LECTOR_CLOCK	PORTNUM2PIN(PC,3)
+#define LECTOR_ENABLE 	PORTNUM2PIN(PA,2) // PTA2
+#define LECTOR_DATA		PORTNUM2PIN(PA,1) // PTA1
+#define LECTOR_CLOCK	PORTNUM2PIN(PC,3) //PTC3
 
 // 7Segment Board
 #define PIN_SEGA	PORTNUM2PIN(PC,10) 	// PTC10

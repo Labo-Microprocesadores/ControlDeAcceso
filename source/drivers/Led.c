@@ -1,5 +1,5 @@
 /***************************************************************************//**
-  @file     Led.c
+  @file     led.c
   @brief    Led functions
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/
@@ -11,9 +11,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include "Timer.h"
+#include "timer.h"
 #include "gpio.h"
-#include "Led.h"
+#include "led.h"
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE

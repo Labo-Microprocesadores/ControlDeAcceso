@@ -1,8 +1,8 @@
-/* 
- *
- *  Created on: 28/07/2014
- *      Author: El charlo y el mati
- */
+/***************************************************************************//**
+  @file     fsm.h
+  @brief    FSM header.
+  @author   Grupo 2 - Lab de Micros
+ ******************************************************************************/
 
 #ifndef FSM_H_
 #define FSM_H_

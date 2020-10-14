@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "fsm.h"
 #include "fsmtable.h"
-#include "States\idState.h"
+#include "states/id_state.h"
 
 
 /*Foward Declarations*/

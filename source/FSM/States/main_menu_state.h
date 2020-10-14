@@ -1,15 +1,16 @@
 /***************************************************************************//**
-  @file     PinState.h
-  @brief    Pin state header
+  @file     main_menu_state.h
+  @brief    Main menu state header
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/
-#ifndef PIN_STATE_H
-#define PIN_STATE_H
+#ifndef MAIN_MENU_STATE_H
+#define MAIN_MENU_STATE_H
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
+void showWelcomeAnimation(void);
 
 
 
-#endif /* PIN_STATE_H */
+#endif /* MAIN_MENU_STATE_H */

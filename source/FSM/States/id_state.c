@@ -1,5 +1,5 @@
 /***************************************************************************//**
-  @file     idState.c
+  @file     id_state.c
   @brief    ID state functions
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/
@@ -8,8 +8,8 @@
  * INCLUDE HEADER FILES
  ******************************************************************************/
 #include <stdbool.h>
-#include "Timer.h"
-#include "id.h"
+#include "timer.h"
+#include "id_state.h"
 
 
 
@@ -25,12 +25,12 @@ static uint8_t currentPos = 0;
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 /**
- * @brief Function executed when a BACKSPACE is selected by the user. It deletes the current position of the id array (sets it to DEFAULT_ID_CHAR_VALUE).
+ * @brief Function executed when a BACKSPACE is selected by the user. It deletes the current position of the id array (sets it to DEFAULT_ID_CHAR_VALUE) and sets the previouss one to DEFAULT_ID_CHAR_VALUE.
  */
 static void deleteLastChar(void);
 /**
- * @brief Calculates how many elements of the "id" array are different to DEFAULT_ID_CHAR_VALUE. The not DEFAULT_ID_CHAR_VALUE must be consecutive.
- * @return The amount of elements different from DEFAULT_ID_CHAR_VALUE in the "id" array (its effective length).
+ * @brief Calculates the number of characters introduced by the user in the id array.
+ * @return The amount of elements different from DEFAULT_ID_CHAR_VALUE and BACKSPACE in the "id" array (its effective length).
  */
 static int getEffectiveIDArrayLength(void);
 
@@ -52,7 +52,9 @@ void increaseCurrent(void)
 {
     if(id[currentPos] == BACKSPACE)
         id[currentPos] = 0;
-    else if(id[currentPos] <= 8)
+    else if(id[currentPos]==DEFAULT_ID_CHAR_VALUE)
+        id[currentPos] = 0;
+    else if(id[currentPos] < 9)
         id[currentPos]++; 
     else 
         id[currentPos] = BACKSPACE;
@@ -84,7 +86,7 @@ void confirmID(void)
 void timerTimeout(void)
 {
     int i;
-    for( i=0 ; i < sizeof(id)/sizeof(id[0]) ; i++ )
+    for( i=0 ; i < ID_ARRAY_SIZE ; i++ )
     {
         id[i] = DEFAULT_ID_CHAR_VALUE;
     }
@@ -107,7 +109,7 @@ void acceptNumber(void)
         deleteLastChar();
         currentPos--;
     }       
-    id[currentPos] = 0;
+    id[currentPos] = DEFAULT_ID_CHAR_VALUE;
 }
 
 /*******************************************************************************
@@ -133,13 +135,13 @@ static int getEffectiveIDArrayLength(void)
     bool foundLast = false;
     while(!foundLast && length < ID_ARRAY_SIZE)
     {
-        if (id[length] != DEFAULT_ID_CHAR_VALUE)
+        uint8_t lastChar = id[length];
+        if (lastChar == DEFAULT_ID_CHAR_VALUE || lastChar == BACKSPACE)
             foundLast = true;
         else
             length ++;
     }
     return length;
-
 }
 
 static bool checkArrayFormat(void)
@@ -147,11 +149,6 @@ static bool checkArrayFormat(void)
     int currentArrayLength = getEffectiveIDArrayLength();
 
     if (currentArrayLength!=ID_ARRAY_SIZE)
-        return false;
-    
-    //Checks if the last position is equal to BACKSPACE. Can only happen if confirmID() is called before acceptNumber()
-    //Previous positions cannot be equal to BACKSPACE because deleteLastChar() is called in acceptNumber().
-    if (id[ID_ARRAY_SIZE-1] == BACKSPACE)   
         return false;
 
     return true;

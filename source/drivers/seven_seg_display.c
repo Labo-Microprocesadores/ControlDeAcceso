@@ -1,13 +1,13 @@
 /***************************************************************************//**
-  @file     7SegDisplay.c
+  @file     seven_seg_display.c
   @brief    Display configurations
   @author   Grupo 2
  ******************************************************************************/
 
-#include "SevenSegDisplay.h"
+#include "seven_seg_display.h"
 #include "SysTick.h"
 #include "gpio.h"
-#include "Timer.h"
+#include "timer.h"
 #include "board.h"
 
 /*******************************************************************************

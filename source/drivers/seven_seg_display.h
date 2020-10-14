@@ -1,5 +1,5 @@
 /***************************************************************************//**
-  @file     7SegDisplay.c
+  @file     seven_seg_display.c
   @brief    7 Segment Display Header
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/

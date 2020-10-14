@@ -1,5 +1,5 @@
 /***************************************************************************//**
-  @file     Timer.c
+  @file     timer.c
   @brief    Timer functions
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/
@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include "Timer.h"
+#include "timer.h"
 #include "SysTick.h"
 
 /*******************************************************************************
