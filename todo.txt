@@ -1,0 +1,6 @@
+En idState.c:
+    Resetear el timer de timeout en algunas funciones 
+    En algunas actualizar el display
+    Chequear ID con la base de datos 
+    Tirar eventos a la fsm para cambiar de estados 
+    
