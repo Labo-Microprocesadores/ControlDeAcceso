@@ -1,6 +1,9 @@
-En idState.c:
+En id_state.c y pin_state.c:
     Resetear el timer de timeout en algunas funciones 
     En algunas actualizar el display
     Chequear ID con la base de datos 
     Tirar eventos a la fsm para cambiar de estados 
     
+En main_menu_state.c
+    Ver como mostrar las cosas en el display 
+    hacer funciones cardSwipe y initLogin
