@@ -14,8 +14,6 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 #define PIN_ARRAY_SIZE   5
-#define DEFAULT_PIN_CHAR_VALUE   -1
-#define BACKSPACE -2
 //CHAR ORDER: 0 1 2 3 4 5 6 7 8 9 BACKSPACE
 
 /*******************************************************************************
