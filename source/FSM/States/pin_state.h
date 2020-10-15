@@ -1,4 +1,4 @@
-/***************************************************************************//**
+/***************************************************************************/ /**
   @file     pin_state.h
   @brief    Pin state header
   @author   Grupo 2 - Lab de Micros
@@ -13,7 +13,7 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-#define PIN_ARRAY_SIZE   5
+#define PIN_ARRAY_SIZE 5
 //CHAR ORDER: 0 1 2 3 4 5 6 7 8 9 BACKSPACE
 
 /*******************************************************************************
@@ -42,7 +42,6 @@ void confirmPin(void);
  */
 void timerTimeout(void);
 
-
 #endif //ID_H_*******************************************************/
 /**
  * @brief Changes the current position of the PIN array to the next character following CHAR ORDER.
@@ -66,6 +65,10 @@ void confirmID(void);
  * @brief Function executed when a timeout event is received.
  */
 void timerTimeout(void);
-
-
+/**
+ * @brief Returns the array of the Pin.
+ * @param sizeOfReturningArray: A pointer to an integer where the size of the pin array gets stored.
+ * @return The array of introduced characters.
+ */
+uint8_t *getPinArray(int *sizeOfReturningArray);
 #endif //ID_H_
