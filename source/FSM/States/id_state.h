@@ -1,4 +1,4 @@
-/***************************************************************************//**
+/***************************************************************************/ /**
   @file     id_state.h
   @brief    ID state header
   @author   Grupo 2 - Lab de Micros
@@ -13,9 +13,7 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-#define ID_ARRAY_SIZE   8
-#define DEFAULT_ID_CHAR_VALUE   -1
-#define BACKSPACE -2
+#define ID_ARRAY_SIZE 8
 //CHAR ORDER: 0 1 2 3 4 5 6 7 8 9 BACKSPACE
 
 /*******************************************************************************
@@ -40,9 +38,13 @@ void acceptNumber(void);
  */
 void confirmID(void);
 /**
+ * @brief Checks if the read ID (from card) is correct and corresponds to an user or an admin in the database.
+ *        Adds a ID_OK or a ID_FAIL event to the event queue of the FSM.
+ */
+void checkCardID(void);
+/**
  * @brief Function executed when a timeout event is received.
  */
 void timerTimeout(void);
-
 
 #endif //ID_H_
