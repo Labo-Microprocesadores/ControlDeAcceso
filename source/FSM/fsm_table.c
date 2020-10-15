@@ -1,7 +1,14 @@
 #include <stdio.h>
 #include "fsm.h"
-#include "fsmtable.h"
+#include "fsm_table.h"
+#include "states/main_menu_state.h"
 #include "states/id_state.h"
+#include "states/pin_state.h"
+#include "states/fail_state.h"
+#include "states/usr_state.h"
+#include "states/admin_state.h"
+//#include "states/admin_state.h" para open state
+
 
 
 /*Foward Declarations*/
@@ -33,7 +40,7 @@ static void do_nothing(void);
     {ENCODER_LEFT_EV, id, initLogin},
     {PRESS_EV, id, initLogin},
 	{LKP_EV, id, initLogin},
-	{CARD_SWIPE_EV, id, cardRead}
+	{CARD_SWIPE_EV, id, cardRead},
   	{FIN_TABLA,menu,do_nothing}
 };
 
@@ -42,30 +49,35 @@ static void do_nothing(void);
 
 STATE id[]=
 {
-	{PRESS_EV,id,},
-	{ENCODER_RIGHT_EV,id,},
-    {ENCODER_LEFT_EV,id,},
-	{FIN_TABLA,menu,do_nothing}
+	{PRESS_EV, id, acceptNumber},
+	{LKP_EV, id, confirmID},
+	{ENCODER_RIGHT_EV, id, increaseCurrent},
+    {ENCODER_LEFT_EV, id, decreaseCurrent},
+	{CARD_SWIPE_EV, id, checkCardID},
+	{FIN_TABLA,id,do_nothing}
 };
 
 /*** Pin ***/
 
 STATE pin[] =
 {
-	{,pin,},
-	{,fail,},
-    {,usr,},
-    {,admin,},
-	{FIN_TABLA,main,do_nothing}
+	{,pin,},	    
+	{PRESS_EV,pin,},
+	{ENCODER_RIGHT_EV,pin,},
+    {ENCODER_LEFT_EV,pin,},
+	{USR_PIN_OK_EV, usr,},
+    {ADMIN_PIN_OK_EV, admin,},
+	{PIN_FAIL_EV, fail,},
+	{FIN_TABLA, pin, do_nothing}
 };
 
 /*** Fail ***/
 
 STATE fail[] =
 {
-	{,menu,},
-	{,pin,},
-	{FIN_TABLA,main,do_nothing}
+	{NO_ATT_EV, menu, blockUsr},
+	{HAS_ATT_EV, pin, hasAttempsLeft},
+	{FIN_TABLA, fail, do_nothing}
 };
 
 
@@ -75,7 +87,7 @@ STATE usr[] =
 {
 	{,cfg_me,},
 	{,open,},
-	{FIN_TABLA,main,do_nothing}
+	{FIN_TABLA, usr, do_nothing}
 };
 
 /*** ADMIN ***/
@@ -87,16 +99,16 @@ STATE admin[] =
     {,add_user,},
     {,cfg_usr,},
     {,cfg_device,},
-	{FIN_TABLA,main,do_nothing}
+	{FIN_TABLA, admin, do_nothing}
 };
 
 
 /*** OPEN ***/
 
-STATE admin[] =
+STATE open[] =
 {
 	{,menu,},
-	{FIN_TABLA,main,do_nothing}
+	{FIN_TABLA, open, do_nothing}
 };
 
 
@@ -117,5 +129,5 @@ STATE *FSM_GetInitState(void)
 /*Dummy function*/
 static void do_nothing(void)
 {
-
+	//take some time off, relax, and KEEP WORKING you lazy ass ALU
 }
