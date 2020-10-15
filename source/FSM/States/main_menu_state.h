@@ -1,4 +1,4 @@
-/***************************************************************************//**
+/***************************************************************************/ /**
   @file     main_menu_state.h
   @brief    Main menu state header
   @author   Grupo 2 - Lab de Micros
@@ -10,7 +10,7 @@
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
 void showWelcomeAnimation(void);
-
-
+void initLogin(void);
+void cardRead(void);
 
 #endif /* MAIN_MENU_STATE_H */
