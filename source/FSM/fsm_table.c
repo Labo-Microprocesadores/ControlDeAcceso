@@ -54,9 +54,9 @@ STATE id[]=
 	{ENCODER_RIGHT_EV, id, id_increaseCurrent},
     {ENCODER_LEFT_EV, id, id_decreaseCurrent},
 	{CARD_SWIPE_EV, id, checkCardID},
-	{FIN_TABLA,id,do_nothing},
 	{ID_OK_EV, pin, id_updateDispPin} //TODO que updetee el display
 	{ID_FAIL_EV, id, } //TODO ver si tieneque ir directo a menu o no
+	{FIN_TABLA,id,do_nothing},
 };
 
 /*** Pin ***/

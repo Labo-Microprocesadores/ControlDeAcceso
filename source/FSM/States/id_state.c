@@ -61,7 +61,6 @@ void id_confirmID(void)
 void id_timerTimeout(void)
 {
     inputTimerTimeout(id, &currentPos, ID_ARRAY_SIZE);
-    //TODO mostrar timeout en display???
 }
 
 void id_acceptNumber(void)
@@ -83,10 +82,10 @@ void id_checkCardID(void)
 
 void id_updateDispPin(void)
 {
+    SevenSegDisplay_EraseScreen(void);
     SevenSegDisplay_ChangeCharacter(0, P);
     SevenSegDisplay_ChangeCharacter(1, I);
     SevenSegDisplay_ChangeCharacter(2, N);
-    SevenSegDisplay_ChangeCharacter(3, NONE);
 }
 /*******************************************************************************
  *******************************************************************************

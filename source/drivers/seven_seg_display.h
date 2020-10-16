@@ -36,10 +36,11 @@
 #define C				(uint8_t)0x39
 #define F				(uint8_t)0x71
 #define G				(uint8_t)0x3D
+#define H				(uint8_t)0x76
 
 #define MASK			(uint8_t)0x01
 
-#define CHARS 			{ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, LINE, NONE, I, D, P, N, C, F, G}
+#define CHARS 			{ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, LINE, NONE, I, D, P, N, C, F, G, H}
 
 #define SEG_LEN			8
 #define SEL_LEN			2
