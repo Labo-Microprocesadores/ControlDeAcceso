@@ -22,53 +22,53 @@
 /**
  * @brief Changes the current position of the PIN array to the next character following CHAR ORDER.
  */
-void increaseCurrent(void);
+void pin_increaseCurrent(void);
 /**
  * @brief Changes the current position of the PIN array to the previous character following CHAR ORDER.
  */
-void decreaseCurrent(void);
+void pin_decreaseCurrent(void);
 /**
  * @brief Set the current position of the PIN array with the introduced character and moves to the next position (unless the character is equal to BACKSPACE).
  *        If the introduced character is equal to BACKSPACE, it deletes the character of the current position and moves to the previous one.
  */
-void acceptNumber(void);
+void pin_acceptNumber(void);
 /**
  * @brief Checks if the entered PIN is correct and corresponds to an user or an admin in the database.
  *        Adds a PIN_OK or a PIN_FAIL event to the event queue of the FSM.
  */
-void confirmPin(void);
+void pin_confirmPin(void);
 /**
  * @brief Function executed when a timeout event is received.
  */
-void timerTimeout(void);
+void pin_timerTimeout(void);
 
 #endif //ID_H_*******************************************************/
 /**
  * @brief Changes the current position of the PIN array to the next character following CHAR ORDER.
  */
-void increaseCurrent(void);
+void pin_increaseCurrent(void);
 /**
  * @brief Changes the current position of the PIN array to the previous character following CHAR ORDER.
  */
-void decreaseCurrent(void);
+void pin_decreaseCurrent(void);
 /**
  * @brief Set the current position of the PIN array with the introduced character and moves to the next position (unless the character is equal to BACKSPACE).
  *        If the introduced character is equal to BACKSPACE, it deletes the character of the current position and moves to the previous one.
  */
-void acceptNumber(void);
+void pin_acceptNumber(void);
 /**
  * @brief Checks if the entered PIN is correct and corresponds to an user or an admin in the database.
  *        Adds a PIN_OK or a PIN_FAIL event to the event queue of the FSM.
  */
-void confirmID(void);
+void pin_confirmPin(void);
 /**
  * @brief Function executed when a timeout event is received.
  */
-void timerTimeout(void);
+void pin_timerTimeout(void);
 /**
  * @brief Returns the array of the Pin.
  * @param sizeOfReturningArray: A pointer to an integer where the size of the pin array gets stored.
  * @return The array of introduced characters.
  */
-uint8_t *getPinArray(int *sizeOfReturningArray);
-#endif //ID_H_
+uint8_t *pin_getPinArray(int *sizeOfReturningArray);
+#endif //PIN_H_

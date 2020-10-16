@@ -11,6 +11,7 @@
 #include "timer.h"
 #include "id_state.h"
 #include "user_input.h"
+#include "seven_seg_display.h"
 
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
@@ -35,17 +36,17 @@ static bool checkArrayFormat(void);
 //!OJO EN TODAS ESTA HABRIA QUE RESETEAR EL TIMER DE TIMEOUT Y EN ALGUNAS ACTUALIZAR EL DISPLAY
 //TODO AGREGAR ESO
 
-void increaseCurrent(void)
+void id_increaseCurrent(void)
 {
     inputIncreaseCurrent(id, currentPos);
 }
 
-void decreaseCurrent(void)
+void id_decreaseCurrent(void)
 {
-    userDecreaseCurrent(id, currentPos);
+    inputDecreaseCurrent(id, currentPos);
 }
 
-void confirmID(void)
+void id_confirmID(void)
 {
     if (!checkArrayFormat())
     {
@@ -57,26 +58,35 @@ void confirmID(void)
     //si el id no es conocido entonces emito evento de ID_FAIL
 }
 
-void timerTimeout(void)
+void id_timerTimeout(void)
 {
     inputTimerTimeout(id, &currentPos, ID_ARRAY_SIZE);
     //TODO mostrar timeout en display???
 }
 
-void acceptNumber(void)
+void id_acceptNumber(void)
 {
     inputAcceptNumber(id, &currentPos, ID_ARRAY_SIZE);
 }
-uint8_t *getIdArray(int *sizeOfReturningArray)
+
+uint8_t *id_getIdArray(int *sizeOfReturningArray)
 {
     int currentArrayLength = getEffectiveArrayLength(id, ID_ARRAY_SIZE);
     *sizeOfReturningArray = currentArrayLength;
     return id;
 }
 
-void checkCardID(void)
+void id_checkCardID(void)
 {
     //TODO Checks if the read ID (from card) is correct and corresponds to a user or an admin in the database. Adds a ID_OK or a ID_FAIL event to the event queue of the FSM.
+}
+
+void id_updateDispPin(void)
+{
+    SevenSegDisplay_ChangeCharacter(0, P);
+    SevenSegDisplay_ChangeCharacter(1, I);
+    SevenSegDisplay_ChangeCharacter(2, N);
+    SevenSegDisplay_ChangeCharacter(3, NONE);
 }
 /*******************************************************************************
  *******************************************************************************

@@ -29,10 +29,17 @@
 #define EIGHT			(uint8_t)0x7F
 #define NINE			(uint8_t)0x6F
 #define LINE			(uint8_t)0x08
+#define I				(uint8_t)0x30				
+#define D				(uint8_t)0x5D
+#define P				(uint8_t)0x73
+#define N				(uint8_t)0x37
+#define C				(uint8_t)0x39
+#define F				(uint8_t)0x71
+#define G				(uint8_t)0x3D
 
 #define MASK			(uint8_t)0x01
 
-#define CHARS 			{ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, LINE, NONE}
+#define CHARS 			{ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, LINE, NONE, I, D, P, N, C, F, G}
 
 #define SEG_LEN			8
 #define SEL_LEN			2

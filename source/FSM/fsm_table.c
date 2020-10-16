@@ -49,22 +49,24 @@ static void do_nothing(void);
 
 STATE id[]=
 {
-	{PRESS_EV, id, acceptNumber},
+	{PRESS_EV, id, id_acceptNumber},
 	{LKP_EV, id, confirmID},
-	{ENCODER_RIGHT_EV, id, increaseCurrent},
-    {ENCODER_LEFT_EV, id, decreaseCurrent},
+	{ENCODER_RIGHT_EV, id, id_increaseCurrent},
+    {ENCODER_LEFT_EV, id, id_decreaseCurrent},
 	{CARD_SWIPE_EV, id, checkCardID},
-	{FIN_TABLA,id,do_nothing}
+	{FIN_TABLA,id,do_nothing},
+	{ID_OK_EV, pin, id_updateDispPin} //TODO que updetee el display
+	{ID_FAIL_EV, id, } //TODO ver si tieneque ir directo a menu o no
 };
 
 /*** Pin ***/
 
 STATE pin[] =
 {
-	{,pin,},	    
-	{PRESS_EV,pin,},
-	{ENCODER_RIGHT_EV,pin,},
-    {ENCODER_LEFT_EV,pin,},
+	//{,pin,},	    
+	{PRESS_EV,pin, pin_acceptNumber},
+	{ENCODER_RIGHT_EV,pin, pin_increaseCurrent}, 
+    {ENCODER_LEFT_EV,pin, pin_decreaseCurrent}, 
 	{USR_PIN_OK_EV, usr,},
     {ADMIN_PIN_OK_EV, admin,},
 	{PIN_FAIL_EV, fail,},

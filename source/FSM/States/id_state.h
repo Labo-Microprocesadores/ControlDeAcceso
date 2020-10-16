@@ -22,29 +22,42 @@
 /**
  * @brief Changes the current position of the ID array to the next character following CHAR ORDER.
  */
-void increaseCurrent(void);
+void id_increaseCurrent(void);
 /**
  * @brief Changes the current position of the ID array to the previous character following CHAR ORDER.
  */
-void decreaseCurrent(void);
+void id_decreaseCurrent(void);
 /**
  * @brief Set the current position of the ID array with the introduced character and moves to the next position (unless the character is equal to BACKSPACE).
  *        If the introduced character is equal to BACKSPACE, it deletes the character of the current position and moves to the previous one.
  */
-void acceptNumber(void);
+void id_acceptNumber(void);
 /**
  * @brief Checks if the entered ID is correct and corresponds to an user or an admin in the database.
  *        Adds a ID_OK or a ID_FAIL event to the event queue of the FSM.
  */
-void confirmID(void);
+void id_confirmID(void);
 /**
  * @brief Checks if the read ID (from card) is correct and corresponds to an user or an admin in the database.
  *        Adds a ID_OK or a ID_FAIL event to the event queue of the FSM.
  */
-void checkCardID(void);
+void id_checkCardID(void);
 /**
  * @brief Function executed when a timeout event is received.
  */
-void timerTimeout(void);
+void id_timerTimeout(void);
+/**
+ * @brief Returns the array of the ID.
+ * @param sizeOfReturningArray: A pointer to an integer where the size of the ID array gets stored.
+ * @return The array of introduced characters.
+ */
+uint8_t *id_getIDArray(int *sizeOfReturningArray);
+/**
+ * @brief Function executed when ID is correct and updates display's chars with the word "PIN".
+ */
+void id_updateDispPin(void);
+
+
+
 
 #endif //ID_H_
