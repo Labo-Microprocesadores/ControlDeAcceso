@@ -8,10 +8,15 @@
  * INCLUDE HEADER FILES
  ******************************************************************************/
 #include "admin_state.h"
+
+/*******************************************************************************
+ * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
+ ******************************************************************************/
+typedef enum {OPEN, CONFIG_DEVICE, ADD_USER, CONFIG_USER, CONFIG_ME} options_t;
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
-static char *options[OPTIONS_ARRAY_SIZE] = {"OPEN", "CnFG DEVICE", "ADD USER", "CnFG USER", "CnFG ME"};
+
 static uint8_t currentOptionIndex = 0;
 
 /*******************************************************************************
@@ -36,17 +41,18 @@ void previousOption(void)
 
 void selectOption(void)
 {
+    //{"OPEN", "CnFG DEVICE", "ADD USER", "CnFG USER", "CnFG ME"};
     switch (currentOptionIndex) //TODO: Add events to the queue.
     {
-    case 0:
+    case OPEN:
         break;
-    case 1:
+    case CONFIG_DEVICE:
         break;
-    case 2:
+    case ADD_USER:
         break;
-    case 3:
+    case CONFIG_USER:
         break;
-    case 4:
+    case CONFIG_ME:
         break;
     }
 }

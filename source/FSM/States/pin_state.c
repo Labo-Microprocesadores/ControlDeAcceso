@@ -34,7 +34,7 @@ static bool checkArrayFormat(void);
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-//!OJO EN TODAS ESTA HABRIA QUE RESETEAR EL TIMER DE TIMEOUT Y EN ALGUNAS ACTUALIZAR EL DISPLAY
+//!OJO EN TODAS ESTADS HABRIA QUE RESETEAR EL TIMER DE TIMEOUT Y EN ALGUNAS ACTUALIZAR EL DISPLAY
 //TODO AGREGAR ESO
     userDecreaseCurrent(pin, currentPos);
 }
@@ -54,7 +54,7 @@ void confirmID(void)
 void timerTimeout(void)
 {
     inputTimerTimeout(pin, &currentPos, PIN_ARRAY_SIZE);
-    //mostrar timeout en display???
+    //TODO mostrar timeout en display???
 }
 
 void acceptNumber(void)

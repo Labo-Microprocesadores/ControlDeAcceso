@@ -10,9 +10,14 @@
 #include "usr_state.h"
 
 /*******************************************************************************
+ * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
+ ******************************************************************************/
+typedef enum {OPEN, CONFIG} options_t;
+
+/*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
-static char *options[OPTIONS_ARRAY_SIZE] = {"OPEN", "CONFIG"};
+static options_t options;
 static uint8_t currentOptionIndex = 0;
 
 /*******************************************************************************
@@ -39,9 +44,9 @@ void selectOption(void)
 {
     switch (currentOptionIndex) //TODO: Add events to the queue.
     {
-    case 0:
+    case OPEN:
         break;
-    case 1:
+    case CONFIG:
         break;
     }
 }
