@@ -1,11 +1,8 @@
-/*
- * fsmtable.h
- *
- *  Created on: 28/07/2014
- *      Author: Daniel Jacoby
- */
-
-
+/***************************************************************************/ /**
+  @file     fsm_table.h
+  @brief    FSM Table header.
+  @author   Grupo 2 - Lab de Micros
+ ******************************************************************************/
 #ifndef FSMTABLE_H_
 #define FSMTABLE_H_
 

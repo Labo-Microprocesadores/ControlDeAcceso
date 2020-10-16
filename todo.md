@@ -9,6 +9,9 @@ En id_state.c, pin_state.c y user_input:
     - [ ] Chequear ID con la base de datos 
     - [ ] Tirar eventos a la fsm para cambiar de estados 
     - [ ] Hacer checkCardID
+    - [ ] Completar id_fail()
+    - [ ] Shifteo del display
+    - [ ] Blink del display en el caracter en el que esta el usuario
     
 En FSM:
     - [ ] Guardar id y pin en una estructura.

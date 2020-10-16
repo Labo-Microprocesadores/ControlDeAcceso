@@ -12,7 +12,14 @@
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
-typedef enum {OPEN, CONFIG_DEVICE, ADD_USER, CONFIG_USER, CONFIG_ME} options_t;
+typedef enum
+{
+    OPEN,
+    CONFIG_DEVICE,
+    ADD_USER,
+    CONFIG_USER,
+    CONFIG_ME
+} options_t;
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/

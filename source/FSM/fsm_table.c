@@ -41,7 +41,7 @@ static void do_nothing(void);
     {PRESS_EV, id, initLogin},
 	{LKP_EV, id, initLogin},
 	{CARD_SWIPE_EV, id, cardRead},
-  	{FIN_TABLA,menu,do_nothing}
+  	{FIN_TABLA, menu, do_nothing}
 };
 
 
@@ -53,9 +53,9 @@ STATE id[]=
 	{LKP_EV, id, confirmID},
 	{ENCODER_RIGHT_EV, id, id_increaseCurrent},
     {ENCODER_LEFT_EV, id, id_decreaseCurrent},
-	{CARD_SWIPE_EV, id, checkCardID},
-	{ID_OK_EV, pin, id_updateDispPin} //TODO que updetee el display
-	{ID_FAIL_EV, id, } //TODO ver si tieneque ir directo a menu o no
+	{CARD_SWIPE_EV, id, id_checkCardID},
+	{ID_OK_EV, pin, id_updateDispPin}, //TODO que updetee el display
+	{ID_FAIL_EV, id, id_fail}, //TODO ver si tieneque ir directo a menu o no
 	{FIN_TABLA,id,do_nothing},
 };
 

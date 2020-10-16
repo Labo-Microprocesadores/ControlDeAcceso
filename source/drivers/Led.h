@@ -6,8 +6,15 @@
 
 #ifndef LED_H_
 #define LED_H_
-
-#include "board.h"
+/*******************************************************************************
+ * INCLUDE HEADER FILES
+ ******************************************************************************/
+#include "./board.h"
+#include "./gpio.h"
+#include <stddef.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdbool.h>
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
@@ -20,8 +27,6 @@ typedef enum LedBlinkSpeed {NO_SPEED = 0, SLOW = 16, NORMAL = 6, FAST = 2} LedBl
 typedef enum LedState {ON = LOW, OFF = HIGH} LedState;
 typedef enum LedID {LED_RED = PIN_LED_RED , LED_BLUE = PIN_LED_BLUE, LED_GREEN = PIN_LED_GREEN} LedID;
 typedef enum LedError {LedNoError = 0, LedPeriodError = -1, LedNoIdFound = -2, LedOtherErrors = -3} LedError;
-
-
 
 
 /*******************************************************************************

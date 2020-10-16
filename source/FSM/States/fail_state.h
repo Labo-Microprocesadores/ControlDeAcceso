@@ -1,4 +1,4 @@
-/***************************************************************************//**
+/***************************************************************************/ /**
   @file     fail_state.h
   @brief    fail state header.
   @author   Grupo 2 - Lab de Micros
@@ -15,4 +15,3 @@ void blockUsr(void);
 void hasAttemptsLeft(void);
 
 #endif /* FAIL_STATE_H_*/
- 

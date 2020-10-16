@@ -1,4 +1,4 @@
-/***************************************************************************//**
+/***************************************************************************/ /**
   @file     pin_state.c
   @brief    Pin state functions
   @author   Grupo 2 - Lab de Micros
@@ -12,11 +12,10 @@
 #include "pin_state.h"
 #include "user_input.h"
 
-
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
-static uint8_t pin[PIN_ARRAY_SIZE] = {[ 0 ... (PIN_ARRAY_SIZE-1) ] = DEFAULT_PIN_CHAR_VALUE};
+static uint8_t pin[PIN_ARRAY_SIZE] = {[0 ... (PIN_ARRAY_SIZE - 1)] = NO_INPUT_CHAR};
 static uint8_t currentPos = 0;
 
 /*******************************************************************************
@@ -35,7 +34,7 @@ static bool checkArrayFormat(void);
  ******************************************************************************/
 //!OJO EN TODAS ESTADS HABRIA QUE RESETEAR EL TIMER DE TIMEOUT Y EN ALGUNAS ACTUALIZAR EL DISPLAY
 //TODO AGREGAR ESO
-    userDecreaseCurrent(pin, currentPos);
+userDecreaseCurrent(pin, currentPos);
 }
 
 void pin_confirmPin(void)
@@ -61,19 +60,17 @@ void pin_acceptNumber(void)
     inputAcceptNumber(pin, &currentPos, PIN_ARRAY_SIZE);
 }
 
-
 void pin_increaseCurrent(void)
 {
     inputIncreaseCurrent(pin, currentPos);
 }
-
 
 void pin_decreaseCurrent(void)
 {
     inputDecreaseCurrent(pin, currentPos);
 }
 
-uint8_t * pin_getPinArray(int * sizeOfReturningArray)
+uint8_t *pin_getPinArray(int *sizeOfReturningArray)
 {
     int currentArrayLength = getEffectiveArrayLength(pin, PIN_ARRAY_SIZE);
     *sizeOfReturningArray = currentArrayLength;
@@ -89,7 +86,7 @@ static bool checkArrayFormat(void)
 {
     int currentArrayLength = getEffectiveArrayLength(pin, PIN_ARRAY_SIZE);
 
-    if (currentArrayLength!=PIN_ARRAY_SIZE &&  currentArrayLength!=PIN_ARRAY_SIZE-1)   //4 or 5 chars
+    if (currentArrayLength != PIN_ARRAY_SIZE && currentArrayLength != PIN_ARRAY_SIZE - 1) //4 or 5 chars
         return false;
 
     return true;

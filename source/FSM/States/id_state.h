@@ -57,6 +57,10 @@ uint8_t *id_getIDArray(int *sizeOfReturningArray);
  */
 void id_updateDispPin(void);
 
+/**
+ * @brief Function executed when the ID is not correct.
+ */
+void id_fail(void);
 
 
 

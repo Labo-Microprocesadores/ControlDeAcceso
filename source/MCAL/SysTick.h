@@ -1,4 +1,4 @@
-/***************************************************************************//**
+/***************************************************************************/ /**
   @file     SysTick.h
   @brief    SysTick Header
   @author   Grupo 2 - Lab de Micros
@@ -11,8 +11,8 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 #define SYSTICK_ISR_PERIOD 100000L //1ms
-#define INITIAL_SYSTICK_ELEMENTS_ARRAY_LENGTH	20
-#define MS_TO_TICK_CONVERTION	100000	//1ms
+#define INITIAL_SYSTICK_ELEMENTS_ARRAY_LENGTH 20
+#define MS_TO_TICK_CONVERTION 100000 //1ms
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
@@ -34,7 +34,12 @@ typedef struct SysTickElement
 	bool paused;
 } SysTickElement;
 
-typedef enum SystickError {SystickNoError = 0, SystickPeriodError = -1, SystickNoIdFound = -2} SystickError;
+typedef enum SystickError
+{
+	SystickNoError = 0,
+	SystickPeriodError = -1,
+	SystickNoIdFound = -2
+} SystickError;
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
@@ -44,7 +49,7 @@ typedef enum SystickError {SystickNoError = 0, SystickPeriodError = -1, SystickN
  * @brief Initialization of the SysTick Driver.
  * @return true if no error occurred.
  */
-bool SysTick_Init (void);
+bool SysTick_Init(void);
 
 /**
  * @brief Adds a callback to be periodically called by SysTick.
@@ -88,7 +93,6 @@ SystickError Systick_ResumeCallback(int id);
  * WARNING If the quotient between newPeriod and SYSTICK_ISR_PERIOD is not an integer, it will be truncated.
  */
 SystickError Systick_ChangeCallbackPeriod(int id, int newPeriod);
-
 
 /*******************************************************************************
  ******************************************************************************/

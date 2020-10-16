@@ -1,74 +1,81 @@
 #ifndef EVENTQUEUE_H
 #define EVENTQUEUE_H
 
+/*******************************************************************************
+ * INCLUDE HEADER FILES
+ ******************************************************************************/
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
 
+/*******************************************************************************
+ * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
+ ******************************************************************************/
+//EVENTS
+typedef enum
+{
+  NONE,
+  LKP_EV,
+  PRESS_EV,
+  ENCODER_LEFT_EV,
+  ENCODER_RIGHT_EV,
+  CARD_SWIPE_EV,
+  TIMER_EV,
+  ID_OK_EV,
+  ID_FAIL_EV,
+  ADMIN_PIN_OK_EV,
+  USR_PIN_OK_EV,
+  PIN_FAIL_EV,
+  NO_ATT_EV,
+  HAS_ATT_EV
+} EventType; //VER SI ESTO ES LO MEJOR, O SI ES MEJOR UNA ESTRUCTURA EVENTO MAS COMPLEJA, ADEMAS FALTA DIFERENCIAR LOS DISTINTOS EVENTOS DE TIMER
 
 typedef struct EVENT
 {
-  uint16_t type;
-  bool ack; 
+  EventType type;
+  bool ack;
   struct EVENT *p2NextEv;
-}event_t;
+} event_t;
 
 typedef struct
 {
-  event_t *queue;       
+  event_t *queue;
   event_t *p2get;
   event_t *p2write;
-}event_queue_t;
+} event_queue_t;
 
+/*******************************************************************************
+ * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
+ ******************************************************************************/
 
 #define QUEUE_SIZE 100 //cambiar este define por la cantidad de posiciones deseadas en la cola, recomiendo entre 100 y 200 para este programa
 
+/*******************************************************************************
+ * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
+ ******************************************************************************/
+/**
+ * @brief Initialization of the Event Queue. Must call this function before emitting or getting events.
+ */
+void initQueue(void);
 
-/*****************************************************************************************************************
- * FUNCION create_queue
- * Recibe un puntero a un arreglo de tamaño QUEUE_SIZE (se asume correcto)
- * Devuelve una estructura que en su interior tiene lo necesario para controlar la cola de eventos,
- * un puntero para leer y otro para escribir, el usuario no deberá utilizar esos punteros y se debera acceder a
- * la cola solo a traves de las funciones provistas en este libreria. En caso de error devolvera una estructura cola de eventos que tendra un NULL en
- * el puntero de la cola. IMPORTANTE VERIFICAR ESO
- * ES MUY IMPORTANTE QUE SE DESTRUYAN LAS COLAS CREADAS
- *****************************************************************************************************************/
-event_queue_t initQueue ( event_queue_t* queue );
+/**
+ * @brief Addition of an event to the event queue.
+ * @param EventType identifying the event.
+ * @return bool indicating if an error has occured. 1: error. 0: no error.
+ */
+bool emitEvent(EventType type);
 
+/**
+ * @brief Returns the next event present in the event queue.
+ * @return EventType identifying the next event in the queue.
+ */
+EventType getEvent(void);
 
-
-
-/*****************************************************************************************************************
- * FUNCION emitEvent
- * recibe un puntero a la cola de eventos en la que se quiera escribir y un ID que identifique el evento que se desee crear
- * Devuelve un bool que sera un 1 si no hubo ningun error y un 0 en caso de que haya habido algun error en la ejecución
- * de la función
- *****************************************************************************************************************/
-bool emitEvent( event_queue_t* queue , uint16_t type );
-
-
-
-
-
-
-
-/*****************************************************************************************************************
- * FUNCION getEvent
- * Recibe un puntero a la cola de eventos en la que se quiera leer, 
- * Devuelve el ID del proximo evento que se encuentra en la cola
- *****************************************************************************************************************/
-uint16_t getEvent ( event_queue_t* queue  );
-
-
-
-
-
-/*****************************************************************************************************************
- * FUNCION queueIsEmpty
- * Recibe un puntero a la cola de eventos en la que se quiera chequear 
- * Devuelve un bool que sera un 0 en caso de que no este vacia y un 0 en caso de que si lo este
- *****************************************************************************************************************/
-bool queueIsEmpty( event_queue_t* queue );
+/**
+ * @brief Checks if the event queue is empty.
+ * @return bool indicating whether the event queue is empty or not. false: empty. true: empty.
+ */
+bool queueIsEmpty(void);
 
 #endif

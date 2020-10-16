@@ -82,10 +82,15 @@ void id_checkCardID(void)
 
 void id_updateDispPin(void)
 {
-    SevenSegDisplay_EraseScreen(void);
+    SevenSegDisplay_EraseScreen();
     SevenSegDisplay_ChangeCharacter(0, P);
     SevenSegDisplay_ChangeCharacter(1, I);
     SevenSegDisplay_ChangeCharacter(2, N);
+}
+
+void id_fail(void)
+{
+    
 }
 /*******************************************************************************
  *******************************************************************************
