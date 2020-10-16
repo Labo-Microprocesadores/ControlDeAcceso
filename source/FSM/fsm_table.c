@@ -120,9 +120,9 @@ STATE open[] =
 
 STATE *FSM_GetInitState(void)
 {
- 	return (ledAzul);
-
-
+ 	//return (ledAzul);
+	 return(menu);
+}
 
 ///=========Rutinas de accion===============
 

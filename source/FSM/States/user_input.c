@@ -10,6 +10,7 @@
 #include <stdbool.h>
 #include "timer.h"
 #include "user_input.h"
+#include "seven_Seg_display.h"
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
@@ -39,6 +40,8 @@ void inputIncreaseCurrent(uint8_t *inputArray, uint8_t currentPosition)
         inputArray[currentPosition]++;
     else
         inputArray[currentPosition] = BACKSPACE;
+    SevenSegDisplay_ChangeCharacter(currentPosition, inputArray[currentPosition]);
+
 }
 
 void inputDecreaseCurrent(uint8_t *inputArray, uint8_t currentPosition)
@@ -49,6 +52,8 @@ void inputDecreaseCurrent(uint8_t *inputArray, uint8_t currentPosition)
         inputArray[currentPosition] = BACKSPACE;
     else if (inputArray[currentPosition] == BACKSPACE)
         inputArray[currentPosition] = 9;
+    SevenSegDisplay_ChangeCharacter(currentPosition, inputArray[currentPosition]);
+
 }
 
 void inputTimerTimeout(uint8_t *inputArray, uint8_t *currentPosition, int totalArraySize)
@@ -58,8 +63,10 @@ void inputTimerTimeout(uint8_t *inputArray, uint8_t *currentPosition, int totalA
     {
         inputArray[i] = NO_INPUT_CHAR;
     }
-
     *currentPosition = 0;
+    SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_ChangeCharacter(0, H);
+    SevenSegDisplay_ChangeCharacter(1, I);
 }
 
 void inputAcceptNumber(uint8_t *inputArray, uint8_t *currentPosition, int totalArraySize)
@@ -104,10 +111,14 @@ static void deleteLastChar(uint8_t *inputArray, int totalArraySize)
     int currentArrayLength = getEffectiveArrayLength(inputArray, totalArraySize);
     if (currentArrayLength == 0)
     {
-        //!VOLVER AL MENU ANTERIOR
+         //!esta bien que haga esto aca??
+        SevenSegDisplay_EraseScreen(); 
+        SevenSegDisplay_ChangeCharacter(0, I);
+        SevenSegDisplay_ChangeCharacter(1, D);
     }
     else
     {
+        //! y ver si aca va algun update de display
         inputArray[currentArrayLength - 1] = NO_INPUT_CHAR;
     }
 }

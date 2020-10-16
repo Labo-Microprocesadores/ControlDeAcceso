@@ -22,20 +22,20 @@
  ******************************************************************************/
 /**
  * @brief Changes the current position of the array to the next character following CHAR ORDER.
- * @param inputArray: Te array of characters introduced by the user.
+ * @param inputArray: The array of characters introduced by the user.
  * @param currentPosition: The value of the iterator which stores the current position of the user in the input array.
  */
 void inputIncreaseCurrent(uint8_t *inputArray, uint8_t currentPosition);
 /**
  * @brief Changes the current position of the array to the previous character following CHAR ORDER.
- * @param inputArray: Te array of characters introduced by the user.
+ * @param inputArray: The array of characters introduced by the user.
  * @param currentPosition: The value of the iterator which stores the current position of the user in the input array.
  */
 void inputDecreaseCurrent(uint8_t *inputArray, uint8_t currentPosition);
 /**
  * @brief Set the current position of the array with the introduced character and moves to the next position (unless the character is equal to BACKSPACE).
  *        If the introduced character is equal to BACKSPACE, it deletes the character of the current position and moves to the previous one.
- * @param inputArray: Te array of characters introduced by the user.
+ * @param inputArray: The array of characters introduced by the user.
  * @param currentPosition: A pointer to the iterator which stores the current position of the user in the input array.
  * @param totalArraySize: The previosly fixed size of the inputArray.
  */
@@ -43,7 +43,7 @@ void inputAcceptNumber(uint8_t *inputArray, uint8_t *currentPosition, int totalA
 
 /**
  * @brief Function executed when a timeout event is received.
- * @param inputArray: Te array of characters introduced by the user.
+ * @param inputArray: The array of characters introduced by the user.
  * @param currentPosition: A pointer to the iterator which stores the current position of the user in the input array.
  * @param totalArraySize: The previosly fixed size of the inputArray.
  */
@@ -51,7 +51,7 @@ void inputTimerTimeout(uint8_t *inputArray, uint8_t *currentPosition, int totalA
 
 /**
  * @brief Calculates the number of characters introduced by the user in the input array.
- * @param inputArray: Te array of characters introduced by the user.
+ * @param inputArray: Teh array of characters introduced by the user.
  * @param totalArraySize: The previosly fixed size of the inputArray.
  * @return The amount of elements different from NO_INPUT_CHAR and BACKSPACE in the input array (its effective length). The elements must be consecutive
  */
