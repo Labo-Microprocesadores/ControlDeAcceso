@@ -42,3 +42,6 @@ En config_me.c
 
 En config_device.c:
     - [ ] Mostrar en el display las opciones y un titulo
+
+En DataBase.c
+    - [ ] Completar removeUser

@@ -264,6 +264,6 @@ bool verifyCardNumber(uint8_t cardNumber[], uint8_t numCharactersCardNumber)
 
 Status removeUser(user_t userToDelete)
 {
-
+ //! hacer!
 }
 
