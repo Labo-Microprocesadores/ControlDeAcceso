@@ -27,8 +27,12 @@ typedef enum
     DATABASE_FULL,
     ID_ALREADY_EXISTS,
     ID_WRONG_FORMAT,
-    ID_NOT_FOUND
-} status;
+    PIN_WRONG_FORMAT,
+    CARD_NUMBER_WRONG_FORMAT,
+    ID_NOT_FOUND,
+    WRONG_PIN_VERIFICATION,
+    PIN_CHANGED_SUCCESFULLY
+} Status;
 typedef enum
 {
     USER,
@@ -40,6 +44,7 @@ typedef struct
     uint8_t userID[ID_ARRAY_SIZE];
     uint8_t userPIN[PIN_ARRAY_SIZE];
     uint8_t cardNumber[MAX_CARD_NUMBER];
+    uint8_t numCharactersCardNumber;
     hierarchy typeOfUser;
 } user_t;
 
@@ -50,22 +55,24 @@ typedef struct
     uint8_t Attempts;
 } dataBase_t;
 
-bool verifyPIN(uint8_t userPIN[PIN_ARRAY_SIZE]);
+bool verifyPIN(uint8_t userPIN[]);
 
-bool verifyID(uint8_t usersID[ID_ARRAY_SIZE]);
+bool verifyID(uint8_t usersID[]);
 
 bool IsAdmin(void);
 
 void initializeDataBase(void);
 
-status addUser(user_t newUser);
+Status addUser(user_t newUser);
 
-status removeUser(user_t userToDelete);
+Status removeUser(user_t userToDelete);
 
-status removeUserID(char usersID[ID_LENGTH]);
+Status changePin(uint8_t userOldPin[], uint8_t userNewPin[]);
 
-category_name verifyCategory(char usersID[ID_LENGTH]);
+Status removeUserID(uint8_t usersID[]);
 
-void changePIN(char usersID[ID_LENGTH], char usersNewPIN[PIN_MAX_LENGTH]);
+category_name verifyCategory(char usersID[]);
+
+
 
 #endif /* DATABASE_H_ */
