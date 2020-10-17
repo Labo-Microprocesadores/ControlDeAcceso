@@ -72,7 +72,7 @@ Status validateAll(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], ui
 
 Status changePin(uint8_t userOldPin[], uint8_t userNewPin[]);
 
-bool verifyCardNumber(uint8_t validNumberArray[]);
+bool verifyCardNumber(uint8_t cardNumber[], uint8_t numCharactersCardNumber)
 
 Status removeUser(user_t userToDelete)
 

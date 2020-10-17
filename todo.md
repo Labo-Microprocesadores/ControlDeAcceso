@@ -2,6 +2,7 @@
 
 EN TODOS LADOS: 
     - [ ] AGREGAR EVENT QUEUE.
+    - [ ] Agregar estados de animacion
 
 En id_state.c, pin_state.c y user_input:
     - [ ] Resetear el timer de timeout en algunas funciones 

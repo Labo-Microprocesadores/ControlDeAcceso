@@ -226,7 +226,7 @@ static bool CreateValidNumberArrayFormat(uint8_t cardNumber[], uint8_t numCharac
     return true;
 }
 
-bool verifyCardNumber(uint8_t cardNumber[], uint8_t numCharactersCardNumber, )
+bool verifyCardNumber(uint8_t cardNumber[], uint8_t numCharactersCardNumber)
 {
     uint8_t validNumberArray[MAX_CARD_NUMBER];
     uint8_t count;
