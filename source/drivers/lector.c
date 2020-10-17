@@ -20,7 +20,6 @@
 #define BUFFER_LEN 		(2*WORD_LONG*CHAR_LONG)
 #define MAX_DATA_LEN 	37
 
-
 /*************************************************
  *  	LOCAL FUNCTION DECLARATION
  ************************************************/
@@ -66,8 +65,8 @@ bool Lector_GetData(card_t * data)
 	uint16_t i, j, ss, fs , es;
 	card_t my_card;
 
-	bool Status = find_ss_fs_es(&ss, &fs, &es);
-	if (Status)
+	bool status = find_ss_fs_es(&ss, &fs, &es);
+	if (status)
 	{
 		my_card.number_len = (fs - ss)/CHAR_LONG - 1;
 		my_card.data_len = (es - fs)/CHAR_LONG - 1;
@@ -80,7 +79,7 @@ bool Lector_GetData(card_t * data)
 				my_card.card_number[i-1] += (message[i*CHAR_LONG + j + ss]<<j);
 				parity += message[i*CHAR_LONG + j + ss];
 			}
-			Status &= ((parity%2) != message[i*CHAR_LONG + j + ss]);
+			status &= ((parity%2) != message[i*CHAR_LONG + j + ss]);
 		}
 
 		for(i = 1; i <= my_card.data_len; i++)
@@ -92,12 +91,20 @@ bool Lector_GetData(card_t * data)
 				my_card.extra_data[i-1] += (message[i*CHAR_LONG + j + fs]<<j);
 				parity += message[i*CHAR_LONG + j + fs];
 			}
-			Status &= ((parity%2) != message[i*CHAR_LONG + j + fs]);
+			status &= ((parity%2) != message[i*CHAR_LONG + j + fs]);
 		}
 	}
 
-	if(Status)
-		*data = my_card;
+	if(status)
+	{
+		data->data_len = my_card.data_len;
+		data->number_len = my_card.number_len;
+		for(i = 0; i<29; i++)
+			data->extra_data[i] = my_card.extra_data[i];
+		for(i = 0; i<19; i++)
+			data->card_number[i] = my_card.card_number[i];
+	}
+
 
 	// Reset internal stuff
 	event = false;
@@ -105,7 +112,7 @@ bool Lector_GetData(card_t * data)
 	for(i = 0; i<BUFFER_LEN; i++)
 		message[i] = 0;
 
-	return Status;
+	return status;
 }
 
 /**************************************************
@@ -115,8 +122,8 @@ void EnableIRQcallback(void)
 {
 	if(!event)
 	{
-		int new_enable = gpioRead(LECTOR_ENABLE);
-		if (!new_enable) // falling edge
+		//int new_enable = gpioRead(LECTOR_ENABLE);
+		if (!enable) // falling edge
 		{
 			enable = true;
 		}
@@ -180,7 +187,7 @@ uint16_t find_fs(uint16_t ss)
 
 		if(data == 0xD)
 		{
-			return i*CHAR_LONG + ss;
+			return (i+1)*CHAR_LONG + ss;
 		}
 	}
 	return 0;
@@ -198,7 +205,7 @@ uint16_t find_es(uint16_t fs)
 
 		if(data == 0x1F)
 		{
-			return i*CHAR_LONG+fs;
+			return (i+1)*CHAR_LONG+fs;
 		}
 	}
 	return 0;
