@@ -26,6 +26,7 @@ typedef enum
     VALIDATE_SUCCESSFULL,
     DATABASE_FULL,
     ID_ALREADY_EXISTS,
+    CARD_NUMBER_EXISTS,
     ID_WRONG_FORMAT,
     PIN_WRONG_FORMAT,
     CARD_NUMBER_WRONG_FORMAT,
@@ -44,9 +45,35 @@ typedef struct
     uint8_t userID[ID_ARRAY_SIZE];
     uint8_t userPIN[PIN_ARRAY_SIZE];
     uint8_t cardNumber[MAX_CARD_NUMBER];
-    uint8_t numCharactersCardNumber;
     hierarchy typeOfUser;
 } user_t;
+
+typedef struct
+{
+    user_t userList[MAX_NUM_USERS];
+    uint8_t lastItem;
+    uint8_t Attempts;
+} dataBase_t;
+
+bool verifyPIN(uint8_t userPIN[]);
+
+bool verifyID(uint8_t usersID[]);
+
+bool IsAdmin(void);
+
+void initializeDataBase(void);
+
+Status addUser(user_t newUser);
+
+Status removeUser(user_t userToDelete);
+
+Status changePin(uint8_t userOldPin[], uint8_t userNewPin[]);
+
+Status removeUserID(uint8_t usersID[]);
+
+category_name verifyCategory(char usersID[]);
+
+
 
 typedef struct
 {

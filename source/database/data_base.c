@@ -95,7 +95,7 @@ Status checkAddUser(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], u
     if (howWas != VALIDATE_SUCCESSFULL)
         return howWas;
 
-    user_t newUser = {userID, userPIN, cardNumber, typeOfUser};
+    user_t newUser = {userID, userPIN, cardNumber, numCharactersCardNumber, typeOfUser};
     //! falta agregar los usuarios
     dataBase.lastItem++;
     return;       
@@ -126,6 +126,9 @@ Status validateAll(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], ui
     /***************************************************************************/
     //check Card Number Format
     CreateValidNumberArrayFormat(cardNumber, numCharactersCardNumber);
+    if (verifyCardNumber(userID))
+        return CARD_NUMBER_EXISTS;
+
 
 }
 
@@ -194,6 +197,7 @@ Status changePin(uint8_t userOldPin[], uint8_t userNewPin[])
 static bool CreateValidNumberArrayFormat(uint8_t cardNumber[], uint8_t numCharactersCardNumber)
 {
     uint8_t count;
+    //I put the default character in the uncompleted positions
     for(count=numCharactersCardNumber; count <= MAX_CARD_NUMBER; count++)
     {
         cardNumber[count] = DEFAULT_CARD_CARACTER;
@@ -204,5 +208,6 @@ static bool CreateValidNumberArrayFormat(uint8_t cardNumber[], uint8_t numCharac
 
 Status removeUser(user_t userToDelete)
 {
+
 }
 
