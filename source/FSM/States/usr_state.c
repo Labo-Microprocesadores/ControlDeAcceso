@@ -8,7 +8,10 @@
  * INCLUDE HEADER FILES
  ******************************************************************************/
 #include "usr_state.h"
-
+/*******************************************************************************
+ * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
+ ******************************************************************************/
+#define OPTIONS_ARRAY_SIZE 2
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
@@ -42,11 +45,13 @@ void previousOption(void)
 
 void selectOption(void)
 {
-    switch (currentOptionIndex) //TODO: Add events to the queue.
+    switch (currentOptionIndex)
     {
     case OPEN:
+        emitEvent(OPEN_SELECTED_EV);
         break;
     case CONFIG:
+        emitEvent(USER_CONFIG_ME_SELECTED_EV);
         break;
     }
 }

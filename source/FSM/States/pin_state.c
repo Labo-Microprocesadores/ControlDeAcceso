@@ -11,6 +11,8 @@
 #include "timer.h"
 #include "pin_state.h"
 #include "user_input.h"
+#include "../../database/data_base.h"
+#include "../../../queue.h"
 
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
@@ -18,14 +20,7 @@
 static uint8_t pin[PIN_ARRAY_SIZE] = {[0 ... (PIN_ARRAY_SIZE - 1)] = NO_INPUT_CHAR};
 static uint8_t currentPos = 0;
 
-/*******************************************************************************
- * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
- ******************************************************************************/
-/**
- * @brief Checks if the "pin" array format matches the format of a pin. The array must be complete (length equal to PIN_ARRAY_SIZE) and all elements must be numbers from 0 to 9.
- * @return A bool indicating if the format is valid or not.
- */
-static bool checkArrayFormat(void);
+
 
 /*******************************************************************************
  *******************************************************************************
@@ -34,19 +29,19 @@ static bool checkArrayFormat(void);
  ******************************************************************************/
 //!OJO EN TODAS ESTADS HABRIA QUE RESETEAR EL TIMER DE TIMEOUT Y EN ALGUNAS ACTUALIZAR EL DISPLAY
 //TODO AGREGAR ESO
-userDecreaseCurrent(pin, currentPos);
-}
 
 void pin_confirmPin(void)
 {
-    if (!checkArrayFormat())
+    if (!verifyPIN(pin))
     {
-        //TODO Return ID_FAIL
+        emitEvent(PIN_FAIL_EV);
+    }else if(IsAdmin())
+    {
+        emitEvent(ADMIN_PIN_OK_EV);
+    }else
+    {
+        emitEvent(USR_PIN_OK_EV);
     }
-
-    //TODO faltan muchas cosas
-    //si el id es conocido, emito un evento de id_ok (tengo database)
-    //si el id no es conocido entonces emito evento de ID_FAIL
 }
 
 void pin_timerTimeout(void)
@@ -77,17 +72,3 @@ uint8_t *pin_getPinArray(int *sizeOfReturningArray)
     return pin;
 }
 
-/*******************************************************************************
- *******************************************************************************
-                        LOCAL FUNCTION DEFINITIONS
- *******************************************************************************
- ******************************************************************************/
-static bool checkArrayFormat(void)
-{
-    int currentArrayLength = getEffectiveArrayLength(pin, PIN_ARRAY_SIZE);
-
-    if (currentArrayLength != PIN_ARRAY_SIZE && currentArrayLength != PIN_ARRAY_SIZE - 1) //4 or 5 chars
-        return false;
-
-    return true;
-}

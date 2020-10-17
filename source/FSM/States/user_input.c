@@ -29,7 +29,6 @@ static void deleteLastChar(uint8_t *inputArray, int totalArraySize);
  ******************************************************************************/
 //!OJO EN TODAS ESTA HABRIA QUE RESETEAR EL TIMER DE TIMEOUT Y EN ALGUNAS ACTUALIZAR EL DISPLAY
 //TODO AGREGAR ESO
-
 void inputIncreaseCurrent(uint8_t *inputArray, uint8_t currentPosition)
 {
     if (inputArray[currentPosition] == BACKSPACE)
@@ -41,7 +40,6 @@ void inputIncreaseCurrent(uint8_t *inputArray, uint8_t currentPosition)
     else
         inputArray[currentPosition] = BACKSPACE;
     SevenSegDisplay_ChangeCharacter(currentPosition, inputArray[currentPosition]);
-
 }
 
 void inputDecreaseCurrent(uint8_t *inputArray, uint8_t currentPosition)

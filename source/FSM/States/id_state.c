@@ -12,21 +12,15 @@
 #include "id_state.h"
 #include "user_input.h"
 #include "seven_seg_display.h"
+#include "../../database/data_base.h"
+#include "../../queue.h"
+
 
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
 static uint8_t id[ID_ARRAY_SIZE] = {[0 ... (ID_ARRAY_SIZE - 1)] = NO_INPUT_CHAR};
 static uint8_t currentPos = 0;
-
-/*******************************************************************************
- * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
- ******************************************************************************/
-/**
- * @brief Checks if the "id" array format matches the format of an id. The array must be complete (length equal to ID_ARRAY_SIZE) and all elements must be numbers from 0 to 9.
- * @return A bool indicating if the format is valid or not.
- */
-static bool checkArrayFormat(void);
 
 /*******************************************************************************
  *******************************************************************************
@@ -48,14 +42,10 @@ void id_decreaseCurrent(void)
 
 void id_confirmID(void)
 {
-    if (!checkArrayFormat())
-    {
-        //TODO Return ID_FAIL
-    }
-
-    //TODO faltan muchas cosas
-    //si el id es conocido, emito un evento de id_ok (tengo database)
-    //si el id no es conocido entonces emito evento de ID_FAIL
+    if (!verifyID(id))
+        emitEvent(ID_FAIL_EV);
+    else
+        emitEvent(ID_OK_EV);
 }
 
 void id_timerTimeout(void)
@@ -68,7 +58,7 @@ void id_acceptNumber(void)
     inputAcceptNumber(id, &currentPos, ID_ARRAY_SIZE);
 }
 
-uint8_t *id_getIdArray(int *sizeOfReturningArray)
+uint8_t * id_getIdArray(int *sizeOfReturningArray)
 {
     int currentArrayLength = getEffectiveArrayLength(id, ID_ARRAY_SIZE);
     *sizeOfReturningArray = currentArrayLength;
@@ -90,22 +80,8 @@ void id_updateDispPin(void)
 
 void id_fail(void)
 {
-    
-}
-/*******************************************************************************
- *******************************************************************************
-                        LOCAL FUNCTION DEFINITIONS
- *******************************************************************************
- ******************************************************************************/
-static bool checkArrayFormat(void)
-{
-    int currentArrayLength = getEffectiveArrayLength(id, ID_ARRAY_SIZE);
+    SevenSegDisplay_EraseScreen(); //TODO ver si imprimir alguna animacion de error.
+    SevenSegDisplay_ChangeCharacter(0, I);
+    SevenSegDisplay_ChangeCharacter(1, D);
+    }
 
-    if (currentArrayLength != ID_ARRAY_SIZE)
-        return false;
-
-    return true;
-}
-
-/*******************************************************************************
- ******************************************************************************/
