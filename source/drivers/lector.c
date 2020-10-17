@@ -66,8 +66,8 @@ bool Lector_GetData(card_t * data)
 	uint16_t i, j, ss, fs , es;
 	card_t my_card;
 
-	bool status = find_ss_fs_es(&ss, &fs, &es);
-	if (status)
+	bool Status = find_ss_fs_es(&ss, &fs, &es);
+	if (Status)
 	{
 		my_card.number_len = (fs - ss)/CHAR_LONG - 1;
 		my_card.data_len = (es - fs)/CHAR_LONG - 1;
@@ -80,7 +80,7 @@ bool Lector_GetData(card_t * data)
 				my_card.card_number[i-1] += (message[i*CHAR_LONG + j + ss]<<j);
 				parity += message[i*CHAR_LONG + j + ss];
 			}
-			status &= ((parity%2) != message[i*CHAR_LONG + j + ss]);
+			Status &= ((parity%2) != message[i*CHAR_LONG + j + ss]);
 		}
 
 		for(i = 1; i <= my_card.data_len; i++)
@@ -92,11 +92,11 @@ bool Lector_GetData(card_t * data)
 				my_card.extra_data[i-1] += (message[i*CHAR_LONG + j + fs]<<j);
 				parity += message[i*CHAR_LONG + j + fs];
 			}
-			status &= ((parity%2) != message[i*CHAR_LONG + j + fs]);
+			Status &= ((parity%2) != message[i*CHAR_LONG + j + fs]);
 		}
 	}
 
-	if(status)
+	if(Status)
 		*data = my_card;
 
 	// Reset internal stuff
@@ -105,7 +105,7 @@ bool Lector_GetData(card_t * data)
 	for(i = 0; i<BUFFER_LEN; i++)
 		message[i] = 0;
 
-	return status;
+	return Status;
 }
 
 /**************************************************

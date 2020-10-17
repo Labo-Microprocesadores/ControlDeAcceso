@@ -430,9 +430,9 @@
     #define FSL_FEATURE_FLASH_IS_FTFE (1)
     /* @brief Is of type FTFL. */
     #define FSL_FEATURE_FLASH_IS_FTFL (0)
-    /* @brief Has flags indicating the status of the FlexRAM (register bits FCNFG[EEERDY], FCNFG[RAMRDY] and FCNFG[PFLSH]). */
+    /* @brief Has flags indicating the Status of the FlexRAM (register bits FCNFG[EEERDY], FCNFG[RAMRDY] and FCNFG[PFLSH]). */
     #define FSL_FEATURE_FLASH_HAS_FLEX_RAM_FLAGS (1)
-    /* @brief Has program flash swapping status flag (register bit FCNFG[SWAP]). */
+    /* @brief Has program flash swapping Status flag (register bit FCNFG[SWAP]). */
     #define FSL_FEATURE_FLASH_HAS_PFLASH_SWAPPING_STATUS_FLAG (1)
     /* @brief Has EEPROM region protection (register FEPROT). */
     #define FSL_FEATURE_FLASH_HAS_EEROM_REGION_PROTECTION (1)
@@ -619,9 +619,9 @@
     #define FSL_FEATURE_FLASH_IS_FTFE (1)
     /* @brief Is of type FTFL. */
     #define FSL_FEATURE_FLASH_IS_FTFL (0)
-    /* @brief Has flags indicating the status of the FlexRAM (register bits FCNFG[EEERDY], FCNFG[RAMRDY] and FCNFG[PFLSH]). */
+    /* @brief Has flags indicating the Status of the FlexRAM (register bits FCNFG[EEERDY], FCNFG[RAMRDY] and FCNFG[PFLSH]). */
     #define FSL_FEATURE_FLASH_HAS_FLEX_RAM_FLAGS (1)
-    /* @brief Has program flash swapping status flag (register bit FCNFG[SWAP]). */
+    /* @brief Has program flash swapping Status flag (register bit FCNFG[SWAP]). */
     #define FSL_FEATURE_FLASH_HAS_PFLASH_SWAPPING_STATUS_FLAG (1)
     /* @brief Has EEPROM region protection (register FEPROT). */
     #define FSL_FEATURE_FLASH_HAS_EEROM_REGION_PROTECTION (1)
@@ -1325,7 +1325,7 @@
 #define FSL_FEATURE_RCM_HAS_EZPMS (1)
 /* @brief Has boot ROM configuration, MR[BOOTROM], FM[FORCEROM] */
 #define FSL_FEATURE_RCM_HAS_BOOTROM (0)
-/* @brief Has sticky system reset status register RCM_SSRS0 and RCM_SSRS1. */
+/* @brief Has sticky system reset Status register RCM_SSRS0 and RCM_SSRS1. */
 #define FSL_FEATURE_RCM_HAS_SSRS (0)
 /* @brief Has Version ID Register (RCM_VERID). */
 #define FSL_FEATURE_RCM_HAS_VERID (0)

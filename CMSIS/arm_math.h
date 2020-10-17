@@ -393,7 +393,7 @@ extern "C"
 #endif   /* #ifndef UNALIGNED_SUPPORT_DISABLE */
 
   /**
-   * @brief Error status returned by some functions in the library.
+   * @brief Error Status returned by some functions in the library.
    */
 
   typedef enum
@@ -4906,7 +4906,7 @@ void arm_rfft_fast_f32(
    * @param[in]  src   points to the instance of the input floating-point matrix structure.
    * @param[out] dst   points to the instance of the output floating-point matrix structure.
    * @return The function returns ARM_MATH_SIZE_MISMATCH, if the dimensions do not match.
-   * If the input matrix is singular (does not have an inverse), then the algorithm terminates and returns error status ARM_MATH_SINGULAR.
+   * If the input matrix is singular (does not have an inverse), then the algorithm terminates and returns error Status ARM_MATH_SINGULAR.
    */
   arm_status arm_mat_inverse_f32(
   const arm_matrix_instance_f32 * src,
@@ -4918,7 +4918,7 @@ void arm_rfft_fast_f32(
    * @param[in]  src   points to the instance of the input floating-point matrix structure.
    * @param[out] dst   points to the instance of the output floating-point matrix structure.
    * @return The function returns ARM_MATH_SIZE_MISMATCH, if the dimensions do not match.
-   * If the input matrix is singular (does not have an inverse), then the algorithm terminates and returns error status ARM_MATH_SINGULAR.
+   * If the input matrix is singular (does not have an inverse), then the algorithm terminates and returns error Status ARM_MATH_SINGULAR.
    */
   arm_status arm_mat_inverse_f64(
   const arm_matrix_instance_f64 * src,

@@ -1684,8 +1684,8 @@ __STATIC_INLINE void __NVIC_EnableIRQ(IRQn_Type IRQn)
 
 
 /**
-  \brief   Get Interrupt Enable status
-  \details Returns a device specific interrupt enable status from the NVIC interrupt controller.
+  \brief   Get Interrupt Enable Status
+  \details Returns a device specific interrupt enable Status from the NVIC interrupt controller.
   \param [in]      IRQn  Device specific interrupt number.
   \return             0  Interrupt is not enabled.
   \return             1  Interrupt is enabled.
@@ -1725,8 +1725,8 @@ __STATIC_INLINE void __NVIC_DisableIRQ(IRQn_Type IRQn)
   \brief   Get Pending Interrupt
   \details Reads the NVIC pending register and returns the pending bit for the specified device specific interrupt.
   \param [in]      IRQn  Device specific interrupt number.
-  \return             0  Interrupt status is not pending.
-  \return             1  Interrupt status is pending.
+  \return             0  Interrupt Status is not pending.
+  \return             1  Interrupt Status is pending.
   \note    IRQn must not be negative.
  */
 __STATIC_INLINE uint32_t __NVIC_GetPendingIRQ(IRQn_Type IRQn)
@@ -1776,8 +1776,8 @@ __STATIC_INLINE void __NVIC_ClearPendingIRQ(IRQn_Type IRQn)
   \brief   Get Active Interrupt
   \details Reads the active register in the NVIC and returns the active bit for the device specific interrupt.
   \param [in]      IRQn  Device specific interrupt number.
-  \return             0  Interrupt status is not active.
-  \return             1  Interrupt status is active.
+  \return             0  Interrupt Status is not active.
+  \return             1  Interrupt Status is active.
   \note    IRQn must not be negative.
  */
 __STATIC_INLINE uint32_t __NVIC_GetActive(IRQn_Type IRQn)

@@ -34,7 +34,7 @@ typedef enum {NO_BLINK, BLINK, INF_BLINK, ON_FOR_TIME} LedStatus_t;
 typedef struct
 {
 	bool state;
-	LedStatus_t status;
+	LedStatus_t Status;
 	uint16_t counter;
 	uint16_t timeOn;
 	uint16_t timeOff;
@@ -89,7 +89,7 @@ void MplxLed_On(MplxLedID ledID)
 {
 	uint8_t i = (uint8_t)ledID;
 	leds[i].state = true;
-	leds[i].status = NO_BLINK;
+	leds[i].Status = NO_BLINK;
 	leds[i].counter = 0;
 }
 
@@ -97,7 +97,7 @@ void MplxLed_Off(MplxLedID ledID)
 {
 	uint8_t i = (uint8_t)ledID;
 	leds[i].state = false;
-	leds[i].status = NO_BLINK;
+	leds[i].Status = NO_BLINK;
 	leds[i].counter = 0;
 }
 
@@ -105,7 +105,7 @@ void MplxLed_Toggle(MplxLedID ledID)
 {
 	uint8_t i = (uint8_t)ledID;
 	leds[i].state = !leds[i].state;
-	leds[i].status = NO_BLINK;
+	leds[i].Status = NO_BLINK;
 	leds[i].counter = 0;
 }
 
@@ -114,7 +114,7 @@ void MplxLed_OnForDefinedTime(MplxLedID ledID, uint16_t onTime)
 	uint16_t time = onTime/(4*MPLXLED_ISR_PERIOD);
 	uint8_t i = (uint8_t)ledID;
 	leds[i].state = true;
-	leds[i].status = ON_FOR_TIME;
+	leds[i].Status = ON_FOR_TIME;
 	leds[i].counter = time;
 }
 
@@ -128,7 +128,7 @@ void MplxLed_CustomBlink(MplxLedID ledID, uint16_t blinkTimes, uint16_t blinkPer
 
 	uint8_t i = (uint8_t)ledID;
 	leds[i].state = true;
-	leds[i].status = BLINK;
+	leds[i].Status = BLINK;
 	leds[i].counter = time;
 	leds[i].timeOn = time;
 	leds[i].timeOff = period;
@@ -141,7 +141,7 @@ void MplxLed_InfiniteBlink(MplxLedID ledID, MplxLedBlinkSpeed speed)
 
 	uint8_t i = (uint8_t)ledID;
 	leds[i].state = true;
-	leds[i].status = INF_BLINK;
+	leds[i].Status = INF_BLINK;
 	leds[i].counter = time;
 	leds[i].timeOn = time;
 }
@@ -150,14 +150,14 @@ void MplxLed_StopInfiniteBlink(MplxLedID ledId)
 {
 	uint8_t i = (uint8_t)ledId;
 	leds[i].state = false;
-	leds[i].status = NO_BLINK;
+	leds[i].Status = NO_BLINK;
 }
 
 void MplxLed_StopAllProcesses(MplxLedID ledId)
 {
 	uint8_t i = (uint8_t)ledId;
 	leds[i].state = false;
-	leds[i].status = NO_BLINK;
+	leds[i].Status = NO_BLINK;
 }
 
 void MplxLed_StopAllProcessedFromAllLeds(void)
@@ -180,7 +180,7 @@ void MplxLed_PISR(void)
 	gpioWrite(LED_LINE_I , (leds[displayCounter].state && ((displayCounter+1) & 0x01)));
 	gpioWrite(LED_LINE_II, (leds[displayCounter].state && ((displayCounter+1) & 0x02)));
 
-	LedStatus_t ledStatus = leds[displayCounter].status;
+	LedStatus_t ledStatus = leds[displayCounter].Status;
 	if(ledStatus != NO_BLINK)
 	{
 		if(--leds[displayCounter].counter == 0)
@@ -192,7 +192,7 @@ void MplxLed_PISR(void)
 					if(--leds[displayCounter].blinkTimes == 0)
 					{
 						leds[displayCounter].state = false;
-						leds[displayCounter].status = NO_BLINK;
+						leds[displayCounter].Status = NO_BLINK;
 					}
 					else
 					{
@@ -224,7 +224,7 @@ void MplxLed_PISR(void)
 				case ON_FOR_TIME:
 				{
 					leds[displayCounter].state = false;
-					leds[displayCounter].status = NO_BLINK;
+					leds[displayCounter].Status = NO_BLINK;
 					break;
 				}
 				case NO_BLINK: default: break;
