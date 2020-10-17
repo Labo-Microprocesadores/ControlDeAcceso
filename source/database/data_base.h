@@ -9,24 +9,30 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include "id_state.h"
-#include "pin_state.h"
 
+/*******************************************************************************
+ * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
+ ******************************************************************************/
+#define ID_ARRAY_SIZE 8
+#define PIN_ARRAY_SIZE 5
 #define MAX_NUM_USERS	20
 #define MAX_CARD_NUMBER 19
+#define DEFAULT_CARD_CARACTER -1
 
 typedef enum {SUCCESSFULL,DATABASE_FULL,ID_ALREADY_EXISTS,ID_NOT_FOUND}status;
 typedef enum {USER, ADMIN}hierarchy;
 
 typedef struct{
-	uint8_t usersID[ID_ARRAY_SIZE];
-	uint8_t usersPIN[PIN_ARRAY_SIZE];
+	uint8_t userID[ID_ARRAY_SIZE];
+	uint8_t userPIN[PIN_ARRAY_SIZE];
     uint8_t cardNumber[MAX_CARD_NUMBER];
 	hierarchy typeOfUser;
 }user_t;
 
 typedef struct{
 	user_t userList[MAX_NUM_USERS];
+    uint8_t lastItem;
+    uint8_t Attempts;
 }dataBase_t;
 
 void initializeDataBase(void);
