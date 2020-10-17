@@ -98,7 +98,7 @@ bool SevenSegDisplay_BlinkScreen(bool state);
  * @param digit, the number that corresponds to the 7segments display
  * @return blink succeed, false if there was an error with the digit
  */
-bool SevenSegDisplay_BlinkCharacter(uint8_t digit);
+bool SevenSegDisplay_BlinkCharacter(uint8_t digit, bool state);
 
 /**
  * @brief Change display brightness between MAX, MID, MIN

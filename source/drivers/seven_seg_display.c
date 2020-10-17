@@ -94,7 +94,7 @@ bool SevenSegDisplay_BlinkScreen(bool state)
 	return true;
 }
 
-bool SevenSegDisplay_BlinkCharacter(uint8_t digit)
+bool SevenSegDisplay_BlinkCharacter(uint8_t digit, bool state)
 {
 	//controls if the digit is valid
 	if( (digit>=0 && digit <=3) || (digit == RESET_BLINK) )
