@@ -9,6 +9,7 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include <string.h>
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -30,6 +31,7 @@ typedef enum
     ID_WRONG_FORMAT,
     PIN_WRONG_FORMAT,
     CARD_NUMBER_WRONG_FORMAT,
+    STORE_SUCCESSFULL,
     ID_NOT_FOUND,
     WRONG_PIN_VERIFICATION,
     PIN_CHANGED_SUCCESFULLY

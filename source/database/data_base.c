@@ -95,11 +95,29 @@ Status checkAddUser(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], u
     Status howWas = validateAll(userID, userPIN, cardNumber, numCharactersCardNumber, validNumberArray, typeOfUser);
     if (howWas != VALIDATE_SUCCESSFULL)
         return howWas;
-
-    user_t newUser = {userID, userPIN, cardNumber, numCharactersCardNumber, typeOfUser};
-    
+    /***************************************************************************/
+    //                    all was fine, store on database
+    /***************************************************************************/
     dataBase.lastItem++;
-    return;       
+    uint8_t count;
+    //store userID
+    for(count=0; count < ID_ARRAY_SIZE; count++)
+    {
+        dataBase.userList[dataBase.lastItem].userID[count] = userID[count];
+    }
+    //store userPIN
+    for(count=0; count < PIN_ARRAY_SIZE; count++)
+    {
+        dataBase.userList[dataBase.lastItem].userPIN[count] = userPIN[count];
+    }
+    //store cardNumber
+    for(count=0; count < ID_ARRAY_SIZE; count++)
+    {
+        dataBase.userList[dataBase.lastItem].cardNumber[count] = validNumberArray[count];
+    }
+    //store typeOfUser
+    dataBase.userList[dataBase.lastItem].typeOfUser = typeOfUser;
+    return STORE_SUCCESSFULL;       
 }
 
 Status validateAll(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], uint8_t numCharactersCardNumber, uint8_t validNumberArray[], hierarchy_t typeOfUser)
@@ -208,10 +226,19 @@ static bool CreateValidNumberArrayFormat(uint8_t cardNumber[], uint8_t numCharac
     return true;
 }
 
-
-
-bool verifyCardNumber(uint8_t validNumberArray[])
+bool verifyCardNumber(uint8_t cardNumber[], uint8_t numCharactersCardNumber, )
 {
+    uint8_t validNumberArray[MAX_CARD_NUMBER];
+    uint8_t count;
+    //I put the default character in the uncompleted positions
+    for(count=0; count <= MAX_CARD_NUMBER; count++)
+    {
+        if(count < numCharactersCardNumber)
+            validNumberArray[count]=cardNumber[count];
+        else         
+            validNumberArray[count] = DEFAULT_CARD_CARACTER;
+    }
+    return true;
     uint8_t  user;
     //I go through the array of users
     for (user = 0; user < MAX_NUM_USERS; user++)
