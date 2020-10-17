@@ -1,28 +1,29 @@
 /***************************************************************************/ /**
-  @file     admin_state.c
-  @brief    Admin state functions.
+  @file     config_device.c
+  @brief    config device state functions
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/
 
 /*******************************************************************************
  * INCLUDE HEADER FILES
  ******************************************************************************/
-#include "admin_state.h"
+#include "config_device_state.h"
+#include <stdbool.h>
 #include "../../queue.h"
+#include "../../drivers/seven_seg_display.h"
+
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-#define OPTIONS_ARRAY_SIZE 5
+#define OPTIONS_ARRAY_SIZE 3
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
 typedef enum
 {
-    OPEN,
-    CONFIG_DEVICE,
-    ADD_USER,
-    CONFIG_USER,
-    CONFIG_ME
+    MAX_BRIGHT,
+    MID_BRIGHT,
+    LOW_BRIGHT,
 } options_t;
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
@@ -54,20 +55,15 @@ void selectOption(void)
 {
     switch (currentOptionIndex)
     {
-    case OPEN:
-        emitEvent(OPEN_SELECTED_EV);
+    case MAX_BRIGHT:
+        SevenSegDisplay_SetBright(MAX);
         break;
-    case CONFIG_DEVICE:
-        emitEvent(ADMIN_CONFIG_DEVICE_SELECTED_EV);
+    case MID_BRIGHT:
+        SevenSegDisplay_SetBright(MID);
         break;
-    case ADD_USER:
-        emitEvent(ADMIN_ADD_USER_SELECTED_EV);
-        break;
-    case CONFIG_USER:
-        emitEvent(ADMIN_CONFIG_USER_SELECTED_EV);
-        break;
-    case CONFIG_ME:
-        emitEvent(ADMIN_CONFIG_ME_SELECTED_EV);
+    case LOW_BRIGHT:
+        SevenSegDisplay_SetBright(LOW);
         break;
     }
+    emitEvent(ADMIN_CONFIG_DEVICE_FINISHED_EV);
 }
