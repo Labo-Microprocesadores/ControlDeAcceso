@@ -7,6 +7,7 @@
 #include "data_base.h"
 
 static dataBase_t dataBase;
+static uint8_t currentIdIndex = -1;
 
 void initializeDataBase(void)
 {
@@ -18,9 +19,9 @@ void initializeDataBase(void)
     user_t newUser2 = {{5, 2, 4, 6, 9, 5, 3, 5}, {1, 2, 3, 4, 5}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, DEFAULT_CARD_CARACTER, DEFAULT_CARD_CARACTER, DEFAULT_CARD_CARACTER, DEFAULT_CARD_CARACTER, DEFAULT_CARD_CARACTER}, USER};
     user_t newUser3 = {{8, 4, 6, 2, 3, 1, 9, 7}, {1, 1, 1, 1, -1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, DEFAULT_CARD_CARACTER, DEFAULT_CARD_CARACTER, DEFAULT_CARD_CARACTER, DEFAULT_CARD_CARACTER, DEFAULT_CARD_CARACTER}, ADMIN};
     //Add the dummy users to the database
-    addUser(newUser1);
-    addUser(newUser2);
-    addUser(newUser3);
+    checkAddUser(newUser1);
+    checkAddUser(newUser2);
+    checkAddUser(newUser3);
 }
 
 bool verifyID(uint8_t usersID[ID_ARRAY_SIZE])
@@ -41,7 +42,10 @@ bool verifyID(uint8_t usersID[ID_ARRAY_SIZE])
                     count = ID_ARRAY_SIZE; //? No seria mejor poner ahi un break y listo? porque eso es un pseudo break
                 //if the counter reached the end it indicates that there were no problems then the vectors are equal
                 if (count == ID_ARRAY_SIZE - 1)
+                {
+                    currentIdIndex = user;
                     return true;
+                }
             }
         }
         else
@@ -51,18 +55,27 @@ bool verifyID(uint8_t usersID[ID_ARRAY_SIZE])
     }
 }
 
-bool verifyPIN(char usersID[ID_LENGTH], char usersPIN[PIN_MAX_LENGTH])
+bool verifyPIN(uint8_t userPIN[PIN_ARRAY_SIZE])
 {
+    uint8_t count;
+    //I go through the id array checking values
+    for (count = 0; count < PIN_ARRAY_SIZE; count++)
+    {
+        if (dataBase.userList[currentIdIndex].userPIN[count] != userPIN[count])
+            return false;
+    }
+    //if no one was diferent then all of them were equals
+    return true;
 }
 
 status addUser(uint8_t userID[ID_ARRAY_SIZE], uint8_t userPIN[PIN_ARRAY_SIZE], uint8_t cardNumber[MAX_CARD_NUMBER], hierarchy typeOfUser)
 {
     user_t newUser= {userID,userPIN,cardNumber,typeOfUser};
-    return checkUser(newUser);
+    return checkAddUser(newUser);
 }
 
 
-status checkUser(user_t newUser)
+status checkAddUser(user_t newUser)
 {
 
     dataBase.userList[] dataBase.lastItem++;
