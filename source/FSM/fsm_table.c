@@ -7,6 +7,8 @@
 #include "states/fail_state.h"
 #include "states/usr_state.h"
 #include "states/admin_state.h"
+#include "states/open_state.h"
+#include "../queue.h"
 //#include "states/admin_state.h" para open state
 
 
@@ -50,11 +52,11 @@ static void do_nothing(void);
 STATE id[]=
 {
 	{PRESS_EV, id, id_acceptNumber},
-	{LKP_EV, id, confirmID},
+	{LKP_EV, id, id_confirmID},
 	{ENCODER_RIGHT_EV, id, id_increaseCurrent},
     {ENCODER_LEFT_EV, id, id_decreaseCurrent},
 	{CARD_SWIPE_EV, id, id_checkCardID},
-	{ID_OK_EV, pin, id_updateDispPin}, //TODO que updetee el display
+	{ID_OK_EV, pin, onId_Ok}, //TODO que updetee el display
 	{ID_FAIL_EV, id, id_fail}, //TODO ver si tieneque ir directo a menu o no
 	{FIN_TABLA,id,do_nothing},
 };
@@ -87,8 +89,8 @@ STATE fail[] =
 
 STATE usr[] =
 {
-	{,cfg_me,},
-	{,open,},
+	{USER_CONFIG_ME_SELECTED_EV,cfg_me,},
+	{OPEN_SELECTED_EV,open,openDoor},
 	{FIN_TABLA, usr, do_nothing}
 };
 
@@ -96,11 +98,11 @@ STATE usr[] =
 
 STATE admin[] =
 {
-	{,cfg_me,},
-	{,open,},
-    {,add_user,},
-    {,cfg_usr,},
-    {,cfg_device,},
+	{ADMIN_CONFIG_ME_SELECTED_EV,cfg_me,},
+	{OPEN_SELECTED_EV,open,openDoor},
+    {ADMIN_ADD_USER_SELECTED_EV,add_user,},
+    {ADMIN_CONFIG_USER_SELECTED_EV,cfg_usr,},
+    {ADMIN_CONFIG_DEVICE_SELECTED_EV,cfg_device,},
 	{FIN_TABLA, admin, do_nothing}
 };
 
@@ -109,18 +111,36 @@ STATE admin[] =
 
 STATE open[] =
 {
-	{,menu,},
+	{TIMER_ACCESS_EV,menu,accessTimeOut},
 	{FIN_TABLA, open, do_nothing}
 };
 
+/*User config me*/
+STATE cfg_me[] = 
+{
+	{ADMIN_CONFIG_ME_FINISHED_EV, admin,}
+	{USER_CONFIG_ME_FINISHED_EV, usr,}
+	{FIN_TABLA, cfg_me, do_nothing}
+}
 
+/*Config usr*/
+STATE cfg_usr[] = 
+{
+	{ADMIN_CONFIG_USER_FINISHED_EV, admin,}
+	{FIN_TABLA, cfg_usr, do_nothing}
+}
+/*Config device*/
+STATE cfg_device[] = 
+{
+	{ADMIN_CONFIG_DEVICE_FINISHED_EV, admin,}
+	{FIN_TABLA, cfg_usr, do_nothing}
+}
 
 //========interfaz=================
 
 
 STATE *FSM_GetInitState(void)
 {
- 	//return (ledAzul);
 	 return(menu);
 }
 
@@ -132,4 +152,9 @@ STATE *FSM_GetInitState(void)
 static void do_nothing(void)
 {
 	//take some time off, relax, and KEEP WORKING you lazy ass ALU
+}
+
+static void onId_Ok(void)
+{
+	//TODO que updetee el display
 }

@@ -68,6 +68,7 @@ static void systick_callback(void)
 void buttonsInit(void)
 {
 	//add buttons to .h
+	
 	SysTick_AddCallback(&systick_callback, 50);
 }
 
@@ -143,6 +144,7 @@ bool buttonConfiguration(pin_t button, int type, int time)
 	{
 		if(buttons[count].pin==0)
 		{
+			gpioMode(button, OUTPUT);
 			buttons[count].pin=button;
 			buttons[count].typefunction=type;
 			if(type == LKP)

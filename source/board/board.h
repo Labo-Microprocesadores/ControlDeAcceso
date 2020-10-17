@@ -35,15 +35,6 @@
 #define SW_ACTIVE       LOW
 #define SW_INPUT_TYPE   INPUT_PULLDOWN
 
-// Encoder pin's
-#define ENCODER_A		PORTNUM2PIN(PC,8) // PTC8
-#define ENCODER_B		PORTNUM2PIN(PC,9) // PTC9
-
-// Lector de tarjetas
-#define LECTOR_ENABLE 	PORTNUM2PIN(PA,2) // PTA2
-#define LECTOR_DATA		PORTNUM2PIN(PA,1) // PTA1
-#define LECTOR_CLOCK	PORTNUM2PIN(PC,3) //PTC3
-
 // 7Segment Board
 #define PIN_SEGA	PORTNUM2PIN(PC,10) 	// PTC10
 #define PIN_SEGB	PORTNUM2PIN(PC,11) 	// PTC11
@@ -55,6 +46,22 @@
 #define PIN_SEGDP	PORTNUM2PIN(PC,5) 	// PTC5
 #define PIN_SEL0	PORTNUM2PIN(PC,7) 	// PTC7
 #define PIN_SEL1	PORTNUM2PIN(PC,0) 	// PTC0
+
+// Encoder pin's
+#define ENCODER_A		PORTNUM2PIN(PC,8) // PTC8
+#define ENCODER_B		PORTNUM2PIN(PC,9) // PTC9
+#define ENCODER_SW  PORTNUM2PIN(PB,18)// PTB18 
+// Lector de tarjetas
+#define LECTOR_ENABLE 	PORTNUM2PIN(PA,2) // PTA2
+#define LECTOR_DATA		  PORTNUM2PIN(PA,1) // PTA1
+#define LECTOR_CLOCK	  PORTNUM2PIN(PC,3) // PTC3
+
+// Multiplexed LED's
+#define LED_LINE_I 		PORTNUM2PIN(PC,16)// PTC 16
+#define LED_LINE_II		PORTNUM2PIN(PC,17)// PTC 17
+
+// Test point
+#define TP				PORTNUM2PIN(PC,4) // PTC4
 
 /*******************************************************************************
  ******************************************************************************/
