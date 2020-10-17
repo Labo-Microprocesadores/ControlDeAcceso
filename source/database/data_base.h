@@ -38,14 +38,14 @@ typedef enum
 {
     USER,
     ADMIN
-} hierarchy;
+} hierarchy_t;
 
 typedef struct
 {
     uint8_t userID[ID_ARRAY_SIZE];
     uint8_t userPIN[PIN_ARRAY_SIZE];
     uint8_t cardNumber[MAX_CARD_NUMBER];
-    hierarchy typeOfUser;
+    hierarchy_t typeOfUser;
 } user_t;
 
 typedef struct
@@ -73,7 +73,7 @@ Status removeUserID(uint8_t usersID[]);
 
 category_name verifyCategory(char usersID[]);
 
-
+bool verifyCardNumber(void);
 
 typedef struct
 {

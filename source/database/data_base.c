@@ -9,7 +9,7 @@
 static dataBase_t dataBase;
 static uint8_t currentIdIndex = -1;
 static dataBase_t database;
-
+static uint8_t validNumberArray[MAX_CARD_NUMBER];
 
 /**
  * @brief Checks if the "id" array format matches the format of an id. The array must be complete (length equal to ID_ARRAY_SIZE) and all elements must be numbers from 0 to 9.
@@ -91,6 +91,7 @@ bool IsAdmin(void)
 
 Status checkAddUser(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy typeOfUser)
 {
+    
     Status howWas = validateAll(userID, userPIN, cardNumber, numCharactersCardNumber, typeOfUser);
     if (howWas != VALIDATE_SUCCESSFULL)
         return howWas;
@@ -126,10 +127,8 @@ Status validateAll(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], ui
     /***************************************************************************/
     //check Card Number Format
     CreateValidNumberArrayFormat(cardNumber, numCharactersCardNumber);
-    if (verifyCardNumber(userID))
+    if (verifyCardNumber())
         return CARD_NUMBER_EXISTS;
-
-
 }
 
 static bool checkIdArrayFormat(uint8_t userID[])
@@ -198,9 +197,12 @@ static bool CreateValidNumberArrayFormat(uint8_t cardNumber[], uint8_t numCharac
 {
     uint8_t count;
     //I put the default character in the uncompleted positions
-    for(count=numCharactersCardNumber; count <= MAX_CARD_NUMBER; count++)
+    for(count=0; count <= MAX_CARD_NUMBER; count++)
     {
-        cardNumber[count] = DEFAULT_CARD_CARACTER;
+        if(count < numCharactersCardNumber)
+            validNumberArray[count]=cardNumber[count];
+        else         
+            validNumberArray[count] = DEFAULT_CARD_CARACTER;
     }
     return true;
 }
@@ -210,4 +212,30 @@ Status removeUser(user_t userToDelete)
 {
 
 }
+
+bool verifyCardNumber()
+{
+    validNumberArray[MAX_CARD_NUMBER];
+    uint8_t  user;
+    //I go through the array of users
+    for (user = 0; user < MAX_NUM_USERS; user++)
+    {
+        //if there are no more users to check
+        if (user > dataBase.lastItem)
+            return false;
+        
+        bool equalID = true;
+        //I go through the id array checking values
+        uint8_t count = 0;
+        while (count < MAX_CARD_NUMBER && equalID)
+        {
+            if (dataBase.userList[user].cardNumber[count] != validNumberArray[count])   //If the ID is different
+                equalID = false;
+            count ++;                
+        }
+        if (equalID)
+            return true;
+    }
+}
+
 
