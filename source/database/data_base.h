@@ -1,4 +1,4 @@
-/***************************************************************************//**
+/***************************************************************************/ /**
   @file     data_base.h
   @brief    Application functions
   @author   Grupo 2
@@ -15,34 +15,46 @@
  ******************************************************************************/
 #define ID_ARRAY_SIZE 8
 #define PIN_ARRAY_SIZE 5
-#define MAX_NUM_USERS	20
+#define MAX_NUM_USERS 20
 #define MAX_CARD_NUMBER 19
 #define DEFAULT_CARD_CARACTER -1
+#define NO_INPUT_CHAR -1
+#define BACKSPACE -2
 
-typedef enum {SUCCESSFULL,DATABASE_FULL,ID_ALREADY_EXISTS,ID_NOT_FOUND}status;
-typedef enum {USER, ADMIN}hierarchy;
+typedef enum
+{
+    VALIDATE_SUCCESSFULL,
+    DATABASE_FULL,
+    ID_ALREADY_EXISTS,
+    ID_WRONG_FORMAT,
+    ID_NOT_FOUND
+} status;
+typedef enum
+{
+    USER,
+    ADMIN
+} hierarchy;
 
-typedef struct{
-	uint8_t userID[ID_ARRAY_SIZE];
-	uint8_t userPIN[PIN_ARRAY_SIZE];
+typedef struct
+{
+    uint8_t userID[ID_ARRAY_SIZE];
+    uint8_t userPIN[PIN_ARRAY_SIZE];
     uint8_t cardNumber[MAX_CARD_NUMBER];
-	hierarchy typeOfUser;
-}user_t;
+    hierarchy typeOfUser;
+} user_t;
 
-typedef struct{
-	user_t userList[MAX_NUM_USERS];
+typedef struct
+{
+    user_t userList[MAX_NUM_USERS];
     uint8_t lastItem;
     uint8_t Attempts;
-}dataBase_t;
+} dataBase_t;
 
 bool verifyPIN(uint8_t userPIN[PIN_ARRAY_SIZE]);
 
 bool verifyID(uint8_t usersID[ID_ARRAY_SIZE]);
 
 bool IsAdmin(void);
-
-
-
 
 void initializeDataBase(void);
 
