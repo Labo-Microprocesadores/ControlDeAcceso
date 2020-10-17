@@ -55,6 +55,7 @@ bool verifyID(uint8_t usersID[ID_ARRAY_SIZE])
     }
 }
 
+
 bool verifyPIN(uint8_t userPIN[PIN_ARRAY_SIZE])
 {
     uint8_t count;
@@ -68,6 +69,17 @@ bool verifyPIN(uint8_t userPIN[PIN_ARRAY_SIZE])
     return true;
 }
 
+
+bool IsAdmin(void)
+{
+    if(dataBase.userList[currentIdIndex].typeOfUser==ADMIN)
+        return true;
+    else
+        return false;
+}
+
+
+
 status addUser(uint8_t userID[ID_ARRAY_SIZE], uint8_t userPIN[PIN_ARRAY_SIZE], uint8_t cardNumber[MAX_CARD_NUMBER], hierarchy typeOfUser)
 {
     user_t newUser= {userID,userPIN,cardNumber,typeOfUser};
@@ -77,12 +89,32 @@ status addUser(uint8_t userID[ID_ARRAY_SIZE], uint8_t userPIN[PIN_ARRAY_SIZE], u
 
 status checkAddUser(user_t newUser)
 {
-
+    validateAll(newUser);
     dataBase.userList[] dataBase.lastItem++;
 }
 
+
+bool validateAll(user_t newUser)
+{
+    validate
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 status removeUser(user_t userToDelete)
 {
+
 }
 
 status removeUserID(char usersID[ID_LENGTH])
@@ -90,10 +122,6 @@ status removeUserID(char usersID[ID_LENGTH])
 }
 
 
-
-category_name verifyCategory(char usersID[ID_LENGTH])
-{
-}
 
 
 void changePIN(char usersID[ID_LENGTH], char usersNewPIN[PIN_MAX_LENGTH])

@@ -35,6 +35,15 @@ typedef struct{
     uint8_t Attempts;
 }dataBase_t;
 
+bool verifyPIN(uint8_t userPIN[PIN_ARRAY_SIZE]);
+
+bool verifyID(uint8_t usersID[ID_ARRAY_SIZE]);
+
+bool IsAdmin(void);
+
+
+
+
 void initializeDataBase(void);
 
 status addUser(user_t newUser);
@@ -42,10 +51,6 @@ status addUser(user_t newUser);
 status removeUser(user_t userToDelete);
 
 status removeUserID(char usersID[ID_LENGTH]);
-
-bool verifyID(char usersID[ID_LENGTH]);
-
-bool verifyPIN(char usersID[ID_LENGTH], char usersPIN[PIN_MAX_LENGTH]);
 
 category_name verifyCategory(char usersID[ID_LENGTH]);
 
