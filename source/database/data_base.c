@@ -38,8 +38,8 @@ void initializeDataBase(void)
     user_t newUser3 = {{8, 4, 6, 2, 3, 1, 9, 7}, {1, 1, 1, 1, -1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,}, 12, ADMIN};
     //Add the dummy users to the database
     checkAddUser(newUser1.userID, newUser1.userPIN, newUser1.cardNumber, newUser1.numCharactersCardNumber, newUser1.typeOfUser);
-    checkAddUser(newUser2.userID, newUser2.userPIN, newUser2.cardNumber, newUser1.numCharactersCardNumber, newUser2.typeOfUser);
-    checkAddUser(newUser3.userID, newUser3.userPIN, newUser3.cardNumber, newUser1.numCharactersCardNumber, newUser3.typeOfUser);
+    checkAddUser(newUser2.userID, newUser2.userPIN, newUser2.cardNumber, newUser2.numCharactersCardNumber, newUser2.typeOfUser);
+    checkAddUser(newUser3.userID, newUser3.userPIN, newUser3.cardNumber, newUser3.numCharactersCardNumber, newUser3.typeOfUser);
 }
 
 bool verifyID(uint8_t usersID[])
@@ -89,20 +89,20 @@ bool IsAdmin(void)
     return false;
 }
 
-Status checkAddUser(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy typeOfUser)
+Status checkAddUser(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy_t typeOfUser)
 {
-    
-    Status howWas = validateAll(userID, userPIN, cardNumber, numCharactersCardNumber, typeOfUser);
+	uint8_t validNumberArray[MAX_CARD_NUMBER];
+    Status howWas = validateAll(userID, userPIN, cardNumber, numCharactersCardNumber, validNumberArray, typeOfUser);
     if (howWas != VALIDATE_SUCCESSFULL)
         return howWas;
 
     user_t newUser = {userID, userPIN, cardNumber, numCharactersCardNumber, typeOfUser};
-    //! falta agregar los usuarios
+    
     dataBase.lastItem++;
     return;       
 }
 
-Status validateAll(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy typeOfUser)
+Status validateAll(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], uint8_t numCharactersCardNumber, uint8_t validNumberArray[], hierarchy_t typeOfUser)
 {
     //check Database space
     if (database.lastItem == MAX_NUM_USERS - 1)
@@ -126,9 +126,10 @@ Status validateAll(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], ui
     //                           Create Valid Card Number
     /***************************************************************************/
     //check Card Number Format
-    CreateValidNumberArrayFormat(cardNumber, numCharactersCardNumber);
-    if (verifyCardNumber())
+    CreateValidNumberArrayFormat(cardNumber, numCharactersCardNumber, validNumberArray);
+    if (verifyCardNumber(validNumberArray))
         return CARD_NUMBER_EXISTS;
+    return
 }
 
 static bool checkIdArrayFormat(uint8_t userID[])
@@ -193,7 +194,7 @@ Status changePin(uint8_t userOldPin[], uint8_t userNewPin[])
 }
 
 
-static bool CreateValidNumberArrayFormat(uint8_t cardNumber[], uint8_t numCharactersCardNumber)
+static bool CreateValidNumberArrayFormat(uint8_t cardNumber[], uint8_t numCharactersCardNumber, uint8_t validNumberArray[])
 {
     uint8_t count;
     //I put the default character in the uncompleted positions
@@ -208,14 +209,9 @@ static bool CreateValidNumberArrayFormat(uint8_t cardNumber[], uint8_t numCharac
 }
 
 
-Status removeUser(user_t userToDelete)
-{
 
-}
-
-bool verifyCardNumber()
+bool verifyCardNumber(uint8_t validNumberArray[])
 {
-    validNumberArray[MAX_CARD_NUMBER];
     uint8_t  user;
     //I go through the array of users
     for (user = 0; user < MAX_NUM_USERS; user++)
@@ -238,4 +234,9 @@ bool verifyCardNumber()
     }
 }
 
+
+Status removeUser(user_t userToDelete)
+{
+
+}
 

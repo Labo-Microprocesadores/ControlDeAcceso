@@ -46,6 +46,7 @@ typedef struct
     uint8_t userPIN[PIN_ARRAY_SIZE];
     uint8_t cardNumber[MAX_CARD_NUMBER];
     hierarchy_t typeOfUser;
+    uint8_t numCharactersCardNumber;
 } user_t;
 
 typedef struct
@@ -55,51 +56,23 @@ typedef struct
     uint8_t Attempts;
 } dataBase_t;
 
-bool verifyPIN(uint8_t userPIN[]);
+void initializeDataBase(void);
 
 bool verifyID(uint8_t usersID[]);
 
-bool IsAdmin(void);
-
-void initializeDataBase(void);
-
-Status addUser(user_t newUser);
-
-Status removeUser(user_t userToDelete);
-
-Status changePin(uint8_t userOldPin[], uint8_t userNewPin[]);
-
-Status removeUserID(uint8_t usersID[]);
-
-category_name verifyCategory(char usersID[]);
-
-bool verifyCardNumber(void);
-
-typedef struct
-{
-    user_t userList[MAX_NUM_USERS];
-    uint8_t lastItem;
-    uint8_t Attempts;
-} dataBase_t;
-
 bool verifyPIN(uint8_t userPIN[]);
 
-bool verifyID(uint8_t usersID[]);
-
 bool IsAdmin(void);
 
-void initializeDataBase(void);
+Status checkAddUser(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy_t typeOfUser);
 
-Status addUser(user_t newUser);
-
-Status removeUser(user_t userToDelete);
+Status validateAll(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], uint8_t numCharactersCardNumber, uint8_t validNumberArray[], hierarchy_t typeOfUser);
 
 Status changePin(uint8_t userOldPin[], uint8_t userNewPin[]);
 
-Status removeUserID(uint8_t usersID[]);
+bool verifyCardNumber(uint8_t validNumberArray[]);
 
-category_name verifyCategory(char usersID[]);
-
+Status removeUser(user_t userToDelete)
 
 
 #endif /* DATABASE_H_ */
