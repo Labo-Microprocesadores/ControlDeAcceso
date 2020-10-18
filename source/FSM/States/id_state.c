@@ -180,6 +180,7 @@ static void showTitle(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
+    SevenSegDisplay_CursorOff();
     SevenSegDisplay_WriteBuffer("ID  ", 4, 0);
     showingTitle = true;
     titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);
@@ -189,7 +190,8 @@ static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBuffer("00000000", 8, 0); //TODO que inicialmente te muestre lineas y despues si giran el encoder empiece apareciendo el cero.
+    SevenSegDisplay_ChangeCharacter(0, NO_INPUT_CHAR);
+    SevenSegDisplay_CursorOn();
     showingTitle = false;
 }
 

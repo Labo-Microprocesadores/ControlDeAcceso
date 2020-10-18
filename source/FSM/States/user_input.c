@@ -40,16 +40,8 @@ void inputIncreaseCurrent(uint8_t *inputArray, uint8_t currentPosition)
         inputArray[currentPosition]++;
     else
         inputArray[currentPosition] = (uint8_t)BACKSPACE;
-    SevenSegDisplay_ChangeCharacter(currentPosition, inputArray[currentPosition]);
-    /*
-    if(currentPosition<=3)
-    {
-        SevenSegDisplay_ChangeCharacter(currentPosition, inputArray[currentPosition]);
-    }
-    else
-    {
-        SevenSegDisplay_ChangeCharacter(4, inputArray[currentPosition]);
-    }*/
+
+    SevenSegDisplay_WriteBuffer(&inputArray[currentPosition], 1, currentPosition);
 }
 
 void inputDecreaseCurrent(uint8_t *inputArray, uint8_t currentPosition)
@@ -60,7 +52,8 @@ void inputDecreaseCurrent(uint8_t *inputArray, uint8_t currentPosition)
         inputArray[currentPosition] = (uint8_t)BACKSPACE;
     else if (inputArray[currentPosition] == (uint8_t)BACKSPACE)
         inputArray[currentPosition] = 9;
-    SevenSegDisplay_ChangeCharacter(currentPosition, inputArray[currentPosition]);
+
+    SevenSegDisplay_WriteBuffer(&inputArray[currentPosition], 1, currentPosition);
 
 }
 
@@ -85,19 +78,10 @@ void inputAcceptNumber(uint8_t *inputArray, uint8_t *currentPosition, int totalA
         SevenSegDisplay_CursorInc();
         (*currentPosition)++;
         inputArray[*currentPosition] = NO_INPUT_CHAR;
-        SevenSegDisplay_EraseScreen();
-        if(*currentPosition<=3)
-        {
-        	SevenSegDisplay_WriteBuffer(inputArray, 4, 0);
-        }
-        else
-        {
-        	SevenSegDisplay_WriteBuffer(inputArray, (*currentPosition), (*currentPosition)-4);
-        }
-        //SevenSegDisplay_WriteBuffer(&inputArray[*currentPosition], 1, *currentPosition);
-        //SevenSegDisplay_WriteBufferAndMove(inputArray[*currentPosition], (*currentPosition)+1, 0,SHIFT_L);
+        SevenSegDisplay_WriteBuffer(&inputArray[*currentPosition], 1, *currentPosition);
+
     }
-    else if (inputArray[*currentPosition] == BACKSPACE)
+    else if (inputArray[*currentPosition] == (uint8_t)BACKSPACE)
     {
         SevenSegDisplay_CursorDec();
         deleteLastChar(inputArray, totalArraySize);

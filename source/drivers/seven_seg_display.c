@@ -15,7 +15,7 @@
  ******************************************************************************/
 #define SCREEN_SIZE 4
 #define BACK_BUFFER 50
-#define BLINK_TIME 200
+#define BLINK_TIME 100
 #define PERIOD 5
 #define MOVE_SPEED 700
 
@@ -41,8 +41,8 @@ static const uint8_t letters[] = {0x77, 0x7C, 0x58, 0x5E, 0x79, 0x71, 0x3D, 0x74
 								//  u	 ~v	   ~w	 ~X		y	 !z
 								  0x1C, 0x00, 0x00, 0x00, 0x6E, 0x00};
 
-								// - 	otros
-static const uint8_t extras[] = {0x08, 0x00};
+								// Back  "_"	otros
+static const uint8_t extras[] = {  0x18 , 0x08, 0x00};
 
 static sevenSeg_t screen[BACK_BUFFER+10];
 static uint8_t pos = 0;
@@ -160,6 +160,7 @@ void SevenSegDisplay_WriteBuffer(char new_chars[], uint8_t amount, uint8_t offse
 {
 	if((offset+amount) < BACK_BUFFER)
 	{
+		bouncing=false;
 		uint8_t i;
 		for(i = 0; i< amount; i++)
 		{
@@ -206,6 +207,7 @@ void SevenSegDisplay_SetPos(uint8_t new_pos)
 {
 	if(new_pos < BACK_BUFFER - SCREEN_SIZE )
 	{
+		moves_remainig = 0;
 		pos = new_pos;
 	}
 }
@@ -366,9 +368,9 @@ uint8_t SevenSegDisplay_chat2sevseg(char code)
 	{
 		return letters[code-'a'];
 	}
-	else
+	else if((int8_t)code < 0 && (int8_t)code > -3)
 	{
-		return code=='-'? extras[0]:extras[1];
+		return extras[(int8_t)code+2];
 	}
-	
+	return NONE;
 }

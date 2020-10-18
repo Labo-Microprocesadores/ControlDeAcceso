@@ -14,7 +14,7 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 #define NO_INPUT_CHAR -1
-#define BACKSPACE -3
+#define BACKSPACE -2
 //CHAR ORDER: 0 1 2 3 4 5 6 7 8 9 BACKSPACE
 
 /*******************************************************************************

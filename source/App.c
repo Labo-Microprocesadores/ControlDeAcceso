@@ -9,7 +9,9 @@
  ******************************************************************************/
 #include "queue.h"
 #include "fsm.h"
+#include "fsm_table.h"
 #include "data_base.h"
+
 
 #include "Led.h"
 #include "timer.h"
@@ -85,6 +87,7 @@ void fillQueue(void)
   uint8_t move = Encoder_GetMove();
   if (move)
   {
+	Timer_Reset(userTimeOutTimerID);
     if (move == 1)
     {
       emitEvent(ENCODER_RIGHT_EV);
@@ -96,17 +99,19 @@ void fillQueue(void)
   }
   if (wasTap(ENCODER_SW)) //TODO poner el nuevo driver de button y ver si hacer uno generico o preguntar con el boton
   {
-    emitEvent(PRESS_EV);
+	  Timer_Reset(userTimeOutTimerID);
+	  emitEvent(PRESS_EV);
   }
   else if (wasLkp(ENCODER_SW))
   {
-    emitEvent(LKP_EV);
+	  Timer_Reset(userTimeOutTimerID);
+	  emitEvent(LKP_EV);
   }
 }
 
 void timeOutCallback(void)
 {
-  emitEvent(TIMEOUT_EV);
+	emitEvent(TIMEOUT_EV);
 }
 /*******************************************************************************
  *******************************************************************************/

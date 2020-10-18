@@ -20,7 +20,7 @@
 #define MAX_CARD_NUMBER 19
 #define DEFAULT_CARD_CARACTER -1
 #define NO_INPUT_CHAR -1
-#define BACKSPACE -3
+#define BACKSPACE -2
 #define MAX_NUM_ATTEMPTS 3
 
 typedef enum
