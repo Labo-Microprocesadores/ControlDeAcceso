@@ -49,7 +49,7 @@ void id_checkCardID(void);
  * @param sizeOfReturningArray: A pointer to an integer where the size of the ID array gets stored.
  * @return The array of introduced characters.
  */
-uint8_t *id_getIDArray(int *sizeOfReturningArray);
+int8_t *id_getIDArray(int *sizeOfReturningArray);
 
 
 

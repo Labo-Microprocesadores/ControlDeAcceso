@@ -68,5 +68,5 @@ void pin_confirmPin(void);
  * @param sizeOfReturningArray: A pointer to an integer where the size of the pin array gets stored.
  * @return The array of introduced characters.
  */
-uint8_t *pin_getPinArray(int *sizeOfReturningArray);
+int8_t *pin_getPinArray(int *sizeOfReturningArray);
 #endif //PIN_H_

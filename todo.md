@@ -16,6 +16,7 @@ En id_state.c, pin_state.c y user_input:
     - [x] Completar id_onIdOk() en id_state
     - [x] Timer del title
     - [x] Mostrar titulo
+    - [ ] Hacer que funcione el backsplace cuando estas en la ultima posicion
     
 En FSM:
     - [x] Inicializar cola de eventos

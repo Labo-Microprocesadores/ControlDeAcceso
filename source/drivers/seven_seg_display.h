@@ -85,14 +85,14 @@ void SevenSegDisplay_ChangeCharacter(uint8_t screen_char, char new_char);
  * @param new_chars: new characters to print, amount: amount of characters to write
  * 		  offset: position in the back buffer to write
  */
-void SevenSegDisplay_WriteBuffer(char new_chars[], uint8_t amount, uint8_t offset);
+void SevenSegDisplay_WriteBuffer(signed char new_chars[], uint8_t amount, uint8_t offset);
 
 /**
  * @brief Write display backbuffer and shifts word in case it's longer than display size.
  * @param new_chars: new characters to print, amount: amount of characters to write
  * 		  offset: position in the back buffer to write
  */
-void SevenSegDisplay_WriteBufferAndMove(char new_chars[], uint8_t amount, uint8_t offset, uint8_t move_type);
+void SevenSegDisplay_WriteBufferAndMove(signed char new_chars[], uint8_t amount, uint8_t offset, uint8_t move_type);
 /*
  * @brief Clean screen
  */

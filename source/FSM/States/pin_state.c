@@ -23,7 +23,7 @@
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
-static uint8_t pin[PIN_ARRAY_SIZE];
+static int8_t pin[PIN_ARRAY_SIZE];
 static uint8_t currentPos = 0;
 static bool showingTitle;
 static int titleTimerID = -1;
@@ -106,7 +106,7 @@ void pin_decreaseCurrent(void)
         inputDecreaseCurrent(pin, currentPos);
 }
 
-uint8_t *pin_getPinArray(int *sizeOfReturningArray)
+int8_t *pin_getPinArray(int *sizeOfReturningArray)
 {
     int currentArrayLength = getEffectiveArrayLength(pin, PIN_ARRAY_SIZE);
     *sizeOfReturningArray = currentArrayLength;

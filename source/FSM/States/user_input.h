@@ -13,8 +13,8 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-#define NO_INPUT_CHAR -1
-#define BACKSPACE -2
+#define NO_INPUT_CHAR (int8_t)-1
+#define BACKSPACE (int8_t)-2
 //CHAR ORDER: 0 1 2 3 4 5 6 7 8 9 BACKSPACE
 
 /*******************************************************************************
@@ -25,13 +25,13 @@
  * @param inputArray: The array of characters introduced by the user.
  * @param currentPosition: The value of the iterator which stores the current position of the user in the input array.
  */
-void inputIncreaseCurrent(uint8_t *inputArray, uint8_t currentPosition);
+void inputIncreaseCurrent(int8_t *inputArray, uint8_t currentPosition);
 /**
  * @brief Changes the current position of the array to the previous character following CHAR ORDER.
  * @param inputArray: The array of characters introduced by the user.
  * @param currentPosition: The value of the iterator which stores the current position of the user in the input array.
  */
-void inputDecreaseCurrent(uint8_t *inputArray, uint8_t currentPosition);
+void inputDecreaseCurrent(int8_t *inputArray, uint8_t currentPosition);
 /**
  * @brief Set the current position of the array with the introduced character and moves to the next position (unless the character is equal to BACKSPACE).
  *        If the introduced character is equal to BACKSPACE, it deletes the character of the current position and moves to the previous one.
@@ -39,7 +39,7 @@ void inputDecreaseCurrent(uint8_t *inputArray, uint8_t currentPosition);
  * @param currentPosition: A pointer to the iterator which stores the current position of the user in the input array.
  * @param totalArraySize: The previosly fixed size of the inputArray.
  */
-void inputAcceptNumber(uint8_t *inputArray, uint8_t *currentPosition, int totalArraySize);
+void inputAcceptNumber(int8_t *inputArray, uint8_t *currentPosition, int totalArraySize);
 
 /**
  * @brief Function executed to initialize the input array..
@@ -47,7 +47,7 @@ void inputAcceptNumber(uint8_t *inputArray, uint8_t *currentPosition, int totalA
  * @param currentPosition: A pointer to the iterator which stores the current position of the user in the input array.
  * @param totalArraySize: The previosly fixed size of the inputArray.
  */
-void inputResetArray(uint8_t *inputArray, uint8_t *currentPosition, int totalArraySize);
+void inputResetArray(int8_t *inputArraey, uint8_t *currentPosition, int totalArraySize);
 
 /**
  * @brief Calculates the number of characters introduced by the user in the input array.
@@ -55,6 +55,6 @@ void inputResetArray(uint8_t *inputArray, uint8_t *currentPosition, int totalArr
  * @param totalArraySize: The previosly fixed size of the inputArray.
  * @return The amount of elements different from NO_INPUT_CHAR and BACKSPACE in the input array (its effective length). The elements must be consecutive
  */
-static int getEffectiveArrayLength(uint8_t *inputArray, int totalArraySize);
+static int getEffectiveArrayLength(int8_t *inputArray, int totalArraySize);
 
 #endif //USER_INPUT_H_

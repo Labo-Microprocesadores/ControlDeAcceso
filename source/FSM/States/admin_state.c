@@ -167,7 +167,7 @@ static void showCurrentOption(void)
         SevenSegDisplay_WriteBuffer("OPEN", 4, 0);
         break;
     case CONFIG_DEVICE:
-        SevenSegDisplay_WriteBufferAndMove("CONFIG DEVICE", 13, 0, BOUNCE); 
+        SevenSegDisplay_WriteBufferAndMove("BRIGHTNESS", 10, 0, BOUNCE);
         break;
     case ADD_USER:
         SevenSegDisplay_WriteBufferAndMove("ADD USER", 8, 0, BOUNCE);

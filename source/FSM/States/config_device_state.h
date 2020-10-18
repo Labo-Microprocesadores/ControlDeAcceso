@@ -10,7 +10,10 @@
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
-
+/**
+ * @brief Initialization of the state.
+ */
+void initConfigDevice(void);
 /**
  * @brief Changes the current position of the ID array to the next character following CHAR ORDER.
  */

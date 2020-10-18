@@ -44,7 +44,7 @@ void initializeDataBase(void)
     dataBase.lastItem = -1;
     //I create 3 dummy users
     user_t newUser1 = {{1, 2, 3, 4, 5, 6, 7, 8}, {9, 8, 7, 6, 5}, {6,0,3,1,6,7,0,9,1,2,0,2,4,1,0,1,8,4,5}, ADMIN};
-    user_t newUser2 = {{5, 2, 4, 6, 9, 5, 3, 5}, {1, 2, 3, 4, 5}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, USER};
+    user_t newUser2 = {{5, 2, 4, 6, 9, 5, 3, 5}, {1, 2, 3, 4, 5}, {1,1,1,1,1,1,1,1,1,1,1,1,1,1}, USER};
     user_t newUser3 = {{8, 4, 6, 2, 3, 1, 9, 7}, {1, 1, 1, 1, -1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,}, ADMIN};
     //Add the dummy users to the database
     checkAddUser(newUser1.userID, newUser1.userPIN, newUser1.cardNumber, 19, newUser1.typeOfUser);

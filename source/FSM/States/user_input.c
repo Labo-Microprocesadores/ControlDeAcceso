@@ -21,7 +21,7 @@
  * @param inputArray: Te array of characters introduced by the user.
  * @param totalArraySize: The previosly fixed size of the inputArray.
  */
-static void deleteLastChar(uint8_t *inputArray, int totalArraySize);
+static void deleteLastChar(int8_t *inputArray, int totalArraySize);
 
 /*******************************************************************************
  *******************************************************************************
@@ -30,34 +30,34 @@ static void deleteLastChar(uint8_t *inputArray, int totalArraySize);
  ******************************************************************************/
 //!OJO EN TODAS ESTA HABRIA QUE RESETEAR EL TIMER DE TIMEOUT Y EN ALGUNAS ACTUALIZAR EL DISPLAY
 //TODO AGREGAR ESO
-void inputIncreaseCurrent(uint8_t *inputArray, uint8_t currentPosition)
+void inputIncreaseCurrent(int8_t *inputArray, uint8_t currentPosition)
 {
-    if (inputArray[currentPosition] == (uint8_t)BACKSPACE)
+    if (inputArray[currentPosition] == BACKSPACE)
         inputArray[currentPosition] = 0;
-    else if (inputArray[currentPosition] == (uint8_t)(NO_INPUT_CHAR))
+    else if (inputArray[currentPosition] == (NO_INPUT_CHAR))
         inputArray[currentPosition] = 0;
     else if (inputArray[currentPosition] < 9)
         inputArray[currentPosition]++;
     else
-        inputArray[currentPosition] = (uint8_t)BACKSPACE;
+        inputArray[currentPosition] = BACKSPACE;
 
     SevenSegDisplay_WriteBuffer(&inputArray[currentPosition], 1, currentPosition);
 }
 
-void inputDecreaseCurrent(uint8_t *inputArray, uint8_t currentPosition)
+void inputDecreaseCurrent(int8_t *inputArray, uint8_t currentPosition)
 {
     if (inputArray[currentPosition] > 0)
         inputArray[currentPosition]--;
-    else if (inputArray[currentPosition] == 0 || inputArray[currentPosition] == (uint8_t)NO_INPUT_CHAR)
-        inputArray[currentPosition] = (uint8_t)BACKSPACE;
-    else if (inputArray[currentPosition] == (uint8_t)BACKSPACE)
+    else if (inputArray[currentPosition] == 0 || inputArray[currentPosition] == NO_INPUT_CHAR)
+        inputArray[currentPosition] = BACKSPACE;
+    else if (inputArray[currentPosition] == BACKSPACE)
         inputArray[currentPosition] = 9;
 
     SevenSegDisplay_WriteBuffer(&inputArray[currentPosition], 1, currentPosition);
 
 }
 
-void inputResetArray(uint8_t *inputArray, uint8_t *currentPosition, int totalArraySize)
+void inputResetArray(int8_t *inputArray, uint8_t *currentPosition, int totalArraySize)
 {
     int i;
     for (i = 0; i < totalArraySize; i++)
@@ -68,34 +68,30 @@ void inputResetArray(uint8_t *inputArray, uint8_t *currentPosition, int totalArr
     SevenSegDisplay_EraseScreen();
 }
 
-void inputAcceptNumber(uint8_t *inputArray, uint8_t *currentPosition, int totalArraySize)
+void inputAcceptNumber(int8_t *inputArray, uint8_t *currentPosition, int totalArraySize)
 {
-    if (*currentPosition == totalArraySize - 1)
-        return;
-
-    if (inputArray[*currentPosition] >= 0 && inputArray[*currentPosition] <= 9)
+    if (inputArray[*currentPosition] == BACKSPACE)
+    {
+        SevenSegDisplay_CursorDec();
+        deleteLastChar(inputArray, totalArraySize);
+        (*currentPosition)--;
+        
+    }else if ((inputArray[*currentPosition] >= 0 && inputArray[*currentPosition] <= 9) && (*currentPosition != totalArraySize - 1))
     {
         SevenSegDisplay_CursorInc();
         (*currentPosition)++;
         inputArray[*currentPosition] = NO_INPUT_CHAR;
         SevenSegDisplay_WriteBuffer(&inputArray[*currentPosition], 1, *currentPosition);
-
-    }
-    else if (inputArray[*currentPosition] == (uint8_t)BACKSPACE)
-    {
-        SevenSegDisplay_CursorDec();
-        deleteLastChar(inputArray, totalArraySize);
-        (*currentPosition)--;
     }
 }
 
-static int getEffectiveArrayLength(uint8_t *inputArray, int totalArraySize)
+static int getEffectiveArrayLength(int8_t *inputArray, int totalArraySize)
 {
     int length = 0;
     bool foundLast = false;
     while (!foundLast && length < totalArraySize)
     {
-        uint8_t lastChar = inputArray[length];
+        int8_t lastChar = inputArray[length];
         if (lastChar == NO_INPUT_CHAR || lastChar == BACKSPACE)
             foundLast = true;
         else
@@ -109,7 +105,7 @@ static int getEffectiveArrayLength(uint8_t *inputArray, int totalArraySize)
                         LOCAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-static void deleteLastChar(uint8_t *inputArray, int totalArraySize)
+static void deleteLastChar(int8_t *inputArray, int totalArraySize)
 {
     int currentArrayLength = getEffectiveArrayLength(inputArray, totalArraySize);
     if (currentArrayLength == 0)

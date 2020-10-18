@@ -37,13 +37,15 @@ void initFailState(void)
 {
     errorIndicationTimerID = -1;
     SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_SetPos(0);
+    SevenSegDisplay_CursorOff();
     if (isCurrentUserBlocked())
     {
-        SevenSegDisplay_WriteBufferAndMove("BLOCKED USER.", 13, 0, SHIFT_R);
+        SevenSegDisplay_WriteBufferAndMove("BLOCKED USER.", 13, 0, BOUNCE);
     }
     else
     {
-        SevenSegDisplay_WriteBufferAndMove("TRY AGAIN.", 9, 0, SHIFT_R);
+        SevenSegDisplay_WriteBufferAndMove("TRY AGAIN.", 9, 0, BOUNCE);
     }
     errorIndicationTimerID = Timer_AddCallback(&finishFail, TITLE_TIME, true);
 }

@@ -24,7 +24,7 @@
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
-static uint8_t id[ID_ARRAY_SIZE];
+static int8_t id[ID_ARRAY_SIZE];
 static uint8_t currentPos = 0;
 static bool showingTitle, showingErrorIndication;
 static int titleTimerID = -1;
@@ -128,7 +128,7 @@ void id_acceptNumber(void)
         inputAcceptNumber(id, &currentPos, ID_ARRAY_SIZE);
 }
 
-uint8_t * id_getIdArray(int *sizeOfReturningArray)
+int8_t * id_getIdArray(int *sizeOfReturningArray)
 {
     int currentArrayLength = getEffectiveArrayLength(id, ID_ARRAY_SIZE);
     *sizeOfReturningArray = currentArrayLength;

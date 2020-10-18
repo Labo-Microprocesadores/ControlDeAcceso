@@ -15,7 +15,7 @@
  ******************************************************************************/
 #define SCREEN_SIZE 4
 #define BACK_BUFFER 50
-#define BLINK_TIME 100
+#define BLINK_TIME 60
 #define PERIOD 5
 #define MOVE_SPEED 700
 
@@ -34,8 +34,8 @@ uint8_t SevenSegDisplay_chat2sevseg(char code);
 								// 0	 1		2	 3	  4		 5	  6	    7  	  8     9
 static const uint8_t numbers[] = {0x3F, 0x06, 0x5B,0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F};
 
-								// A	 b 		c	  d	   E     F	   g	 h		I	 J
-static const uint8_t letters[] = {0x77, 0x7C, 0x38, 0x5E, 0x79, 0x71, 0x3D, 0x74, 0x30, 0x1E,
+								// A	 b 		c	  d	   E     F	   g	 H		I	 J
+static const uint8_t letters[] = {0x77, 0x7C, 0x39, 0x5E, 0x79, 0x71, 0x3D, 0x76, 0x30, 0x1E,
 								// ~k	  L	   ~M	 n		o	 p		q	 r		S	 t
 								  0x00, 0x38, 0x00, 0x54, 0x3F, 0x73, 0x67, 0x50, 0x6D, 0x78,
 								//  u	 ~v	   ~w	 ~X		y	 !z
@@ -156,7 +156,7 @@ void SevenSegDisplay_SetBright(bright_t new_bright)
 	brightness = new_bright;
 }
 
-void SevenSegDisplay_WriteBuffer(char new_chars[], uint8_t amount, uint8_t offset)
+void SevenSegDisplay_WriteBuffer(signed char new_chars[], uint8_t amount, uint8_t offset)
 {
 	if((offset+amount) < BACK_BUFFER)
 	{
@@ -169,7 +169,7 @@ void SevenSegDisplay_WriteBuffer(char new_chars[], uint8_t amount, uint8_t offse
 	}
 }
 
-void SevenSegDisplay_WriteBufferAndMove(char new_chars[], uint8_t amount, uint8_t offset, uint8_t move_type)
+void SevenSegDisplay_WriteBufferAndMove(signed char new_chars[], uint8_t amount, uint8_t offset, uint8_t move_type)
 {
 	bouncing = false;
 	SevenSegDisplay_WriteBuffer(new_chars, amount, offset);

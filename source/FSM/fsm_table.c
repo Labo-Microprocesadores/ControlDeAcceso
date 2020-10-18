@@ -9,6 +9,7 @@
 #include "states/open_state.h"
 #include "queue.h"
 #include "states/fail_state.h"
+#include "states/config_device_state.h"
 //#include "states/admin_state.h" para open state
 
 
@@ -111,7 +112,7 @@ STATE admin[] =
 	{OPEN_SELECTED_EV,open,openDoor},
     ////{ADMIN_ADD_USER_SELECTED_EV,add_user,},
     ////{ADMIN_CONFIG_USER_SELECTED_EV,cfg_usr,},
-    ////{ADMIN_CONFIG_DEVICE_SELECTED_EV,cfg_device,initConfigDevice},
+    {ADMIN_CONFIG_DEVICE_SELECTED_EV,cfg_device,initConfigDevice},
 	{TIMEOUT_EV, menu, showWelcomeAnimation},
 	{FIN_TABLA, admin, do_nothing}
 };
@@ -142,7 +143,10 @@ STATE cfg_usr[] =
 /*Config device*/
 STATE cfg_device[] = 
 {
-	/////{ADMIN_CONFIG_DEVICE_FINISHED_EV, admin, initAdminMenu}, // ver si esta bien la rutina de accion
+	{PRESS_EV,admin, configDev_selectOption},
+	{ENCODER_RIGHT_EV, cfg_device, configDev_nextOption}, 
+    {ENCODER_LEFT_EV,cfg_device, configDev_previousOption}, 
+	{ADMIN_CONFIG_DEVICE_FINISHED_EV, admin, admin_initAdminMenu}, // ver si esta bien la rutina de accion
 	{TIMEOUT_EV, menu, showWelcomeAnimation},
 	{FIN_TABLA, cfg_device, do_nothing}
 };
