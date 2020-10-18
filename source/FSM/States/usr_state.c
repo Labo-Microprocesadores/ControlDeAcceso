@@ -121,7 +121,9 @@ void usr_selectOption(void)
 static void showTitle(void)
 {
     SevenSegDisplay_EraseScreen();
-    SevenSegDisplay_WriteBufferAndMove("USER MENU", 9, 0, SHIFT_R);
+    SevenSegDisplay_CursorOff();
+    SevenSegDisplay_SetPos(0);
+    SevenSegDisplay_WriteBufferAndMove("USER MENU", 9, 0, BOUNCE);
     showingTitle = true;
     titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);
 }
@@ -143,13 +145,14 @@ static void userInteractionStopsTitle(void)
 static void showCurrentOption(void)
 {
     SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_SetPos(0);
     switch (currentOptionIndex)
     {
     case OPEN:
         SevenSegDisplay_WriteBuffer("OPEN", 4, 0);
         break;
     case CONFIG:
-        SevenSegDisplay_WriteBufferAndMove("CONFIG ME", 9, 0, SHIFT_R);
+        SevenSegDisplay_WriteBufferAndMove("CONFIG ME", 9, 0, BOUNCE);
         break;
     }
 }

@@ -136,7 +136,9 @@ void admin_selectOption(void)
 static void showTitle(void)
 {
     SevenSegDisplay_EraseScreen();
-    SevenSegDisplay_WriteBufferAndMove("ADMIN MENU", 10, 0, SHIFT_R);
+    SevenSegDisplay_CursorOff();
+    SevenSegDisplay_SetPos(0);
+    SevenSegDisplay_WriteBufferAndMove("ADMIN MENU", 10, 0, BOUNCE);
     showingTitle = true;
     titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);
 }
@@ -158,16 +160,17 @@ static void userInteractionStopsTitle(void)
 static void showCurrentOption(void)
 {
     SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_SetPos(0);
     switch (currentOptionIndex)
     {
     case OPEN:
         SevenSegDisplay_WriteBuffer("OPEN", 4, 0);
         break;
     case CONFIG_DEVICE:
-        SevenSegDisplay_WriteBufferAndMove("CONFIG DEVICE", 13, 0, SHIFT_R); 
+        SevenSegDisplay_WriteBufferAndMove("CONFIG DEVICE", 13, 0, BOUNCE); 
         break;
     case ADD_USER:
-        SevenSegDisplay_WriteBufferAndMove("ADD USER", 8, 0, SHIFT_R);
+        SevenSegDisplay_WriteBufferAndMove("ADD USER", 8, 0, BOUNCE);
         break;
     case CONFIG_USER:
         SevenSegDisplay_WriteBufferAndMove("CONFIG USER", 11, 0, SHIFT_R);

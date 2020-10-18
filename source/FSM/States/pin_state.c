@@ -123,6 +123,8 @@ static void showTitle(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_WriteBuffer("PIN ", 4, 0);
+    SevenSegDisplay_SetPos(0);
+    SevenSegDisplay_CursorOff();
     showingTitle = true;
     titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);
 }
@@ -130,9 +132,9 @@ static void showTitle(void)
 static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
-    showingTitle = false;
+    SevenSegDisplay_WriteBuffer(pin, PIN_ARRAY_SIZE, 0);
     SevenSegDisplay_CursorOn();
-    SevenSegDisplay_WriteBuffer("00000000", 8, 0);
+    showingTitle = false;
 }
 
 static void userInteractionStopsTitle(void)

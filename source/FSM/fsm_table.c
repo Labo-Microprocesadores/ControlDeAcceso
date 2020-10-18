@@ -68,7 +68,8 @@ STATE pin[] =
 	//{,pin,},	    
 	{PRESS_EV,pin, pin_acceptNumber},
 	{ENCODER_RIGHT_EV,pin, pin_increaseCurrent}, 
-    {ENCODER_LEFT_EV,pin, pin_decreaseCurrent}, 
+    {ENCODER_LEFT_EV,pin, pin_decreaseCurrent},
+	{LKP_EV, pin, pin_confirmPin}, 
 	{USR_PIN_OK_EV, usr, initUserMenu},
     {ADMIN_PIN_OK_EV, admin, admin_initAdminMenu},
 	{RETURN_TO_LAST_STATE_EV, id, initLogin},
@@ -90,7 +91,10 @@ STATE fail[] =
 
 STATE usr[] =
 {
-	{USER_CONFIG_ME_SELECTED_EV,cfg_me,},
+	{PRESS_EV,usr, usr_selectOption},
+	{ENCODER_RIGHT_EV, usr, usr_nextOption}, 
+    {ENCODER_LEFT_EV,usr, usr_previousOption}, 
+	{USER_CONFIG_ME_SELECTED_EV,cfg_me},
 	{OPEN_SELECTED_EV,open,openDoor},
 	{TIMEOUT_EV, menu, showWelcomeAnimation},
 	{FIN_TABLA, usr, do_nothing}
@@ -100,6 +104,9 @@ STATE usr[] =
 
 STATE admin[] =
 {
+	{PRESS_EV,admin, admin_selectOption},
+	{ENCODER_RIGHT_EV, admin, admin_nextOption}, 
+    {ENCODER_LEFT_EV,admin, admin_previousOption}, 
 	////{ADMIN_CONFIG_ME_SELECTED_EV,cfg_me,},
 	{OPEN_SELECTED_EV,open,openDoor},
     ////{ADMIN_ADD_USER_SELECTED_EV,add_user,},
@@ -112,7 +119,7 @@ STATE admin[] =
 /*** OPEN ***/
 STATE open[] =
 {
-	{TIMER_ACCESS_EV,menu,accessTimeOut},
+	{TIMER_ACCESS_EV,menu,showWelcomeAnimation},
 	{FIN_TABLA, open, do_nothing}
 };
 

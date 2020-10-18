@@ -190,7 +190,7 @@ static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_ChangeCharacter(0, NO_INPUT_CHAR);
+    SevenSegDisplay_WriteBuffer(id, ID_ARRAY_SIZE, 0);
     SevenSegDisplay_CursorOn();
     showingTitle = false;
 }
@@ -220,6 +220,7 @@ static void id_fail(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
+    initLogin();
 }
 
 static void id_cardFail(void)

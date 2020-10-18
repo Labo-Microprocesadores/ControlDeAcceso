@@ -73,7 +73,7 @@ void inputAcceptNumber(uint8_t *inputArray, uint8_t *currentPosition, int totalA
     if (*currentPosition == totalArraySize - 1)
         return;
 
-    if (inputArray[*currentPosition] >= 0 && inputArray[*currentPosition] < 9)
+    if (inputArray[*currentPosition] >= 0 && inputArray[*currentPosition] <= 9)
     {
         SevenSegDisplay_CursorInc();
         (*currentPosition)++;

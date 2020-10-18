@@ -19,6 +19,7 @@ void showWelcomeAnimation(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
+    SevenSegDisplay_SetPos(0);
     SevenSegDisplay_WriteBufferAndMove("HELLO", 5, 0, BOUNCE);
     //TODO: Show animation indicating "Welcome, swipe your id card or click the button to enter it manually" or similar.
 }
