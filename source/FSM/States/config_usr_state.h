@@ -13,6 +13,6 @@
 /**
  * @brief Function to be called when the configuration ends. It emits a ADMIN_CONFIG_USER_FINISHED_EV event to the event queue.
  */
-void finish_configuration(void);
+void configUsr_finishConfiguration(void);
 
 #endif /* CONFIG_USR_STATE_H_*/

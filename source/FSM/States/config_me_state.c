@@ -23,7 +23,7 @@
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-void finish_configuration(void)
+void configMe_finishConfiguration(void)
 {
     if(isAdmin())
         emitEvent(ADMIN_CONFIG_ME_FINISHED_EV);

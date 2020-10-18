@@ -23,7 +23,7 @@
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-void finish_configuration(void)
+void configUsr_finishConfiguration(void)
 {
     emitEvent(ADMIN_CONFIG_USER_FINISHED_EV);    
 }

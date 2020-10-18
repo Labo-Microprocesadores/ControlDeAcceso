@@ -10,8 +10,8 @@ En id_state.c, pin_state.c y user_input:
     - [x] Tirar eventos a la fsm para cambiar de estados 
     - [x] Hacer checkCardID
     - [x] Completar id_fail() 
-    - [ ] Shifteo del display
-    - [ ] Blink del display en el caracter en el que esta el usuario
+    - [x] Shifteo del display
+    - [x] Blink del display en el caracter en el que esta el usuario
     - [x] Hacer id_cardFail()
     - [x] Completar id_onIdOk() en id_state
     - [x] Timer del title
@@ -58,4 +58,7 @@ En DataBase.c
 En App.c
     - [x] eventos de timer se agregan solos a cola????    
     - [ ] poner el nuevo driver de button y ver si hacer uno generico o preguntar con el boton
-    - [x] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc
+    - [x] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    
+    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    
+    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc   
+     - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc

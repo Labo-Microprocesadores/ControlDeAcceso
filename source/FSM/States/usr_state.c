@@ -65,7 +65,7 @@ void initUserMenu(void)
     showTitle();
     currentOptionIndex = 0;
 }
-void nextOption(void)
+void usr_nextOption(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
@@ -80,7 +80,7 @@ void nextOption(void)
     
 }
 
-void previousOption(void)
+void usr_previousOption(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
@@ -95,7 +95,7 @@ void previousOption(void)
     
 }
 
-void selectOption(void)
+void usr_selectOption(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();

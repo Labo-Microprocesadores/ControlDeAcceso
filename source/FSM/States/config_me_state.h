@@ -13,6 +13,6 @@
 /**
  * @brief Function to be called when the configuration ends. It emits USER_CONFIG_ME_FINISHED_EV and ADMIN_CONFIG_ME_FINISHED_EV events to the event queue.
  */
-void finish_configuration(void);
+void configMe_finishConfiguration(void);
 
 #endif /* CONFIG_ME_STATE_H_*/

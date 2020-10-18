@@ -140,7 +140,7 @@ static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
     showingTitle = false;
-    //TODO: SHOW INPUT
+    SevenSegDisplay_WriteBuffer("00000000", 8, 0);
 }
 
 static void userInteractionStopsTitle(void)

@@ -14,15 +14,15 @@
 /**
  * @brief Changes the current position of the ID array to the next character following CHAR ORDER.
  */
-void nextOption(void);
+void configDev_nextOption(void);
 /**
  * @brief Shows the next menu option.
  */
-void previousOption(void);
+void configDev_previousOption(void);
 
 /**
  * @brief Selects the current option and changes the bright of the display. It emits a ADMIN_CONFIG_DEVICE_FINISHED_EV event to the event queue.
  */
-void selectOption(void);
+void configDev_selectOption(void);
 
 #endif /* CONFIG_DEVICE_STATE_H*/

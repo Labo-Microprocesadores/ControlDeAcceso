@@ -63,14 +63,14 @@ static void showCurrentOption(void);
  * FUNCTIONS WITH GLOBAL SCOPE
  ******************************************************************************/
 
-void initAdminMenu(void)
+void admin_initAdminMenu(void)
 {
     showingTitle = false;
     showTitle();
     currentOptionIndex = 0;
 }
 
-void nextOption(void)
+void admin_nextOption(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
@@ -85,7 +85,7 @@ void nextOption(void)
     
 }
 
-void previousOption(void)
+void admin_previousOption(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
@@ -96,11 +96,10 @@ void previousOption(void)
         else
             currentOptionIndex--;
         showCurrentOption();
-    }
-    
+    } 
 }
 
-void selectOption(void)
+void admin_selectOption(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();

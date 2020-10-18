@@ -22,15 +22,15 @@ void initUserMenu(void);
 /**
  * @brief Shows the previous option
  */
-void nextOption(void);
+void usr_nextOption(void);
 /**
  * @brief Shows the next option.
  */
-void previousOption(void);
+void usr_previousOption(void);
 
 /**
  * @brief Selects the current option. Adds an event to the event queue of the FSM.
  */
-void selectOption(void);
+void usr_selectOption(void);
 
 #endif /* USER_STATE_H */

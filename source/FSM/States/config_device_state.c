@@ -68,7 +68,7 @@ void initConfigDevice(void)
     currentOptionIndex = 0;
 }
 
-void nextOption(void)
+void configDev_nextOption(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
@@ -80,10 +80,9 @@ void nextOption(void)
             currentOptionIndex++;
         showCurrentOption();
     }
-    
 }
 
-void previousOption(void)
+void confiDev_previousOption(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
@@ -98,7 +97,7 @@ void previousOption(void)
     
 }
 
-void selectOption(void)
+void configDev_selectOption(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();

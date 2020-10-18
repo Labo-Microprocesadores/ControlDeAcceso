@@ -18,19 +18,19 @@
 /**
  * @brief Initializes the menu
  */
-void initAdminMenu(void);
+void admin_initAdminMenu(void);
 /**
  * @brief Changes the current position of the ID array to the next character following CHAR ORDER.
  */
-void nextOption(void);
+void admin_nextOption(void);
 /**
  * @brief Shows the next menu option.
  */
-void previousOption(void);
+void admin_previousOption(void);
 
 /**
  * @brief Selects the current option. Adds an event to the event queue of the FSM.
  */
-void selectOption(void);
+void admin_selectOption(void);
 
 #endif /* ADMIN_STATE_H */

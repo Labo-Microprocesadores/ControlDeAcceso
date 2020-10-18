@@ -187,8 +187,8 @@ static void showTitle(void)
 static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_WriteBuffer("00000000", 8, 0); //TODO que inicialmente te muestre lineas y despues si giran el encoder empiece apareciendo el cero.
     showingTitle = false;
-    //TODO: SHOW INPUT
 }
 
 static void userInteractionStopsTitle(void)
@@ -216,16 +216,3 @@ static void id_fail(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
-    SevenSegDisplay_WriteBufferAndMove("WRONG ID.", 9, 0, SHIFT_R); 
-    errorIndicationTimerID = Timer_AddCallback(&initLogin, TITLE_TIME, true);
-    showingErrorIndication = true;
-}
-
-static void id_cardFail(void)
-{
-    SevenSegDisplay_EraseScreen();
-    SevenSegDisplay_WriteBufferAndMove("CARD ERROR.", 11, 0, SHIFT_R); 
-    errorIndicationTimerID = Timer_AddCallback(&initLogin, TITLE_TIME, true);
-    showingErrorIndication = true;
-}
-
