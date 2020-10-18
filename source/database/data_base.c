@@ -5,11 +5,17 @@
  ******************************************************************************/
 
 #include "data_base.h"
+#include "Timer.h"
+
+#define MAX_BLOCKED_USERS   30
+#define BLOCK_TIME  10000   //1min
+#define NO_USER_INDEX   -1
 
 static dataBase_t dataBase;
 static uint8_t currentIdIndex = -1;
 static dataBase_t database;
 static uint8_t validNumberArray[MAX_CARD_NUMBER];
+static uint8_t blockedUsersIndexes[MAX_BLOCKED_USERS];
 
 /**
  * @brief Checks if the "id" array format matches the format of an id. The array must be complete (length equal to ID_ARRAY_SIZE) and all elements must be numbers from 0 to 9.
@@ -28,18 +34,25 @@ static bool CreateValidNumberArrayFormat(uint8_t cardNumber[]);
 
 static int getEffectiveArrayLength(uint8_t *inputArray, int totalArraySize);
 
+static void moveAllUsersOnePlace(void);
+
 void initializeDataBase(void)
 {
     //I define the database and the default value of lastItem
     dataBase.lastItem = -1;
     //I create 3 dummy users
-    user_t newUser1 = {{1, 2, 3, 4, 5, 6, 7, 8}, {9, 8, 7, 6, 5}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 19, ADMIN};
-    user_t newUser2 = {{5, 2, 4, 6, 9, 5, 3, 5}, {1, 2, 3, 4, 5}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 14, USER};
-    user_t newUser3 = {{8, 4, 6, 2, 3, 1, 9, 7}, {1, 1, 1, 1, -1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,}, 12, ADMIN};
+    user_t newUser1 = {{1, 2, 3, 4, 5, 6, 7, 8}, {9, 8, 7, 6, 5}, {6,0,3,1,6,7,0,9,1,2,0,2,4,1,0,1,8,4,5}, ADMIN};
+    user_t newUser2 = {{5, 2, 4, 6, 9, 5, 3, 5}, {1, 2, 3, 4, 5}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, USER};
+    user_t newUser3 = {{8, 4, 6, 2, 3, 1, 9, 7}, {1, 1, 1, 1, -1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,}, ADMIN};
     //Add the dummy users to the database
-    checkAddUser(newUser1.userID, newUser1.userPIN, newUser1.cardNumber, newUser1.numCharactersCardNumber, newUser1.typeOfUser);
-    checkAddUser(newUser2.userID, newUser2.userPIN, newUser2.cardNumber, newUser2.numCharactersCardNumber, newUser2.typeOfUser);
-    checkAddUser(newUser3.userID, newUser3.userPIN, newUser3.cardNumber, newUser3.numCharactersCardNumber, newUser3.typeOfUser);
+    checkAddUser(newUser1.userID, newUser1.userPIN, newUser1.cardNumber, 19, newUser1.typeOfUser);
+    checkAddUser(newUser2.userID, newUser2.userPIN, newUser2.cardNumber, 14, newUser2.typeOfUser);
+    checkAddUser(newUser3.userID, newUser3.userPIN, newUser3.cardNumber, 12, newUser3.typeOfUser);
+    //Initialize blocked users' array
+    for (uint8_t i = 0; i< MAX_BLOCKED_USERS; i++)
+    {
+        blockedUsersIndexes[i] = NO_USER_INDEX;
+    }
 }
 
 bool verifyID(uint8_t usersID[])
@@ -61,11 +74,17 @@ bool verifyID(uint8_t usersID[])
                 equalID = false;
             count ++;                
         }
-        if (equalID)
+
+        if(!equalId)
+            return false;
+        
+        currentIdIndex = user;
+        if (isCurrentUserBlocked())
         {
-            currentIdIndex = user;
-            return true;
+            currentIdIndex = -1;
+            return false;
         }
+        return true;
     }
 }
 
@@ -76,10 +95,43 @@ bool verifyPIN(uint8_t userPIN[])
     for (count = 0; count < PIN_ARRAY_SIZE; count++)
     {
         if (dataBase.userList[currentIdIndex].userPIN[count] != userPIN[count])
+        {
+            dataBase.userList[currentIdIndex].Attempts++;
+            if (isCurrentUserBlocked)
+            {
+                int blockedArrayLength = getEffectiveArrayLength(blockedUsersIndexes, MAX_BLOCKED_USERS);
+                blockedUsersIndexes[blockedArrayLength] = currentIdIndex;
+                Timer_AddCallback(&UnblockUser, BLOCK_TIME, true);
+            }
             return false;
+        }
     }
     //if no one was diferent then all of them were equals
     return true;
+}
+
+bool isCurrentUserBlocked(void)
+{
+    if(dataBase.userList[currentIdIndex].Attempts >= MAX_NUM_ATTEMPTS)
+    {
+        //true for blocked
+        return true;
+    }
+    return false;
+}
+
+
+void UnblockUser(void)
+{
+    if (getEffectiveArrayLength(blockedUsersIndexes, MAX_BLOCKED_USERS)<=0)
+        return;
+
+    dataBase.userList[blockedUsersIndexes[0]].Attempts = 0; //User unblocked
+
+    //Pops first item
+    for(uint8_t i = 0; i < MAX_BLOCKED_USERS - 1; i++) 
+        blockedUsersIndexes[i] = blockedUsersIndexes[i + 1];
+    blockedUsersIndexes[MAX_BLOCKED_USERS - 1] = NO_USER_INDEX;
 }
 
 bool IsAdmin(void)
@@ -111,12 +163,14 @@ Status checkAddUser(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], u
         dataBase.userList[dataBase.lastItem].userPIN[count] = userPIN[count];
     }
     //store cardNumber
-    for(count=0; count < ID_ARRAY_SIZE; count++)
+    for(count=0; count < MAX_CARD_NUMBER; count++)
     {
         dataBase.userList[dataBase.lastItem].cardNumber[count] = validNumberArray[count];
     }
     //store typeOfUser
     dataBase.userList[dataBase.lastItem].typeOfUser = typeOfUser;
+    //set Attempts
+    dataBase.userList[database.lastItem].Attempts = 0;
     return STORE_SUCCESSFULL;       
 }
 
@@ -144,10 +198,10 @@ Status validateAll(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], ui
     //                           Create Valid Card Number
     /***************************************************************************/
     //check Card Number Format
-    CreateValidNumberArrayFormat(cardNumber, numCharactersCardNumber, validNumberArray);
-    if (verifyCardNumber(validNumberArray))
+    if (verifyCardNumber(cardNumber, numCharactersCardNumber))
         return CARD_NUMBER_EXISTS;
-    return
+    
+    return;
 }
 
 static bool checkIdArrayFormat(uint8_t userID[])
@@ -170,11 +224,11 @@ static bool checkPinArrayFormat(uint8_t userPIN[])
     return true;
 }
 
-static bool checkCardNumberArrayFormat(uint8_t userID[])
+static bool checkCardNumberArrayFormat(uint8_t userCardNumber[])
 {
-    int currentArrayLength = getEffectiveArrayLength(userID, ID_ARRAY_SIZE);
+    int currentArrayLength = getEffectiveArrayLength(userCardNumber, MAX_CARD_NUMBER);
 
-    if (currentArrayLength != ID_ARRAY_SIZE)
+    if (currentArrayLength != MAX_CARD_NUMBER)
         return false;
 
     return true;
@@ -186,8 +240,8 @@ static int getEffectiveArrayLength(uint8_t *inputArray, int totalArraySize)
     bool foundLast = false;
     while (!foundLast && length < totalArraySize)
     {
-        uint8_t lastChar = inputArray[length];
-        if (lastChar == NO_INPUT_CHAR || lastChar == BACKSPACE)
+        uint8_t lastPosition = inputArray[length];
+        if (lastPosition == NO_INPUT_CHAR || lastPosition == BACKSPACE || lastPosition = NO_USER_INDEX)
             foundLast = true;
         else
             length++;
@@ -238,7 +292,7 @@ bool verifyCardNumber(uint8_t cardNumber[], uint8_t numCharactersCardNumber)
         else         
             validNumberArray[count] = DEFAULT_CARD_CARACTER;
     }
-    return true;
+    
     uint8_t  user;
     //I go through the array of users
     for (user = 0; user < MAX_NUM_USERS; user++)
@@ -257,13 +311,54 @@ bool verifyCardNumber(uint8_t cardNumber[], uint8_t numCharactersCardNumber)
             count ++;                
         }
         if (equalID)
+        {
+            currentIdIndex = count-1;
             return true;
+        }
+    }
+    return false;
+}
+
+
+Status removeUser(uint8_t userID[])
+{
+    //call to verify ID to know if userID is on the array of users and to know it index with currentIdIndex
+    if(verifyID(userID))
+    {
+        moveAllUsersOnePlace();
+        dataBase.lastItem--;
+        return DELETE_SUCCESSFULL;
+    }
+    return ID_NOT_FOUND;
+}
+
+static void moveAllUsersOnePlace(void)
+{
+    uint8_t count;
+    //if the element wasn't the last one
+    if(currentIdIndex != MAX_NUM_USERS -1)
+    {
+        for(count = currentIdIndex; count < dataBase.lastItem; count++)
+        {
+            //move userPIN value
+            for(count=0; count < ID_ARRAY_SIZE-1; count++)
+            {
+                dataBase.userList[currentIdIndex].userID[count] = dataBase.userList[currentIdIndex+1].userID[count];
+            }
+            //move userPIN value
+            for(count=0; count < PIN_ARRAY_SIZE-1; count++)
+            {
+                dataBase.userList[currentIdIndex].userPIN[count] = dataBase.userList[currentIdIndex+1].userPIN[count];
+            }
+            //move cardNumber
+            for(count=0; count < MAX_CARD_NUMBER-1; count++)
+            {
+                dataBase.userList[currentIdIndex].cardNumber[count] = dataBase.userList[currentIdIndex+1].cardNumber[count];
+            }
+            //move typeOfUser
+            dataBase.userList[currentIdIndex].typeOfUser = dataBase.userList[currentIdIndex +1].typeOfUser;
+            //move attempts
+            dataBase.userList[currentIdIndex].Attempts = dataBase.userList[currentIdIndex +1].Attempts;
+        }
     }
 }
-
-
-Status removeUser(user_t userToDelete)
-{
- //! hacer!
-}
-

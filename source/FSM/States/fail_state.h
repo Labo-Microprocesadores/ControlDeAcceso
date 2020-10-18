@@ -11,7 +11,5 @@
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
 
-void blockUsr(void);
-void hasAttemptsLeft(void);
 
 #endif /* FAIL_STATE_H_*/

@@ -16,6 +16,10 @@
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
 /**
+ * @brief Initializes the menu
+ */
+void initAdminMenu(void);
+/**
  * @brief Changes the current position of the ID array to the next character following CHAR ORDER.
  */
 void nextOption(void);

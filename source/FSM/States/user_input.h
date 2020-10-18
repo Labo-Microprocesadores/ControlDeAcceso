@@ -14,7 +14,7 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 #define NO_INPUT_CHAR -1
-#define BACKSPACE -2
+#define BACKSPACE -3
 //CHAR ORDER: 0 1 2 3 4 5 6 7 8 9 BACKSPACE
 
 /*******************************************************************************
@@ -42,12 +42,12 @@ void inputDecreaseCurrent(uint8_t *inputArray, uint8_t currentPosition);
 void inputAcceptNumber(uint8_t *inputArray, uint8_t *currentPosition, int totalArraySize);
 
 /**
- * @brief Function executed when a timeout event is received.
+ * @brief Function executed to initialize the input array..
  * @param inputArray: The array of characters introduced by the user.
  * @param currentPosition: A pointer to the iterator which stores the current position of the user in the input array.
  * @param totalArraySize: The previosly fixed size of the inputArray.
  */
-void inputTimerTimeout(uint8_t *inputArray, uint8_t *currentPosition, int totalArraySize);
+void inputResetArray(uint8_t *inputArray, uint8_t *currentPosition, int totalArraySize);
 
 /**
  * @brief Calculates the number of characters introduced by the user in the input array.

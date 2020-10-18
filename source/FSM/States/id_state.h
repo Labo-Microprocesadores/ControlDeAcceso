@@ -16,6 +16,11 @@
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
 /**
+ * @brief Initializes the input of the user.
+ */
+void initLogin(void);
+
+/**
  * @brief Changes the current position of the ID array to the next character following CHAR ORDER.
  */
 void id_increaseCurrent(void);
@@ -38,25 +43,13 @@ void id_confirmID(void);
  *        Adds a ID_OK or a ID_FAIL event to the event queue of the FSM.
  */
 void id_checkCardID(void);
-/**
- * @brief Function executed when a timeout event is received.
- */
-void id_timerTimeout(void);
+
 /**
  * @brief Returns the array of the ID.
  * @param sizeOfReturningArray: A pointer to an integer where the size of the ID array gets stored.
  * @return The array of introduced characters.
  */
 uint8_t *id_getIDArray(int *sizeOfReturningArray);
-/**
- * @brief Function executed when ID is correct and updates display's chars with the word "PIN".
- */
-void id_updateDispPin(void);
-
-/**
- * @brief Function executed when the ID is not correct.
- */
-void id_fail(void);
 
 
 

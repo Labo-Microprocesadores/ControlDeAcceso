@@ -10,12 +10,15 @@
  ******************************************************************************/
 #include <stdint.h>
 
-
 //CHAR ORDER: 0 1 2 3 4 5 6 7 8 9 BACKSPACE
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
+/**
+ * @brief Initializes the input of the user.
+ */
+void initPinInput(void);
 /**
  * @brief Changes the current position of the PIN array to the next character following CHAR ORDER.
  */
@@ -58,10 +61,9 @@ void pin_acceptNumber(void);
  *        Adds a PIN_OK or a PIN_FAIL event to the event queue of the FSM.
  */
 void pin_confirmPin(void);
-/**
- * @brief Function executed when a timeout event is received.
- */
-void pin_timerTimeout(void);
+
+
+
 /**
  * @brief Returns the array of the Pin.
  * @param sizeOfReturningArray: A pointer to an integer where the size of the pin array gets stored.

@@ -16,6 +16,10 @@
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
 /**
+ * @brief Initializes the menu
+ */
+void initUserMenu(void);
+/**
  * @brief Shows the previous option
  */
 void nextOption(void);

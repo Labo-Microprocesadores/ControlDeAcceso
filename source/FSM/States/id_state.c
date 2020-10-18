@@ -8,19 +8,63 @@
  * INCLUDE HEADER FILES
  ******************************************************************************/
 #include <stdbool.h>
-#include "timer.h"
+#include "Timer.h"
 #include "id_state.h"
 #include "user_input.h"
+#include "lector.h"
 #include "seven_seg_display.h"
-#include "../../database/data_base.h"
-#include "../../queue.h"
+#include "data_base.h"
+#include "queue.h"
 
+/*******************************************************************************
+ * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
+ ******************************************************************************/
+#define TITLE_TIME  2000
 
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
-static uint8_t id[ID_ARRAY_SIZE] = {[0 ... (ID_ARRAY_SIZE - 1)] = NO_INPUT_CHAR};
+static uint8_t id[ID_ARRAY_SIZE];
 static uint8_t currentPos = 0;
+static bool showingTitle, showingErrorIndication;
+static int titleTimerID = -1;
+static int errorIndicationTimerID = -1;
+
+/*******************************************************************************
+ * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
+ ******************************************************************************/
+/**
+ * @brief Show the title of the state in the display. If the user interacts with the system, the title will stop showing and the input will start.
+ */
+static void showTitle(void);
+/**
+ * @brief Stops showing the title of the state in the display. The input starts.
+ */
+static void stopShowingTitle(void);
+
+/**
+ * @brief Stops showing the title of the state in the display due to a user's interaction. The input starts.
+ */
+static void userInteractionStopsTitle(void);
+
+/**
+ * @brief Stops showing the error indication in the display due to a user's interaction. The state 'restarts'.
+ */
+static void userInteractionStopErrorIndicationAndRestart(void)
+
+/**
+ * @brief Stops showing the error indication in the display due to a user's interaction. The state doesn't 'restart'.
+ */
+static void userInteractionStopErrorIndication(void)
+
+/**
+ * @brief Function executed when the ID is not correct.
+ */
+void id_fail(void);
+/**
+ * @brief Function executed when the lector fails to read the card.
+ */
+void id_cardFail(void);
 
 /*******************************************************************************
  *******************************************************************************
@@ -30,32 +74,58 @@ static uint8_t currentPos = 0;
 //!OJO EN TODAS ESTA HABRIA QUE RESETEAR EL TIMER DE TIMEOUT Y EN ALGUNAS ACTUALIZAR EL DISPLAY
 //TODO AGREGAR ESO
 
+void initLogin(void)
+{
+    showingErrorIndication = false;
+    inputResetArray(id, &currentPos, ID_ARRAY_SIZE);
+
+    showTitle();
+}
+
 void id_increaseCurrent(void)
 {
-    inputIncreaseCurrent(id, currentPos);
+    if (showingTitle)
+        userInteractionStopsTitle();
+    else if (showingErrorIndication)
+        userInteractionStopErrorIndicationAndRestart();  
+    else
+        inputIncreaseCurrent(id, currentPos);
 }
 
 void id_decreaseCurrent(void)
 {
-    inputDecreaseCurrent(id, currentPos);
+    if (showingTitle)
+        userInteractionStopsTitle();
+    else if (showingErrorIndication)
+        userInteractionStopErrorIndicationAndRestart();  
+    else
+        inputDecreaseCurrent(id, currentPos);
 }
 
 void id_confirmID(void)
 {
-    if (!verifyID(id))
-        emitEvent(ID_FAIL_EV);
+    if (showingTitle)
+        userInteractionStopsTitle();
+    else if (showingErrorIndication)
+        userInteractionStopErrorIndicationAndRestart();    
     else
-        emitEvent(ID_OK_EV);
+    {
+        if (!verifyID(id))
+            id_fail();
+        else
+            emitEvent(ID_OK_EV);
+    }
 }
 
-void id_timerTimeout(void)
-{
-    inputTimerTimeout(id, &currentPos, ID_ARRAY_SIZE);
-}
 
 void id_acceptNumber(void)
 {
-    inputAcceptNumber(id, &currentPos, ID_ARRAY_SIZE);
+    if (showingTitle)
+        userInteractionStopsTitle();
+    else if (showingErrorIndication)
+        userInteractionStopErrorIndicationAndRestart();
+    else
+        inputAcceptNumber(id, &currentPos, ID_ARRAY_SIZE);
 }
 
 uint8_t * id_getIdArray(int *sizeOfReturningArray)
@@ -67,21 +137,95 @@ uint8_t * id_getIdArray(int *sizeOfReturningArray)
 
 void id_checkCardID(void)
 {
+    if (showingTitle)
+        userInteractionStopsTitle();
+    else if (showingErrorIndication)
+        userInteractionStopErrorIndication();
+    card_t myCard;
+    bool ok = Lector_GetData(&myCard);
+    if(ok)
+    {
+        // agarro numero de tarjeta
+        uint8_t numero[19];
+        uint8_t i,length = myCard.number_len;
+        for(i = 0; i<length; i++)
+        {
+            numero[i] = myCard.card_number[i];
+        }
+        
+        if(verifyCardNumber(numero, length))
+        {
+            emitEvent(ID_OK_EV);
+        }
+        else
+        {
+            id_fail();
+        }
+    }
+    else
+    {
+        id_cardFail();
+    }
+
     //TODO Checks if the read ID (from card) is correct and corresponds to a user or an admin in the database. Adds a ID_OK or a ID_FAIL event to the event queue of the FSM.
 }
 
-void id_updateDispPin(void)
+
+/*******************************************************************************
+ *******************************************************************************
+                        LOCAL FUNCTION DEFINITIONS
+ *******************************************************************************
+ ******************************************************************************/
+static void showTitle(void)
 {
     SevenSegDisplay_EraseScreen();
-    SevenSegDisplay_ChangeCharacter(0, P);
-    SevenSegDisplay_ChangeCharacter(1, I);
-    SevenSegDisplay_ChangeCharacter(2, N);
+    SevenSegDisplay_WriteBuffer("ID  ", 4, 0);
+    showingTitle = true;
+    titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);
 }
 
-void id_fail(void)
+static void stopShowingTitle(void)
 {
-    SevenSegDisplay_EraseScreen(); //TODO ver si imprimir alguna animacion de error.
-    SevenSegDisplay_ChangeCharacter(0, I);
-    SevenSegDisplay_ChangeCharacter(1, D);
-    }
+    SevenSegDisplay_EraseScreen();
+    showingTitle = false;
+    //TODO: SHOW INPUT
+}
+
+static void userInteractionStopsTitle(void)
+{
+    Timer_Delete(titleTimerID);
+    titleTimerID = -1;
+    stopShowingTitle();
+    SevenSegDisplay_CursorOn();
+}
+
+static void userInteractionStopErrorIndicationAndRestart(void)
+{
+    userInteractionStopErrorIndication();
+    initLogin();
+}
+
+static void userInteractionStopErrorIndication(void)
+{
+    Timer_Delete(errorIndicationTimerID);
+    showingErrorIndication = false;
+    errorIndicationTimerID = -1;
+}
+
+static void id_fail(void)
+{
+    SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_CursorOff();
+    SevenSegDisplay_WriteBufferAndMove("WRONG ID.", 9, 0, SHIFT_R); 
+    errorIndicationTimerID = Timer_AddCallback(&initLogin, TITLE_TIME, true);
+    showingErrorIndication = true;
+}
+
+static void id_cardFail(void)
+{
+    SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_WriteBufferAndMove("CARD ERROR.", 11, 0, SHIFT_R); 
+    errorIndicationTimerID = Timer_AddCallback(&initLogin, TITLE_TIME, true);
+    showingErrorIndication = true;
+}
 

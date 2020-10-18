@@ -1,47 +1,61 @@
 # TODOs
 
 EN TODOS LADOS: 
-    - [ ] AGREGAR EVENT QUEUE.
-    - [ ] Agregar estados de animacion
+    - [x] AGREGAR EVENT QUEUE.
 
 En id_state.c, pin_state.c y user_input:
-    - [ ] Resetear el timer de timeout en algunas funciones 
+    - [x] Resetear el timer de timeout en algunas funciones 
     - [ ] En algunas actualizar el display
     - [x] Chequear ID con la base de datos 
     - [x] Tirar eventos a la fsm para cambiar de estados 
-    - [ ] Hacer checkCardID
-    - [ ] Completar id_fail()
+    - [x] Hacer checkCardID
+    - [x] Completar id_fail() 
     - [ ] Shifteo del display
     - [ ] Blink del display en el caracter en el que esta el usuario
+    - [x] Hacer id_cardFail()
+    - [x] Completar id_onIdOk() en id_state
+    - [x] Timer del title
+    - [x] Mostrar titulo
     
 En FSM:
-    - [ ] Inicializar cola de eventos
+    - [x] Inicializar cola de eventos
     - [x] Guardar id y pin en una estructura. (Se guarda en base de datos)
     - [x] Hacer getIdArray y getPinArray al pasar de estados.
 
 En main_menu_state.c
-    - [ ] Ver como mostrar las cosas en el display 
-    - [ ] hacer funciones cardSwipe y initLogin
+    - [x] Ver como mostrar las cosas en el display 
+    - [x] hacer funcion cardSwipe
+    - [x] hacer funcion initLogin
 
 En fail_state.c
-    - [ ] ver bien como definir esas funciones :(
+    - [x] ver bien como definir esas funciones :(
 
 En admin_state.c
-    - [ ] Agregar eventos al seleccionar una opcion del display
+    - [x] Agregar eventos al seleccionar una opcion del display
+    - [x] Mostrar animacion en initAdminMenu 
+
 
 En usr_state.c
-    - [ ] Agregar eventos al seleccionar una opcion del display
+    - [x] Agregar eventos al seleccionar una opcion del display
+    - [x] Mostrar animacion en initUserMenu
 
 En open_state.c
-    - [ ] Led On al entrar
-    - [ ] Iniciar timer al entrar
-    - [ ] Led Off al terminar el timer
+    - [x] Led On al entrar
+    - [x] Iniciar timer al entrar
+    - [x] Led Off al terminar el timer
 
 En config_me.c
     - [ ] Todo
 
 En config_device.c:
-    - [ ] Mostrar en el display las opciones y un titulo
+    - [x] Mostrar en el display las opciones y un titulo
 
 En DataBase.c
-    - [ ] Completar removeUser
+    - [x] Completar removeUser
+    - [x] Completar StartResetUserBlocked con el evento de tiempo 
+    - [x] Completar StartResetUserBlocked con el evento de tiempo 
+
+En App.c
+    - [x] eventos de timer se agregan solos a cola????    
+    - [ ] poner el nuevo driver de button y ver si hacer uno generico o preguntar con el boton
+    - [x] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    - [ ] hacer funcion que llene la cola de eventos, revisando timers, botones, etc

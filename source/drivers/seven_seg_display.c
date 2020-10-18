@@ -4,7 +4,7 @@
   @author   Grupo 2
  ******************************************************************************/
 
-#include "SevenSegDisplay.h"
+#include "seven_seg_display.h"
 #include "SysTick.h"
 #include "gpio.h"
 #include "Timer.h"
@@ -26,10 +26,24 @@
 
 void SevenSegDisplay_PISR(void);
 bool SevenSegDisplay_PrintCharacter(uint8_t character);
+uint8_t SevenSegDisplay_chat2sevseg(char code);
 
 /************************************************
  *  	VARIABLES WITH LOCAL SCOPE
  ************************************************/
+								// 0	 1		2	 3	  4		 5	  6	    7  	  8     9
+static const uint8_t numbers[] = {0x3F, 0x06, 0x5B,0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F};
+
+								// A	 b 		c	  d	   E     F	   g	 h		I	 J
+static const uint8_t letters[] = {0x77, 0x7C, 0x58, 0x5E, 0x79, 0x71, 0x3D, 0x74, 0x30, 0x1E,
+								// ~k	  L	   ~M	 n		o	 p		q	 r		S	 t
+								  0x00, 0x38, 0x00, 0x54, 0x5C, 0x73, 0x67, 0x50, 0x6D, 0x78,
+								//  u	 ~v	   ~w	 ~X		y	 !z
+								  0x1C, 0x00, 0x00, 0x00, 0x6E, 0x00};
+
+								// - 	otros
+static const uint8_t extras[] = {0x08, 0x00};
+
 static sevenSeg_t screen[BACK_BUFFER+10];
 static uint8_t pos = 0;
 
@@ -40,8 +54,13 @@ static pin_t selectPins[SEL_LEN] = {PIN_SEL0, PIN_SEL1};
 
 static bright_t brightness = MAX;
 
-static uint8_t moves_remainig = 0;
-static uint16_t moving_counter = 0;
+static int8_t moves_remainig = 0;
+static int16_t moving_counter = 0;
+static bool bouncing = false;
+static int8_t move_b = 0;
+
+static uint8_t 	cursor_pos = 0;
+static bool 	cursor = false;
 /************************************************
  * 		FUNCTION DEFINITION WITH GLOBAL SCOPE
  ************************************************/
@@ -84,11 +103,11 @@ bool SevenSegDisplay_Init(void)
 }
 
 
-void SevenSegDisplay_ChangeCharacter(uint8_t screen_char, uint8_t new_char)
+void SevenSegDisplay_ChangeCharacter(uint8_t screen_char, char new_char)
 {
 	if (screen_char < SCREEN_SIZE)
 	{
-		screen[pos + screen_char].character = new_char;
+		screen[pos + screen_char].character = SevenSegDisplay_chat2sevseg(new_char);
 	}
 }
 
@@ -137,23 +156,47 @@ void SevenSegDisplay_SetBright(bright_t new_bright)
 	brightness = new_bright;
 }
 
-void SevenSegDisplay_WriteBuffer(uint8_t new_chars[], uint8_t amount, uint8_t offset)
+void SevenSegDisplay_WriteBuffer(char new_chars[], uint8_t amount, uint8_t offset)
 {
 	if((offset+amount) < BACK_BUFFER)
 	{
 		uint8_t i;
 		for(i = 0; i< amount; i++)
 		{
-			screen[offset+i].character = new_chars[i];
+			screen[offset+i].character = SevenSegDisplay_chat2sevseg(new_chars[i]);
 		}
+	}
+}
+
+void SevenSegDisplay_WriteBufferAndMove(char new_chars[], uint8_t amount, uint8_t offset, uint8_t move_type)
+{
+	bouncing = false;
+	SevenSegDisplay_WriteBuffer(new_chars, amount, offset);
+	switch(move_type)
+	{
+		case SHIFT_L:
+			SevenSegDisplay_Swipe(amount-4);
+			break;
+		case BOUNCE:
+			{
+				SevenSegDisplay_Swipe(amount-4);
+				bouncing = true;
+				move_b = amount - 4;
+			}
+			break;
+		case SHIFT_R:
+				SevenSegDisplay_Swipe(-(amount-4));
+			break;
+		default:
+			break;
 	}
 }
 
 void SevenSegDisplay_Swipe(int8_t moves)
 {
-
 	if((pos+moves >= 0) && (pos+moves < BACK_BUFFER-SCREEN_SIZE))
 	{
+		bouncing = false;
 		moves_remainig = moves;
 		moving_counter = MOVE_SPEED;
 	}
@@ -161,10 +204,64 @@ void SevenSegDisplay_Swipe(int8_t moves)
 
 void SevenSegDisplay_SetPos(uint8_t new_pos)
 {
-	if(new_pos < BACK_BUFFER-SCREEN_SIZE )
+	if(new_pos < BACK_BUFFER - SCREEN_SIZE )
 	{
 		pos = new_pos;
 	}
+}
+
+void SevenSegDisplay_CursorOn(void)
+{
+	if(!cursor)
+	{
+		bouncing = false;
+		cursor = true;
+		cursor_pos = 0;
+		SevenSegDisplay_BlinkCharacter(0);
+	}
+}
+
+void SevenSegDisplay_CursorOff(void)
+{
+	if(cursor)
+	{
+		cursor = false;
+		cursor_pos = 0;
+		SevenSegDisplay_BlinkScreen(false);
+	}
+}
+
+void SevenSegDisplay_CursorInc(void)
+{
+	if(cursor)
+	{
+		if(cursor_pos >= SCREEN_SIZE-1)
+		{
+			pos += 1;
+		}
+		else
+		{
+			cursor_pos++;
+		}
+		SevenSegDisplay_BlinkCharacter(cursor_pos);
+	}
+}
+
+void SevenSegDisplay_CursorDec(void)
+{
+	if(cursor)
+	{
+		if(cursor_pos == 0)
+		{
+			pos-=1;
+		}
+		else
+		{
+			cursor_pos--;
+		}
+		SevenSegDisplay_BlinkCharacter(cursor_pos);
+	}
+
 }
 
 /**************************************************
@@ -222,6 +319,12 @@ void SevenSegDisplay_PISR(void)
 			{
 				moving_counter = MOVE_SPEED;
 			}
+			else if(bouncing)
+			{
+				moves_remainig = -move_b;
+				move_b = -move_b;
+				moving_counter = MOVE_SPEED;
+			}
 		}
 	}
 
@@ -248,4 +351,23 @@ void SevenSegDisplay_EraseScreen(void)
 	}
 }
 
-
+uint8_t SevenSegDisplay_chat2sevseg(char code)
+{
+	if(code >= 0 && code <= 9)
+	{
+		return numbers[code];
+	}
+	else if(code >= 'A' && code <= 'Z')
+	{
+		return letters[code-'A'];
+	}
+	else if(code >= 'a' && code <= 'z')
+	{
+		return letters[code-'a'];
+	}
+	else
+	{
+		return code=='-'? extras[0]:extras[1];
+	}
+	
+}

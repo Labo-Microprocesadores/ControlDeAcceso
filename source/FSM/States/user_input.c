@@ -11,6 +11,7 @@
 #include "timer.h"
 #include "user_input.h"
 #include "seven_Seg_display.h"
+#include "queue.h"
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
@@ -54,7 +55,7 @@ void inputDecreaseCurrent(uint8_t *inputArray, uint8_t currentPosition)
 
 }
 
-void inputTimerTimeout(uint8_t *inputArray, uint8_t *currentPosition, int totalArraySize)
+void inputResetArray(uint8_t *inputArray, uint8_t *currentPosition, int totalArraySize)
 {
     int i;
     for (i = 0; i < totalArraySize; i++)
@@ -63,8 +64,6 @@ void inputTimerTimeout(uint8_t *inputArray, uint8_t *currentPosition, int totalA
     }
     *currentPosition = 0;
     SevenSegDisplay_EraseScreen();
-    SevenSegDisplay_ChangeCharacter(0, H);
-    SevenSegDisplay_ChangeCharacter(1, I);
 }
 
 void inputAcceptNumber(uint8_t *inputArray, uint8_t *currentPosition, int totalArraySize)
@@ -74,14 +73,17 @@ void inputAcceptNumber(uint8_t *inputArray, uint8_t *currentPosition, int totalA
 
     if (inputArray[*currentPosition] >= 0 && inputArray[*currentPosition] < 9)
     {
+        SevenSegDisplay_CursorInc();
         *currentPosition++;
+        inputArray[*currentPosition] = NO_INPUT_CHAR;
+        SevenSegDisplay_WriteBuffer(&inputArray[*currentPosition], 1, *currentPosition);
     }
     else if (inputArray[*currentPosition] == BACKSPACE)
     {
+        SevenSegDisplay_CursorDec();
         deleteLastChar(inputArray, totalArraySize);
         *currentPosition--;
     }
-    inputArray[*currentPosition] = NO_INPUT_CHAR;
 }
 
 static int getEffectiveArrayLength(uint8_t *inputArray, int totalArraySize)
@@ -109,15 +111,14 @@ static void deleteLastChar(uint8_t *inputArray, int totalArraySize)
     int currentArrayLength = getEffectiveArrayLength(inputArray, totalArraySize);
     if (currentArrayLength == 0)
     {
-         //!esta bien que haga esto aca??
         SevenSegDisplay_EraseScreen(); 
-        SevenSegDisplay_ChangeCharacter(0, I);
-        SevenSegDisplay_ChangeCharacter(1, D);
+        emitEvent(RETURN_TO_LAST_STATE_EV);
     }
     else
     {
-        //! y ver si aca va algun update de display
         inputArray[currentArrayLength - 1] = NO_INPUT_CHAR;
+        SevenSegDisplay_WriteBuffer(&inputArray[currentArrayLength - 1], 1, currentArrayLength - 1);
+        
     }
 }
 

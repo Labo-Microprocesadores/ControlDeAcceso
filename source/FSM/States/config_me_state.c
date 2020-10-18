@@ -9,8 +9,8 @@
  ******************************************************************************/
 #include "config_me_state.h"
 #include <stdbool.h>
-#include "../../database/data_base.h"
-#include "../../queue.h"
+#include "data_base.h"
+#include "queue.h"
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/

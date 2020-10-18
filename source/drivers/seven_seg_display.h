@@ -29,10 +29,16 @@
 #define EIGHT			(uint8_t)0x7F
 #define NINE			(uint8_t)0x6F
 #define LINE			(uint8_t)0x08
+#define I				(uint8_t)0x30				
+#define D				(uint8_t)0x5D
+#define P				(uint8_t)0x73
+#define N				(uint8_t)0x37
+#define C				(uint8_t)0x39
+#define F				(uint8_t)0x71
+#define G				(uint8_t)0x3D
+#define H				(uint8_t)0x76
 
 #define MASK			(uint8_t)0x01
-
-#define CHARS 			{ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, LINE, NONE}
 
 #define SEG_LEN			8
 #define SEL_LEN			2
@@ -49,6 +55,7 @@ typedef enum {
 	MIN = 1
 }bright_t;
 
+typedef enum {SHIFT_L, SHIFT_R, BOUNCE} moves_t;
 
 typedef  struct
 {
@@ -71,14 +78,21 @@ bool SevenSegDisplay_Init(void);
  * @brief Set a character in a display position
  * @param screen_char: screen position, new_char: character to print
  */
-void SevenSegDisplay_ChangeCharacter(uint8_t screen_char, uint8_t new_char);
+void SevenSegDisplay_ChangeCharacter(uint8_t screen_char, char new_char);
 
 /**
  * @brief Write display backbuffer
  * @param new_chars: new characters to print, amount: amount of characters to write
  * 		  offset: position in the back buffer to write
  */
-void SevenSegDisplay_WriteBuffer(uint8_t new_chars[], uint8_t amount, uint8_t offset);
+void SevenSegDisplay_WriteBuffer(char new_chars[], uint8_t amount, uint8_t offset);
+
+/**
+ * @brief Write display backbuffer and shifts word in case it's longer than display size.
+ * @param new_chars: new characters to print, amount: amount of characters to write
+ * 		  offset: position in the back buffer to write
+ */
+void SevenSegDisplay_WriteBufferAndMove(char new_chars[], uint8_t amount, uint8_t offset, uint8_t move_type);
 /*
  * @brief Clean screen
  */
@@ -115,4 +129,27 @@ void SevenSegDisplay_Swipe(int8_t moves);
  * @set screen position in backbuffer
  */
 void SevenSegDisplay_SetPos(uint8_t pos);
-#endif /* SEVENSEGDISPLAY_H_ */
+
+/*
+	Turn on the cursor of the display, consist of a blinking character
+	not compatible with swipping characteristic!!
+*/
+void SevenSegDisplay_CursorOn(void);
+/*
+	Turn the cursor off
+*/
+void SevenSegDisplay_CursorOff(void);
+/*
+	Move the cursor to the right, in case of being in the limit of the display, the buffer will be shift
+	Be sure to have written there, otherwise a blank space will be shown
+*/
+void SevenSegDisplay_CursorInc(void);
+
+/*
+	Move the cursor to the left, in case of being in the limit of the display, the buffer will be shift
+	Be sure to have written there, otherwise a blank space will be shown
+*/
+void SevenSegDisplay_CursorDec(void);
+
+#endif //SEVENSEGDISPLAY_H_
+

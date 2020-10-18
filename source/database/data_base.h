@@ -21,6 +21,7 @@
 #define DEFAULT_CARD_CARACTER -1
 #define NO_INPUT_CHAR -1
 #define BACKSPACE -2
+#define MAX_NUM_ATTEMPTS 3
 
 typedef enum
 {
@@ -32,6 +33,7 @@ typedef enum
     PIN_WRONG_FORMAT,
     CARD_NUMBER_WRONG_FORMAT,
     STORE_SUCCESSFULL,
+    DELETE_SUCCESSFULL,
     ID_NOT_FOUND,
     WRONG_PIN_VERIFICATION,
     PIN_CHANGED_SUCCESFULLY
@@ -48,14 +50,13 @@ typedef struct
     uint8_t userPIN[PIN_ARRAY_SIZE];
     uint8_t cardNumber[MAX_CARD_NUMBER];
     hierarchy_t typeOfUser;
-    uint8_t numCharactersCardNumber;
+    uint8_t Attempts;
 } user_t;
 
 typedef struct
 {
     user_t userList[MAX_NUM_USERS];
     uint8_t lastItem;
-    uint8_t Attempts;
 } dataBase_t;
 
 void initializeDataBase(void);
@@ -63,6 +64,9 @@ void initializeDataBase(void);
 bool verifyID(uint8_t usersID[]);
 
 bool verifyPIN(uint8_t userPIN[]);
+
+bool isCurrentUserBlocked(void);
+
 
 bool IsAdmin(void);
 
@@ -72,9 +76,12 @@ Status validateAll(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], ui
 
 Status changePin(uint8_t userOldPin[], uint8_t userNewPin[]);
 
-bool verifyCardNumber(uint8_t cardNumber[], uint8_t numCharactersCardNumber)
+bool verifyCardNumber(uint8_t cardNumber[], uint8_t numCharactersCardNumber);
 
-Status removeUser(user_t userToDelete)
+Status removeUser(user_t userToDelete);
 
+void UnblockUser(void);
+
+bool isUserBlocked(void);
 
 #endif /* DATABASE_H_ */

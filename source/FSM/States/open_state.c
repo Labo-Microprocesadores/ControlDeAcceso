@@ -8,6 +8,14 @@
  * INCLUDE HEADER FILES
  ******************************************************************************/
 #include <stdbool.h>
+#include "MplxLed.h"
+#include "queue.h"
+#include "Timer.h"
+
+/*******************************************************************************
+ * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
+ ******************************************************************************/
+#define OPEN_TIME  60000 //6 segs
 
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
@@ -24,12 +32,14 @@
  ******************************************************************************/
 void openDoor(void)
 {
-    //TODO: LED_ON
+    MplxLed_On(LED_TWO);
+    Timer_AddCallback(&accessTimeOut, OPEN_TIME, true);
 }
 
 void accessTimeOut(void)
 {
-    //TODO: LED_OFF
+    MplxLed_Off(LED_TWO);
+    emitEvent(TIMER_ACCESS_EV);
 }
 
 /*******************************************************************************

@@ -16,6 +16,8 @@
 
 static Button_t buttons[BUTTON_NUM];
 
+bool var = false;
+
 /*******************************************************************************
  *******************************************************************************
                         LOCAL FUNCTION DEFINITIONS
@@ -30,8 +32,9 @@ static void systick_callback(void)
 	for( i=0 ; i<BUTTON_NUM ; i++ )
 	{
 		bool pinState = !gpioRead(buttons[i].pin);
-		if( buttons[i].lastState && !pinState )
+		if( buttons[i].lastState && !pinState)
 		{
+			buttons[i].wasTap = (buttons[i].currentCount < buttons[i].lkpTime);
 			buttons[i].wasReleased = true;
 			buttons[i].wasPressed = false;
 			buttons[i].currentCount = 0;
@@ -48,8 +51,9 @@ static void systick_callback(void)
 				 buttons[i].wasPressed= true;
 				 buttons[i].currentCount = 0;
 			}
-			else if(!buttons[i].lastState)
+			else if(!buttons[i].lastState )
 			{
+
 				buttons[i].wasReleased = false;
 				buttons[i].wasPressed = true;
 				buttons[i].lastState = true;
@@ -68,7 +72,6 @@ static void systick_callback(void)
 void buttonsInit(void)
 {
 	//add buttons to .h
-	
 	SysTick_AddCallback(&systick_callback, 50);
 }
 
@@ -89,21 +92,44 @@ bool wasPressed(pin_t button)
 
 }
 
-bool wasReleased(pin_t button)
+bool wasTap(pin_t button)
 {
 	int count;
 	for(count=0;count<BUTTON_NUM;count++)
 	{
 		if(buttons[count].pin == button )
 		{
-			bool aux =buttons[count].wasReleased;
+			bool aux =buttons[count].wasTap;
 			if(aux)
-				buttons[count].wasReleased = false;
-
+				buttons[count].wasTap = false;
 			return aux ;
 		}
 	}
+}
 
+
+bool wasReleased(pin_t button)
+{
+	if(var==false)
+	{
+		int count;
+			for(count=0;count<BUTTON_NUM;count++)
+			{
+				if(buttons[count].pin == button )
+				{
+					bool aux =buttons[count].wasReleased;
+					if(aux)
+						buttons[count].wasReleased = false;
+
+					return aux ;
+				}
+			}
+	}
+	else
+	{
+		var=false;
+		return false;
+	}
 }
 
 bool wasLkp(pin_t button)
@@ -114,9 +140,10 @@ bool wasLkp(pin_t button)
 		if(buttons[count].pin == button )
 		{
 			bool aux =buttons[count].wasLkp;
-			if(aux)
+			if(aux){
+				var = true;
 				buttons[count].wasLkp = false;
-
+			}
 			return aux ;
 		}
 	}
@@ -144,7 +171,6 @@ bool buttonConfiguration(pin_t button, int type, int time)
 	{
 		if(buttons[count].pin==0)
 		{
-			gpioMode(button, OUTPUT);
 			buttons[count].pin=button;
 			buttons[count].typefunction=type;
 			if(type == LKP)
@@ -157,3 +183,4 @@ bool buttonConfiguration(pin_t button, int type, int time)
 	//if there is no empty space for the value
 	return false;
 }
+
