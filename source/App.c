@@ -18,11 +18,12 @@
 #include "button.h"
 #include "lector.h"
 #include "MplxLed.h"
+#include "board.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-#define TIMER_TIMEOUT 10000 //10 SEGS
+#define TIMER_TIMEOUT 60000 //10 SEGS
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
@@ -54,7 +55,8 @@ void App_Init(void)
   Lector_Init();
   MplxLed_Init();
   Encoder_Init();
-  Button_Init();
+  buttonsInit();
+  buttonConfiguration(ENCODER_SW, LKP, 20); //20*50=1seg
 
   currentState = FSM_GetInitState();
   FMS_StartInitState();
@@ -84,15 +86,21 @@ void fillQueue(void)
   if (move)
   {
     if (move == 1)
-      emitEvent(ENCODER_RIGHT_EV) else emitEvent(ENCODER_LEFT_EV);
+    {
+      emitEvent(ENCODER_RIGHT_EV);
+    }
+	 else
+	{
+		 emitEvent(ENCODER_LEFT_EV);
+	}
   }
-  if (wasTap()) //TODO poner el nuevo driver de button y ver si hacer uno generico o preguntar con el boton
+  if (wasTap(ENCODER_SW)) //TODO poner el nuevo driver de button y ver si hacer uno generico o preguntar con el boton
   {
     emitEvent(PRESS_EV);
   }
-  else if (wasLkp())
+  else if (wasLkp(ENCODER_SW))
   {
-    emitEvent(LKP_EV)
+    emitEvent(LKP_EV);
   }
 }
 
@@ -101,4 +109,4 @@ void timeOutCallback(void)
   emitEvent(TIMEOUT_EV);
 }
 /*******************************************************************************
- *******************************************************************************
+ *******************************************************************************/

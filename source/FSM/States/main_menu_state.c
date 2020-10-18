@@ -9,12 +9,16 @@
  ******************************************************************************/
 #include "main_menu_state.h"
 #include "lector.h"
-#include "database.h"
+#include "data_base.h"
+#include "queue.h"
+#include "seven_seg_display.h"
 /*******************************************************************************
  * FUNCTIONS WITH GLOBAL SCOPE
  ******************************************************************************/
 void showWelcomeAnimation(void)
 {
+    SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_WriteBufferAndMove("HELLO", 5, 0, SHIFT_L);
     //TODO: Show animation indicating "Welcome, swipe your id card or click the button to enter it manually" or similar.
 }
 

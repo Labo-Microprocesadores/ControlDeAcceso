@@ -10,6 +10,6 @@
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
 void showWelcomeAnimation(void);
-void cardRead(void);
+void cardSwipe(void);
 
 #endif /* MAIN_MENU_STATE_H */

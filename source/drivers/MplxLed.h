@@ -21,8 +21,8 @@
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
-typedef enum MplxLedBlinkSpeed {NO_SPEED = 0, SLOW = 50, NORMAL = 25, FAST = 15} MplxLedBlinkSpeed;
-typedef enum MplxLedID {LED_ONE, LED_TWO, LED_TRHEE} MplxLedID;
+typedef enum {NO_SPEED_M = 0, SLOW_M = 50, NORMAL_M = 25, FAST_M = 15} MplxLedBlinkSpeed;
+typedef enum {LED_ONE, LED_TWO, LED_TRHEE} MplxLedID;
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE

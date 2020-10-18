@@ -32,24 +32,33 @@ static void deleteLastChar(uint8_t *inputArray, int totalArraySize);
 //TODO AGREGAR ESO
 void inputIncreaseCurrent(uint8_t *inputArray, uint8_t currentPosition)
 {
-    if (inputArray[currentPosition] == BACKSPACE)
+    if (inputArray[currentPosition] == (uint8_t)BACKSPACE)
         inputArray[currentPosition] = 0;
-    else if (inputArray[currentPosition] == NO_INPUT_CHAR)
+    else if (inputArray[currentPosition] == (uint8_t)(NO_INPUT_CHAR))
         inputArray[currentPosition] = 0;
     else if (inputArray[currentPosition] < 9)
         inputArray[currentPosition]++;
     else
-        inputArray[currentPosition] = BACKSPACE;
+        inputArray[currentPosition] = (uint8_t)BACKSPACE;
     SevenSegDisplay_ChangeCharacter(currentPosition, inputArray[currentPosition]);
+    /*
+    if(currentPosition<=3)
+    {
+        SevenSegDisplay_ChangeCharacter(currentPosition, inputArray[currentPosition]);
+    }
+    else
+    {
+        SevenSegDisplay_ChangeCharacter(4, inputArray[currentPosition]);
+    }*/
 }
 
 void inputDecreaseCurrent(uint8_t *inputArray, uint8_t currentPosition)
 {
     if (inputArray[currentPosition] > 0)
         inputArray[currentPosition]--;
-    else if (inputArray[currentPosition] == 0 || inputArray[currentPosition] == NO_INPUT_CHAR)
-        inputArray[currentPosition] = BACKSPACE;
-    else if (inputArray[currentPosition] == BACKSPACE)
+    else if (inputArray[currentPosition] == 0 || inputArray[currentPosition] == (uint8_t)NO_INPUT_CHAR)
+        inputArray[currentPosition] = (uint8_t)BACKSPACE;
+    else if (inputArray[currentPosition] == (uint8_t)BACKSPACE)
         inputArray[currentPosition] = 9;
     SevenSegDisplay_ChangeCharacter(currentPosition, inputArray[currentPosition]);
 
@@ -74,15 +83,25 @@ void inputAcceptNumber(uint8_t *inputArray, uint8_t *currentPosition, int totalA
     if (inputArray[*currentPosition] >= 0 && inputArray[*currentPosition] < 9)
     {
         SevenSegDisplay_CursorInc();
-        *currentPosition++;
+        (*currentPosition)++;
         inputArray[*currentPosition] = NO_INPUT_CHAR;
-        SevenSegDisplay_WriteBuffer(&inputArray[*currentPosition], 1, *currentPosition);
+        SevenSegDisplay_EraseScreen();
+        if(*currentPosition<=3)
+        {
+        	SevenSegDisplay_WriteBuffer(inputArray, 4, 0);
+        }
+        else
+        {
+        	SevenSegDisplay_WriteBuffer(inputArray, (*currentPosition), (*currentPosition)-4);
+        }
+        //SevenSegDisplay_WriteBuffer(&inputArray[*currentPosition], 1, *currentPosition);
+        //SevenSegDisplay_WriteBufferAndMove(inputArray[*currentPosition], (*currentPosition)+1, 0,SHIFT_L);
     }
     else if (inputArray[*currentPosition] == BACKSPACE)
     {
         SevenSegDisplay_CursorDec();
         deleteLastChar(inputArray, totalArraySize);
-        *currentPosition--;
+        (*currentPosition)--;
     }
 }
 

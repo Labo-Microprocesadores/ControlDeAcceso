@@ -30,7 +30,9 @@ static bool checkIdArrayFormat(uint8_t userID[]);
  */
 static bool checkPinArrayFormat(uint8_t userPIN[]);
 
-static bool CreateValidNumberArrayFormat(uint8_t cardNumber[]);
+
+static bool CreateValidNumberArrayFormat(uint8_t cardNumber[], uint8_t numCharactersCardNumber, uint8_t validNumberArray[]);
+
 
 static int getEffectiveArrayLength(uint8_t *inputArray, int totalArraySize);
 

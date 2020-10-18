@@ -63,7 +63,7 @@ bool emitEvent(EventType type)
 EventType getEvent()
 {
   EventType retval;
-  if (queueIsEmpty(&eventQueue))
+  if (queueIsEmpty())
   {
     return NONE_EV; // si la cola esta vacia -> error
   }

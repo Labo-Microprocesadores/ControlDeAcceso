@@ -9,37 +9,6 @@
  ******************************************************************************/
 #include "led.h"
 #include "timer.h"
-/*******************************************************************************
- * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
- ******************************************************************************/
-/**
- * @brief 	Searches for a LedElement with a corresponding ID in the ledElements array and returns its index if found.
- * 			If the ID is not found, returns -1.
- * @param id The id of the LED to be found.
- * @return The index of the LedElement associated with the id in the ledElements array.
- */
-static int findLedIndexByID(LedID id);
-
-/**
- * @brief Manages the time and events of the processes taking place in each LED.
- */
-static void Led_PISR(void);
-/**
- * @brief Manages all the related with the On For Defined Time processes each cycle of the PISR.
- */
-static void OnForDefinedTimeCalledFromPISR(LedElement *ledElement);
-/**
- * @brief Manages all the related with the Blink processes each cycle of the PISR.
- */
-static void BlinkCalledFromPISR(LedElement *ledElement);
-/**
- * @brief Manages all the related with the Repetition Blink processes each cycle of the PISR.
- */
-static void RepetitionBlinkCalledFromPISR(LedElement *ledElement);
-/**
- * @brief Manages all the related with the Infinite Blink processes each cycle of the PISR.
- */
-static void InfiniteBlinkCalledFromPISR(LedElement *ledElement);
 
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
@@ -135,6 +104,38 @@ typedef struct LedElement
 	BlinkProperties blinkProperties;
 	RepetitionBlinkProperties repetitionBlinkProperties;
 } LedElement;
+
+/*******************************************************************************
+ * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
+ ******************************************************************************/
+/**
+ * @brief 	Searches for a LedElement with a corresponding ID in the ledElements array and returns its index if found.
+ * 			If the ID is not found, returns -1.
+ * @param id The id of the LED to be found.
+ * @return The index of the LedElement associated with the id in the ledElements array.
+ */
+static int findLedIndexByID(LedID id);
+
+/**
+ * @brief Manages the time and events of the processes taking place in each LED.
+ */
+static void Led_PISR(void);
+/**
+ * @brief Manages all the related with the On For Defined Time processes each cycle of the PISR.
+ */
+static void OnForDefinedTimeCalledFromPISR(LedElement *ledElement);
+/**
+ * @brief Manages all the related with the Blink processes each cycle of the PISR.
+ */
+static void BlinkCalledFromPISR(LedElement *ledElement);
+/**
+ * @brief Manages all the related with the Repetition Blink processes each cycle of the PISR.
+ */
+static void RepetitionBlinkCalledFromPISR(LedElement *ledElement);
+/**
+ * @brief Manages all the related with the Infinite Blink processes each cycle of the PISR.
+ */
+static void InfiniteBlinkCalledFromPISR(LedElement *ledElement);
 
 
 /*******************************************************************************

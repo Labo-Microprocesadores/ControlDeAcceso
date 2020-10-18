@@ -42,7 +42,6 @@ void pin_confirmPin(void);
  */
 void pin_timerTimeout(void);
 
-#endif //ID_H_*******************************************************/
 /**
  * @brief Changes the current position of the PIN array to the next character following CHAR ORDER.
  */

@@ -16,7 +16,10 @@ C_DEPS :=
 SUBDIRS := \
 CMSIS \
 source \
+source/FSM/States \
+source/FSM \
 source/MCAL \
+source/database \
 source/drivers \
 source/startup \
 

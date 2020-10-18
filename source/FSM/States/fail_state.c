@@ -12,6 +12,8 @@
 #include "id_state.h"
 #include "queue.h"
 #include "data_base.h"
+#include "seven_seg_display.h"
+#include "fail_state.h"
 
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
@@ -24,7 +26,7 @@ static int errorIndicationTimerID;
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
- **********************************************************************
+ **********************************************************************/
 
 /*******************************************************************************
  *******************************************************************************
@@ -35,7 +37,7 @@ void initFailState(void)
 {
     errorIndicationTimerID = -1;
     SevenSegDisplay_EraseScreen();
-    if (isUserBlocked())
+    if (isCurrentUserBlocked())
     {
         SevenSegDisplay_WriteBufferAndMove("BLOCKED USER.", 13, 0, SHIFT_R);
     }
@@ -46,18 +48,20 @@ void initFailState(void)
     errorIndicationTimerID = Timer_AddCallback(&finishFail, TITLE_TIME, true);
 }
 
+void finishFail(void)
+{
+    Timer_Delete(errorIndicationTimerID);
+    if (isCurrentUserBlocked())
+        emitEvent(USR_BLOCKED_EV);
+    else
+        emitEvent(RETRY_PIN_EV);
+}
+
 /*******************************************************************************
  *******************************************************************************
                         LOCAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-static void finishFail(void)
-{
-    Timer_Delete(errorIndicationTimerID);
-    if (isUserBlocked())
-        emitEvent(USR_BLOCKED_EV);
-    else
-        emitEvent(RETRY_PIN_EV);
-}
+
 /*******************************************************************************
  ******************************************************************************/

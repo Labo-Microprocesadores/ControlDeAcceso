@@ -78,10 +78,10 @@ Status changePin(uint8_t userOldPin[], uint8_t userNewPin[]);
 
 bool verifyCardNumber(uint8_t cardNumber[], uint8_t numCharactersCardNumber);
 
-Status removeUser(user_t userToDelete);
+Status removeUser(uint8_t userID[]);
 
 void UnblockUser(void);
 
-bool isUserBlocked(void);
+bool isCurrentUserBlocked(void);
 
 #endif /* DATABASE_H_ */

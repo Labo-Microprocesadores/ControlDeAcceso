@@ -8,6 +8,7 @@
 #include "states/admin_state.h"
 #include "states/open_state.h"
 #include "queue.h"
+#include "states/fail_state.h"
 //#include "states/admin_state.h" para open state
 
 
@@ -40,7 +41,7 @@ static void do_nothing(void);
     {ENCODER_LEFT_EV, id, initLogin},
     {PRESS_EV, id, initLogin},
 	{LKP_EV, id, initLogin},
-	{CARD_SWIPE_EV, id, cardRead},
+	{CARD_SWIPE_EV, id, cardSwipe},
   	{FIN_TABLA, menu, do_nothing}
 };
 
@@ -69,7 +70,7 @@ STATE pin[] =
 	{ENCODER_RIGHT_EV,pin, pin_increaseCurrent}, 
     {ENCODER_LEFT_EV,pin, pin_decreaseCurrent}, 
 	{USR_PIN_OK_EV, usr, initUserMenu},
-    {ADMIN_PIN_OK_EV, admin, initAdminMenu},
+    {ADMIN_PIN_OK_EV, admin, admin_initAdminMenu},
 	{RETURN_TO_LAST_STATE_EV, id, initLogin},
 	{FAIL_PIN_EV, fail, initFailState},
 	{TIMEOUT_EV, menu, showWelcomeAnimation},

@@ -26,7 +26,7 @@
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
 
-	enum type{NORMAL,TYPEMATIC, LKP};
+	enum type{NORMAL_E,TYPEMATIC, LKP};
 
   /* Structure to store the variables needed to define a button object.
  * @variable pin number of the pin used for this button 

@@ -171,6 +171,7 @@ bool buttonConfiguration(pin_t button, int type, int time)
 	{
 		if(buttons[count].pin==0)
 		{
+			gpioMode(button,INPUT);
 			buttons[count].pin=button;
 			buttons[count].typefunction=type;
 			if(type == LKP)

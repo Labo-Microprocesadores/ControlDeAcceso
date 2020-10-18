@@ -50,21 +50,21 @@ static void userInteractionStopsTitle(void);
 /**
  * @brief Stops showing the error indication in the display due to a user's interaction. The state 'restarts'.
  */
-static void userInteractionStopErrorIndicationAndRestart(void)
+static void userInteractionStopErrorIndicationAndRestart(void);
 
 /**
  * @brief Stops showing the error indication in the display due to a user's interaction. The state doesn't 'restart'.
  */
-static void userInteractionStopErrorIndication(void)
+static void userInteractionStopErrorIndication(void);
 
 /**
  * @brief Function executed when the ID is not correct.
  */
-void id_fail(void);
+static void id_fail(void);
 /**
  * @brief Function executed when the lector fails to read the card.
  */
-void id_cardFail(void);
+static void id_cardFail(void);
 
 /*******************************************************************************
  *******************************************************************************
@@ -179,6 +179,7 @@ void id_checkCardID(void)
 static void showTitle(void)
 {
     SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_SetPos(0);
     SevenSegDisplay_WriteBuffer("ID  ", 4, 0);
     showingTitle = true;
     titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);
@@ -187,6 +188,7 @@ static void showTitle(void)
 static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_SetPos(0);
     SevenSegDisplay_WriteBuffer("00000000", 8, 0); //TODO que inicialmente te muestre lineas y despues si giran el encoder empiece apareciendo el cero.
     showingTitle = false;
 }
@@ -216,3 +218,10 @@ static void id_fail(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
+}
+
+static void id_cardFail(void)
+{
+    SevenSegDisplay_EraseScreen(); //TODO chequear
+    SevenSegDisplay_CursorOff();
+}

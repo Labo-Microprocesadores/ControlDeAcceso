@@ -19,13 +19,13 @@
 #include "queue.h"
 #include "seven_seg_display.h"
 
+
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
 static uint8_t pin[PIN_ARRAY_SIZE];
 static uint8_t currentPos = 0;
 static bool showingTitle;
-static bool showingErrorIndication;
 static int titleTimerID = -1;
 
 /*******************************************************************************
@@ -56,8 +56,7 @@ static void userInteractionStopsTitle(void);
 
 void initPinInput(void)
 {
-    showingErrorIndication = false;
-    inputResetArray(pin, &currentPos, PIN_ARRAY_SIZE);
+	inputResetArray(pin, &currentPos, PIN_ARRAY_SIZE);
     showTitle();
 }
 
@@ -65,8 +64,6 @@ void pin_confirmPin(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
-    else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();  
     else
     {
         if (!verifyPIN(pin))
@@ -89,8 +86,6 @@ void pin_acceptNumber(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
-    else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();  
     else
         inputAcceptNumber(pin, &currentPos, PIN_ARRAY_SIZE);
 }
@@ -99,8 +94,6 @@ void pin_increaseCurrent(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
-    else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();  
     else
         inputIncreaseCurrent(pin, currentPos);
 }
@@ -109,8 +102,6 @@ void pin_decreaseCurrent(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
-    else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();  
     else
         inputDecreaseCurrent(pin, currentPos);
 }
@@ -140,6 +131,7 @@ static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
     showingTitle = false;
+    SevenSegDisplay_CursorOn();
     SevenSegDisplay_WriteBuffer("00000000", 8, 0);
 }
 

@@ -10,7 +10,10 @@ RM := rm -rf
 -include sources.mk
 -include source/startup/subdir.mk
 -include source/drivers/subdir.mk
+-include source/database/subdir.mk
 -include source/MCAL/subdir.mk
+-include source/FSM/States/subdir.mk
+-include source/FSM/subdir.mk
 -include source/subdir.mk
 -include CMSIS/subdir.mk
 -include subdir.mk

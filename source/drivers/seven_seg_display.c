@@ -345,6 +345,7 @@ void SevenSegDisplay_PISR(void)
 
 void SevenSegDisplay_EraseScreen(void)
 {
+	bouncing = false;
 	for(int i = 0; i<((int)(sizeof(screen)/sizeof(screen[0]))); i++)
 	{
 		screen[i].character = NONE;
