@@ -56,7 +56,7 @@ STATE id[]=
 	{CARD_SWIPE_EV, id, id_checkCardID},
 	{RETURN_TO_LAST_STATE_EV, menu, showWelcomeAnimation},
 	{ID_OK_EV, pin, initPinInput}, //TODO que updetee el display
-	{TIMER_EV, menu, showWelcomeAnimation},
+	{TIMEOUT_EV, menu, showWelcomeAnimation},
 	{FIN_TABLA,id,do_nothing},
 };
 
@@ -72,7 +72,7 @@ STATE pin[] =
     {ADMIN_PIN_OK_EV, admin, initAdminMenu},
 	{RETURN_TO_LAST_STATE_EV, id, initLogin},
 	{FAIL_PIN_EV, fail, initFailState},
-	{TIMER_EV, menu, showWelcomeAnimation},
+	{TIMEOUT_EV, menu, showWelcomeAnimation},
 	{FIN_TABLA, pin, do_nothing}
 };
 
@@ -82,16 +82,16 @@ STATE fail[] =
 	{PRESS_EV,fail, finishFail},
 	{ENCODER_RIGHT_EV,fail, finishFail}, 
     {ENCODER_LEFT_EV,fail, finishFail}, 
-	{TIMER_EV, menu, showWelcomeAnimation},
+	{TIMEOUT_EV, menu, showWelcomeAnimation},
 	{FIN_TABLA, pin, do_nothing}
-}
+};
 /*** USR ***/
 
 STATE usr[] =
 {
 	{USER_CONFIG_ME_SELECTED_EV,cfg_me,},
 	{OPEN_SELECTED_EV,open,openDoor},
-	{TIMER_EV, menu, showWelcomeAnimation},
+	{TIMEOUT_EV, menu, showWelcomeAnimation},
 	{FIN_TABLA, usr, do_nothing}
 };
 
@@ -99,12 +99,12 @@ STATE usr[] =
 
 STATE admin[] =
 {
-	{ADMIN_CONFIG_ME_SELECTED_EV,cfg_me,},
+	////{ADMIN_CONFIG_ME_SELECTED_EV,cfg_me,},
 	{OPEN_SELECTED_EV,open,openDoor},
-    {ADMIN_ADD_USER_SELECTED_EV,add_user,},
-    {ADMIN_CONFIG_USER_SELECTED_EV,cfg_usr,},
-    {ADMIN_CONFIG_DEVICE_SELECTED_EV,cfg_device,initConfigDevice},
-	{TIMER_EV, menu, showWelcomeAnimation},
+    ////{ADMIN_ADD_USER_SELECTED_EV,add_user,},
+    ////{ADMIN_CONFIG_USER_SELECTED_EV,cfg_usr,},
+    ////{ADMIN_CONFIG_DEVICE_SELECTED_EV,cfg_device,initConfigDevice},
+	{TIMEOUT_EV, menu, showWelcomeAnimation},
 	{FIN_TABLA, admin, do_nothing}
 };
 
@@ -118,9 +118,9 @@ STATE open[] =
 /*User config me*/
 STATE cfg_me[] = 
 {
-	{ADMIN_CONFIG_ME_FINISHED_EV, admin,initAdminMenu},
+	////{ADMIN_CONFIG_ME_FINISHED_EV, admin,initAdminMenu},
 	{USER_CONFIG_ME_FINISHED_EV, usr,initUserMenu},
-	{TIMER_EV, menu, showWelcomeAnimation},
+	{TIMEOUT_EV, menu, showWelcomeAnimation},
 	{FIN_TABLA, cfg_me, do_nothing}
 };
 
@@ -128,14 +128,14 @@ STATE cfg_me[] =
 STATE cfg_usr[] = 
 {
 	{ADMIN_CONFIG_USER_FINISHED_EV, usr,initUserMenu},// ver si esta bien la rutina de accion
-	{TIMER_EV, menu, showWelcomeAnimation},
+	{TIMEOUT_EV, menu, showWelcomeAnimation},
 	{FIN_TABLA, cfg_usr, do_nothing}
 };
 /*Config device*/
 STATE cfg_device[] = 
 {
-	{ADMIN_CONFIG_DEVICE_FINISHED_EV, admin, initAdminMenu}, // ver si esta bien la rutina de accion
-	{TIMER_EV, menu, showWelcomeAnimation},
+	/////{ADMIN_CONFIG_DEVICE_FINISHED_EV, admin, initAdminMenu}, // ver si esta bien la rutina de accion
+	{TIMEOUT_EV, menu, showWelcomeAnimation},
 	{FIN_TABLA, cfg_device, do_nothing}
 };
 
@@ -148,7 +148,10 @@ STATE *FSM_GetInitState(void)
 }
 
 ///=========Rutinas de accion===============
-
+void FMS_StartInitState()
+{
+	showWelcomeAnimation();
+}
 
 
 /*Dummy function*/

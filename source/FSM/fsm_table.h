@@ -7,5 +7,5 @@
 #define FSMTABLE_H_
 
 STATE *FSM_GetInitState(void);
-
+void FMS_StartInitState();
 #endif /* FSMTABLE_H_ */

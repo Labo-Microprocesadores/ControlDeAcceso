@@ -65,7 +65,7 @@ EventType getEvent()
   EventType retval;
   if (queueIsEmpty(&eventQueue))
   {
-    return 0; // si la cola esta vacia -> error
+    return NONE_EV; // si la cola esta vacia -> error
   }
   retval = eventQueue.p2get->type; // guardo el tipo y muevo el puntero
   eventQueue.p2get->ack = true;

@@ -136,6 +136,7 @@ typedef struct LedElement
 	RepetitionBlinkProperties repetitionBlinkProperties;
 } LedElement;
 
+
 /*******************************************************************************
  * PRIVATE VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/

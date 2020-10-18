@@ -7,12 +7,18 @@
 /*******************************************************************************
  * INCLUDE HEADER FILES
  ******************************************************************************/
-  #include "queue.h"
-  #include "fms.h"
-  #include "data_base.h"
-  #include "Led.h"
-  #include "timer.h"
-  #include "seven_seg_display.h"
+#include "queue.h"
+#include "fsm.h"
+#include "data_base.h"
+
+#include "Led.h"
+#include "timer.h"
+#include "seven_seg_display.h"
+#include "encoder.h"
+#include "button.h"
+#include "lector.h"
+#include "MplxLed.h"
+
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
@@ -24,11 +30,12 @@
  * @brief function that fills the event queue with events from hardware.
  */
 static void fillQueue(void);
+static void timeOutCallback(void);
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
-  static STATE * currentState;
-  static int userTimeOutTimerID;
+static STATE *currentState;
+static int userTimeOutTimerID;
 /*******************************************************************************
  *******************************************************************************
                         FUNCTION DEFINITIONS
@@ -39,47 +46,59 @@ static void fillQueue(void);
 void App_Init(void)
 {
   initializeDataBase();
+  initQueue();
+
   SevenSegDisplay_Init();
   Led_Init();
   Timer_Init();
-  initQueue();
+  Lector_Init();
+  MplxLed_Init();
+  Encoder_Init();
+  Button_Init();
+
   currentState = FSM_GetInitState();
-  userTimeOutTimerID = Timer_AddCallback(&userTimeOutTimerID,TIMER_TIMEOUT, false);
+  FMS_StartInitState();
+  userTimeOutTimerID = Timer_AddCallback(&timeOutCallback, TIMER_TIMEOUT, false);
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
 void App_Run(void)
 {
-  while(true)
+  fillQueue();
+  EventType event = getEvent();
+  if (event != NONE_EV)
   {
-    fillQueue();
-    EventType event = getEvent();
-    if (event != NONE)
-    {
-      currenteState = fms(currentState, event);
-    }
+    currentState = fsm(currentState, event);
   }
 }
 
 void fillQueue(void)
 {
-  
-  if(Lector_Event())
+
+  if (Lector_Event())
   {
     Timer_Reset(userTimeOutTimerID);
     emitEvent(CARD_SWIPE_EV);
   }
   uint8_t move = Encoder_GetMove();
-  if(move)
+  if (move)
   {
-    move == 1 ? emitEvent(ENCODER_RIGHT_EV) : emitEvent(ENCODER_LEFT_EV);
+    if (move == 1)
+      emitEvent(ENCODER_RIGHT_EV) else emitEvent(ENCODER_LEFT_EV);
   }
-  if(wasTap())//TODO poner el nuevo driver de button y ver si hacer uno generico o preguntar con el boton
+  if (wasTap()) //TODO poner el nuevo driver de button y ver si hacer uno generico o preguntar con el boton
   {
     emitEvent(PRESS_EV);
   }
-  else if(wasLkp())
+  else if (wasLkp())
   {
+    emitEvent(LKP_EV)
+  }
+}
 
+void timeOutCallback(void)
+{
+  emitEvent(TIMEOUT_EV);
+}
 /*******************************************************************************
  *******************************************************************************

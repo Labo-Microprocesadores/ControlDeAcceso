@@ -75,7 +75,7 @@ bool verifyID(uint8_t usersID[])
             count ++;                
         }
 
-        if(!equalId)
+        if(!equalID)
             return false;
         
         currentIdIndex = user;
@@ -201,7 +201,7 @@ Status validateAll(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], ui
     if (verifyCardNumber(cardNumber, numCharactersCardNumber))
         return CARD_NUMBER_EXISTS;
     
-    return;
+    return VALIDATE_SUCCESSFULL;
 }
 
 static bool checkIdArrayFormat(uint8_t userID[])
@@ -241,7 +241,7 @@ static int getEffectiveArrayLength(uint8_t *inputArray, int totalArraySize)
     while (!foundLast && length < totalArraySize)
     {
         uint8_t lastPosition = inputArray[length];
-        if (lastPosition == NO_INPUT_CHAR || lastPosition == BACKSPACE || lastPosition = NO_USER_INDEX)
+        if (lastPosition == NO_INPUT_CHAR || lastPosition == BACKSPACE || lastPosition == NO_USER_INDEX)
             foundLast = true;
         else
             length++;
