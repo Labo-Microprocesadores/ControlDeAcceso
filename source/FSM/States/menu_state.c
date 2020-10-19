@@ -126,7 +126,7 @@ void menu_selectOption(void)
                 emitEvent(ADD_USER_SELECTED_EV);
                 break;
             case DEL_USER:
-                emitEvent(CONFIG_USER_SELECTED_EV);
+                emitEvent(DELETE_USER_SELECTED_EV);
                 break;
             case CONFIG_PIN:
                 emitEvent(CONFIG_ME_SELECTED_EV);

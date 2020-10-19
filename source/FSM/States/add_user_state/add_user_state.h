@@ -26,5 +26,7 @@ void addUser_onEncoderLeft(void);
 void addUser_onCardSwipe(void);
 void addUser_onReturn(void);
 void addUser_onIdOk(void);
+void addUser_onCardFail(void);
+void addUser_onIdFail(void);
 
 #endif /* ADD_USER_STATE_H_*/

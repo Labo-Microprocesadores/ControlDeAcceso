@@ -176,7 +176,7 @@ static void userInteractionStopErrorIndicationAndRestart(void)
 
 static void userInteractionStopErrorIndication(void)
 {
-       SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_EraseScreen();
     Timer_Delete(errorIndicationTimerID);
     showingErrorIndication = false;
     errorIndicationTimerID = -1;

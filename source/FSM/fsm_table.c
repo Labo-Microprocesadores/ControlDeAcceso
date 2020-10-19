@@ -104,7 +104,7 @@ STATE menu[] =
     {CONFIG_ME_SELECTED_EV,				cfg_me,		configMe_initState},
 	/* Eventos exclusivos de admin*/ 
 	{ADD_USER_SELECTED_EV,				add_user,	addUser_initFSM},
-    //{CONFIG_USER_SELECTED_EV,			cfg_usr,			},
+    {DELETE_USER_SELECTED_EV,			delete_user,deleteUser_initState},
     {CONFIG_DEVICE_SELECTED_EV,			cfg_device,	initConfigDevice},
 	{TIMEOUT_EV, 						welcome, 	showWelcomeAnimation},
 	{FIN_TABLA, 						menu, 		do_nothing}
@@ -139,8 +139,8 @@ STATE add_user[] =
 	{CARD_SWIPE_EV, 			add_user, 	addUser_onCardSwipe},
 	{RETURN_TO_LAST_STATE_EV, 	add_user, 	addUser_onReturn},
 	{ID_OK_EV,					add_user,	addUser_onIdOk},
-	{ID_FAIL_EV,				add_user,	/*id ya existe*/},
-	{CARD_FAIL_EV,				add_user, 	/*            */},
+	{ID_FAIL_EV,				add_user,	addUser_onIdFail},
+	{CARD_FAIL_EV,				add_user, 	addUser_onCardFail},
 	{ADD_USER_FINISHED_EV, 		menu,		menu_initState},// ver si esta bien la rutina de accion
 	{TIMEOUT_EV,				welcome, 	showWelcomeAnimation},
 	{FIN_TABLA, 				add_user, 	do_nothing}

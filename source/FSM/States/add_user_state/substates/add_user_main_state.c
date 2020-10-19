@@ -12,6 +12,12 @@
 #include "data_base.h"//:-)
 #include "queue.h"
 #include "seven_seg_display.h"
+#include "Timer.h"
+
+/******************************************************************************
+ *  CONSTANTS
+ ******************************************************************************/
+#define TITLE_TIME 2000
 
 /*******************************************************************************
 *       VARIABLE WITH LOCAL SCOPE
@@ -123,7 +129,7 @@ static void showTitle(void)
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_CursorOff();
-    SevenSegDisplay_WriteBufferAndMove("SWIPE CARD", 10, 0, BOUNCE);
+    SevenSegDisplay_WriteBufferAndMove("PASS CARD", 10, 0, BOUNCE);
     showingTitle = true;
     titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);
 }
@@ -145,7 +151,7 @@ static void userInteractionStopsTitle(void)
 static void userInteractionStopErrorIndicationAndRestart(void)
 {
     userInteractionStopErrorIndication();
-    initLogin();
+    addUsr_initState();
 }
 
 static void userInteractionStopErrorIndication(void)
@@ -164,7 +170,7 @@ static void addCardFail(void)
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_WriteBufferAndMove("CARD FAILED", 11, 0, SHIFT_L);
     showingErrorIndication = true;
-    errorIndicationTimerID = Timer_AddCallback(&addUserId_initLogin, TITLE_TIME, true);
+    errorIndicationTimerID = Timer_AddCallback(&addUsr_initState, TITLE_TIME, true);
 }
 
 static void cardIsUsed(void)
@@ -174,6 +180,6 @@ static void cardIsUsed(void)
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_WriteBufferAndMove("CARD IS USED", 12, 0, SHIFT_L);
     showingErrorIndication = true;
-    errorIndicationTimerID = Timer_AddCallback(&addUserId_initLogin, TITLE_TIME, true);
+    errorIndicationTimerID = Timer_AddCallback(&addUsr_initState, TITLE_TIME, true);
 }
 

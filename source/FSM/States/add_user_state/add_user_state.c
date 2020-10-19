@@ -72,3 +72,13 @@ void addUser_onIdOk(void)
 {
     currentState = fsm(currentState, ID_OK_EV);
 }
+
+void addUser_onIdFail(void)
+{
+    currentState = fsm(currentState, ID_FAIL_EV);
+}
+
+void addUser_onCardFail(void)
+{
+    currentState = fsm(currentState, CARD_FAIL_EV);
+}
