@@ -1,5 +1,5 @@
 /***************************************************************************/ /**
-  @file     main_menu_state.c
+  @file     add_user_main_menu_state.c
   @brief    Main menu state functions.
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/

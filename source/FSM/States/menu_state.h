@@ -1,15 +1,15 @@
 /***************************************************************************/ /**
-  @file     usr_state.h
-  @brief    User state header
+  @file     admin_state.h
+  @brief    Admin state header
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/
-#ifndef USER_STATE_H
-#define USER_STATE_H
+#ifndef ADMIN_STATE_H
+#define ADMIN_STATE_H
+
 /*******************************************************************************
  * INCLUDE HEADER FILES
  ******************************************************************************/
 #include <stdint.h>
-
 
 
 /*******************************************************************************
@@ -18,19 +18,19 @@
 /**
  * @brief Initializes the menu
  */
-void initUserMenu(void);
+void menu_initState(void);
 /**
- * @brief Shows the previous option
+ * @brief Changes the current position of the ID array to the next character following CHAR ORDER.
  */
-void usr_nextOption(void);
+void menu_nextOption(void);
 /**
- * @brief Shows the next option.
+ * @brief Shows the next menu option.
  */
-void usr_previousOption(void);
+void menu_previousOption(void);
 
 /**
  * @brief Selects the current option. Adds an event to the event queue of the FSM.
  */
-void usr_selectOption(void);
+void menu_selectOption(void);
 
-#endif /* USER_STATE_H */
+#endif /* ADMIN_STATE_H */

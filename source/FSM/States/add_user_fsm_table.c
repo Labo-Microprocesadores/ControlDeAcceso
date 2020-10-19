@@ -2,9 +2,8 @@
 #include "../../fsm.h"
 #include "../../../queue.h"
 #include "add_user_fsm_table.h"
-#include "substates/add_user_main_state.h"
-#include "substates/add_user_id_state.h"
-
+#include "add_user_main_state.h"
+#include "add_user_id_state.h"
 
 
 
@@ -13,7 +12,6 @@
 
 extern STATE menu[];
 extern STATE id[];
-extern STATE pin[];
 
 // prototipos
 static void do_nothing(void);
@@ -47,7 +45,7 @@ STATE id[]=
 };
 
 /*** Pin ***/
-
+/*
 STATE pin[] =
 {
 	//{,pin,},	    
@@ -61,7 +59,7 @@ STATE pin[] =
 	{FAIL_PIN_EV, fail, initFailState},
 	{TIMEOUT_EV, menu, showWelcomeAnimation},
 	{FIN_TABLA, pin, do_nothing}
-};
+};*/
 
 
 

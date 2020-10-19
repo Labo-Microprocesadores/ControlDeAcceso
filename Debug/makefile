@@ -12,6 +12,7 @@ RM := rm -rf
 -include source/drivers/subdir.mk
 -include source/database/subdir.mk
 -include source/MCAL/subdir.mk
+-include source/FSM/States/add_user_state/substates/subdir.mk
 -include source/FSM/States/add_user_state/subdir.mk
 -include source/FSM/States/subdir.mk
 -include source/FSM/subdir.mk
