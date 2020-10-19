@@ -14,15 +14,25 @@
 #include "seven_seg_display.h"
 
 /*******************************************************************************
+*       VARIABLE WITH LOCAL SCOPE
+*******************************************************************************/
+static int8_t cardNumber[MAX_CARD_NUMBER_LEN];
+
+/*******************************************************************************
  * FUNCTIONS WITH GLOBAL SCOPE
  ******************************************************************************/
 void addUsr_initState(void)
 {
+    uint8_t i;
+    for (i = 0; i< MAX_CARD_NUMBER_LEN; i++)
+    {
+        cardNumber[i] = -1;
+    }
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_WriteBufferAndMove("SWIPE CARD", 10, 0, BOUNCE);
-    //TODO: Show animation indicating "Welcome, swipe your id card or click the button to enter it manually" or similar.
+    
 }
 
 
@@ -32,26 +42,30 @@ void addUsr_cardSwipe(void)
     bool ok = Lector_GetData(&myCard);
     if(ok)
     {
-        // agarro numero de tarjeta
-        uint8_t numero[19];
         uint8_t i,length = myCard.number_len;
         for(i = 0; i<length; i++)
         {
-            numero[i] = myCard.card_number[i];
+            cardNumber[i] = myCard.card_number[i];
         }
         
-        if(verifyCardNumber(numero, length))
+        if(!verifyCardNumber(cardNumber, length))
         {
             emitEvent(ID_OK_EV);
         }
         else
         {
             emitEvent(ID_FAIL_EV);
+            for (i = 0; i< MAX_CARD_NUMBER_LEN; i++)
+                cardNumber[i] = -1;
         }
     }
     else
     {
         emitEvent(CARD_FAIL_EV);
     }
-    //TODO: Show animation indicating "YOUR id is 1123123" or similar, recover id from card (no se si esta se hace aca pero bueno), and compare with database. Define wether this event switches to id state or pin state.
+}
+
+short * addUsr_getCardNumber(void)
+{
+    return cardNumber;
 }

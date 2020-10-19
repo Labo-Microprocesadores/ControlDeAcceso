@@ -16,6 +16,8 @@
 #include "queue.h"
 #include "seven_seg_display.h"
 
+#include "add_user_id_state.h"
+#include "add_user_main_state.h"
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
@@ -83,14 +85,16 @@ void addUserPin_confirmPin(void)
         userInteractionStopErrorIndicationAndRestart();  
     else
     {
-        if (!verifyPIN(pin))
+        if (checkPinArrayFormat(pin))
         {
-            pinFail();
-        }
-        else
-        {
-            emitEvent(PIN_OK_EV);
-        }
+            Status ok = checkAddUser(addUserId_getIDArray(), pin, addUsr_getCardNumber(), 19, USER);
+            if(ok == STORE_SUCCESSFULL)
+            {
+                emitEvent(ADD_USER_FINISHED_EV);
+                return;
+            }
+        }   
+        pinFail();
     }    
 }
 

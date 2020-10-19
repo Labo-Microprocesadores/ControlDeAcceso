@@ -133,10 +133,8 @@ void addUserId_acceptNumber(void)
         inputAcceptNumber(id, &currentPos, ID_ARRAY_SIZE);
 }
 
-int8_t * addUserId_getIdArray(int *sizeOfReturningArray)
+int8_t * addUserId_getIDArray(void)
 {
-    int currentArrayLength = getEffectiveArrayLength(id, ID_ARRAY_SIZE);
-    *sizeOfReturningArray = currentArrayLength;
     return id;
 }
 

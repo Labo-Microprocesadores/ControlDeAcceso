@@ -138,7 +138,10 @@ STATE add_user[] =
     {ENCODER_LEFT_EV, 			add_user, 	addUser_onEncoderLeft},
 	{CARD_SWIPE_EV, 			add_user, 	addUser_onCardSwipe},
 	{RETURN_TO_LAST_STATE_EV, 	add_user, 	addUser_onReturn},
-	{CONFIG_USER_FINISHED_EV, 	menu,		menu_initState},// ver si esta bien la rutina de accion
+	{ID_OK_EV,					add_user,	addUser_onIdOk},
+	{ID_FAIL_EV,				add_user,	/*id ya existe*/},
+	{CARD_FAIL_EV,				add_user, 	/*            */},
+	{ADD_USER_FINISHED_EV, 	menu,		menu_initState},// ver si esta bien la rutina de accion
 	{TIMEOUT_EV,				welcome, 	showWelcomeAnimation},
 	{FIN_TABLA, 				add_user, 	do_nothing}
 };
@@ -149,7 +152,7 @@ STATE cfg_device[] =
 	{ENCODER_RIGHT_EV, 					cfg_device, configDev_nextOption}, 
     {ENCODER_LEFT_EV,					cfg_device, configDev_previousOption}, 
 	{CONFIG_DEVICE_FINISHED_EV,			menu, 		menu_initState}, // ver si esta bien la rutina de accion
-	{TIMEOUT_EV, 						welcome, 		showWelcomeAnimation},
+	{TIMEOUT_EV, 						welcome, 	showWelcomeAnimation},
 	{FIN_TABLA, 						cfg_device, do_nothing}
 };
 

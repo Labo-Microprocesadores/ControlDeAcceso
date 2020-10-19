@@ -12,6 +12,7 @@
 #include "data_base.h"
 #include "queue.h"
 #include "../user_input.h"
+#include "add_user_fsm_table.h"
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
@@ -31,6 +32,7 @@ static uint8_t currentPos = 0;
 void addUser_initFSM(void)
 {
     currentState = subFSM_GetInitState();
+    subFSM_StartInitState();
 }
 
 void addUser_finishConfiguration(void)
@@ -64,4 +66,9 @@ void addUser_onCardSwipe(void)
 void addUser_onReturn(void)
 {
     currentState = fsm(currentState, RETURN_TO_LAST_STATE_EV);
+}
+
+void addUser_onIdOk(void)
+{
+    currentState = fsm(currentState, ID_OK_EV);
 }

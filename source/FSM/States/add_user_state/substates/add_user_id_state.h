@@ -44,7 +44,7 @@ void addUserId_confirmID(void);
  * @param sizeOfReturningArray: A pointer to an integer where the size of the ID array gets stored.
  * @return The array of introduced characters.
  */
-int8_t* addUserId_getIDArray(int *sizeOfReturningArray);
+int8_t* addUserId_getIDArray(void);
 
 
 

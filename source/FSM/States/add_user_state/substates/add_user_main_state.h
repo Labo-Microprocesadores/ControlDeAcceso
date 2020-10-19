@@ -11,5 +11,5 @@
  ******************************************************************************/
 void addUsr_initState(void);
 void addUsr_cardSwipe(void);
-
+short * addUsr_getCardNumber(void);
 #endif /* ADD_USER_MAIN_MENU_STATE_H */

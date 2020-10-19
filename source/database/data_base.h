@@ -91,7 +91,7 @@ bool isCurrentUserBlocked(void);
  * @param userPIN, The pin array.
  * @return A bool indicating if the format is valid or not.
  */
-static bool checkPinArrayFormat(int8_t userPIN[]);
+bool checkPinArrayFormat(int8_t userPIN[]);
 
 
 #endif /* DATABASE_H_ */

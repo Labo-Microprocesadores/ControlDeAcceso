@@ -26,7 +26,10 @@ STATE addUser_card[]=
     {ENCODER_LEFT_EV, 	addUser_card, 	return_to_last},
     {PRESS_EV, 			addUser_card, 	return_to_last},
 	{LKP_EV, 			addUser_card, 	return_to_last},
-	{CARD_SWIPE_EV, 	addUser_id, 	addUsr_cardSwipe},
+	{CARD_SWIPE_EV, 	addUser_card, 	addUsr_cardSwipe},
+	{ID_OK_EV,			addUser_id,		addUserId_initLogin},
+	{ID_FAIL_EV,		addUser_card,	/*id ya existe*/},
+	{CARD_FAIL_EV,		addUser_card, 	/*            */},
   	{FIN_TABLA, 		addUser_card, 	do_nothing}
 };
 
