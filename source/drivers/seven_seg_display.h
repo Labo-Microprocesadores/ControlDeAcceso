@@ -37,6 +37,14 @@
 #define F				(uint8_t)0x71
 #define G				(uint8_t)0x3D
 #define H				(uint8_t)0x76
+#define _O				-9
+#define _A				-8//(uint8_t)0x01
+#define _B				-7//(uint8_t)0x02
+#define _C				-6//(uint8_t)0x04
+#define _D				-1//(uint8_t)0x08
+#define _E				-5//(uint8_t)0x10
+#define _F				-4//(uint8_t)0x20
+#define _G				-3//(uint8_t)0x40
 
 #define MASK			(uint8_t)0x01
 
@@ -150,6 +158,9 @@ void SevenSegDisplay_CursorInc(void);
 	Be sure to have written there, otherwise a blank space will be shown
 */
 void SevenSegDisplay_CursorDec(void);
+
+void SevenSegDisplay_AnimationCircles(void);
+void SevenSegDisplay_StopAnimation(void);
 
 #endif //SEVENSEGDISPLAY_H_
 

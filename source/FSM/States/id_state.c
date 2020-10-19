@@ -66,6 +66,8 @@ static void idFail(void);
  */
 static void idCardFail(void);
 
+static void id_fail_animate(void);
+
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
@@ -76,6 +78,7 @@ static void idCardFail(void);
 
 void initLogin(void)
 {
+	SevenSegDisplay_StopAnimation();
     showingErrorIndication = false;
     inputResetArray(id, &currentPos, ID_ARRAY_SIZE);
     showTitle();
@@ -86,7 +89,10 @@ void id_increaseCurrent(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
+    {
         userInteractionStopErrorIndicationAndRestart();  
+    	SevenSegDisplay_StopAnimation();
+    }
     else
         inputIncreaseCurrent(id, currentPos);
 }
@@ -96,7 +102,10 @@ void id_decreaseCurrent(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();  
+    {
+        userInteractionStopErrorIndicationAndRestart();
+    	SevenSegDisplay_StopAnimation();
+    }
     else
         inputDecreaseCurrent(id, currentPos);
 }
@@ -106,7 +115,10 @@ void id_confirmID(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();    
+    {
+        userInteractionStopErrorIndicationAndRestart();
+    	SevenSegDisplay_StopAnimation();
+    }
     else
     {
         if (!verifyID(id))
@@ -122,7 +134,10 @@ void id_acceptNumber(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
+    {
         userInteractionStopErrorIndicationAndRestart();
+    	SevenSegDisplay_StopAnimation();
+    }
     else
         inputAcceptNumber(id, &currentPos, ID_ARRAY_SIZE);
 }
@@ -221,9 +236,19 @@ static void idFail(void)
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBufferAndMove("NO ID FOUND", 11, 0, BOUNCE);
+    SevenSegDisplay_WriteBufferAndMove("NO ID FOUND", 11, 0, SHIFT_L);
     showingErrorIndication = true;
-    errorIndicationTimerID = Timer_AddCallback(&initLogin, TITLE_TIME, true);
+    errorIndicationTimerID = Timer_AddCallback(&id_fail_animate, TITLE_TIME, true);
+}
+
+static void id_fail_animate(void)
+{
+	showingErrorIndication = false;
+	SevenSegDisplay_EraseScreen();
+	SevenSegDisplay_SetPos(0);
+	SevenSegDisplay_AnimationCircles();
+	showingErrorIndication = true;
+	errorIndicationTimerID = Timer_AddCallback(&initLogin, 600, true);
 }
 
 static void idCardFail(void)
@@ -231,7 +256,8 @@ static void idCardFail(void)
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBufferAndMove("CARD FAILED", 11, 0, BOUNCE);
+    SevenSegDisplay_WriteBufferAndMove("CARD FAILED", 11, 0, SHIFT_L);
     showingErrorIndication = true;
-    errorIndicationTimerID = Timer_AddCallback(&initLogin, TITLE_TIME, true);
+    //errorIndicationTimerID = Timer_AddCallback(&initLogin, TITLE_TIME, true);
+    errorIndicationTimerID = Timer_AddCallback(&id_fail_animate, TITLE_TIME, true);
 }
