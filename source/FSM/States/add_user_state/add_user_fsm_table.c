@@ -68,13 +68,13 @@ STATE pin[] =
 //========interfaz=================
 
 
-//STATE *FSM_GetInitState(void)
+STATE *FSM_GetInitState(void) // cambiar nombre
 {
-	 //return(menu);
+	return(menu);
 }
 
 ///=========Rutinas de accion===============
-//void FMS_StartInitState()
+void FMS_StartInitState() // cambiar nombre
 {
 	showWelcomeAnimation();
 }

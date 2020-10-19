@@ -22,7 +22,7 @@ static int errorIndicationTimerID;
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-#define TITLE_TIME  2000
+#define TITLE_TIME  5000
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
@@ -41,11 +41,11 @@ void initFailState(void)
     SevenSegDisplay_CursorOff();
     if (isCurrentUserBlocked())
     {
-        SevenSegDisplay_WriteBufferAndMove("BLOCKED USER.", 13, 0, BOUNCE);
+        SevenSegDisplay_WriteBufferAndMove("BLOCKED USER.", 13, 0, SHIFT_L);
     }
     else
     {
-        SevenSegDisplay_WriteBufferAndMove("TRY AGAIN.", 9, 0, BOUNCE);
+        SevenSegDisplay_WriteBufferAndMove("TRY AGAIN.", 9, 0, SHIFT_L);
     }
     errorIndicationTimerID = Timer_AddCallback(&finishFail, TITLE_TIME, true);
 }
