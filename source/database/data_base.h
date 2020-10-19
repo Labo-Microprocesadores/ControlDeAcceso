@@ -163,7 +163,7 @@ bool verifyCardNumber(int8_t cardNumber[], uint8_t numCharactersCardNumber);
  */
 Status removeUser(int8_t userID[]);
 
-
+//! Add comment
 int8_t * getIdByCardNumber(int8_t cardNumber[]);
 
 /**
