@@ -3,19 +3,18 @@
   @brief    Button configurations
   @author   Grupo 2
  ******************************************************************************/
-
-
+/*******************************************************************************
+ * INCLUDE HEADER FILES
+ ******************************************************************************/
 #include "button.h"
 #include "SysTick.h"
 #include "gpio.h"
-
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
 static Button_t buttons[BUTTON_NUM];
-
 bool var = false;
 
 /*******************************************************************************
@@ -120,7 +119,6 @@ bool wasReleased(pin_t button)
 					bool aux =buttons[count].wasReleased;
 					if(aux)
 						buttons[count].wasReleased = false;
-
 					return aux ;
 				}
 			}
