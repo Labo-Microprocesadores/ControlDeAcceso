@@ -23,11 +23,11 @@
 typedef enum
 {
     OPEN,
-    CONFIG_ME,
+    CONFIG_PIN,
     LOG_OUT,
     CONFIG_DEVICE,
     ADD_USER,
-    CONFIG_USER
+    DEL_USER
 } options_t;
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
@@ -71,8 +71,8 @@ void menu_initState(void)
 {
     showingTitle = false;
     admin = IsAdmin();
-    showTitle();
     currentOptionIndex = 0;
+    showTitle();
 }
 
 void menu_nextOption(void)
@@ -125,10 +125,10 @@ void menu_selectOption(void)
             case ADD_USER:
                 emitEvent(ADD_USER_SELECTED_EV);
                 break;
-            case CONFIG_USER:
+            case DEL_USER:
                 emitEvent(CONFIG_USER_SELECTED_EV);
                 break;
-            case CONFIG_ME:
+            case CONFIG_PIN:
                 emitEvent(CONFIG_ME_SELECTED_EV);
                 break;
             case LOG_OUT:
@@ -157,8 +157,7 @@ static void showTitle(void)
     {
         SevenSegDisplay_WriteBuffer("USER", 4, 0);
     }
-    titleTimerID = -1;
-    stopShowingTitle();
+    titleTimerID = Timer_AddCallback(&stopShowingTitle,TITLE_TIME, true );
 }
 
 static void showCurrentOption(void)
@@ -176,11 +175,11 @@ static void showCurrentOption(void)
     case ADD_USER:
         SevenSegDisplay_WriteBufferAndMove("ADD USER", 8, 0, BOUNCE);
         break;
-    case CONFIG_USER:
-        SevenSegDisplay_WriteBufferAndMove("CONFIG USER", 11, 0, BOUNCE);
+    case DEL_USER:
+        SevenSegDisplay_WriteBufferAndMove("DELETE USER", 11, 0, BOUNCE);
         break;
-    case CONFIG_ME:
-        SevenSegDisplay_WriteBufferAndMove("CONFIG", 6, 0, BOUNCE);
+    case CONFIG_PIN:
+        SevenSegDisplay_WriteBufferAndMove("CONFIG PIN", 10, 0, BOUNCE);
         break;
     case LOG_OUT:
         SevenSegDisplay_WriteBufferAndMove("LOG OUT", 7, 0, BOUNCE);

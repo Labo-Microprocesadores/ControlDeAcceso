@@ -61,10 +61,7 @@ static void userInteractionStopErrorIndication(void);
  * @brief Function executed when the ID is not correct.
  */
 static void idFail(void);
-/**
- * @brief Function executed when the lector fails to read the card.
- */
-static void idCardFail(void);
+
 /**
  * @brief Id already used in database
  */
@@ -195,15 +192,6 @@ static void idFail(void)
     errorIndicationTimerID = Timer_AddCallback(&addUserId_initLogin, TITLE_TIME, true);
 }
 
-static void idCardFail(void)
-{
-    SevenSegDisplay_EraseScreen();
-    SevenSegDisplay_CursorOff();
-    SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBufferAndMove("CARD FAILED", 11, 0, SHIFT_L);
-    showingErrorIndication = true;
-    errorIndicationTimerID = Timer_AddCallback(&addUserId_initLogin, TITLE_TIME, true);
-}
 
 static void idAlreadyExists(void)
 {

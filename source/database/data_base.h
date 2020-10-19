@@ -163,6 +163,12 @@ bool verifyCardNumber(int8_t cardNumber[], uint8_t numCharactersCardNumber);
  */
 Status removeUser(int8_t userID[]);
 
+void UnblockUser(void);
+
+int8_t * getIdByCardNumber(int8_t cardNumber[]);
+
+bool isCurrentUserBlocked(void);
+
 /**
  * @brief Checks if the "pin" array format matches the format of a pin. The array must be complete (length equal to PIN_ARRAY_SIZE) and all elements must be numbers from 0 to 9.4
  * @param userPIN, The pin array.

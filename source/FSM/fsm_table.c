@@ -5,14 +5,13 @@
 #include "fsm_table.h"
 #include "states/id_state.h"
 #include "states/pin_state.h"
-// no existe mas #include "states/usr_state.h"
 #include "states/open_state.h"
 #include "queue.h"
 #include "states/fail_state.h"
 #include "states/config_device_state.h"
 #include "States/config_me_state.h"
-//#include "states/admin_state.h" para open state
 #include "States/add_user_state/add_user_state.h"
+#include "states/delete_user_state.h"
 
 
 /*Foward Declarations*/
@@ -28,6 +27,7 @@ extern STATE cfg_usr[];
 extern STATE cfg_device[];
 extern STATE add_user[];
 extern STATE open[];
+extern STATE delete_user[];
 
 
 // prototipos
@@ -141,24 +141,36 @@ STATE add_user[] =
 	{ID_OK_EV,					add_user,	addUser_onIdOk},
 	{ID_FAIL_EV,				add_user,	/*id ya existe*/},
 	{CARD_FAIL_EV,				add_user, 	/*            */},
-	{ADD_USER_FINISHED_EV, 	menu,		menu_initState},// ver si esta bien la rutina de accion
+	{ADD_USER_FINISHED_EV, 		menu,		menu_initState},// ver si esta bien la rutina de accion
 	{TIMEOUT_EV,				welcome, 	showWelcomeAnimation},
 	{FIN_TABLA, 				add_user, 	do_nothing}
 };
 /*Config device*/
 STATE cfg_device[] = 
 {
-	{PRESS_EV,							cfg_device, configDev_selectOption},
-	{ENCODER_RIGHT_EV, 					cfg_device, configDev_nextOption}, 
-    {ENCODER_LEFT_EV,					cfg_device, configDev_previousOption}, 
-	{CONFIG_DEVICE_FINISHED_EV,			menu, 		menu_initState}, // ver si esta bien la rutina de accion
-	{TIMEOUT_EV, 						welcome, 	showWelcomeAnimation},
-	{FIN_TABLA, 						cfg_device, do_nothing}
+	{PRESS_EV,						cfg_device, 	configDev_selectOption},
+	{ENCODER_RIGHT_EV, 				cfg_device, 	configDev_nextOption}, 
+    {ENCODER_LEFT_EV,				cfg_device, 	configDev_previousOption}, 
+	{CONFIG_DEVICE_FINISHED_EV,		menu, 			menu_initState}, // ver si esta bien la rutina de accion
+	{TIMEOUT_EV, 					welcome, 		showWelcomeAnimation},
+	{FIN_TABLA, 					cfg_device,		do_nothing}
+};
+
+/*Delete user*/
+STATE delete_user[] = 
+{
+	{PRESS_EV,						delete_user, 	deleteUser_acceptNumber},
+	{ENCODER_RIGHT_EV, 				delete_user, 	deleteUser_increaseCurrent}, 
+    {ENCODER_LEFT_EV,				delete_user, 	deleteUser_decreaseCurrent}, 
+	{LKP_EV, 						delete_user, 	deleteUser_confirm},
+	{CARD_SWIPE_EV, 				delete_user, 	deleteUser_checkCardID},
+	{RETURN_TO_LAST_STATE_EV, 		menu,			menu_initState},
+	{ID_OK_EV, 						menu, 			menu_initState},
+	{TIMEOUT_EV, 					welcome, 		showWelcomeAnimation},
+	{FIN_TABLA, 					delete_user, 	do_nothing}
 };
 
 //========interfaz=================
-
-
 STATE *FSM_GetInitState(void)
 {
 	 return(welcome);
