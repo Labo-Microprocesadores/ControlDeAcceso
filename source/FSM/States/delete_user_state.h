@@ -36,6 +36,12 @@ void deleteUser_acceptNumber(void);
  * @brief Function called when the user confirms the new ID.
  */
 void deleteUser_confirm(void);
+/**
+ * @brief Function called when card is swiped.
+ */
+void deleteUser_checkCardID(void);
+
+int8_t * deleteUser_getIdArray(int *sizeOfReturningArray);
 
 
 #endif //DELETE_USER_H

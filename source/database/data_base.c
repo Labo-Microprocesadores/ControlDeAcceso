@@ -115,6 +115,29 @@ bool isCurrentUserBlocked(void)
     return false;
 }
 
+int8_t * getIdByCardNumber(int8_t cardNumber[])
+{
+    uint8_t  user;
+    uint8_t end = dataBase.lastItem >= MAX_NUM_USERS?  MAX_NUM_USERS  - 1 : dataBase.lastItem;
+    //I go through the array of users
+    for (user = 0; user <= end; user++)
+    {        
+        bool equalCardNumber = true;
+        //I go through the id array checking values
+        uint8_t count = 0;
+        while (count < ID_ARRAY_SIZE && equalCardNumber)
+        {
+            if (dataBase.userList[user].cardNumber[count] != cardNumber[count])   //If the ID is different
+                equalCardNumber = false;
+            count ++;                
+        }
+        if(equalCardNumber)
+        {
+            return database.userList[user].userID;
+        }    
+    }
+    return NULL;
+}
 
 void UnblockUser(void)
 {

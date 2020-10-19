@@ -163,14 +163,14 @@ STATE delete_user[] =
 	{ENCODER_RIGHT_EV, 				delete_user, 	deleteUser_increaseCurrent}, 
     {ENCODER_LEFT_EV,				delete_user, 	deleteUser_decreaseCurrent}, 
 	{LKP_EV, 						delete_user, 	deleteUser_confirm},
-	{CONFIG_DEVICE_FINISHED_EV,		menu, 			menu_initState}, // ver si esta bien la rutina de accion
+	{CARD_SWIPE_EV, 				delete_user, 	deleteUser_checkCardID},
+	{RETURN_TO_LAST_STATE_EV, 		menu,			menu_initState},
+	{ID_OK_EV, 						menu, 			menu_initState},
 	{TIMEOUT_EV, 					welcome, 		showWelcomeAnimation},
 	{FIN_TABLA, 					delete_user, 	do_nothing}
 };
 
 //========interfaz=================
-
-
 STATE *FSM_GetInitState(void)
 {
 	 return(welcome);

@@ -84,6 +84,8 @@ Status removeUser(int8_t userID[]);
 
 void UnblockUser(void);
 
+int8_t * getIdByCardNumber(int8_t cardNumber[]);
+
 bool isCurrentUserBlocked(void);
 
 /**
