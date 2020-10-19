@@ -74,6 +74,8 @@ Status checkAddUser(uint8_t userID[], int8_t userPIN[], int8_t cardNumber[], uin
 
 Status validateAll(uint8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy_t typeOfUser);
 
+Status validateNewId(uint8_t userID[]);
+
 Status changePin(int8_t* userNewPin);
 
 bool verifyCardNumber(int8_t cardNumber[], uint8_t numCharactersCardNumber);
@@ -84,6 +86,12 @@ void UnblockUser(void);
 
 bool isCurrentUserBlocked(void);
 
+/**
+ * @brief Checks if the "pin" array format matches the format of a pin. The array must be complete (length equal to PIN_ARRAY_SIZE) and all elements must be numbers from 0 to 9.4
+ * @param userPIN, The pin array.
+ * @return A bool indicating if the format is valid or not.
+ */
+static bool checkPinArrayFormat(int8_t userPIN[]);
 
 
 #endif /* DATABASE_H_ */

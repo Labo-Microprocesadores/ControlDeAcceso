@@ -19,7 +19,7 @@ void initConfigDevice(void);
  */
 void configDev_nextOption(void);
 /**
- * @brief Shows the next menu option.
+ * @brief Shows the next welcome option.
  */
 void configDev_previousOption(void);
 

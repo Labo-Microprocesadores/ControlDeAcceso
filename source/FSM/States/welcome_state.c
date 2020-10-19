@@ -1,6 +1,6 @@
 /***************************************************************************/ /**
   @file     main_menu_state.c
-  @brief    Main menu state functions.
+  @brief    Main welcome state functions.
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/
 

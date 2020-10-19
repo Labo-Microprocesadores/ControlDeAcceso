@@ -18,38 +18,33 @@
 /**
  * @brief Initializes the input of the user.
  */
-void initLogin(void);
+void addUserId_initLogin(void);
 
 /**
  * @brief Changes the current position of the ID array to the next character following CHAR ORDER.
  */
-void id_increaseCurrent(void);
+void addUserId_increaseCurrent(void);
 /**
  * @brief Changes the current position of the ID array to the previous character following CHAR ORDER.
  */
-void id_decreaseCurrent(void);
+void addUserId_decreaseCurrent(void);
 /**
  * @brief Set the current position of the ID array with the introduced character and moves to the next position (unless the character is equal to BACKSPACE).
  *        If the introduced character is equal to BACKSPACE, it deletes the character of the current position and moves to the previous one.
  */
-void id_acceptNumber(void);
+void addUserId_acceptNumber(void);
 /**
  * @brief Checks if the entered ID is correct and corresponds to an user or an admin in the database.
  *        Adds a ID_OK or a ID_FAIL event to the event queue of the FSM.
  */
-void id_confirmID(void);
-/**
- * @brief Checks if the read ID (from card) is correct and corresponds to an user or an admin in the database.
- *        Adds a ID_OK or a ID_FAIL event to the event queue of the FSM.
- */
-void id_checkCardID(void);
+void addUserId_confirmID(void);
 
 /**
  * @brief Returns the array of the ID.
  * @param sizeOfReturningArray: A pointer to an integer where the size of the ID array gets stored.
  * @return The array of introduced characters.
  */
-int8_t *id_getIDArray(int *sizeOfReturningArray);
+int8_t* addUserId_getIDArray(int *sizeOfReturningArray);
 
 
 

@@ -29,12 +29,7 @@ static void moveAllUsersOnePlace(void);
  * @return A bool indicating if the format is valid or not.
  */
 static bool checkIdArrayFormat(uint8_t userID[]);
-/**
- * @brief Checks if the "pin" array format matches the format of a pin. The array must be complete (length equal to PIN_ARRAY_SIZE) and all elements must be numbers from 0 to 9.4
- * @param userPIN, The pin array.
- * @return A bool indicating if the format is valid or not.
- */
-static bool checkPinArrayFormat(int8_t userPIN[]);
+
 
 static bool CreateValidNumberArrayFormat(uint8_t cardNumber[], uint8_t numCharactersCardNumber, uint8_t validNumberArray[]);
 
@@ -184,12 +179,9 @@ Status validateAll(uint8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint
     /***************************************************************************/
     //                           Validate UserID
     /***************************************************************************/
-    //check Id Format
-    if (!checkIdArrayFormat(userID))
-        return ID_WRONG_FORMAT;
-    //check Id Availability
-    if (verifyID(userID))
-        return ID_ALREADY_EXISTS;
+    Status idValidation = validateNewId(userID);
+    if (idValidation != VALIDATE_SUCCESSFULL)
+        return idValidation;
     /***************************************************************************/
     //                           Validate UserPIN
     /***************************************************************************/
@@ -206,6 +198,26 @@ Status validateAll(uint8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint
     return VALIDATE_SUCCESSFULL;
 }
 
+Status validateNewId(uint8_t userID[])
+{
+    //check Id Format
+    if (!checkIdArrayFormat(userID))
+        return ID_WRONG_FORMAT;
+    //check Id Availability
+    if (verifyID(userID))
+        return ID_ALREADY_EXISTS;
+    return VALIDATE_SUCCESSFULL;
+}
+
+bool checkPinArrayFormat(int8_t userPIN[])
+{
+    int currentArrayLength = getEffectiveArrayLength(userPIN, PIN_ARRAY_SIZE);
+    if (currentArrayLength != PIN_ARRAY_SIZE && currentArrayLength != PIN_ARRAY_SIZE - 1) //4 or 5 chars
+        return false;
+
+    return true;
+}
+
 static bool checkIdArrayFormat(uint8_t userID[])
 {
     int currentArrayLength = getEffectiveArrayLength(userID, ID_ARRAY_SIZE);
@@ -215,14 +227,7 @@ static bool checkIdArrayFormat(uint8_t userID[])
     return true;
 }
 
-static bool checkPinArrayFormat(int8_t userPIN[])
-{
-    int currentArrayLength = getEffectiveArrayLength(userPIN, PIN_ARRAY_SIZE);
-    if (currentArrayLength != PIN_ARRAY_SIZE && currentArrayLength != PIN_ARRAY_SIZE - 1) //4 or 5 chars
-        return false;
 
-    return true;
-}
 
 
 static bool checkCardNumberArrayFormat(int8_t userCardNumber[])

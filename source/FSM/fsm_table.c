@@ -12,7 +12,7 @@
 #include "states/config_device_state.h"
 #include "States/config_me_state.h"
 //#include "states/admin_state.h" para open state
-
+#include "States/add_user_state/add_user_state.h"
 
 
 /*Foward Declarations*/
@@ -21,7 +21,7 @@ extern STATE welcome[];
 extern STATE id[];
 extern STATE pin[];
 extern STATE usr[];
-extern STATE menu[];
+extern STATE welcome[];
 extern STATE cfg_me[];
 extern STATE fail[];
 extern STATE cfg_usr[];
@@ -35,15 +35,15 @@ static void do_nothing(void);
 
 /*** tablas de estado ***/
 
-/*** menu ***/
+/*** welcome ***/
 
  STATE welcome[]=
 {
-  	{ENCODER_RIGHT_EV, 	id,		initLogin},
-    {ENCODER_LEFT_EV, 	id, 	initLogin},
-    {PRESS_EV, 			id, 	initLogin},
-	{LKP_EV, 			id, 	initLogin},
-	{CARD_SWIPE_EV, 	id, 	cardSwipe},
+  	{ENCODER_RIGHT_EV, 	id,			initLogin},
+    {ENCODER_LEFT_EV, 	id, 		initLogin},
+    {PRESS_EV, 			id, 		initLogin},
+	{LKP_EV, 			id, 		initLogin},
+	{CARD_SWIPE_EV, 	id, 		cardSwipe},
   	{FIN_TABLA, 		welcome, 	do_nothing}
 };
 
@@ -52,15 +52,15 @@ static void do_nothing(void);
 
 STATE id[]=
 {
-	{PRESS_EV, 					id, 	id_acceptNumber},
-	{LKP_EV, 					id, 	id_confirmID},
-	{ENCODER_RIGHT_EV, 			id, 	id_increaseCurrent},
-    {ENCODER_LEFT_EV, 			id, 	id_decreaseCurrent},
-	{CARD_SWIPE_EV, 			id, 	id_checkCardID},
+	{PRESS_EV, 					id, 		id_acceptNumber},
+	{LKP_EV, 					id, 		id_confirmID},
+	{ENCODER_RIGHT_EV, 			id, 		id_increaseCurrent},
+    {ENCODER_LEFT_EV, 			id, 		id_decreaseCurrent},
+	{CARD_SWIPE_EV, 			id, 		id_checkCardID},
 	{RETURN_TO_LAST_STATE_EV, 	welcome, 	showWelcomeAnimation},
-	{ID_OK_EV, 					pin, 	initPinInput}, 
+	{ID_OK_EV, 					pin, 		initPinInput}, 
 	{TIMEOUT_EV, 				welcome, 	showWelcomeAnimation},
-	{FIN_TABLA,					id,		do_nothing},
+	{FIN_TABLA,					id,			do_nothing},
 };
 
 /*** Pin ***/
@@ -68,27 +68,27 @@ STATE id[]=
 STATE pin[] =
 {
 	//{,pin,},	    
-	{PRESS_EV,					pin, 	pin_acceptNumber},
-	{ENCODER_RIGHT_EV,			pin, 	pin_increaseCurrent}, 
-    {ENCODER_LEFT_EV,			pin, 	pin_decreaseCurrent},
-	{LKP_EV, 					pin, 	pin_confirmPin}, 
+	{PRESS_EV,					pin, 		pin_acceptNumber},
+	{ENCODER_RIGHT_EV,			pin, 		pin_increaseCurrent}, 
+    {ENCODER_LEFT_EV,			pin, 		pin_decreaseCurrent},
+	{LKP_EV, 					pin, 		pin_confirmPin}, 
 	{PIN_OK_EV, 				menu, 	menu_initState},
-	{RETURN_TO_LAST_STATE_EV,	id, 	initLogin},
-	{FAIL_PIN_EV, 				fail, 	initFailState},
+	{RETURN_TO_LAST_STATE_EV,	id, 		initLogin},
+	{FAIL_PIN_EV, 				fail, 		initFailState},
 	{TIMEOUT_EV, 				welcome, 	showWelcomeAnimation},
-	{FIN_TABLA, 				pin, 	do_nothing}
+	{FIN_TABLA, 				pin, 		do_nothing}
 };
 
 /*** Fail ***/
 STATE fail[] =
 {
-	{PRESS_EV,			fail, 	finishFail},
-	{ENCODER_RIGHT_EV,	fail,	finishFail}, 
-    {ENCODER_LEFT_EV,	fail, 	finishFail}, 
+	{PRESS_EV,			fail, 		finishFail},
+	{ENCODER_RIGHT_EV,	fail,		finishFail}, 
+    {ENCODER_LEFT_EV,	fail, 		finishFail}, 
 	{TIMEOUT_EV, 		welcome, 	showWelcomeAnimation},
 	{USR_BLOCKED_EV,	welcome,	showWelcomeAnimation},
-	{RETRY_PIN_EV, 		pin, 	initPinInput},
-	{FIN_TABLA, 		pin, 	do_nothing}
+	{RETRY_PIN_EV, 		pin, 		initPinInput},
+	{FIN_TABLA, 		pin, 		do_nothing}
 };
 
 /*** MENU ***/
@@ -102,7 +102,7 @@ STATE menu[] =
 	{OPEN_SELECTED_EV,					open,		openDoor},
 	{LOG_OUT_EV, 						welcome, 		showWelcomeAnimation},
     {CONFIG_ME_SELECTED_EV,				cfg_me,		configMe_initState},
-	/* Eventos exclusivos de amin*/ 
+	/* Eventos exclusivos de admin*/ 
 	//{ADD_USER_SELECTED_EV,				add_user,			},
     {CONFIG_USER_SELECTED_EV,			cfg_usr,			},
     {CONFIG_DEVICE_SELECTED_EV,			cfg_device,	initConfigDevice},
@@ -114,27 +114,33 @@ STATE menu[] =
 STATE open[] =
 {
 	{TIMER_ACCESS_EV,	welcome,	showWelcomeAnimation},
-	{FIN_TABLA, 		open, 	do_nothing}
+	{FIN_TABLA, 		open, 		do_nothing}
 };
 
 /*User config me*/
 STATE cfg_me[] = 
 {
-	{PRESS_EV,					cfg_me, configMe_acceptNumber},
-	{ENCODER_RIGHT_EV,			cfg_me, configMe_increaseCurrent}, 
-    {ENCODER_LEFT_EV,			cfg_me, configMe_decreaseCurrent},
-	{LKP_EV, 					cfg_me, configMe_confirmPin}, 
+	{PRESS_EV,					cfg_me, 	configMe_acceptNumber},
+	{ENCODER_RIGHT_EV,			cfg_me, 	configMe_increaseCurrent}, 
+    {ENCODER_LEFT_EV,			cfg_me, 	configMe_decreaseCurrent},
+	{LKP_EV, 					cfg_me, 	configMe_confirmPin}, 
 	{RETURN_TO_LAST_STATE_EV, 	menu,	menu_initState},
 	{TIMEOUT_EV, 				welcome, 	showWelcomeAnimation},
-	{FIN_TABLA, 				cfg_me, do_nothing}
+	{FIN_TABLA, 				cfg_me, 	do_nothing}
 };
 
 /*Config usr*/
-STATE cfg_usr[] = 
-{
-	{CONFIG_USER_FINISHED_EV, 			menu,		menu_initState},// ver si esta bien la rutina de accion
-	{TIMEOUT_EV,				 		welcome, 		showWelcomeAnimation},
-	{FIN_TABLA, 						cfg_usr, 	do_nothing}
+STATE add_user[] = 
+{	
+	{PRESS_EV, 					add_user, 	addUser_onPress},
+	{LKP_EV, 					add_user, 	addUser_onLKP},
+	{ENCODER_RIGHT_EV, 			add_user, 	addUser_onEncoderRight},
+    {ENCODER_LEFT_EV, 			add_user, 	addUser_onEncoderLeft},
+	{CARD_SWIPE_EV, 			add_user, 	addUser_onCardSwipe},
+	{RETURN_TO_LAST_STATE_EV, 	add_user, 	addUser_onReturn},
+	{CONFIG_USER_FINISHED_EV, 	menu,		menu_initState},// ver si esta bien la rutina de accion
+	{TIMEOUT_EV,				welcome, 	showWelcomeAnimation},
+	{FIN_TABLA, 				cfg_usr, 	do_nothing}
 };
 /*Config device*/
 STATE cfg_device[] = 
@@ -156,7 +162,7 @@ STATE *FSM_GetInitState(void)
 }
 
 ///=========Rutinas de accion===============
-void FMS_StartInitState()
+void FSM_StartInitState()
 {
 	showWelcomeAnimation();
 }

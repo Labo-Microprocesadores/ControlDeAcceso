@@ -19,7 +19,7 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-#define TITLE_TIME  2000
+#define TITLE_TIME  6000
 
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
@@ -60,11 +60,11 @@ static void userInteractionStopErrorIndication(void);
 /**
  * @brief Function executed when the ID is not correct.
  */
-static void id_fail(void);
+static void idFail(void);
 /**
  * @brief Function executed when the lector fails to read the card.
  */
-static void id_cardFail(void);
+static void idCardFail(void);
 
 /*******************************************************************************
  *******************************************************************************
@@ -110,7 +110,7 @@ void id_confirmID(void)
     else
     {
         if (!verifyID(id))
-            id_fail();
+            idFail();
         else
             emitEvent(ID_OK_EV);
     }
@@ -158,12 +158,12 @@ void id_checkCardID(void)
         }
         else
         {
-            id_fail();
+            idFail();
         }
     }
     else
     {
-        id_cardFail();
+        idCardFail();
     }
 
     //TODO Checks if the read ID (from card) is correct and corresponds to a user or an admin in the database. Adds a ID_OK or a ID_FAIL event to the event queue of the FSM.
@@ -216,7 +216,7 @@ static void userInteractionStopErrorIndication(void)
     errorIndicationTimerID = -1;
 }
 
-static void id_fail(void)
+static void idFail(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
@@ -226,7 +226,7 @@ static void id_fail(void)
     errorIndicationTimerID = Timer_AddCallback(&initLogin, TITLE_TIME, true);
 }
 
-static void id_cardFail(void)
+static void idCardFail(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();

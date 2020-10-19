@@ -56,39 +56,12 @@ void addUser_onEncoderLeft(void)
     currentState = fsm(currentState, ENCODER_LEFT_EV);
 }
 
-
-
-
-
-/*
-void id_increaseCurrent(void)
+void addUser_onCardSwipe(void)
 {
-    if (showingTitle)
-        userInteractionStopsTitle();
-    else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();  
-    else
-        inputIncreaseCurrent(id, currentPos);
+    currentState = fsm(currentState, CARD_SWIPE_EV);
 }
 
-void id_acceptNumber(void)
+void addUser_onReturn(void)
 {
-    if (showingTitle)
-        userInteractionStopsTitle();
-    else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();
-    else
-        inputAcceptNumber(id, &currentPos, ID_ARRAY_SIZE);
+    currentState = fsm(currentState, RETURN_TO_LAST_STATE_EV);
 }
-
-*/
-
-void initLogin(void)
-{
-    showingErrorIndication = false;
-    inputResetArray(id, &currentPos, ID_ARRAY_SIZE);
-    showTitle();
-}
-
-
-

@@ -1,6 +1,6 @@
 /***************************************************************************/ /**
   @file     add_user_main_menu_state.c
-  @brief    Main menu state functions.
+  @brief    Main welcome state functions.
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/
 
@@ -12,18 +12,18 @@
 #include "data_base.h"//:-)
 #include "queue.h"
 #include "seven_seg_display.h"
+
 /*******************************************************************************
  * FUNCTIONS WITH GLOBAL SCOPE
  ******************************************************************************/
-void showWelcomeAnimation(void)
+void addUsr_initState(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBufferAndMove("ADD USR", 7, 0, BOUNCE);
+    SevenSegDisplay_WriteBufferAndMove("SWIPE CARD", 10, 0, BOUNCE);
     //TODO: Show animation indicating "Welcome, swipe your id card or click the button to enter it manually" or similar.
 }
-
 
 
 void cardSwipe(void)

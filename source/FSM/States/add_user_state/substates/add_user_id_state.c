@@ -19,7 +19,7 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-#define TITLE_TIME  2000
+#define TITLE_TIME  6000
 
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
@@ -60,11 +60,11 @@ static void userInteractionStopErrorIndication(void);
 /**
  * @brief Function executed when the ID is not correct.
  */
-static void id_fail(void);
+static void idFail(void);
 /**
  * @brief Function executed when the lector fails to read the card.
  */
-static void id_cardFail(void);
+static void idCardFail(void);
 
 /*******************************************************************************
  *******************************************************************************
@@ -74,14 +74,14 @@ static void id_cardFail(void);
 //!OJO EN TODAS ESTA HABRIA QUE RESETEAR EL TIMER DE TIMEOUT Y EN ALGUNAS ACTUALIZAR EL DISPLAY
 //TODO AGREGAR ESO
 
-void initLogin(void)
+void addUserId_initLogin(void)
 {
     showingErrorIndication = false;
     inputResetArray(id, &currentPos, ID_ARRAY_SIZE);
     showTitle();
 }
 
-void id_increaseCurrent(void)
+void addUserId_increaseCurrent(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
@@ -91,7 +91,7 @@ void id_increaseCurrent(void)
         inputIncreaseCurrent(id, currentPos);
 }
 
-void id_decreaseCurrent(void)
+void addUserId_decreaseCurrent(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
@@ -101,7 +101,7 @@ void id_decreaseCurrent(void)
         inputDecreaseCurrent(id, currentPos);
 }
 
-void id_confirmID(void)
+void addUserId_confirmID(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
@@ -109,15 +109,18 @@ void id_confirmID(void)
         userInteractionStopErrorIndicationAndRestart();    
     else
     {
-        if (!verifyID(id))
-            id_fail();
-        else
+        Status idValidation = validateNewId(id);
+        if (idValidation == VALIDATE_SUCCESSFULL)
             emitEvent(ID_OK_EV);
+        else if (idValidation == ID_ALREADY_EXISTS)
+            idAlreadyExists();
+        else if (idValidation == ID_WRONG_FORMAT)
+            idFail();
     }
 }
 
 
-void id_acceptNumber(void)
+void addUserId_acceptNumber(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
@@ -127,46 +130,11 @@ void id_acceptNumber(void)
         inputAcceptNumber(id, &currentPos, ID_ARRAY_SIZE);
 }
 
-int8_t * id_getIdArray(int *sizeOfReturningArray)
+int8_t * addUserId_getIdArray(int *sizeOfReturningArray)
 {
     int currentArrayLength = getEffectiveArrayLength(id, ID_ARRAY_SIZE);
     *sizeOfReturningArray = currentArrayLength;
     return id;
-}
-
-void id_checkCardID(void)
-{
-    if (showingTitle)
-        userInteractionStopsTitle();
-    else if (showingErrorIndication)
-        userInteractionStopErrorIndication();
-    card_t myCard;
-    bool ok = Lector_GetData(&myCard);
-    if(ok)
-    {
-        // agarro numero de tarjeta
-        uint8_t numero[19];
-        uint8_t i,length = myCard.number_len;
-        for(i = 0; i<length; i++)
-        {
-            numero[i] = myCard.card_number[i];
-        }
-        
-        if(verifyCardNumber(numero, length))
-        {
-            emitEvent(ID_OK_EV);
-        }
-        else
-        {
-            id_fail();
-        }
-    }
-    else
-    {
-        id_cardFail();
-    }
-
-    //TODO Checks if the read ID (from card) is correct and corresponds to a user or an admin in the database. Adds a ID_OK or a ID_FAIL event to the event queue of the FSM.
 }
 
 
@@ -216,22 +184,32 @@ static void userInteractionStopErrorIndication(void)
     errorIndicationTimerID = -1;
 }
 
-static void id_fail(void)
+static void idFail(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBufferAndMove("NO ID FOUND", 11, 0, BOUNCE);
+    SevenSegDisplay_WriteBufferAndMove("ID FAILED", 9, 0, SHIFT_L);
     showingErrorIndication = true;
-    errorIndicationTimerID = Timer_AddCallback(&initLogin, TITLE_TIME, true);
+    errorIndicationTimerID = Timer_AddCallback(&addUserId_initLogin, TITLE_TIME, true);
 }
 
-static void id_cardFail(void)
+static void idCardFail(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBufferAndMove("CARD FAILED", 11, 0, BOUNCE);
+    SevenSegDisplay_WriteBufferAndMove("CARD FAILED", 11, 0, SHIFT_L);
     showingErrorIndication = true;
-    errorIndicationTimerID = Timer_AddCallback(&initLogin, TITLE_TIME, true);
+    errorIndicationTimerID = Timer_AddCallback(&addUserId_initLogin, TITLE_TIME, true);
+}
+
+static void idAlreadyExists(void)
+{
+    SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_CursorOff();
+    SevenSegDisplay_SetPos(0);
+    SevenSegDisplay_WriteBufferAndMove("ID IS USED", 10, 0, SHIFT_L);
+    showingErrorIndication = true;
+    errorIndicationTimerID = Timer_AddCallback(&addUserId_initLogin, TITLE_TIME, true);
 }

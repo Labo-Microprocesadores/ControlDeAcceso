@@ -60,7 +60,7 @@ static void stopShowingTitle(void);
 static void userInteractionStopsTitle(void);
 
 /**
- * @brief Shows the current option of the menu in the display.
+ * @brief Shows the current option of the welcome in the display.
  */
 static void showCurrentOption(void);
 /*******************************************************************************

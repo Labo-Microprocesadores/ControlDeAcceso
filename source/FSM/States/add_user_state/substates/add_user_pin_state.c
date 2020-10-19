@@ -4,10 +4,7 @@
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/
 
-/*******************************************************************************
- * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
- ******************************************************************************/
-#define TITLE_TIME  2000
+
 /*******************************************************************************
  * INCLUDE HEADER FILES
  ******************************************************************************/
@@ -19,14 +16,18 @@
 #include "queue.h"
 #include "seven_seg_display.h"
 
-
+/*******************************************************************************
+ * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
+ ******************************************************************************/
+#define TITLE_TIME  6000
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
 static int8_t pin[PIN_ARRAY_SIZE];
 static uint8_t currentPos = 0;
-static bool showingTitle;
+static bool showingTitle, showingErrorIndication;
 static int titleTimerID = -1;
+static int errorIndicationTimerID = -1;
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
@@ -45,6 +46,19 @@ static void stopShowingTitle(void);
  */
 static void userInteractionStopsTitle(void);
 
+/**
+ * @brief Stops showing the error indication in the display due to a user's interaction. The state 'restarts'.
+ */
+static void userInteractionStopErrorIndicationAndRestart(void);
+
+/**
+ * @brief Stops showing the error indication in the display due to a user's interaction. The state doesn't 'restart'.
+ */
+static void userInteractionStopErrorIndication(void);
+/**
+ * @brief Function executed when the PIN is not correct.
+ */
+static void pinFail(void);
 
 /*******************************************************************************
  *******************************************************************************
@@ -54,21 +68,24 @@ static void userInteractionStopsTitle(void);
 //!OJO EN TODAS ESTADS HABRIA QUE RESETEAR EL TIMER DE TIMEOUT Y EN ALGUNAS ACTUALIZAR EL DISPLAY
 //TODO AGREGAR ESO
 
-void initPinInput(void)
+void addUserPin_initPinInput(void)
 {
+    showingErrorIndication = false;
 	inputResetArray(pin, &currentPos, PIN_ARRAY_SIZE);
     showTitle();
 }
 
-void pin_confirmPin(void)
+void addUserPin_confirmPin(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
+    else if (showingErrorIndication)
+        userInteractionStopErrorIndicationAndRestart();  
     else
     {
-        if (!verifyPIN(pin))
+        if (!checkPinArrayFormat(pin))
         {
-            emitEvent(FAIL_PIN_EV);
+            pinFail();
         }
         else
         {
@@ -77,10 +94,12 @@ void pin_confirmPin(void)
     }    
 }
 
-void pin_acceptNumber(void)
+void addUserPin_acceptNumber(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
+    else if (showingErrorIndication)
+        userInteractionStopErrorIndicationAndRestart();  
     else
     {
         int8_t aux[] = {MID_LINE};
@@ -90,23 +109,27 @@ void pin_acceptNumber(void)
         
 }
 
-void pin_increaseCurrent(void)
+void addUserPin_increaseCurrent(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
+    else if (showingErrorIndication)
+        userInteractionStopErrorIndicationAndRestart();  
     else
         inputIncreaseCurrent(pin, currentPos);
 }
 
-void pin_decreaseCurrent(void)
+void addUserPin_decreaseCurrent(void)
 {
     if (showingTitle)
         userInteractionStopsTitle();
+    else if (showingErrorIndication)
+        userInteractionStopErrorIndicationAndRestart();  
     else
         inputDecreaseCurrent(pin, currentPos);
 }
 
-int8_t *pin_getPinArray(int *sizeOfReturningArray)
+int8_t *addUserPin_getPinArray(int *sizeOfReturningArray)
 {
     int currentArrayLength = getEffectiveArrayLength(pin, PIN_ARRAY_SIZE);
     *sizeOfReturningArray = currentArrayLength;
@@ -122,9 +145,9 @@ int8_t *pin_getPinArray(int *sizeOfReturningArray)
 static void showTitle(void)
 {
     SevenSegDisplay_EraseScreen();
-    SevenSegDisplay_WriteBuffer("PIN ", 4, 0);
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_CursorOff();
+    SevenSegDisplay_WriteBuffer("PIN ", 4, 0);
     showingTitle = true;
     titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);
 }
@@ -132,6 +155,7 @@ static void showTitle(void)
 static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_SetPos(0);
     SevenSegDisplay_WriteBuffer(pin, PIN_ARRAY_SIZE, 0);
     SevenSegDisplay_CursorOn();
     showingTitle = false;
@@ -142,4 +166,29 @@ static void userInteractionStopsTitle(void)
     Timer_Delete(titleTimerID);
     titleTimerID = -1;
     stopShowingTitle();
+    SevenSegDisplay_CursorOn();
+}
+
+static void userInteractionStopErrorIndicationAndRestart(void)
+{
+    userInteractionStopErrorIndication();
+    initLogin();
+}
+
+static void userInteractionStopErrorIndication(void)
+{
+    SevenSegDisplay_EraseScreen();
+    Timer_Delete(errorIndicationTimerID);
+    showingErrorIndication = false;
+    errorIndicationTimerID = -1;
+}
+
+static void pinFail(void)
+{
+    SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_CursorOff();
+    SevenSegDisplay_SetPos(0);
+    SevenSegDisplay_WriteBufferAndMove("PIN FAILED", 9, 0, SHIFT_L);
+    showingErrorIndication = true;
+    errorIndicationTimerID = Timer_AddCallback(&addUserPin_initPinInput, TITLE_TIME, true);
 }

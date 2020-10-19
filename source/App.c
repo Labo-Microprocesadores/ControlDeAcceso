@@ -61,7 +61,7 @@ void App_Init(void)
   buttonConfiguration(ENCODER_SW, LKP, 20); //20*50=1seg
 
   currentState = FSM_GetInitState();
-  FMS_StartInitState();
+  FSM_StartInitState();
   userTimeOutTimerID = Timer_AddCallback(&timeOutCallback, TIMER_TIMEOUT, false);
 }
 

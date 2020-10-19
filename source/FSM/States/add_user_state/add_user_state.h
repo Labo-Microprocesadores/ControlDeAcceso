@@ -23,6 +23,8 @@ void addUser_onLKP(void);
 void addUser_onPress(void);
 void addUser_onEncoderRight(void);
 void addUser_onEncoderLeft(void);
+void addUser_onCardSwipe(void);
+void addUser_onReturn(void);
 
 
 #endif /* ADD_USER_STATE_H_*/

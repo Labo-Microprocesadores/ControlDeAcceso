@@ -8,5 +8,5 @@
 #include "fsm.h"
 
 STATE *FSM_GetInitState(void);
-void FMS_StartInitState();
+void FSM_StartInitState();
 #endif /* FSMTABLE_H_ */

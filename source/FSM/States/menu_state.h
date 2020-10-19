@@ -16,7 +16,7 @@
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
 /**
- * @brief Initializes the menu
+ * @brief Initializes the welcome
  */
 void menu_initState(void);
 /**
@@ -24,7 +24,7 @@ void menu_initState(void);
  */
 void menu_nextOption(void);
 /**
- * @brief Shows the next menu option.
+ * @brief Shows the next welcome option.
  */
 void menu_previousOption(void);
 

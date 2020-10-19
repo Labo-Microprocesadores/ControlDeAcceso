@@ -3,6 +3,10 @@
 EN TODOS LADOS: 
     - [x] AGREGAR EVENT QUEUE.
 
+En add user:
+    - [ ]Cambiar nombre a main menu
+
+
 En id_state.c, pin_state.c y user_input:
     - [x] Resetear el timer de timeout en algunas funciones 
     - [ ] En algunas actualizar el display

@@ -34,7 +34,7 @@ static uint8_t currentOptionIndex = 0;
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 /**
- * @brief Shows the current option of the menu in the display.
+ * @brief Shows the current option of the welcome in the display.
  */
 static void showCurrentOption(void);
 /*******************************************************************************

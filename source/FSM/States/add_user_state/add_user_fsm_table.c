@@ -4,46 +4,43 @@
 #include "add_user_fsm_table.h"
 #include "substates/add_user_main_state.h"
 #include "substates/add_user_id_state.h"
-
-
-
+#include "substates/add_user_pin_state.h"
 
 
 /*Foward Declarations*/
 
-extern STATE menu[];
+extern STATE card[];
 extern STATE id[];
 extern STATE pin[];
 
 // prototipos
 static void do_nothing(void);
+static void return_to_last(void);
 
 /*** tablas de estado ***/
 
-/*** menu ***/
-STATE menu[]=
+/*** Card ***/
+STATE card[]=
 {
-  	{ENCODER_RIGHT_EV, 	id,		initLogin},
-    {ENCODER_LEFT_EV, 	id, 	initLogin},
-    {PRESS_EV, 			id, 	initLogin},
-	{LKP_EV, 			id, 	initLogin},
+  	{ENCODER_RIGHT_EV, 	card,	return_to_last},
+    {ENCODER_LEFT_EV, 	card, 	return_to_last},
+    {PRESS_EV, 			card, 	return_to_last},
+	{LKP_EV, 			card, 	return_to_last},
 	{CARD_SWIPE_EV, 	id, 	cardSwipe},
-  	{FIN_TABLA, 		menu, 	do_nothing}
+  	{FIN_TABLA, 		card, 	do_nothing}
 };
 
 /*** Id ***/
 
 STATE id[]=
 {
-	{PRESS_EV, id, id_acceptNumber},
-	{LKP_EV, id, id_confirmID},
-	{ENCODER_RIGHT_EV, id, id_increaseCurrent},
-    {ENCODER_LEFT_EV, id, id_decreaseCurrent},
-	{CARD_SWIPE_EV, id, id_checkCardID},
-	{RETURN_TO_LAST_STATE_EV, menu, showWelcomeAnimation},
-	{ID_OK_EV, pin, initPinInput}, //TODO que updetee el display
-	{TIMEOUT_EV, menu, showWelcomeAnimation},
-	{FIN_TABLA,id,do_nothing},
+	{PRESS_EV, 						id, 	addUserId_acceptNumber},
+	{LKP_EV, 						id, 	addUserId_confirmID},
+	{ENCODER_RIGHT_EV, 				id, 	addUserId_increaseCurrent},
+    {ENCODER_LEFT_EV, 				id, 	addUserId_decreaseCurrent},
+	{RETURN_TO_LAST_STATE_EV, 		card, 	addUsr_initState},
+	{ID_OK_EV, 						pin, 	addUserPin_initPinInput}, //TODO que updetee el display
+	{FIN_TABLA,						id,		do_nothing},
 };
 
 /*** Pin ***/
@@ -51,16 +48,12 @@ STATE id[]=
 STATE pin[] =
 {
 	//{,pin,},	    
-	{PRESS_EV,pin, pin_acceptNumber},
-	{ENCODER_RIGHT_EV,pin, pin_increaseCurrent}, 
-    {ENCODER_LEFT_EV,pin, pin_decreaseCurrent},
-	{LKP_EV, pin, pin_confirmPin}, 
-	{USR_PIN_OK_EV, usr, initUserMenu},
-    {ADMIN_PIN_OK_EV, admin, admin_initAdminMenu},
-	{RETURN_TO_LAST_STATE_EV, id, initLogin},
-	{FAIL_PIN_EV, fail, initFailState},
-	{TIMEOUT_EV, menu, showWelcomeAnimation},
-	{FIN_TABLA, pin, do_nothing}
+	{PRESS_EV,						pin, 	addUserPin_acceptNumber},
+	{ENCODER_RIGHT_EV,				pin, 	addUserPin_increaseCurrent}, 
+    {ENCODER_LEFT_EV,				pin, 	addUserPin_decreaseCurrent},
+	{LKP_EV,						pin, 	addUserPin_confirmPin}, 
+	{RETURN_TO_LAST_STATE_EV, 		id, 	addUserId_initLogin},
+	{FIN_TABLA, 					pin, 	do_nothing}
 };
 
 
@@ -70,13 +63,13 @@ STATE pin[] =
 
 STATE *FSM_GetInitState(void) // cambiar nombre
 {
-	return(menu);
+	return(card);
 }
 
 ///=========Rutinas de accion===============
-void FMS_StartInitState() // cambiar nombre
+void FSM_StartInitState() // cambiar nombre
 {
-	showWelcomeAnimation();
+	addUsr_initState();
 }
 
 
@@ -84,4 +77,10 @@ void FMS_StartInitState() // cambiar nombre
 static void do_nothing(void)
 {
 	//take some time off, relax, and KEEP WORKING ////you lazy ass ALU
+}
+
+
+static void return_to_last(void)
+{
+	emitEvent(RETURN_TO_LAST_STATE_EV);
 }
