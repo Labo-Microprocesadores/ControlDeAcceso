@@ -17,6 +17,7 @@ SUBDIRS := \
 CMSIS \
 source \
 source/FSM/States/add_user_state \
+source/FSM/States/add_user_state/substates \
 source/FSM/States \
 source/FSM \
 source/MCAL \

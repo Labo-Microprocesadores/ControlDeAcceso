@@ -421,6 +421,51 @@ Discarded input sections
  .debug_macro   0x00000000       0x10 ./source/MCAL/gpio.o
  .debug_macro   0x00000000     0x122b ./source/MCAL/gpio.o
  .debug_macro   0x00000000       0x16 ./source/MCAL/gpio.o
+ .group         0x00000000        0xc ./source/FSM/States/add_user_state/substates/add_user_card_read_state.o
+ .text          0x00000000        0x0 ./source/FSM/States/add_user_state/substates/add_user_card_read_state.o
+ .data          0x00000000        0x0 ./source/FSM/States/add_user_state/substates/add_user_card_read_state.o
+ .bss           0x00000000        0x0 ./source/FSM/States/add_user_state/substates/add_user_card_read_state.o
+ .debug_info    0x00000000       0x21 ./source/FSM/States/add_user_state/substates/add_user_card_read_state.o
+ .debug_abbrev  0x00000000       0x13 ./source/FSM/States/add_user_state/substates/add_user_card_read_state.o
+ .debug_aranges
+                0x00000000       0x18 ./source/FSM/States/add_user_state/substates/add_user_card_read_state.o
+ .debug_macro   0x00000000       0x11 ./source/FSM/States/add_user_state/substates/add_user_card_read_state.o
+ .debug_macro   0x00000000      0xa90 ./source/FSM/States/add_user_state/substates/add_user_card_read_state.o
+ .debug_line    0x00000000       0x69 ./source/FSM/States/add_user_state/substates/add_user_card_read_state.o
+ .debug_str     0x00000000     0x2dbb ./source/FSM/States/add_user_state/substates/add_user_card_read_state.o
+ .comment       0x00000000       0x7f ./source/FSM/States/add_user_state/substates/add_user_card_read_state.o
+ .ARM.attributes
+                0x00000000       0x39 ./source/FSM/States/add_user_state/substates/add_user_card_read_state.o
+ .group         0x00000000        0xc ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+ .text          0x00000000        0x0 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+ .data          0x00000000        0x0 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+ .bss           0x00000000        0x0 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+ .debug_info    0x00000000       0x21 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+ .debug_abbrev  0x00000000       0x13 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+ .debug_aranges
+                0x00000000       0x18 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+ .debug_macro   0x00000000       0x11 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+ .debug_macro   0x00000000      0xa90 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+ .debug_line    0x00000000       0x62 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+ .debug_str     0x00000000     0x2db4 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+ .comment       0x00000000       0x7f ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+ .ARM.attributes
+                0x00000000       0x39 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+ .group         0x00000000        0xc ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+ .text          0x00000000        0x0 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+ .data          0x00000000        0x0 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+ .bss           0x00000000        0x0 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+ .debug_info    0x00000000       0x21 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+ .debug_abbrev  0x00000000       0x13 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+ .debug_aranges
+                0x00000000       0x18 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+ .debug_macro   0x00000000       0x11 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+ .debug_macro   0x00000000      0xa90 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+ .debug_line    0x00000000       0x63 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+ .debug_str     0x00000000     0x2db5 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+ .comment       0x00000000       0x7f ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+ .ARM.attributes
+                0x00000000       0x39 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
  .group         0x00000000        0xc ./source/FSM/States/add_user_state/add_user_fsm_table.o
  .group         0x00000000        0xc ./source/FSM/States/add_user_state/add_user_fsm_table.o
  .group         0x00000000        0xc ./source/FSM/States/add_user_state/add_user_fsm_table.o
@@ -443,11 +488,41 @@ Discarded input sections
  .debug_macro   0x00000000      0x5b2 ./source/FSM/States/add_user_state/add_user_fsm_table.o
  .debug_macro   0x00000000       0x22 ./source/FSM/States/add_user_state/add_user_fsm_table.o
  .debug_macro   0x00000000       0x22 ./source/FSM/States/add_user_state/add_user_fsm_table.o
- .debug_line    0x00000000      0x1c4 ./source/FSM/States/add_user_state/add_user_fsm_table.o
- .debug_str     0x00000000     0x4920 ./source/FSM/States/add_user_state/add_user_fsm_table.o
+ .debug_line    0x00000000      0x1ce ./source/FSM/States/add_user_state/add_user_fsm_table.o
+ .debug_str     0x00000000     0x4928 ./source/FSM/States/add_user_state/add_user_fsm_table.o
  .comment       0x00000000       0x7f ./source/FSM/States/add_user_state/add_user_fsm_table.o
  .ARM.attributes
                 0x00000000       0x39 ./source/FSM/States/add_user_state/add_user_fsm_table.o
+ .group         0x00000000        0xc ./source/FSM/States/add_user_state/add_user_id_state.o
+ .text          0x00000000        0x0 ./source/FSM/States/add_user_state/add_user_id_state.o
+ .data          0x00000000        0x0 ./source/FSM/States/add_user_state/add_user_id_state.o
+ .bss           0x00000000        0x0 ./source/FSM/States/add_user_state/add_user_id_state.o
+ .debug_info    0x00000000       0x21 ./source/FSM/States/add_user_state/add_user_id_state.o
+ .debug_abbrev  0x00000000       0x13 ./source/FSM/States/add_user_state/add_user_id_state.o
+ .debug_aranges
+                0x00000000       0x18 ./source/FSM/States/add_user_state/add_user_id_state.o
+ .debug_macro   0x00000000       0x11 ./source/FSM/States/add_user_state/add_user_id_state.o
+ .debug_macro   0x00000000      0xa90 ./source/FSM/States/add_user_state/add_user_id_state.o
+ .debug_line    0x00000000       0x58 ./source/FSM/States/add_user_state/add_user_id_state.o
+ .debug_str     0x00000000     0x2daa ./source/FSM/States/add_user_state/add_user_id_state.o
+ .comment       0x00000000       0x7f ./source/FSM/States/add_user_state/add_user_id_state.o
+ .ARM.attributes
+                0x00000000       0x39 ./source/FSM/States/add_user_state/add_user_id_state.o
+ .group         0x00000000        0xc ./source/FSM/States/add_user_state/add_user_main_state.o
+ .text          0x00000000        0x0 ./source/FSM/States/add_user_state/add_user_main_state.o
+ .data          0x00000000        0x0 ./source/FSM/States/add_user_state/add_user_main_state.o
+ .bss           0x00000000        0x0 ./source/FSM/States/add_user_state/add_user_main_state.o
+ .debug_info    0x00000000       0x21 ./source/FSM/States/add_user_state/add_user_main_state.o
+ .debug_abbrev  0x00000000       0x13 ./source/FSM/States/add_user_state/add_user_main_state.o
+ .debug_aranges
+                0x00000000       0x18 ./source/FSM/States/add_user_state/add_user_main_state.o
+ .debug_macro   0x00000000       0x11 ./source/FSM/States/add_user_state/add_user_main_state.o
+ .debug_macro   0x00000000      0xa90 ./source/FSM/States/add_user_state/add_user_main_state.o
+ .debug_line    0x00000000       0x5a ./source/FSM/States/add_user_state/add_user_main_state.o
+ .debug_str     0x00000000     0x2dac ./source/FSM/States/add_user_state/add_user_main_state.o
+ .comment       0x00000000       0x7f ./source/FSM/States/add_user_state/add_user_main_state.o
+ .ARM.attributes
+                0x00000000       0x39 ./source/FSM/States/add_user_state/add_user_main_state.o
  .group         0x00000000        0xc ./source/FSM/States/add_user_state/add_user_state.o
  .group         0x00000000        0xc ./source/FSM/States/add_user_state/add_user_state.o
  .group         0x00000000        0xc ./source/FSM/States/add_user_state/add_user_state.o
@@ -489,34 +564,12 @@ Discarded input sections
  .debug_macro   0x00000000       0xd2 ./source/FSM/States/add_user_state/add_user_state.o
  .debug_macro   0x00000000       0x22 ./source/FSM/States/add_user_state/add_user_state.o
  .debug_macro   0x00000000       0x1c ./source/FSM/States/add_user_state/add_user_state.o
- .debug_line    0x00000000      0x255 ./source/FSM/States/add_user_state/add_user_state.o
- .debug_str     0x00000000     0x4c88 ./source/FSM/States/add_user_state/add_user_state.o
+ .debug_line    0x00000000      0x257 ./source/FSM/States/add_user_state/add_user_state.o
+ .debug_str     0x00000000     0x4c90 ./source/FSM/States/add_user_state/add_user_state.o
  .comment       0x00000000       0x7f ./source/FSM/States/add_user_state/add_user_state.o
  .debug_frame   0x00000000       0xbc ./source/FSM/States/add_user_state/add_user_state.o
  .ARM.attributes
                 0x00000000       0x39 ./source/FSM/States/add_user_state/add_user_state.o
- .group         0x00000000        0xc ./source/FSM/States/admin_state.o
- .group         0x00000000        0xc ./source/FSM/States/admin_state.o
- .group         0x00000000        0xc ./source/FSM/States/admin_state.o
- .group         0x00000000        0xc ./source/FSM/States/admin_state.o
- .group         0x00000000        0xc ./source/FSM/States/admin_state.o
- .group         0x00000000        0xc ./source/FSM/States/admin_state.o
- .group         0x00000000        0xc ./source/FSM/States/admin_state.o
- .group         0x00000000        0xc ./source/FSM/States/admin_state.o
- .group         0x00000000        0xc ./source/FSM/States/admin_state.o
- .group         0x00000000        0xc ./source/FSM/States/admin_state.o
- .text          0x00000000        0x0 ./source/FSM/States/admin_state.o
- .data          0x00000000        0x0 ./source/FSM/States/admin_state.o
- .bss           0x00000000        0x0 ./source/FSM/States/admin_state.o
- .debug_macro   0x00000000      0xa90 ./source/FSM/States/admin_state.o
- .debug_macro   0x00000000       0x10 ./source/FSM/States/admin_state.o
- .debug_macro   0x00000000      0x12d ./source/FSM/States/admin_state.o
- .debug_macro   0x00000000      0x5b2 ./source/FSM/States/admin_state.o
- .debug_macro   0x00000000       0xd8 ./source/FSM/States/admin_state.o
- .debug_macro   0x00000000       0x22 ./source/FSM/States/admin_state.o
- .debug_macro   0x00000000       0x22 ./source/FSM/States/admin_state.o
- .debug_macro   0x00000000       0x16 ./source/FSM/States/admin_state.o
- .debug_macro   0x00000000       0x34 ./source/FSM/States/admin_state.o
  .group         0x00000000        0xc ./source/FSM/States/config_device_state.o
  .group         0x00000000        0xc ./source/FSM/States/config_device_state.o
  .group         0x00000000        0xc ./source/FSM/States/config_device_state.o
@@ -535,7 +588,6 @@ Discarded input sections
  .debug_macro   0x00000000       0xd8 ./source/FSM/States/config_device_state.o
  .debug_macro   0x00000000      0x5b2 ./source/FSM/States/config_device_state.o
  .debug_macro   0x00000000       0x22 ./source/FSM/States/config_device_state.o
- .debug_macro   0x00000000       0x9a ./source/FSM/States/config_device_state.o
  .group         0x00000000        0xc ./source/FSM/States/config_me_state.o
  .group         0x00000000        0xc ./source/FSM/States/config_me_state.o
  .group         0x00000000        0xc ./source/FSM/States/config_me_state.o
@@ -572,7 +624,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x11 ./source/FSM/States/delete_user_state.o
  .debug_macro   0x00000000      0xa90 ./source/FSM/States/delete_user_state.o
  .debug_line    0x00000000       0x49 ./source/FSM/States/delete_user_state.o
- .debug_str     0x00000000     0x2d93 ./source/FSM/States/delete_user_state.o
+ .debug_str     0x00000000     0x2d9b ./source/FSM/States/delete_user_state.o
  .comment       0x00000000       0x7f ./source/FSM/States/delete_user_state.o
  .ARM.attributes
                 0x00000000       0x39 ./source/FSM/States/delete_user_state.o
@@ -627,29 +679,29 @@ Discarded input sections
  .debug_macro   0x00000000       0x34 ./source/FSM/States/id_state.o
  .debug_macro   0x00000000       0xd2 ./source/FSM/States/id_state.o
  .debug_macro   0x00000000       0x22 ./source/FSM/States/id_state.o
- .group         0x00000000        0xc ./source/FSM/States/main_menu_state.o
- .group         0x00000000        0xc ./source/FSM/States/main_menu_state.o
- .group         0x00000000        0xc ./source/FSM/States/main_menu_state.o
- .group         0x00000000        0xc ./source/FSM/States/main_menu_state.o
- .group         0x00000000        0xc ./source/FSM/States/main_menu_state.o
- .group         0x00000000        0xc ./source/FSM/States/main_menu_state.o
- .group         0x00000000        0xc ./source/FSM/States/main_menu_state.o
- .group         0x00000000        0xc ./source/FSM/States/main_menu_state.o
- .group         0x00000000        0xc ./source/FSM/States/main_menu_state.o
- .group         0x00000000        0xc ./source/FSM/States/main_menu_state.o
- .text          0x00000000        0x0 ./source/FSM/States/main_menu_state.o
- .data          0x00000000        0x0 ./source/FSM/States/main_menu_state.o
- .bss           0x00000000        0x0 ./source/FSM/States/main_menu_state.o
- .debug_macro   0x00000000      0xa90 ./source/FSM/States/main_menu_state.o
- .debug_macro   0x00000000       0x22 ./source/FSM/States/main_menu_state.o
- .debug_macro   0x00000000       0x10 ./source/FSM/States/main_menu_state.o
- .debug_macro   0x00000000      0x12d ./source/FSM/States/main_menu_state.o
- .debug_macro   0x00000000      0x5b2 ./source/FSM/States/main_menu_state.o
- .debug_macro   0x00000000       0x10 ./source/FSM/States/main_menu_state.o
- .debug_macro   0x00000000       0x34 ./source/FSM/States/main_menu_state.o
- .debug_macro   0x00000000       0xd2 ./source/FSM/States/main_menu_state.o
- .debug_macro   0x00000000       0x22 ./source/FSM/States/main_menu_state.o
- .debug_macro   0x00000000       0x9a ./source/FSM/States/main_menu_state.o
+ .group         0x00000000        0xc ./source/FSM/States/menu_state.o
+ .group         0x00000000        0xc ./source/FSM/States/menu_state.o
+ .group         0x00000000        0xc ./source/FSM/States/menu_state.o
+ .group         0x00000000        0xc ./source/FSM/States/menu_state.o
+ .group         0x00000000        0xc ./source/FSM/States/menu_state.o
+ .group         0x00000000        0xc ./source/FSM/States/menu_state.o
+ .group         0x00000000        0xc ./source/FSM/States/menu_state.o
+ .group         0x00000000        0xc ./source/FSM/States/menu_state.o
+ .group         0x00000000        0xc ./source/FSM/States/menu_state.o
+ .group         0x00000000        0xc ./source/FSM/States/menu_state.o
+ .text          0x00000000        0x0 ./source/FSM/States/menu_state.o
+ .data          0x00000000        0x0 ./source/FSM/States/menu_state.o
+ .bss           0x00000000        0x0 ./source/FSM/States/menu_state.o
+ .debug_macro   0x00000000      0xa90 ./source/FSM/States/menu_state.o
+ .debug_macro   0x00000000       0x10 ./source/FSM/States/menu_state.o
+ .debug_macro   0x00000000      0x12d ./source/FSM/States/menu_state.o
+ .debug_macro   0x00000000      0x5b2 ./source/FSM/States/menu_state.o
+ .debug_macro   0x00000000       0xd8 ./source/FSM/States/menu_state.o
+ .debug_macro   0x00000000       0x22 ./source/FSM/States/menu_state.o
+ .debug_macro   0x00000000       0x22 ./source/FSM/States/menu_state.o
+ .debug_macro   0x00000000       0x9a ./source/FSM/States/menu_state.o
+ .debug_macro   0x00000000       0x16 ./source/FSM/States/menu_state.o
+ .debug_macro   0x00000000       0x34 ./source/FSM/States/menu_state.o
  .group         0x00000000        0xc ./source/FSM/States/open_state.o
  .group         0x00000000        0xc ./source/FSM/States/open_state.o
  .group         0x00000000        0xc ./source/FSM/States/open_state.o
@@ -717,62 +769,29 @@ Discarded input sections
  .debug_macro   0x00000000      0x5b2 ./source/FSM/States/user_input.o
  .debug_macro   0x00000000       0xd8 ./source/FSM/States/user_input.o
  .debug_macro   0x00000000       0x22 ./source/FSM/States/user_input.o
- .group         0x00000000        0xc ./source/FSM/States/usr_state.o
- .group         0x00000000        0xc ./source/FSM/States/usr_state.o
- .group         0x00000000        0xc ./source/FSM/States/usr_state.o
- .group         0x00000000        0xc ./source/FSM/States/usr_state.o
- .group         0x00000000        0xc ./source/FSM/States/usr_state.o
- .group         0x00000000        0xc ./source/FSM/States/usr_state.o
- .group         0x00000000        0xc ./source/FSM/States/usr_state.o
- .group         0x00000000        0xc ./source/FSM/States/usr_state.o
- .group         0x00000000        0xc ./source/FSM/States/usr_state.o
- .text          0x00000000        0x0 ./source/FSM/States/usr_state.o
- .data          0x00000000        0x0 ./source/FSM/States/usr_state.o
- .bss           0x00000000        0x0 ./source/FSM/States/usr_state.o
- .bss.currentOptionIndex
-                0x00000000        0x1 ./source/FSM/States/usr_state.o
- .bss.showingTitle
-                0x00000000        0x1 ./source/FSM/States/usr_state.o
- .data.titleTimerID
-                0x00000000        0x4 ./source/FSM/States/usr_state.o
- .text.initUserMenu
-                0x00000000       0x20 ./source/FSM/States/usr_state.o
- .text.usr_nextOption
-                0x00000000       0x40 ./source/FSM/States/usr_state.o
- .text.usr_previousOption
-                0x00000000       0x40 ./source/FSM/States/usr_state.o
- .text.usr_selectOption
-                0x00000000       0x48 ./source/FSM/States/usr_state.o
- .rodata        0x00000000       0x28 ./source/FSM/States/usr_state.o
- .text.showTitle
-                0x00000000       0x4c ./source/FSM/States/usr_state.o
- .text.stopShowingTitle
-                0x00000000       0x1c ./source/FSM/States/usr_state.o
- .text.userInteractionStopsTitle
-                0x00000000       0x24 ./source/FSM/States/usr_state.o
- .text.showCurrentOption
-                0x00000000       0x5c ./source/FSM/States/usr_state.o
- .debug_info    0x00000000      0x35b ./source/FSM/States/usr_state.o
- .debug_abbrev  0x00000000       0xf8 ./source/FSM/States/usr_state.o
- .debug_aranges
-                0x00000000       0x58 ./source/FSM/States/usr_state.o
- .debug_ranges  0x00000000       0x48 ./source/FSM/States/usr_state.o
- .debug_macro   0x00000000       0xa3 ./source/FSM/States/usr_state.o
- .debug_macro   0x00000000      0xa90 ./source/FSM/States/usr_state.o
- .debug_macro   0x00000000       0x10 ./source/FSM/States/usr_state.o
- .debug_macro   0x00000000      0x12d ./source/FSM/States/usr_state.o
- .debug_macro   0x00000000      0x5b2 ./source/FSM/States/usr_state.o
- .debug_macro   0x00000000       0xd8 ./source/FSM/States/usr_state.o
- .debug_macro   0x00000000       0x22 ./source/FSM/States/usr_state.o
- .debug_macro   0x00000000       0x22 ./source/FSM/States/usr_state.o
- .debug_macro   0x00000000       0x9a ./source/FSM/States/usr_state.o
- .debug_macro   0x00000000       0x16 ./source/FSM/States/usr_state.o
- .debug_line    0x00000000      0x242 ./source/FSM/States/usr_state.o
- .debug_str     0x00000000     0x4d76 ./source/FSM/States/usr_state.o
- .comment       0x00000000       0x7f ./source/FSM/States/usr_state.o
- .debug_frame   0x00000000       0xf0 ./source/FSM/States/usr_state.o
- .ARM.attributes
-                0x00000000       0x39 ./source/FSM/States/usr_state.o
+ .group         0x00000000        0xc ./source/FSM/States/welcome_state.o
+ .group         0x00000000        0xc ./source/FSM/States/welcome_state.o
+ .group         0x00000000        0xc ./source/FSM/States/welcome_state.o
+ .group         0x00000000        0xc ./source/FSM/States/welcome_state.o
+ .group         0x00000000        0xc ./source/FSM/States/welcome_state.o
+ .group         0x00000000        0xc ./source/FSM/States/welcome_state.o
+ .group         0x00000000        0xc ./source/FSM/States/welcome_state.o
+ .group         0x00000000        0xc ./source/FSM/States/welcome_state.o
+ .group         0x00000000        0xc ./source/FSM/States/welcome_state.o
+ .group         0x00000000        0xc ./source/FSM/States/welcome_state.o
+ .text          0x00000000        0x0 ./source/FSM/States/welcome_state.o
+ .data          0x00000000        0x0 ./source/FSM/States/welcome_state.o
+ .bss           0x00000000        0x0 ./source/FSM/States/welcome_state.o
+ .debug_macro   0x00000000      0xa90 ./source/FSM/States/welcome_state.o
+ .debug_macro   0x00000000       0x22 ./source/FSM/States/welcome_state.o
+ .debug_macro   0x00000000       0x10 ./source/FSM/States/welcome_state.o
+ .debug_macro   0x00000000      0x12d ./source/FSM/States/welcome_state.o
+ .debug_macro   0x00000000      0x5b2 ./source/FSM/States/welcome_state.o
+ .debug_macro   0x00000000       0x10 ./source/FSM/States/welcome_state.o
+ .debug_macro   0x00000000       0x34 ./source/FSM/States/welcome_state.o
+ .debug_macro   0x00000000       0xd2 ./source/FSM/States/welcome_state.o
+ .debug_macro   0x00000000       0x22 ./source/FSM/States/welcome_state.o
+ .debug_macro   0x00000000       0x9a ./source/FSM/States/welcome_state.o
  .group         0x00000000        0xc ./source/FSM/fsm.o
  .group         0x00000000        0xc ./source/FSM/fsm.o
  .group         0x00000000        0xc ./source/FSM/fsm.o
@@ -786,6 +805,7 @@ Discarded input sections
  .debug_macro   0x00000000      0x12d ./source/FSM/fsm.o
  .debug_macro   0x00000000       0xd8 ./source/FSM/fsm.o
  .debug_macro   0x00000000      0x5b2 ./source/FSM/fsm.o
+ .group         0x00000000        0xc ./source/FSM/fsm_table.o
  .group         0x00000000        0xc ./source/FSM/fsm_table.o
  .group         0x00000000        0xc ./source/FSM/fsm_table.o
  .group         0x00000000        0xc ./source/FSM/fsm_table.o
@@ -829,6 +849,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x22 ./source/App.o
  .debug_macro   0x00000000      0x5b2 ./source/App.o
  .debug_macro   0x00000000       0x22 ./source/App.o
+ .debug_macro   0x00000000       0x10 ./source/App.o
  .debug_macro   0x00000000       0x34 ./source/App.o
  .debug_macro   0x00000000       0x40 ./source/App.o
  .debug_macro   0x00000000       0xa6 ./source/App.o
@@ -1051,19 +1072,23 @@ LOAD ./source/drivers/seven_seg_display.o
 LOAD ./source/database/data_base.o
 LOAD ./source/MCAL/SysTick.o
 LOAD ./source/MCAL/gpio.o
+LOAD ./source/FSM/States/add_user_state/substates/add_user_card_read_state.o
+LOAD ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+LOAD ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
 LOAD ./source/FSM/States/add_user_state/add_user_fsm_table.o
+LOAD ./source/FSM/States/add_user_state/add_user_id_state.o
+LOAD ./source/FSM/States/add_user_state/add_user_main_state.o
 LOAD ./source/FSM/States/add_user_state/add_user_state.o
-LOAD ./source/FSM/States/admin_state.o
 LOAD ./source/FSM/States/config_device_state.o
 LOAD ./source/FSM/States/config_me_state.o
 LOAD ./source/FSM/States/delete_user_state.o
 LOAD ./source/FSM/States/fail_state.o
 LOAD ./source/FSM/States/id_state.o
-LOAD ./source/FSM/States/main_menu_state.o
+LOAD ./source/FSM/States/menu_state.o
 LOAD ./source/FSM/States/open_state.o
 LOAD ./source/FSM/States/pin_state.o
 LOAD ./source/FSM/States/user_input.o
-LOAD ./source/FSM/States/usr_state.o
+LOAD ./source/FSM/States/welcome_state.o
 LOAD ./source/FSM/fsm.o
 LOAD ./source/FSM/fsm_table.o
 LOAD ./source/App.o
@@ -1430,123 +1455,123 @@ END GROUP
  .text.interruptHandler
                 0x00003250       0x90 ./source/MCAL/gpio.o
                 0x00003250                interruptHandler
- .text.admin_initAdminMenu
-                0x000032e0       0x30 ./source/FSM/States/admin_state.o
-                0x000032e0                admin_initAdminMenu
- .text.admin_nextOption
-                0x00003310       0x60 ./source/FSM/States/admin_state.o
-                0x00003310                admin_nextOption
- .text.admin_previousOption
-                0x00003370       0x5c ./source/FSM/States/admin_state.o
-                0x00003370                admin_previousOption
- .text.admin_selectOption
-                0x000033cc       0x80 ./source/FSM/States/admin_state.o
-                0x000033cc                admin_selectOption
- .text.showTitle
-                0x0000344c       0x50 ./source/FSM/States/admin_state.o
- .text.showCurrentOption
-                0x0000349c       0xa8 ./source/FSM/States/admin_state.o
- .text.stopShowingTitle
-                0x00003544       0x1c ./source/FSM/States/admin_state.o
- .text.userInteractionStopsTitle
-                0x00003560       0x24 ./source/FSM/States/admin_state.o
  .text.initConfigDevice
-                0x00003584       0x40 ./source/FSM/States/config_device_state.o
-                0x00003584                initConfigDevice
+                0x000032e0       0x40 ./source/FSM/States/config_device_state.o
+                0x000032e0                initConfigDevice
  .text.configDev_nextOption
-                0x000035c4       0x2c ./source/FSM/States/config_device_state.o
-                0x000035c4                configDev_nextOption
+                0x00003320       0x2c ./source/FSM/States/config_device_state.o
+                0x00003320                configDev_nextOption
  .text.configDev_previousOption
-                0x000035f0       0x2c ./source/FSM/States/config_device_state.o
-                0x000035f0                configDev_previousOption
+                0x0000334c       0x2c ./source/FSM/States/config_device_state.o
+                0x0000334c                configDev_previousOption
  .text.showCurrentOption
-                0x0000361c       0x38 ./source/FSM/States/config_device_state.o
+                0x00003378       0x38 ./source/FSM/States/config_device_state.o
  .text.configMe_initState
-                0x00003654       0x28 ./source/FSM/States/config_me_state.o
-                0x00003654                configMe_initState
+                0x000033b0       0x28 ./source/FSM/States/config_me_state.o
+                0x000033b0                configMe_initState
  .text.configMe_confirmPin
-                0x0000367c       0x48 ./source/FSM/States/config_me_state.o
-                0x0000367c                configMe_confirmPin
+                0x000033d8       0x48 ./source/FSM/States/config_me_state.o
+                0x000033d8                configMe_confirmPin
  .text.configMe_acceptNumber
-                0x000036c4       0x40 ./source/FSM/States/config_me_state.o
-                0x000036c4                configMe_acceptNumber
+                0x00003420       0x40 ./source/FSM/States/config_me_state.o
+                0x00003420                configMe_acceptNumber
  .text.configMe_increaseCurrent
-                0x00003704       0x40 ./source/FSM/States/config_me_state.o
-                0x00003704                configMe_increaseCurrent
+                0x00003460       0x40 ./source/FSM/States/config_me_state.o
+                0x00003460                configMe_increaseCurrent
  .text.configMe_decreaseCurrent
-                0x00003744       0x40 ./source/FSM/States/config_me_state.o
-                0x00003744                configMe_decreaseCurrent
+                0x000034a0       0x40 ./source/FSM/States/config_me_state.o
+                0x000034a0                configMe_decreaseCurrent
  .text.showTitle
-                0x00003784       0x4c ./source/FSM/States/config_me_state.o
+                0x000034e0       0x4c ./source/FSM/States/config_me_state.o
  .text.stopShowingTitle
-                0x000037d0       0x30 ./source/FSM/States/config_me_state.o
+                0x0000352c       0x30 ./source/FSM/States/config_me_state.o
  .text.userInteractionStopsTitle
-                0x00003800       0x28 ./source/FSM/States/config_me_state.o
+                0x0000355c       0x28 ./source/FSM/States/config_me_state.o
  .text.userInteractionStopErrorIndication
-                0x00003828       0x2c ./source/FSM/States/config_me_state.o
- .text.pinFail  0x00003854       0x4c ./source/FSM/States/config_me_state.o
+                0x00003584       0x2c ./source/FSM/States/config_me_state.o
+ .text.pinFail  0x000035b0       0x4c ./source/FSM/States/config_me_state.o
  .text.initFailState
-                0x000038a0       0x64 ./source/FSM/States/fail_state.o
-                0x000038a0                initFailState
+                0x000035fc       0x64 ./source/FSM/States/fail_state.o
+                0x000035fc                initFailState
  .text.finishFail
-                0x00003904       0x30 ./source/FSM/States/fail_state.o
-                0x00003904                finishFail
+                0x00003660       0x30 ./source/FSM/States/fail_state.o
+                0x00003660                finishFail
  .text.initLogin
-                0x00003934       0x28 ./source/FSM/States/id_state.o
-                0x00003934                initLogin
+                0x00003690       0x28 ./source/FSM/States/id_state.o
+                0x00003690                initLogin
  .text.id_increaseCurrent
-                0x0000395c       0x40 ./source/FSM/States/id_state.o
-                0x0000395c                id_increaseCurrent
+                0x000036b8       0x40 ./source/FSM/States/id_state.o
+                0x000036b8                id_increaseCurrent
  .text.id_decreaseCurrent
-                0x0000399c       0x40 ./source/FSM/States/id_state.o
-                0x0000399c                id_decreaseCurrent
+                0x000036f8       0x40 ./source/FSM/States/id_state.o
+                0x000036f8                id_decreaseCurrent
  .text.id_confirmID
-                0x000039dc       0x50 ./source/FSM/States/id_state.o
-                0x000039dc                id_confirmID
+                0x00003738       0x50 ./source/FSM/States/id_state.o
+                0x00003738                id_confirmID
  .text.id_acceptNumber
-                0x00003a2c       0x40 ./source/FSM/States/id_state.o
-                0x00003a2c                id_acceptNumber
+                0x00003788       0x40 ./source/FSM/States/id_state.o
+                0x00003788                id_acceptNumber
  .text.id_checkCardID
-                0x00003a6c       0xb0 ./source/FSM/States/id_state.o
-                0x00003a6c                id_checkCardID
+                0x000037c8       0xb0 ./source/FSM/States/id_state.o
+                0x000037c8                id_checkCardID
  .text.showTitle
-                0x00003b1c       0x48 ./source/FSM/States/id_state.o
+                0x00003878       0x48 ./source/FSM/States/id_state.o
  .text.stopShowingTitle
-                0x00003b64       0x30 ./source/FSM/States/id_state.o
+                0x000038c0       0x30 ./source/FSM/States/id_state.o
  .text.userInteractionStopsTitle
-                0x00003b94       0x28 ./source/FSM/States/id_state.o
+                0x000038f0       0x28 ./source/FSM/States/id_state.o
  .text.userInteractionStopErrorIndication
-                0x00003bbc       0x2c ./source/FSM/States/id_state.o
- .text.id_fail  0x00003be8       0x4c ./source/FSM/States/id_state.o
+                0x00003918       0x2c ./source/FSM/States/id_state.o
+ .text.id_fail  0x00003944       0x4c ./source/FSM/States/id_state.o
  .text.id_cardFail
-                0x00003c34       0x4c ./source/FSM/States/id_state.o
- .text.showWelcomeAnimation
-                0x00003c80       0x28 ./source/FSM/States/main_menu_state.o
-                0x00003c80                showWelcomeAnimation
- .text.openDoor
-                0x00003ca8       0x20 ./source/FSM/States/open_state.o
-                0x00003ca8                openDoor
- .text.initPinInput
-                0x00003cc8       0x20 ./source/FSM/States/pin_state.o
-                0x00003cc8                initPinInput
- .text.pin_confirmPin
-                0x00003ce8       0x40 ./source/FSM/States/pin_state.o
-                0x00003ce8                pin_confirmPin
- .text.pin_acceptNumber
-                0x00003d28       0x48 ./source/FSM/States/pin_state.o
-                0x00003d28                pin_acceptNumber
- .text.pin_increaseCurrent
-                0x00003d70       0x30 ./source/FSM/States/pin_state.o
-                0x00003d70                pin_increaseCurrent
- .text.pin_decreaseCurrent
-                0x00003da0       0x30 ./source/FSM/States/pin_state.o
-                0x00003da0                pin_decreaseCurrent
+                0x00003990       0x4c ./source/FSM/States/id_state.o
+ .text.menu_initState
+                0x000039dc       0x30 ./source/FSM/States/menu_state.o
+                0x000039dc                menu_initState
+ .text.menu_nextOption
+                0x00003a0c       0x60 ./source/FSM/States/menu_state.o
+                0x00003a0c                menu_nextOption
+ .text.menu_previousOption
+                0x00003a6c       0x5c ./source/FSM/States/menu_state.o
+                0x00003a6c                menu_previousOption
+ .text.menu_selectOption
+                0x00003ac8       0x80 ./source/FSM/States/menu_state.o
+                0x00003ac8                menu_selectOption
  .text.showTitle
-                0x00003dd0       0x48 ./source/FSM/States/pin_state.o
+                0x00003b48       0x50 ./source/FSM/States/menu_state.o
+ .text.showCurrentOption
+                0x00003b98       0xa8 ./source/FSM/States/menu_state.o
  .text.stopShowingTitle
-                0x00003e18       0x28 ./source/FSM/States/pin_state.o
+                0x00003c40       0x1c ./source/FSM/States/menu_state.o
  .text.userInteractionStopsTitle
-                0x00003e40       0x24 ./source/FSM/States/pin_state.o
+                0x00003c5c       0x24 ./source/FSM/States/menu_state.o
+ .text.openDoor
+                0x00003c80       0x20 ./source/FSM/States/open_state.o
+                0x00003c80                openDoor
+ .text.initPinInput
+                0x00003ca0       0x20 ./source/FSM/States/pin_state.o
+                0x00003ca0                initPinInput
+ .text.pin_confirmPin
+                0x00003cc0       0x40 ./source/FSM/States/pin_state.o
+                0x00003cc0                pin_confirmPin
+ .text.pin_acceptNumber
+                0x00003d00       0x48 ./source/FSM/States/pin_state.o
+                0x00003d00                pin_acceptNumber
+ .text.pin_increaseCurrent
+                0x00003d48       0x30 ./source/FSM/States/pin_state.o
+                0x00003d48                pin_increaseCurrent
+ .text.pin_decreaseCurrent
+                0x00003d78       0x30 ./source/FSM/States/pin_state.o
+                0x00003d78                pin_decreaseCurrent
+ .text.showTitle
+                0x00003da8       0x48 ./source/FSM/States/pin_state.o
+ .text.stopShowingTitle
+                0x00003df0       0x28 ./source/FSM/States/pin_state.o
+ .text.userInteractionStopsTitle
+                0x00003e18       0x24 ./source/FSM/States/pin_state.o
+ .text.showWelcomeAnimation
+                0x00003e3c       0x28 ./source/FSM/States/welcome_state.o
+                0x00003e3c                showWelcomeAnimation
  .text.FSM_GetInitState
                 0x00003e64       0x14 ./source/FSM/fsm_table.o
                 0x00003e64                FSM_GetInitState
@@ -1880,28 +1905,28 @@ END GROUP
                 0x00004a50       0x10 ./source/FSM/States/config_me_state.o
  .text.userInteractionStopErrorIndicationAndRestart
                 0x00004a60       0x10 ./source/FSM/States/id_state.o
- .text.cardSwipe
-                0x00004a70       0x92 ./source/FSM/States/main_menu_state.o
-                0x00004a70                cardSwipe
  .text.accessTimeOut
-                0x00004b02       0x14 ./source/FSM/States/open_state.o
-                0x00004b02                accessTimeOut
+                0x00004a70       0x14 ./source/FSM/States/open_state.o
+                0x00004a70                accessTimeOut
  .text.inputIncreaseCurrent
-                0x00004b16       0x8a ./source/FSM/States/user_input.o
-                0x00004b16                inputIncreaseCurrent
+                0x00004a84       0x8a ./source/FSM/States/user_input.o
+                0x00004a84                inputIncreaseCurrent
  .text.inputDecreaseCurrent
-                0x00004ba0       0x8c ./source/FSM/States/user_input.o
-                0x00004ba0                inputDecreaseCurrent
+                0x00004b0e       0x8c ./source/FSM/States/user_input.o
+                0x00004b0e                inputDecreaseCurrent
  .text.inputResetArray
-                0x00004c2c       0x3c ./source/FSM/States/user_input.o
-                0x00004c2c                inputResetArray
+                0x00004b9a       0x3c ./source/FSM/States/user_input.o
+                0x00004b9a                inputResetArray
  .text.inputAcceptNumber
-                0x00004c68       0xa8 ./source/FSM/States/user_input.o
-                0x00004c68                inputAcceptNumber
+                0x00004bd6       0xa8 ./source/FSM/States/user_input.o
+                0x00004bd6                inputAcceptNumber
  .text.getEffectiveArrayLength
-                0x00004d10       0x60 ./source/FSM/States/user_input.o
+                0x00004c7e       0x60 ./source/FSM/States/user_input.o
  .text.deleteLastChar
-                0x00004d70       0x52 ./source/FSM/States/user_input.o
+                0x00004cde       0x52 ./source/FSM/States/user_input.o
+ .text.cardSwipe
+                0x00004d30       0x92 ./source/FSM/States/welcome_state.o
+                0x00004d30                cardSwipe
  .text.fsm      0x00004dc2       0x3c ./source/FSM/fsm.o
                 0x00004dc2                fsm
  .text.FMS_StartInitState
@@ -1977,16 +2002,16 @@ END GROUP
  *fill*         0x0000514a        0x2 ff
  .rodata.extras
                 0x0000514c        0x4 ./source/drivers/seven_seg_display.o
- .rodata        0x00005150       0x4c ./source/FSM/States/admin_state.o
- .rodata        0x0000519c       0x12 ./source/FSM/States/config_me_state.o
- *fill*         0x000051ae        0x2 ff
- .rodata        0x000051b0       0x1b ./source/FSM/States/fail_state.o
- *fill*         0x000051cb        0x1 ff
- .rodata        0x000051cc       0x20 ./source/FSM/States/id_state.o
- .rodata        0x000051ec        0x6 ./source/FSM/States/main_menu_state.o
- *fill*         0x000051f2        0x2 ff
- .rodata        0x000051f4        0x5 ./source/FSM/States/pin_state.o
- *fill*         0x000051f9        0x3 ff
+ .rodata        0x00005150       0x12 ./source/FSM/States/config_me_state.o
+ *fill*         0x00005162        0x2 ff
+ .rodata        0x00005164       0x1b ./source/FSM/States/fail_state.o
+ *fill*         0x0000517f        0x1 ff
+ .rodata        0x00005180       0x20 ./source/FSM/States/id_state.o
+ .rodata        0x000051a0       0x4c ./source/FSM/States/menu_state.o
+ .rodata        0x000051ec        0x5 ./source/FSM/States/pin_state.o
+ *fill*         0x000051f1        0x3 ff
+ .rodata        0x000051f4        0x6 ./source/FSM/States/welcome_state.o
+ *fill*         0x000051fa        0x2 ff
  .rodata.__num_Ciob_streams
                 0x000051fc        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__ciob.o)
                 0x000051fc                __num_Ciob_streams
@@ -2066,27 +2091,27 @@ END GROUP
  .data.gpioPorts
                 0x20000020       0x14 ./source/MCAL/gpio.o
  .data.titleTimerID
-                0x20000034        0x4 ./source/FSM/States/admin_state.o
- .data.titleTimerID
+                0x20000034        0x4 ./source/FSM/States/config_me_state.o
+ .data.errorIndicationTimerID
                 0x20000038        0x4 ./source/FSM/States/config_me_state.o
- .data.errorIndicationTimerID
-                0x2000003c        0x4 ./source/FSM/States/config_me_state.o
  .data.titleTimerID
-                0x20000040        0x4 ./source/FSM/States/id_state.o
+                0x2000003c        0x4 ./source/FSM/States/id_state.o
  .data.errorIndicationTimerID
-                0x20000044        0x4 ./source/FSM/States/id_state.o
+                0x20000040        0x4 ./source/FSM/States/id_state.o
+ .data.titleTimerID
+                0x20000044        0x4 ./source/FSM/States/menu_state.o
  .data.titleTimerID
                 0x20000048        0x4 ./source/FSM/States/pin_state.o
- .data.menu     0x2000004c       0x48 ./source/FSM/fsm_table.o
-                0x2000004c                menu
+ .data.welcome  0x2000004c       0x48 ./source/FSM/fsm_table.o
+                0x2000004c                welcome
  .data.id       0x20000094       0x6c ./source/FSM/fsm_table.o
                 0x20000094                id
  .data.pin      0x20000100       0x6c ./source/FSM/fsm_table.o
                 0x20000100                pin
  .data.fail     0x2000016c       0x54 ./source/FSM/fsm_table.o
                 0x2000016c                fail
- .data.admin    0x200001c0       0x78 ./source/FSM/fsm_table.o
-                0x200001c0                admin
+ .data.menu     0x200001c0       0x78 ./source/FSM/fsm_table.o
+                0x200001c0                menu
  .data.open     0x20000238       0x18 ./source/FSM/fsm_table.o
                 0x20000238                open
  .data.cfg_me   0x20000250       0x54 ./source/FSM/fsm_table.o
@@ -2217,24 +2242,24 @@ END GROUP
  .bss.displayCounter.5326
                 0x2000163c        0x1 ./source/drivers/seven_seg_display.o
  .bss.currentOptionIndex
-                0x2000163d        0x1 ./source/FSM/States/admin_state.o
+                0x2000163d        0x1 ./source/FSM/States/config_device_state.o
+ .bss.currentPos
+                0x2000163e        0x1 ./source/FSM/States/config_me_state.o
  .bss.showingTitle
-                0x2000163e        0x1 ./source/FSM/States/admin_state.o
- .bss.admin     0x2000163f        0x1 ./source/FSM/States/admin_state.o
+                0x2000163f        0x1 ./source/FSM/States/config_me_state.o
+ .bss.showingErrorIndication
+                0x20001640        0x1 ./source/FSM/States/config_me_state.o
+ .bss.currentPos
+                0x20001641        0x1 ./source/FSM/States/id_state.o
+ .bss.showingTitle
+                0x20001642        0x1 ./source/FSM/States/id_state.o
+ .bss.showingErrorIndication
+                0x20001643        0x1 ./source/FSM/States/id_state.o
  .bss.currentOptionIndex
-                0x20001640        0x1 ./source/FSM/States/config_device_state.o
- .bss.currentPos
-                0x20001641        0x1 ./source/FSM/States/config_me_state.o
+                0x20001644        0x1 ./source/FSM/States/menu_state.o
  .bss.showingTitle
-                0x20001642        0x1 ./source/FSM/States/config_me_state.o
- .bss.showingErrorIndication
-                0x20001643        0x1 ./source/FSM/States/config_me_state.o
- .bss.currentPos
-                0x20001644        0x1 ./source/FSM/States/id_state.o
- .bss.showingTitle
-                0x20001645        0x1 ./source/FSM/States/id_state.o
- .bss.showingErrorIndication
-                0x20001646        0x1 ./source/FSM/States/id_state.o
+                0x20001645        0x1 ./source/FSM/States/menu_state.o
+ .bss.admin     0x20001646        0x1 ./source/FSM/States/menu_state.o
  .bss.currentPos
                 0x20001647        0x1 ./source/FSM/States/pin_state.o
  .bss.showingTitle
@@ -2299,15 +2324,15 @@ OUTPUT(ControlDeAcceso.axf elf32-littlearm)
  .debug_info    0x000033c4      0x6c7 ./source/database/data_base.o
  .debug_info    0x00003a8b      0x52b ./source/MCAL/SysTick.o
  .debug_info    0x00003fb6      0xa99 ./source/MCAL/gpio.o
- .debug_info    0x00004a4f      0x3b8 ./source/FSM/States/admin_state.o
- .debug_info    0x00004e07      0x306 ./source/FSM/States/config_device_state.o
- .debug_info    0x0000510d      0x424 ./source/FSM/States/config_me_state.o
- .debug_info    0x00005531      0x2a8 ./source/FSM/States/fail_state.o
- .debug_info    0x000057d9      0x4d2 ./source/FSM/States/id_state.o
- .debug_info    0x00005cab      0x355 ./source/FSM/States/main_menu_state.o
- .debug_info    0x00006000      0x297 ./source/FSM/States/open_state.o
- .debug_info    0x00006297      0x3b6 ./source/FSM/States/pin_state.o
- .debug_info    0x0000664d      0x40d ./source/FSM/States/user_input.o
+ .debug_info    0x00004a4f      0x306 ./source/FSM/States/config_device_state.o
+ .debug_info    0x00004d55      0x424 ./source/FSM/States/config_me_state.o
+ .debug_info    0x00005179      0x2a8 ./source/FSM/States/fail_state.o
+ .debug_info    0x00005421      0x4d2 ./source/FSM/States/id_state.o
+ .debug_info    0x000058f3      0x3b8 ./source/FSM/States/menu_state.o
+ .debug_info    0x00005cab      0x297 ./source/FSM/States/open_state.o
+ .debug_info    0x00005f42      0x3b6 ./source/FSM/States/pin_state.o
+ .debug_info    0x000062f8      0x40d ./source/FSM/States/user_input.o
+ .debug_info    0x00006705      0x355 ./source/FSM/States/welcome_state.o
  .debug_info    0x00006a5a      0x22e ./source/FSM/fsm.o
  .debug_info    0x00006c88      0x3d3 ./source/FSM/fsm_table.o
  .debug_info    0x0000705b      0x38f ./source/App.o
@@ -2329,15 +2354,15 @@ OUTPUT(ControlDeAcceso.axf elf32-littlearm)
  .debug_abbrev  0x00000e90      0x215 ./source/database/data_base.o
  .debug_abbrev  0x000010a5      0x1bb ./source/MCAL/SysTick.o
  .debug_abbrev  0x00001260      0x221 ./source/MCAL/gpio.o
- .debug_abbrev  0x00001481      0x12a ./source/FSM/States/admin_state.o
- .debug_abbrev  0x000015ab      0x101 ./source/FSM/States/config_device_state.o
- .debug_abbrev  0x000016ac      0x126 ./source/FSM/States/config_me_state.o
- .debug_abbrev  0x000017d2       0xe2 ./source/FSM/States/fail_state.o
- .debug_abbrev  0x000018b4      0x160 ./source/FSM/States/id_state.o
- .debug_abbrev  0x00001a14      0x11f ./source/FSM/States/main_menu_state.o
- .debug_abbrev  0x00001b33       0xd3 ./source/FSM/States/open_state.o
- .debug_abbrev  0x00001c06      0x155 ./source/FSM/States/pin_state.o
- .debug_abbrev  0x00001d5b      0x155 ./source/FSM/States/user_input.o
+ .debug_abbrev  0x00001481      0x101 ./source/FSM/States/config_device_state.o
+ .debug_abbrev  0x00001582      0x126 ./source/FSM/States/config_me_state.o
+ .debug_abbrev  0x000016a8       0xe2 ./source/FSM/States/fail_state.o
+ .debug_abbrev  0x0000178a      0x160 ./source/FSM/States/id_state.o
+ .debug_abbrev  0x000018ea      0x12a ./source/FSM/States/menu_state.o
+ .debug_abbrev  0x00001a14       0xd3 ./source/FSM/States/open_state.o
+ .debug_abbrev  0x00001ae7      0x155 ./source/FSM/States/pin_state.o
+ .debug_abbrev  0x00001c3c      0x155 ./source/FSM/States/user_input.o
+ .debug_abbrev  0x00001d91      0x11f ./source/FSM/States/welcome_state.o
  .debug_abbrev  0x00001eb0       0xca ./source/FSM/fsm.o
  .debug_abbrev  0x00001f7a      0x11d ./source/FSM/fsm_table.o
  .debug_abbrev  0x00002097      0x146 ./source/App.o
@@ -2374,23 +2399,23 @@ OUTPUT(ControlDeAcceso.axf elf32-littlearm)
  .debug_aranges
                 0x00000780       0x88 ./source/MCAL/gpio.o
  .debug_aranges
-                0x00000808       0x58 ./source/FSM/States/admin_state.o
+                0x00000808       0x40 ./source/FSM/States/config_device_state.o
  .debug_aranges
-                0x00000860       0x40 ./source/FSM/States/config_device_state.o
+                0x00000848       0x70 ./source/FSM/States/config_me_state.o
  .debug_aranges
-                0x000008a0       0x70 ./source/FSM/States/config_me_state.o
+                0x000008b8       0x28 ./source/FSM/States/fail_state.o
  .debug_aranges
-                0x00000910       0x28 ./source/FSM/States/fail_state.o
+                0x000008e0       0x88 ./source/FSM/States/id_state.o
  .debug_aranges
-                0x00000938       0x88 ./source/FSM/States/id_state.o
+                0x00000968       0x58 ./source/FSM/States/menu_state.o
  .debug_aranges
-                0x000009c0       0x28 ./source/FSM/States/main_menu_state.o
+                0x000009c0       0x28 ./source/FSM/States/open_state.o
  .debug_aranges
-                0x000009e8       0x28 ./source/FSM/States/open_state.o
+                0x000009e8       0x60 ./source/FSM/States/pin_state.o
  .debug_aranges
-                0x00000a10       0x60 ./source/FSM/States/pin_state.o
+                0x00000a48       0x48 ./source/FSM/States/user_input.o
  .debug_aranges
-                0x00000a70       0x48 ./source/FSM/States/user_input.o
+                0x00000a90       0x28 ./source/FSM/States/welcome_state.o
  .debug_aranges
                 0x00000ab8       0x20 ./source/FSM/fsm.o
  .debug_aranges
@@ -2417,22 +2442,22 @@ OUTPUT(ControlDeAcceso.axf elf32-littlearm)
  .debug_ranges  0x000005e0       0x88 ./source/database/data_base.o
  .debug_ranges  0x00000668       0x48 ./source/MCAL/SysTick.o
  .debug_ranges  0x000006b0       0x78 ./source/MCAL/gpio.o
- .debug_ranges  0x00000728       0x48 ./source/FSM/States/admin_state.o
- .debug_ranges  0x00000770       0x30 ./source/FSM/States/config_device_state.o
- .debug_ranges  0x000007a0       0x60 ./source/FSM/States/config_me_state.o
- .debug_ranges  0x00000800       0x18 ./source/FSM/States/fail_state.o
- .debug_ranges  0x00000818       0x90 ./source/FSM/States/id_state.o
- .debug_ranges  0x000008a8       0x30 ./source/FSM/States/main_menu_state.o
- .debug_ranges  0x000008d8       0x18 ./source/FSM/States/open_state.o
- .debug_ranges  0x000008f0       0x50 ./source/FSM/States/pin_state.o
- .debug_ranges  0x00000940       0x38 ./source/FSM/States/user_input.o
+ .debug_ranges  0x00000728       0x30 ./source/FSM/States/config_device_state.o
+ .debug_ranges  0x00000758       0x60 ./source/FSM/States/config_me_state.o
+ .debug_ranges  0x000007b8       0x18 ./source/FSM/States/fail_state.o
+ .debug_ranges  0x000007d0       0x90 ./source/FSM/States/id_state.o
+ .debug_ranges  0x00000860       0x48 ./source/FSM/States/menu_state.o
+ .debug_ranges  0x000008a8       0x18 ./source/FSM/States/open_state.o
+ .debug_ranges  0x000008c0       0x50 ./source/FSM/States/pin_state.o
+ .debug_ranges  0x00000910       0x38 ./source/FSM/States/user_input.o
+ .debug_ranges  0x00000948       0x30 ./source/FSM/States/welcome_state.o
  .debug_ranges  0x00000978       0x10 ./source/FSM/fsm.o
  .debug_ranges  0x00000988       0x20 ./source/FSM/fsm_table.o
  .debug_ranges  0x000009a8       0x28 ./source/App.o
  .debug_ranges  0x000009d0       0x28 ./source/queue.o
  .debug_ranges  0x000009f8       0x20 ./CMSIS/system_MK64F12.o
 
-.debug_macro    0x00000000    0x12c56
+.debug_macro    0x00000000    0x12c4f
  .debug_macro   0x00000000       0xb4 ./source/startup/hardware.o
  .debug_macro   0x000000b4      0xa90 ./source/startup/hardware.o
  .debug_macro   0x00000b44       0x10 ./source/startup/hardware.o
@@ -2477,28 +2502,28 @@ OUTPUT(ControlDeAcceso.axf elf32-littlearm)
  .debug_macro   0x00011ed8       0x34 ./source/database/data_base.o
  .debug_macro   0x00011f0c       0xf6 ./source/MCAL/SysTick.o
  .debug_macro   0x00012002       0xd1 ./source/MCAL/gpio.o
- .debug_macro   0x000120d3       0xc6 ./source/FSM/States/admin_state.o
- .debug_macro   0x00012199       0x9a ./source/FSM/States/admin_state.o
- .debug_macro   0x00012233       0x94 ./source/FSM/States/config_device_state.o
- .debug_macro   0x000122c7       0xc9 ./source/FSM/States/config_me_state.o
- .debug_macro   0x00012390       0xc4 ./source/FSM/States/fail_state.o
- .debug_macro   0x00012454       0xd2 ./source/FSM/States/id_state.o
- .debug_macro   0x00012526       0x16 ./source/FSM/States/id_state.o
- .debug_macro   0x0001253c       0xc0 ./source/FSM/States/main_menu_state.o
- .debug_macro   0x000125fc       0x9e ./source/FSM/States/open_state.o
- .debug_macro   0x0001269a       0xc9 ./source/FSM/States/pin_state.o
- .debug_macro   0x00012763       0x9c ./source/FSM/States/user_input.o
- .debug_macro   0x000127ff       0x16 ./source/FSM/States/user_input.o
- .debug_macro   0x00012815       0x9a ./source/FSM/States/user_input.o
+ .debug_macro   0x000120d3       0x94 ./source/FSM/States/config_device_state.o
+ .debug_macro   0x00012167       0x9a ./source/FSM/States/config_device_state.o
+ .debug_macro   0x00012201       0xc9 ./source/FSM/States/config_me_state.o
+ .debug_macro   0x000122ca       0xc4 ./source/FSM/States/fail_state.o
+ .debug_macro   0x0001238e       0xd2 ./source/FSM/States/id_state.o
+ .debug_macro   0x00012460       0x16 ./source/FSM/States/id_state.o
+ .debug_macro   0x00012476       0xc6 ./source/FSM/States/menu_state.o
+ .debug_macro   0x0001253c       0x9e ./source/FSM/States/open_state.o
+ .debug_macro   0x000125da       0xc9 ./source/FSM/States/pin_state.o
+ .debug_macro   0x000126a3       0x9c ./source/FSM/States/user_input.o
+ .debug_macro   0x0001273f       0x16 ./source/FSM/States/user_input.o
+ .debug_macro   0x00012755       0x9a ./source/FSM/States/user_input.o
+ .debug_macro   0x000127ef       0xc0 ./source/FSM/States/welcome_state.o
  .debug_macro   0x000128af       0x5f ./source/FSM/fsm.o
- .debug_macro   0x0001290e       0xe5 ./source/FSM/fsm_table.o
- .debug_macro   0x000129f3      0x130 ./source/App.o
- .debug_macro   0x00012b23       0x10 ./source/App.o
- .debug_macro   0x00012b33       0x10 ./source/App.o
- .debug_macro   0x00012b43       0x7b ./source/queue.o
- .debug_macro   0x00012bbe       0x98 ./CMSIS/system_MK64F12.o
+ .debug_macro   0x0001290e       0xde ./source/FSM/fsm_table.o
+ .debug_macro   0x000129ec       0x10 ./source/FSM/fsm_table.o
+ .debug_macro   0x000129fc      0x130 ./source/App.o
+ .debug_macro   0x00012b2c       0x10 ./source/App.o
+ .debug_macro   0x00012b3c       0x7b ./source/queue.o
+ .debug_macro   0x00012bb7       0x98 ./CMSIS/system_MK64F12.o
 
-.debug_line     0x00000000     0x47fd
+.debug_line     0x00000000     0x47f4
  .debug_line    0x00000000      0x221 ./source/startup/hardware.o
  .debug_line    0x00000221      0x1c2 ./source/startup/main.o
  .debug_line    0x000003e3       0x5c ./source/startup/semihost_hardfault.o
@@ -2513,22 +2538,22 @@ OUTPUT(ControlDeAcceso.axf elf32-littlearm)
  .debug_line    0x00001f9b      0x3e4 ./source/database/data_base.o
  .debug_line    0x0000237f      0x33c ./source/MCAL/SysTick.o
  .debug_line    0x000026bb      0x322 ./source/MCAL/gpio.o
- .debug_line    0x000029dd      0x2a9 ./source/FSM/States/admin_state.o
- .debug_line    0x00002c86      0x1ef ./source/FSM/States/config_device_state.o
- .debug_line    0x00002e75      0x2bf ./source/FSM/States/config_me_state.o
- .debug_line    0x00003134      0x1e0 ./source/FSM/States/fail_state.o
- .debug_line    0x00003314      0x31a ./source/FSM/States/id_state.o
- .debug_line    0x0000362e      0x1f3 ./source/FSM/States/main_menu_state.o
- .debug_line    0x00003821      0x191 ./source/FSM/States/open_state.o
- .debug_line    0x000039b2      0x275 ./source/FSM/States/pin_state.o
- .debug_line    0x00003c27      0x23e ./source/FSM/States/user_input.o
- .debug_line    0x00003e65      0x117 ./source/FSM/fsm.o
- .debug_line    0x00003f7c      0x21e ./source/FSM/fsm_table.o
- .debug_line    0x0000419a      0x2b7 ./source/App.o
- .debug_line    0x00004451      0x19b ./source/queue.o
- .debug_line    0x000045ec      0x211 ./CMSIS/system_MK64F12.o
+ .debug_line    0x000029dd      0x1ef ./source/FSM/States/config_device_state.o
+ .debug_line    0x00002bcc      0x2bf ./source/FSM/States/config_me_state.o
+ .debug_line    0x00002e8b      0x1e0 ./source/FSM/States/fail_state.o
+ .debug_line    0x0000306b      0x31a ./source/FSM/States/id_state.o
+ .debug_line    0x00003385      0x2a7 ./source/FSM/States/menu_state.o
+ .debug_line    0x0000362c      0x191 ./source/FSM/States/open_state.o
+ .debug_line    0x000037bd      0x275 ./source/FSM/States/pin_state.o
+ .debug_line    0x00003a32      0x23e ./source/FSM/States/user_input.o
+ .debug_line    0x00003c70      0x1ef ./source/FSM/States/welcome_state.o
+ .debug_line    0x00003e5f      0x117 ./source/FSM/fsm.o
+ .debug_line    0x00003f76      0x21b ./source/FSM/fsm_table.o
+ .debug_line    0x00004191      0x2b7 ./source/App.o
+ .debug_line    0x00004448      0x19b ./source/queue.o
+ .debug_line    0x000045e3      0x211 ./CMSIS/system_MK64F12.o
 
-.debug_str      0x00000000    0x7b6c7
+.debug_str      0x00000000    0x7b6ef
  .debug_str     0x00000000    0x77e1c ./source/startup/hardware.o
                               0x77eaa (size before relaxing)
  .debug_str     0x00077e1c       0x1e ./source/startup/main.o
@@ -2551,39 +2576,39 @@ OUTPUT(ControlDeAcceso.axf elf32-littlearm)
                                0x4ac0 (size before relaxing)
  .debug_str     0x00079b14      0x519 ./source/drivers/seven_seg_display.o
                                0x4e81 (size before relaxing)
- .debug_str     0x0007a02d      0x44a ./source/database/data_base.o
-                               0x497f (size before relaxing)
- .debug_str     0x0007a477      0x126 ./source/MCAL/SysTick.o
+ .debug_str     0x0007a02d      0x475 ./source/database/data_base.o
+                               0x4987 (size before relaxing)
+ .debug_str     0x0007a4a2      0x126 ./source/MCAL/SysTick.o
                               0x78310 (size before relaxing)
- .debug_str     0x0007a59d      0x666 ./source/MCAL/gpio.o
+ .debug_str     0x0007a5c8      0x666 ./source/MCAL/gpio.o
                               0x784ef (size before relaxing)
- .debug_str     0x0007ac03      0x322 ./source/FSM/States/admin_state.o
-                               0x4e84 (size before relaxing)
- .debug_str     0x0007af25       0xb9 ./source/FSM/States/config_device_state.o
-                               0x4cf0 (size before relaxing)
- .debug_str     0x0007afde      0x196 ./source/FSM/States/config_me_state.o
-                               0x4feb (size before relaxing)
- .debug_str     0x0007b174       0x51 ./source/FSM/States/fail_state.o
-                               0x4d7c (size before relaxing)
- .debug_str     0x0007b1c5       0xb7 ./source/FSM/States/id_state.o
-                               0x4f98 (size before relaxing)
- .debug_str     0x0007b27c       0x59 ./source/FSM/States/main_menu_state.o
-                               0x4d9e (size before relaxing)
- .debug_str     0x0007b2d5       0x57 ./source/FSM/States/open_state.o
-                               0x4b0a (size before relaxing)
- .debug_str     0x0007b32c       0x8e ./source/FSM/States/pin_state.o
-                               0x4e6d (size before relaxing)
- .debug_str     0x0007b3ba       0x96 ./source/FSM/States/user_input.o
-                               0x4d87 (size before relaxing)
- .debug_str     0x0007b450       0x84 ./source/FSM/fsm.o
-                               0x4864 (size before relaxing)
- .debug_str     0x0007b4d4       0x83 ./source/FSM/fsm_table.o
-                               0x4ba9 (size before relaxing)
- .debug_str     0x0007b557       0x7e ./source/App.o
+ .debug_str     0x0007ac2e      0x288 ./source/FSM/States/config_device_state.o
+                               0x4cf8 (size before relaxing)
+ .debug_str     0x0007aeb6      0x1f5 ./source/FSM/States/config_me_state.o
+                               0x4ff3 (size before relaxing)
+ .debug_str     0x0007b0ab       0x51 ./source/FSM/States/fail_state.o
+                               0x4d84 (size before relaxing)
+ .debug_str     0x0007b0fc       0xb7 ./source/FSM/States/id_state.o
+                               0x4fa0 (size before relaxing)
+ .debug_str     0x0007b1b3       0xeb ./source/FSM/States/menu_state.o
+                               0x4e83 (size before relaxing)
+ .debug_str     0x0007b29e       0x57 ./source/FSM/States/open_state.o
+                               0x4b12 (size before relaxing)
+ .debug_str     0x0007b2f5       0x8e ./source/FSM/States/pin_state.o
+                               0x4e75 (size before relaxing)
+ .debug_str     0x0007b383       0x96 ./source/FSM/States/user_input.o
+                               0x4d8f (size before relaxing)
+ .debug_str     0x0007b419       0x57 ./source/FSM/States/welcome_state.o
+                               0x4da4 (size before relaxing)
+ .debug_str     0x0007b470       0x84 ./source/FSM/fsm.o
+                               0x486c (size before relaxing)
+ .debug_str     0x0007b4f4       0x8b ./source/FSM/fsm_table.o
+                               0x4bb3 (size before relaxing)
+ .debug_str     0x0007b57f       0x7e ./source/App.o
                                0x52a2 (size before relaxing)
- .debug_str     0x0007b5d5       0x94 ./source/queue.o
+ .debug_str     0x0007b5fd       0x94 ./source/queue.o
                                0x4aea (size before relaxing)
- .debug_str     0x0007b669       0x5e ./CMSIS/system_MK64F12.o
+ .debug_str     0x0007b691       0x5e ./CMSIS/system_MK64F12.o
                               0x77db2 (size before relaxing)
 
 .comment        0x00000000       0x7e
@@ -2602,15 +2627,15 @@ OUTPUT(ControlDeAcceso.axf elf32-littlearm)
  .comment       0x0000007e       0x7f ./source/database/data_base.o
  .comment       0x0000007e       0x7f ./source/MCAL/SysTick.o
  .comment       0x0000007e       0x7f ./source/MCAL/gpio.o
- .comment       0x0000007e       0x7f ./source/FSM/States/admin_state.o
  .comment       0x0000007e       0x7f ./source/FSM/States/config_device_state.o
  .comment       0x0000007e       0x7f ./source/FSM/States/config_me_state.o
  .comment       0x0000007e       0x7f ./source/FSM/States/fail_state.o
  .comment       0x0000007e       0x7f ./source/FSM/States/id_state.o
- .comment       0x0000007e       0x7f ./source/FSM/States/main_menu_state.o
+ .comment       0x0000007e       0x7f ./source/FSM/States/menu_state.o
  .comment       0x0000007e       0x7f ./source/FSM/States/open_state.o
  .comment       0x0000007e       0x7f ./source/FSM/States/pin_state.o
  .comment       0x0000007e       0x7f ./source/FSM/States/user_input.o
+ .comment       0x0000007e       0x7f ./source/FSM/States/welcome_state.o
  .comment       0x0000007e       0x7f ./source/FSM/fsm.o
  .comment       0x0000007e       0x7f ./source/FSM/fsm_table.o
  .comment       0x0000007e       0x7f ./source/App.o
@@ -2667,23 +2692,23 @@ OUTPUT(ControlDeAcceso.axf elf32-littlearm)
  .ARM.attributes
                 0x000002e5       0x39 ./source/MCAL/gpio.o
  .ARM.attributes
-                0x0000031e       0x39 ./source/FSM/States/admin_state.o
+                0x0000031e       0x39 ./source/FSM/States/config_device_state.o
  .ARM.attributes
-                0x00000357       0x39 ./source/FSM/States/config_device_state.o
+                0x00000357       0x39 ./source/FSM/States/config_me_state.o
  .ARM.attributes
-                0x00000390       0x39 ./source/FSM/States/config_me_state.o
+                0x00000390       0x39 ./source/FSM/States/fail_state.o
  .ARM.attributes
-                0x000003c9       0x39 ./source/FSM/States/fail_state.o
+                0x000003c9       0x39 ./source/FSM/States/id_state.o
  .ARM.attributes
-                0x00000402       0x39 ./source/FSM/States/id_state.o
+                0x00000402       0x39 ./source/FSM/States/menu_state.o
  .ARM.attributes
-                0x0000043b       0x39 ./source/FSM/States/main_menu_state.o
+                0x0000043b       0x39 ./source/FSM/States/open_state.o
  .ARM.attributes
-                0x00000474       0x39 ./source/FSM/States/open_state.o
+                0x00000474       0x39 ./source/FSM/States/pin_state.o
  .ARM.attributes
-                0x000004ad       0x39 ./source/FSM/States/pin_state.o
+                0x000004ad       0x39 ./source/FSM/States/user_input.o
  .ARM.attributes
-                0x000004e6       0x39 ./source/FSM/States/user_input.o
+                0x000004e6       0x39 ./source/FSM/States/welcome_state.o
  .ARM.attributes
                 0x0000051f       0x39 ./source/FSM/fsm.o
  .ARM.attributes
@@ -2764,15 +2789,15 @@ OUTPUT(ControlDeAcceso.axf elf32-littlearm)
  .debug_frame   0x000014c4      0x268 ./source/database/data_base.o
  .debug_frame   0x0000172c      0x140 ./source/MCAL/SysTick.o
  .debug_frame   0x0000186c      0x24c ./source/MCAL/gpio.o
- .debug_frame   0x00001ab8      0x100 ./source/FSM/States/admin_state.o
- .debug_frame   0x00001bb8       0x9c ./source/FSM/States/config_device_state.o
- .debug_frame   0x00001c54      0x144 ./source/FSM/States/config_me_state.o
- .debug_frame   0x00001d98       0x48 ./source/FSM/States/fail_state.o
- .debug_frame   0x00001de0      0x1a8 ./source/FSM/States/id_state.o
- .debug_frame   0x00001f88       0x50 ./source/FSM/States/main_menu_state.o
- .debug_frame   0x00001fd8       0x48 ./source/FSM/States/open_state.o
- .debug_frame   0x00002020      0x11c ./source/FSM/States/pin_state.o
- .debug_frame   0x0000213c       0xec ./source/FSM/States/user_input.o
+ .debug_frame   0x00001ab8       0x9c ./source/FSM/States/config_device_state.o
+ .debug_frame   0x00001b54      0x144 ./source/FSM/States/config_me_state.o
+ .debug_frame   0x00001c98       0x48 ./source/FSM/States/fail_state.o
+ .debug_frame   0x00001ce0      0x1a8 ./source/FSM/States/id_state.o
+ .debug_frame   0x00001e88      0x100 ./source/FSM/States/menu_state.o
+ .debug_frame   0x00001f88       0x48 ./source/FSM/States/open_state.o
+ .debug_frame   0x00001fd0      0x11c ./source/FSM/States/pin_state.o
+ .debug_frame   0x000020ec       0xec ./source/FSM/States/user_input.o
+ .debug_frame   0x000021d8       0x50 ./source/FSM/States/welcome_state.o
  .debug_frame   0x00002228       0x34 ./source/FSM/fsm.o
  .debug_frame   0x0000225c       0x6c ./source/FSM/fsm_table.o
  .debug_frame   0x000022c8       0x90 ./source/App.o
