@@ -139,7 +139,7 @@ static void InfiniteBlinkCalledFromPISR(LedElement *ledElement);
 
 
 /*******************************************************************************
- * PRIVATE VARIABLES WITH FILE LEVEL SCOPE
+* PRIVATE VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
 /*A LedElement's array to store the information and state of each led.*/
