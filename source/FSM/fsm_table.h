@@ -5,6 +5,7 @@
  ******************************************************************************/
 #ifndef FSMTABLE_H_
 #define FSMTABLE_H_
+#include "fsm.h"
 
 STATE *FSM_GetInitState(void);
 void FMS_StartInitState();

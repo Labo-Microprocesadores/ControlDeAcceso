@@ -17,6 +17,7 @@ SUBDIRS := \
 CMSIS \
 source \
 source/FSM/States \
+source/FSM/States/config_me_state \
 source/FSM \
 source/MCAL \
 source/database \

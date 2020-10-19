@@ -11,20 +11,23 @@
 #include "queue.h"
 #include "seven_seg_display.h"
 #include "Timer.h"
+#include "data_base.h"
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-#define OPTIONS_ARRAY_SIZE 5
+#define ADMIN_OPTIONS_ARRAY_SIZE 6
+#define USER_OPTIONS_ARRAY_SIZE 3
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
 typedef enum
 {
     OPEN,
+    CONFIG_ME,
+    LOG_OUT,
     CONFIG_DEVICE,
     ADD_USER,
-    CONFIG_USER,
-    CONFIG_ME
+    CONFIG_USER
 } options_t;
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
@@ -33,6 +36,7 @@ typedef enum
 static uint8_t currentOptionIndex = 0;
 static bool showingTitle;
 static int titleTimerID = -1;
+static bool admin = false;
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
@@ -66,6 +70,7 @@ static void showCurrentOption(void);
 void admin_initAdminMenu(void)
 {
     showingTitle = false;
+    admin = IsAdmin();
     showTitle();
     currentOptionIndex = 0;
 }
@@ -76,7 +81,8 @@ void admin_nextOption(void)
         userInteractionStopsTitle();
     else
     {
-        if (currentOptionIndex == OPTIONS_ARRAY_SIZE - 1)
+        uint8_t max = admin ? ADMIN_OPTIONS_ARRAY_SIZE: USER_OPTIONS_ARRAY_SIZE;
+        if (currentOptionIndex == max - 1)
             currentOptionIndex = 0;
         else
             currentOptionIndex++;
@@ -91,8 +97,9 @@ void admin_previousOption(void)
         userInteractionStopsTitle();
     else
     {
+        uint8_t max = admin ? ADMIN_OPTIONS_ARRAY_SIZE: USER_OPTIONS_ARRAY_SIZE;
         if (currentOptionIndex == 0)
-            currentOptionIndex = OPTIONS_ARRAY_SIZE - 1;
+            currentOptionIndex = max - 1;
         else
             currentOptionIndex--;
         showCurrentOption();
@@ -106,22 +113,26 @@ void admin_selectOption(void)
     else
     {
         SevenSegDisplay_EraseScreen();
+        SevenSegDisplay_SetPos(0);
         switch (currentOptionIndex)
         {
             case OPEN:
                 emitEvent(OPEN_SELECTED_EV);
                 break;
             case CONFIG_DEVICE:
-                emitEvent(ADMIN_CONFIG_DEVICE_SELECTED_EV);
+                emitEvent(CONFIG_DEVICE_SELECTED_EV);
                 break;
             case ADD_USER:
-                emitEvent(ADMIN_ADD_USER_SELECTED_EV);
+                emitEvent(ADD_USER_SELECTED_EV);
                 break;
             case CONFIG_USER:
-                emitEvent(ADMIN_CONFIG_USER_SELECTED_EV);
+                emitEvent(CONFIG_USER_SELECTED_EV);
                 break;
             case CONFIG_ME:
-                emitEvent(ADMIN_CONFIG_ME_SELECTED_EV);
+                emitEvent(CONFIG_ME_SELECTED_EV);
+                break;
+            case LOG_OUT:
+                emitEvent(LOG_OUT_EV);
                 break;
         }
     }
@@ -138,21 +149,14 @@ static void showTitle(void)
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBufferAndMove("ADMIN MENU", 10, 0, BOUNCE);
-    showingTitle = true;
-    titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);
-}
-
-static void stopShowingTitle(void)
-{
-    SevenSegDisplay_EraseScreen();
-    showingTitle = false;
-    showCurrentOption();
-}
-
-static void userInteractionStopsTitle(void)
-{
-    Timer_Delete(titleTimerID);
+    if (admin)
+    {
+        SevenSegDisplay_WriteBuffer("BOSS", 4, 0);    
+    }
+    else
+    {
+        SevenSegDisplay_WriteBuffer("USER", 4, 0);
+    }
     titleTimerID = -1;
     stopShowingTitle();
 }
@@ -173,10 +177,13 @@ static void showCurrentOption(void)
         SevenSegDisplay_WriteBufferAndMove("ADD USER", 8, 0, BOUNCE);
         break;
     case CONFIG_USER:
-        SevenSegDisplay_WriteBufferAndMove("CONFIG USER", 11, 0, SHIFT_R);
+        SevenSegDisplay_WriteBufferAndMove("CONFIG USER", 11, 0, BOUNCE);
         break;
     case CONFIG_ME:
-        SevenSegDisplay_WriteBufferAndMove("CONFIG ME", 9, 0, SHIFT_R);
+        SevenSegDisplay_WriteBufferAndMove("CONFIG", 6, 0, BOUNCE);
+        break;
+    case LOG_OUT:
+        SevenSegDisplay_WriteBufferAndMove("LOG OUT", 7, 0, BOUNCE);
         break;
     }
 }

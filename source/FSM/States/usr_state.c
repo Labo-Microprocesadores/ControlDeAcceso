@@ -14,14 +14,15 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-#define OPTIONS_ARRAY_SIZE 2
+#define OPTIONS_ARRAY_SIZE 3
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
 typedef enum
 {
     OPEN,
-    CONFIG
+    CONFIG,
+    LOG_OUT
 } options_t;
 
 /*******************************************************************************
@@ -108,7 +109,10 @@ void usr_selectOption(void)
                 emitEvent(OPEN_SELECTED_EV);
                 break;
             case CONFIG:
-                emitEvent(USER_CONFIG_ME_SELECTED_EV);
+                //emitEvent(USER_CONFIG_ME_SELECTED_EV);
+                break;
+            case LOG_OUT:
+                emitEvent(LOG_OUT_EV);
                 break;
         }
     }
@@ -153,6 +157,9 @@ static void showCurrentOption(void)
         break;
     case CONFIG:
         SevenSegDisplay_WriteBufferAndMove("CONFIG ME", 9, 0, BOUNCE);
+        break;
+    case LOG_OUT:
+        SevenSegDisplay_WriteBufferAndMove("LOG OUT", 7, 0, BOUNCE);
         break;
     }
 }

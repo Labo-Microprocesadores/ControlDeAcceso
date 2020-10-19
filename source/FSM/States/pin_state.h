@@ -42,26 +42,6 @@ void pin_confirmPin(void);
  */
 void pin_timerTimeout(void);
 
-/**
- * @brief Changes the current position of the PIN array to the next character following CHAR ORDER.
- */
-void pin_increaseCurrent(void);
-/**
- * @brief Changes the current position of the PIN array to the previous character following CHAR ORDER.
- */
-void pin_decreaseCurrent(void);
-/**
- * @brief Set the current position of the PIN array with the introduced character and moves to the next position (unless the character is equal to BACKSPACE).
- *        If the introduced character is equal to BACKSPACE, it deletes the character of the current position and moves to the previous one.
- */
-void pin_acceptNumber(void);
-/**
- * @brief Checks if the entered PIN is correct and corresponds to an user or an admin in the database.
- *        Adds a PIN_OK or a PIN_FAIL event to the event queue of the FSM.
- */
-void pin_confirmPin(void);
-
-
 
 /**
  * @brief Returns the array of the Pin.

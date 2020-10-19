@@ -12,10 +12,16 @@
 #define NO_USER_INDEX   -1
 
 static dataBase_t dataBase;
-static uint8_t currentIdIndex = -1;
+static int8_t currentIdIndex = -1;
 static dataBase_t database;
-static uint8_t validNumberArray[MAX_CARD_NUMBER];
+static int8_t validNumberArray[MAX_CARD_NUMBER];
 static uint8_t blockedUsersIndexes[MAX_BLOCKED_USERS];
+
+
+
+static int getEffectiveArrayLength(uint8_t * inputArray, int totalArraySize);
+
+static void moveAllUsersOnePlace(void);
 
 /**
  * @brief Checks if the "id" array format matches the format of an id. The array must be complete (length equal to ID_ARRAY_SIZE) and all elements must be numbers from 0 to 9.
@@ -28,29 +34,8 @@ static bool checkIdArrayFormat(uint8_t userID[]);
  * @param userPIN, The pin array.
  * @return A bool indicating if the format is valid or not.
  */
-static bool checkPinArrayFormat(uint8_t userPIN[]);
-
-
-static bool CreateValidNumberArrayFormat(uint8_t cardNumber[], uint8_t numCharactersCardNumber, uint8_t validNumberArray[]);
-
-
-static int getEffectiveArrayLength(uint8_t *inputArray, int totalArraySize);
-
-static void moveAllUsersOnePlace(void);
-
-void initializeDataBase(void)
+static bool checkPinArrayFormat(int8_t userPIN[])
 {
-    //I define the database and the default value of lastItem
-    dataBase.lastItem = -1;
-    //I create 3 dummy users
-    user_t newUser1 = {{1, 2, 3, 4, 5, 6, 7, 8}, {9, 8, 7, 6, 5}, {6,0,3,1,6,7,0,9,1,2,0,2,4,1,0,1,8,4,5}, ADMIN};
-    user_t newUser2 = {{5, 2, 4, 6, 9, 5, 3, 5}, {1, 2, 3, 4, 5}, {1,1,1,1,1,1,1,1,1,1,1,1,1,1}, USER};
-    user_t newUser3 = {{8, 4, 6, 2, 3, 1, 9, 7}, {1, 1, 1, 1, -1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,}, ADMIN};
-    //Add the dummy users to the database
-    checkAddUser(newUser1.userID, newUser1.userPIN, newUser1.cardNumber, 19, newUser1.typeOfUser);
-    checkAddUser(newUser2.userID, newUser2.userPIN, newUser2.cardNumber, 14, newUser2.typeOfUser);
-    checkAddUser(newUser3.userID, newUser3.userPIN, newUser3.cardNumber, 12, newUser3.typeOfUser);
-    //Initialize blocked users' array
     for (uint8_t i = 0; i< MAX_BLOCKED_USERS; i++)
     {
         blockedUsersIndexes[i] = NO_USER_INDEX;
@@ -60,13 +45,10 @@ void initializeDataBase(void)
 bool verifyID(uint8_t usersID[])
 {
     uint8_t  user;
+    uint8_t end = dataBase.lastItem >= MAX_NUM_USERS?  MAX_NUM_USERS  - 1 : dataBase.lastItem;
     //I go through the array of users
-    for (user = 0; user < MAX_NUM_USERS; user++)
-    {
-        //if there are no more users to check
-        if (user > dataBase.lastItem)
-            return false;
-        
+    for (user = 0; user <= end; user++)
+    {        
         bool equalID = true;
         //I go through the id array checking values
         uint8_t count = 0;
@@ -76,21 +58,21 @@ bool verifyID(uint8_t usersID[])
                 equalID = false;
             count ++;                
         }
-
-        if(!equalID)
-            return false;
-        
-        currentIdIndex = user;
-        if (isCurrentUserBlocked())
+        if(equalID)
         {
-            currentIdIndex = -1;
-            return false;
-        }
-        return true;
+            currentIdIndex = user;
+            if (isCurrentUserBlocked())
+            {
+                currentIdIndex = -1;
+                return false;
+            }
+            return true;
+        }    
     }
+    return false;
 }
 
-bool verifyPIN(uint8_t userPIN[])
+bool verifyPIN(int8_t userPIN[])
 {
     uint8_t count;
     //I go through the id array checking values
@@ -99,7 +81,7 @@ bool verifyPIN(uint8_t userPIN[])
         if (dataBase.userList[currentIdIndex].userPIN[count] != userPIN[count])
         {
             dataBase.userList[currentIdIndex].Attempts++;
-            if (isCurrentUserBlocked)
+            if (isCurrentUserBlocked())
             {
                 int blockedArrayLength = getEffectiveArrayLength(blockedUsersIndexes, MAX_BLOCKED_USERS);
                 blockedUsersIndexes[blockedArrayLength] = currentIdIndex;
@@ -143,10 +125,9 @@ bool IsAdmin(void)
     return false;
 }
 
-Status checkAddUser(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy_t typeOfUser)
+Status checkAddUser(uint8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy_t typeOfUser)
 {
-	uint8_t validNumberArray[MAX_CARD_NUMBER];
-    Status howWas = validateAll(userID, userPIN, cardNumber, numCharactersCardNumber, validNumberArray, typeOfUser);
+	Status howWas = validateAll(userID, userPIN, cardNumber, numCharactersCardNumber, typeOfUser);
     if (howWas != VALIDATE_SUCCESSFULL)
         return howWas;
     /***************************************************************************/
@@ -176,7 +157,7 @@ Status checkAddUser(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], u
     return STORE_SUCCESSFULL;       
 }
 
-Status validateAll(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], uint8_t numCharactersCardNumber, uint8_t validNumberArray[], hierarchy_t typeOfUser)
+Status validateAll(uint8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy_t typeOfUser)
 {
     //check Database space
     if (database.lastItem == MAX_NUM_USERS - 1)
@@ -209,27 +190,25 @@ Status validateAll(uint8_t userID[], uint8_t userPIN[], uint8_t cardNumber[], ui
 static bool checkIdArrayFormat(uint8_t userID[])
 {
     int currentArrayLength = getEffectiveArrayLength(userID, ID_ARRAY_SIZE);
-
     if (currentArrayLength != ID_ARRAY_SIZE)
         return false;
 
     return true;
 }
 
-static bool checkPinArrayFormat(uint8_t userPIN[])
+static bool checkPinArrayFormat(int8_t userPIN[])
 {
     int currentArrayLength = getEffectiveArrayLength(userPIN, PIN_ARRAY_SIZE);
-
     if (currentArrayLength != PIN_ARRAY_SIZE && currentArrayLength != PIN_ARRAY_SIZE - 1) //4 or 5 chars
         return false;
 
     return true;
 }
 
-static bool checkCardNumberArrayFormat(uint8_t userCardNumber[])
+
+static bool checkCardNumberArrayFormat(int8_t userCardNumber[])
 {
     int currentArrayLength = getEffectiveArrayLength(userCardNumber, MAX_CARD_NUMBER);
-
     if (currentArrayLength != MAX_CARD_NUMBER)
         return false;
 
@@ -251,11 +230,8 @@ static int getEffectiveArrayLength(uint8_t *inputArray, int totalArraySize)
     return length;
 }
 
-Status changePin(uint8_t userOldPin[], uint8_t userNewPin[])
+Status changePin(int8_t* userNewPin)
 {
-    if (!verifyPIN(userOldPin))
-        return WRONG_PIN_VERIFICATION;
-    
     if (!checkPinArrayFormat(userNewPin))
         return PIN_WRONG_FORMAT;
 
@@ -268,23 +244,9 @@ Status changePin(uint8_t userOldPin[], uint8_t userNewPin[])
 }
 
 
-static bool CreateValidNumberArrayFormat(uint8_t cardNumber[], uint8_t numCharactersCardNumber, uint8_t validNumberArray[])
-{
-    uint8_t count;
-    //I put the default character in the uncompleted positions
-    for(count=0; count <= MAX_CARD_NUMBER; count++)
-    {
-        if(count < numCharactersCardNumber)
-            validNumberArray[count]=cardNumber[count];
-        else         
-            validNumberArray[count] = DEFAULT_CARD_CARACTER;
-    }
-    return true;
-}
 
-bool verifyCardNumber(uint8_t cardNumber[], uint8_t numCharactersCardNumber)
+bool verifyCardNumber(int8_t cardNumber[], uint8_t numCharactersCardNumber)
 {
-    uint8_t validNumberArray[MAX_CARD_NUMBER];
     uint8_t count;
     //I put the default character in the uncompleted positions
     for(count=0; count <= MAX_CARD_NUMBER; count++)
@@ -314,7 +276,7 @@ bool verifyCardNumber(uint8_t cardNumber[], uint8_t numCharactersCardNumber)
         }
         if (equalID)
         {
-            currentIdIndex = count-1;
+            currentIdIndex = user;
             return true;
         }
     }

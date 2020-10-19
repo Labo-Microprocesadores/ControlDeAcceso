@@ -70,16 +70,11 @@ void pin_confirmPin(void)
         {
             emitEvent(FAIL_PIN_EV);
         }
-        else if (IsAdmin())
-        {
-            emitEvent(ADMIN_PIN_OK_EV);
-        }
         else
         {
-            emitEvent(USR_PIN_OK_EV);
+            emitEvent(PIN_OK_EV);
         }
-    }
-    
+    }    
 }
 
 void pin_acceptNumber(void)

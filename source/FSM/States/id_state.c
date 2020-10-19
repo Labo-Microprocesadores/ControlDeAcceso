@@ -78,7 +78,6 @@ void initLogin(void)
 {
     showingErrorIndication = false;
     inputResetArray(id, &currentPos, ID_ARRAY_SIZE);
-
     showTitle();
 }
 
@@ -211,6 +210,7 @@ static void userInteractionStopErrorIndicationAndRestart(void)
 
 static void userInteractionStopErrorIndication(void)
 {
+       SevenSegDisplay_EraseScreen();
     Timer_Delete(errorIndicationTimerID);
     showingErrorIndication = false;
     errorIndicationTimerID = -1;
@@ -220,11 +220,18 @@ static void id_fail(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
-    initLogin();
+    SevenSegDisplay_SetPos(0);
+    SevenSegDisplay_WriteBufferAndMove("NO ID FOUND", 11, 0, BOUNCE);
+    showingErrorIndication = true;
+    errorIndicationTimerID = Timer_AddCallback(&initLogin, TITLE_TIME, true);
 }
 
 static void id_cardFail(void)
 {
-    SevenSegDisplay_EraseScreen(); //TODO chequear
+    SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
+    SevenSegDisplay_SetPos(0);
+    SevenSegDisplay_WriteBufferAndMove("CARD FAILED", 11, 0, BOUNCE);
+    showingErrorIndication = true;
+    errorIndicationTimerID = Timer_AddCallback(&initLogin, TITLE_TIME, true);
 }
