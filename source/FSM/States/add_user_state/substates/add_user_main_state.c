@@ -26,7 +26,7 @@ void addUsr_initState(void)
 }
 
 
-void cardSwipe(void)
+void addUsr_cardSwipe(void)
 {
     card_t myCard;
     bool ok = Lector_GetData(&myCard);

@@ -9,9 +9,9 @@
 
 /*Foward Declarations*/
 
-extern STATE card[];
-extern STATE id[];
-extern STATE pin[];
+extern STATE addUser_card[];
+extern STATE addUser_id[];
+extern STATE addUser_pin[];
 
 // prototipos
 static void do_nothing(void);
@@ -20,40 +20,40 @@ static void return_to_last(void);
 /*** tablas de estado ***/
 
 /*** Card ***/
-STATE card[]=
+STATE addUser_card[]=
 {
-  	{ENCODER_RIGHT_EV, 	card,	return_to_last},
-    {ENCODER_LEFT_EV, 	card, 	return_to_last},
-    {PRESS_EV, 			card, 	return_to_last},
-	{LKP_EV, 			card, 	return_to_last},
-	{CARD_SWIPE_EV, 	id, 	cardSwipe},
-  	{FIN_TABLA, 		card, 	do_nothing}
+  	{ENCODER_RIGHT_EV, 	addUser_card,	return_to_last},
+    {ENCODER_LEFT_EV, 	addUser_card, 	return_to_last},
+    {PRESS_EV, 			addUser_card, 	return_to_last},
+	{LKP_EV, 			addUser_card, 	return_to_last},
+	{CARD_SWIPE_EV, 	addUser_id, 	addUsr_cardSwipe},
+  	{FIN_TABLA, 		addUser_card, 	do_nothing}
 };
 
 /*** Id ***/
 
-STATE id[]=
+STATE addUser_id[]=
 {
-	{PRESS_EV, 						id, 	addUserId_acceptNumber},
-	{LKP_EV, 						id, 	addUserId_confirmID},
-	{ENCODER_RIGHT_EV, 				id, 	addUserId_increaseCurrent},
-    {ENCODER_LEFT_EV, 				id, 	addUserId_decreaseCurrent},
-	{RETURN_TO_LAST_STATE_EV, 		card, 	addUsr_initState},
-	{ID_OK_EV, 						pin, 	addUserPin_initPinInput}, //TODO que updetee el display
-	{FIN_TABLA,						id,		do_nothing},
+	{PRESS_EV, 						addUser_id, 	addUserId_acceptNumber},
+	{LKP_EV, 						addUser_id, 	addUserId_confirmID},
+	{ENCODER_RIGHT_EV, 				addUser_id, 	addUserId_increaseCurrent},
+    {ENCODER_LEFT_EV, 				addUser_id, 	addUserId_decreaseCurrent},
+	{RETURN_TO_LAST_STATE_EV, 		addUser_card, 	addUsr_initState},
+	{ID_OK_EV, 						addUser_pin, 	addUserPin_initPinInput}, //TODO que updetee el display
+	{FIN_TABLA,						addUser_id,		do_nothing},
 };
 
 /*** Pin ***/
 
-STATE pin[] =
+STATE addUser_pin[] =
 {
 	//{,pin,},	    
-	{PRESS_EV,						pin, 	addUserPin_acceptNumber},
-	{ENCODER_RIGHT_EV,				pin, 	addUserPin_increaseCurrent}, 
-    {ENCODER_LEFT_EV,				pin, 	addUserPin_decreaseCurrent},
-	{LKP_EV,						pin, 	addUserPin_confirmPin}, 
-	{RETURN_TO_LAST_STATE_EV, 		id, 	addUserId_initLogin},
-	{FIN_TABLA, 					pin, 	do_nothing}
+	{PRESS_EV,						addUser_pin, 	addUserPin_acceptNumber},
+	{ENCODER_RIGHT_EV,				addUser_pin, 	addUserPin_increaseCurrent}, 
+    {ENCODER_LEFT_EV,				addUser_pin, 	addUserPin_decreaseCurrent},
+	{LKP_EV,						addUser_pin, 	addUserPin_confirmPin}, 
+	{RETURN_TO_LAST_STATE_EV, 		addUser_id, 	addUserId_initLogin},
+	{FIN_TABLA, 					addUser_pin, 	do_nothing}
 };
 
 
@@ -61,13 +61,13 @@ STATE pin[] =
 //========interfaz=================
 
 
-STATE *FSM_GetInitState(void) // cambiar nombre
+STATE *subFSM_GetInitState(void) // cambiar nombre
 {
-	return(card);
+	return(addUser_card);
 }
 
 ///=========Rutinas de accion===============
-void FSM_StartInitState() // cambiar nombre
+void subFSM_StartInitState() // cambiar nombre
 {
 	addUsr_initState();
 }

@@ -20,7 +20,7 @@
 extern STATE welcome[];
 extern STATE id[];
 extern STATE pin[];
-extern STATE usr[];
+extern STATE menu[];
 extern STATE welcome[];
 extern STATE cfg_me[];
 extern STATE fail[];
@@ -72,7 +72,7 @@ STATE pin[] =
 	{ENCODER_RIGHT_EV,			pin, 		pin_increaseCurrent}, 
     {ENCODER_LEFT_EV,			pin, 		pin_decreaseCurrent},
 	{LKP_EV, 					pin, 		pin_confirmPin}, 
-	{PIN_OK_EV, 				menu, 	menu_initState},
+	{PIN_OK_EV, 				menu, 		menu_initState},
 	{RETURN_TO_LAST_STATE_EV,	id, 		initLogin},
 	{FAIL_PIN_EV, 				fail, 		initFailState},
 	{TIMEOUT_EV, 				welcome, 	showWelcomeAnimation},
@@ -100,13 +100,13 @@ STATE menu[] =
     {ENCODER_LEFT_EV,					menu, 		menu_previousOption}, 
 	/* Eventos de user y admin */ 
 	{OPEN_SELECTED_EV,					open,		openDoor},
-	{LOG_OUT_EV, 						welcome, 		showWelcomeAnimation},
+	{LOG_OUT_EV, 						welcome, 	showWelcomeAnimation},
     {CONFIG_ME_SELECTED_EV,				cfg_me,		configMe_initState},
 	/* Eventos exclusivos de admin*/ 
-	//{ADD_USER_SELECTED_EV,				add_user,			},
-    {CONFIG_USER_SELECTED_EV,			cfg_usr,			},
+	{ADD_USER_SELECTED_EV,				add_user,	addUser_initFSM},
+    //{CONFIG_USER_SELECTED_EV,			cfg_usr,			},
     {CONFIG_DEVICE_SELECTED_EV,			cfg_device,	initConfigDevice},
-	{TIMEOUT_EV, 						welcome, 		showWelcomeAnimation},
+	{TIMEOUT_EV, 						welcome, 	showWelcomeAnimation},
 	{FIN_TABLA, 						menu, 		do_nothing}
 };
 
@@ -124,7 +124,7 @@ STATE cfg_me[] =
 	{ENCODER_RIGHT_EV,			cfg_me, 	configMe_increaseCurrent}, 
     {ENCODER_LEFT_EV,			cfg_me, 	configMe_decreaseCurrent},
 	{LKP_EV, 					cfg_me, 	configMe_confirmPin}, 
-	{RETURN_TO_LAST_STATE_EV, 	menu,	menu_initState},
+	{RETURN_TO_LAST_STATE_EV, 	menu,		menu_initState},
 	{TIMEOUT_EV, 				welcome, 	showWelcomeAnimation},
 	{FIN_TABLA, 				cfg_me, 	do_nothing}
 };
@@ -140,7 +140,7 @@ STATE add_user[] =
 	{RETURN_TO_LAST_STATE_EV, 	add_user, 	addUser_onReturn},
 	{CONFIG_USER_FINISHED_EV, 	menu,		menu_initState},// ver si esta bien la rutina de accion
 	{TIMEOUT_EV,				welcome, 	showWelcomeAnimation},
-	{FIN_TABLA, 				cfg_usr, 	do_nothing}
+	{FIN_TABLA, 				add_user, 	do_nothing}
 };
 /*Config device*/
 STATE cfg_device[] = 

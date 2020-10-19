@@ -46,7 +46,7 @@ typedef enum
 
 typedef struct
 {
-    uint8_t userID[ID_ARRAY_SIZE];
+    int8_t userID[ID_ARRAY_SIZE];
     int8_t userPIN[PIN_ARRAY_SIZE];
     int8_t cardNumber[MAX_CARD_NUMBER];
     hierarchy_t typeOfUser;
@@ -61,7 +61,7 @@ typedef struct
 
 void initializeDataBase(void);
 
-bool verifyID(uint8_t usersID[]);
+bool verifyID(int8_t usersID[]);
 
 bool verifyPIN(int8_t userPIN[]);
 
@@ -70,17 +70,17 @@ bool isCurrentUserBlocked(void);
 
 bool IsAdmin(void);
 
-Status checkAddUser(uint8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy_t typeOfUser);
+Status checkAddUser(int8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy_t typeOfUser);
 
-Status validateAll(uint8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy_t typeOfUser);
+Status validateAll(int8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy_t typeOfUser);
 
-Status validateNewId(uint8_t userID[]);
+Status validateNewId(int8_t userID[]);
 
 Status changePin(int8_t* userNewPin);
 
 bool verifyCardNumber(int8_t cardNumber[], uint8_t numCharactersCardNumber);
 
-Status removeUser(uint8_t userID[]);
+Status removeUser(int8_t userID[]);
 
 void UnblockUser(void);
 

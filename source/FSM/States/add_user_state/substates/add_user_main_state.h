@@ -10,6 +10,6 @@
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
 void addUsr_initState(void);
-void cardSwipe(void);
+void addUsr_cardSwipe(void);
 
 #endif /* ADD_USER_MAIN_MENU_STATE_H */

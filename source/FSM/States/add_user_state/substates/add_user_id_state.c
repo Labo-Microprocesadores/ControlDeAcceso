@@ -65,7 +65,10 @@ static void idFail(void);
  * @brief Function executed when the lector fails to read the card.
  */
 static void idCardFail(void);
-
+/**
+ * @brief Id already used in database
+ */
+static void idAlreadyExists(void);
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS

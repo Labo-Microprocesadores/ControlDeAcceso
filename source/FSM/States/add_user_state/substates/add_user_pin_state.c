@@ -83,7 +83,7 @@ void addUserPin_confirmPin(void)
         userInteractionStopErrorIndicationAndRestart();  
     else
     {
-        if (!checkPinArrayFormat(pin))
+        if (!verifyPIN(pin))
         {
             pinFail();
         }

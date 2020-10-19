@@ -19,7 +19,7 @@ static uint8_t blockedUsersIndexes[MAX_BLOCKED_USERS];
 
 
 
-static int getEffectiveArrayLength(uint8_t * inputArray, int totalArraySize);
+static int getEffectiveArrayLength(int8_t * inputArray, int totalArraySize);
 
 static void moveAllUsersOnePlace(void);
 
@@ -28,12 +28,9 @@ static void moveAllUsersOnePlace(void);
  * @param userID, The id array.
  * @return A bool indicating if the format is valid or not.
  */
-static bool checkIdArrayFormat(uint8_t userID[]);
+static bool checkIdArrayFormat(int8_t userID[]);
 
-
-static bool CreateValidNumberArrayFormat(uint8_t cardNumber[], uint8_t numCharactersCardNumber, uint8_t validNumberArray[]);
-
-static int getEffectiveArrayLength(uint8_t *inputArray, int totalArraySize);
+static int getEffectiveArrayLength(int8_t *inputArray, int totalArraySize);
 
 static void moveAllUsersOnePlace(void);
 
@@ -56,7 +53,7 @@ void initializeDataBase(void)
     }
 }
 
-bool verifyID(uint8_t usersID[])
+bool verifyID(int8_t usersID[])
 {
     uint8_t  user;
     uint8_t end = dataBase.lastItem >= MAX_NUM_USERS?  MAX_NUM_USERS  - 1 : dataBase.lastItem;
@@ -139,7 +136,7 @@ bool IsAdmin(void)
     return false;
 }
 
-Status checkAddUser(uint8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy_t typeOfUser)
+Status checkAddUser(int8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy_t typeOfUser)
 {
 	Status howWas = validateAll(userID, userPIN, cardNumber, numCharactersCardNumber, typeOfUser);
     if (howWas != VALIDATE_SUCCESSFULL)
@@ -171,7 +168,7 @@ Status checkAddUser(uint8_t userID[], int8_t userPIN[], int8_t cardNumber[], uin
     return STORE_SUCCESSFULL;       
 }
 
-Status validateAll(uint8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy_t typeOfUser)
+Status validateAll(int8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy_t typeOfUser)
 {
     //check Database space
     if (database.lastItem == MAX_NUM_USERS - 1)
@@ -186,7 +183,7 @@ Status validateAll(uint8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint
     //                           Validate UserPIN
     /***************************************************************************/
     //check Pin Format
-    if (!checkPinArrayFormat(userID))
+    if (!checkPinArrayFormat(userPIN))
         return PIN_WRONG_FORMAT;
     /***************************************************************************/
     //                           Create Valid Card Number
@@ -198,7 +195,7 @@ Status validateAll(uint8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint
     return VALIDATE_SUCCESSFULL;
 }
 
-Status validateNewId(uint8_t userID[])
+Status validateNewId(int8_t userID[])
 {
     //check Id Format
     if (!checkIdArrayFormat(userID))
@@ -218,7 +215,7 @@ bool checkPinArrayFormat(int8_t userPIN[])
     return true;
 }
 
-static bool checkIdArrayFormat(uint8_t userID[])
+static bool checkIdArrayFormat(int8_t userID[])
 {
     int currentArrayLength = getEffectiveArrayLength(userID, ID_ARRAY_SIZE);
     if (currentArrayLength != ID_ARRAY_SIZE)
@@ -239,7 +236,7 @@ static bool checkCardNumberArrayFormat(int8_t userCardNumber[])
     return true;
 }
 
-static int getEffectiveArrayLength(uint8_t *inputArray, int totalArraySize)
+static int getEffectiveArrayLength(int8_t *inputArray, int totalArraySize)
 {
     int length = 0;
     bool foundLast = false;
@@ -308,7 +305,7 @@ bool verifyCardNumber(int8_t cardNumber[], uint8_t numCharactersCardNumber)
 }
 
 
-Status removeUser(uint8_t userID[])
+Status removeUser(int8_t userID[])
 {
     //call to verify ID to know if userID is on the array of users and to know it index with currentIdIndex
     if(verifyID(userID))

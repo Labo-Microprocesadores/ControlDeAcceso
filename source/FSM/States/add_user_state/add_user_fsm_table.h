@@ -8,6 +8,6 @@
 
 #include "fsm.h"
 
-STATE *FSM_GetInitState(void);
-void FMS_StartInitState();
+STATE *subFSM_GetInitState(void);
+void subFMS_StartInitState();
 #endif /* ADD_USER_FSMTABLE_H_ */

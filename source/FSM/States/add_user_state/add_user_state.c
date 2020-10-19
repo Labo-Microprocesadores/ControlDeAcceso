@@ -30,7 +30,7 @@ static uint8_t currentPos = 0;
  ******************************************************************************/
 void addUser_initFSM(void)
 {
-    currentState = FSM_GetInitState();
+    currentState = subFSM_GetInitState();
 }
 
 void addUser_finishConfiguration(void)
