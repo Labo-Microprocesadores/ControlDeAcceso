@@ -77,7 +77,7 @@ void configDev_previousOption(void)
 void configDev_selectOption(void)
 {
     SevenSegDisplay_EraseScreen();
-    emitEvent(ADMIN_CONFIG_DEVICE_FINISHED_EV);
+    emitEvent(CONFIG_DEVICE_FINISHED_EV);
 }
 
 /*******************************************************************************

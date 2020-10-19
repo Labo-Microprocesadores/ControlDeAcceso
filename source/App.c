@@ -48,7 +48,7 @@ static int userTimeOutTimerID;
 /* Función que se llama 1 vez, al comienzo del programa */
 void App_Init(void)
 {
-  initializeDataBase();
+	initializeDataBase();
   initQueue();
 
   SevenSegDisplay_Init();

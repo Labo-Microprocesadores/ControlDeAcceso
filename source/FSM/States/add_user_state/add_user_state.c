@@ -11,6 +11,7 @@
 #include <stdbool.h>
 #include "data_base.h"
 #include "queue.h"
+#include "../user_input.h"
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
@@ -31,10 +32,7 @@ void addUser_initFSM(void)
 
 void addUser_finishConfiguration(void)
 {
-    if(IsAdmin())
-        emitEvent(ADMIN_ADD_USER_FINISHED_EV);
-    else
-        emitEvent(USER_ADD_USER_FINISHED_EV);
+    //emitEvent(ADD_USER_FINISHED_EV);
     
 }
 
@@ -54,6 +52,38 @@ void addUser_onEncoderLeft(void)
 {
     currentState = fsm(currentState, ENCODER_LEFT_EV);
 }
+
+
+
+
+
+/*
+void id_increaseCurrent(void)
+{
+    if (showingTitle)
+        userInteractionStopsTitle();
+    else if (showingErrorIndication)
+        userInteractionStopErrorIndicationAndRestart();  
+    else
+        inputIncreaseCurrent(id, currentPos);
+}
+
+void id_acceptNumber(void)
+{
+    if (showingTitle)
+        userInteractionStopsTitle();
+    else if (showingErrorIndication)
+        userInteractionStopErrorIndicationAndRestart();
+    else
+        inputAcceptNumber(id, &currentPos, ID_ARRAY_SIZE);
+}
+
+*/
+
+
+
+
+
 
 
 /*******************************************************************************

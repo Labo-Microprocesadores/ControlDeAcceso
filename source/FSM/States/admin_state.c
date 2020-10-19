@@ -187,3 +187,17 @@ static void showCurrentOption(void)
         break;
     }
 }
+
+static void stopShowingTitle(void)
+{
+    SevenSegDisplay_EraseScreen();
+    showingTitle = false;
+    showCurrentOption();
+}
+
+static void userInteractionStopsTitle(void)
+{
+    Timer_Delete(titleTimerID);
+    titleTimerID = -1;
+    stopShowingTitle();
+}

@@ -16,8 +16,8 @@ C_DEPS :=
 SUBDIRS := \
 CMSIS \
 source \
+source/FSM/States/add_user_state \
 source/FSM/States \
-source/FSM/States/config_me_state \
 source/FSM \
 source/MCAL \
 source/database \

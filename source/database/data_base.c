@@ -34,8 +34,27 @@ static bool checkIdArrayFormat(uint8_t userID[]);
  * @param userPIN, The pin array.
  * @return A bool indicating if the format is valid or not.
  */
-static bool checkPinArrayFormat(int8_t userPIN[])
+static bool checkPinArrayFormat(int8_t userPIN[]);
+
+static bool CreateValidNumberArrayFormat(uint8_t cardNumber[], uint8_t numCharactersCardNumber, uint8_t validNumberArray[]);
+
+static int getEffectiveArrayLength(uint8_t *inputArray, int totalArraySize);
+
+static void moveAllUsersOnePlace(void);
+
+void initializeDataBase(void)
 {
+    //I define the database and the default value of lastItem
+    dataBase.lastItem = -1;
+    //I create 3 dummy users
+    user_t newUser1 = {{1, 2, 3, 4, 5, 6, 7, 8}, {9, 8, 7, 6, 5}, {6,0,3,1,6,7,0,9,1,2,0,2,4,1,0,1,8,4,5}, ADMIN};
+    user_t newUser2 = {{5, 2, 4, 6, 9, 5, 3, 5}, {1, 2, 3, 4, 5}, {1,1,1,1,1,1,1,1,1,1,1,1,1,1}, USER};
+    user_t newUser3 = {{8, 4, 6, 2, 3, 1, 9, 7}, {1, 1, 1, 1, -1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,}, ADMIN};
+    //Add the dummy users to the database
+    checkAddUser(newUser1.userID, newUser1.userPIN, newUser1.cardNumber, 19, newUser1.typeOfUser);
+    checkAddUser(newUser2.userID, newUser2.userPIN, newUser2.cardNumber, 14, newUser2.typeOfUser);
+    checkAddUser(newUser3.userID, newUser3.userPIN, newUser3.cardNumber, 12, newUser3.typeOfUser);
+    //Initialize blocked users' array
     for (uint8_t i = 0; i< MAX_BLOCKED_USERS; i++)
     {
         blockedUsersIndexes[i] = NO_USER_INDEX;

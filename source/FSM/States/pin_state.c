@@ -82,7 +82,12 @@ void pin_acceptNumber(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else
+    {
+        int8_t aux[] = {MID_LINE};
         inputAcceptNumber(pin, &currentPos, PIN_ARRAY_SIZE);
+        SevenSegDisplay_WriteBuffer(aux, 1, currentPos-1);
+    }
+        
 }
 
 void pin_increaseCurrent(void)

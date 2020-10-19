@@ -116,7 +116,7 @@ STATE admin[] =
 	{LOG_OUT_EV, 						menu, 		showWelcomeAnimation},
     {CONFIG_ME_SELECTED_EV,				cfg_me,		configMe_initState},
 	/* Eventos exclusivos de amin*/ 
-	{ADD_USER_SELECTED_EV,				add_user,			},
+	//{ADD_USER_SELECTED_EV,				add_user,			},
     {CONFIG_USER_SELECTED_EV,			cfg_usr,			},
     {CONFIG_DEVICE_SELECTED_EV,			cfg_device,	initConfigDevice},
 	{TIMEOUT_EV, 						menu, 		showWelcomeAnimation},
@@ -137,7 +137,7 @@ STATE cfg_me[] =
 	{ENCODER_RIGHT_EV,			cfg_me, configMe_increaseCurrent}, 
     {ENCODER_LEFT_EV,			cfg_me, configMe_decreaseCurrent},
 	{LKP_EV, 					cfg_me, configMe_confirmPin}, 
-	{RETURN_TO_LAST_STATE_EV, 	admin,	initAdminMenu},
+	{RETURN_TO_LAST_STATE_EV, 	admin,	admin_initAdminMenu},
 	{TIMEOUT_EV, 				menu, 	showWelcomeAnimation},
 	{FIN_TABLA, 				cfg_me, do_nothing}
 };

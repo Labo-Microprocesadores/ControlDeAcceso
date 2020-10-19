@@ -41,8 +41,8 @@ static const uint8_t letters[] = {0x77, 0x7C, 0x39, 0x5E, 0x79, 0x71, 0x3D, 0x76
 								//  u	 ~v	   ~w	 ~X		y	 ~z
 								  0x3E, 0x00, 0x00, 0x00, 0x6E, 0x00};
 
-								// Back  "_"	otros
-static const uint8_t extras[] = {  0x18 , 0x08, 0x00};
+								// '-'     Back  "_"	otros
+static const uint8_t extras[] = {  0x40,   0x18 , 0x08, 0x00};
 
 static sevenSeg_t screen[BACK_BUFFER+10];
 static uint8_t pos = 0;
@@ -368,9 +368,9 @@ uint8_t SevenSegDisplay_chat2sevseg(char code)
 	{
 		return letters[code-'a'];
 	}
-	else if((int8_t)code < 0 && (int8_t)code > -3)
+	else if((int8_t)code < 0 && (int8_t)code > -4)
 	{
-		return extras[(int8_t)code+2];
+		return extras[(int8_t)code+3];
 	}
 	return NONE;
 }

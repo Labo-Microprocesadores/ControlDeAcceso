@@ -20,7 +20,7 @@ static void do_nothing(void);
 
 /*** Id ***/
 
-STATE id[]=
+/*STATE id[]=
 {
 	{PRESS_EV, id, id_acceptNumber},
 	{LKP_EV, id, id_confirmID},
@@ -31,10 +31,10 @@ STATE id[]=
 	{ID_OK_EV, pin, initPinInput}, //TODO que updetee el display
 	{TIMEOUT_EV, menu, showWelcomeAnimation},
 	{FIN_TABLA,id,do_nothing},
-};
+};*/
 
 /*** Pin ***/
-
+/*
 STATE pin[] =
 {
 	//{,pin,},	    
@@ -48,27 +48,27 @@ STATE pin[] =
 	{FAIL_PIN_EV, fail, initFailState},
 	{TIMEOUT_EV, menu, showWelcomeAnimation},
 	{FIN_TABLA, pin, do_nothing}
-};
+};*/
 
 
 
 //========interfaz=================
 
 
-STATE *FSM_GetInitState(void)
-{
-	 return(menu);
-}
+//STATE *FSM_GetInitState(void)
+//{
+	 //return(menu);
+//}
 
 ///=========Rutinas de accion===============
-void FMS_StartInitState()
-{
-	showWelcomeAnimation();
-}
+//void FMS_StartInitState()
+//{
+//	showWelcomeAnimation();
+//}
 
 
 /*Dummy function*/
-static void do_nothing(void)
-{
+//static void do_nothing(void)
+//{
 	//take some time off, relax, and KEEP WORKING ////you lazy ass ALU
-}
+//}
