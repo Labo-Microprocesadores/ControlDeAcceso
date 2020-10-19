@@ -1,10 +1,21 @@
 # TODOs
 
+COSAS PARA HACER
+    - [ ] Ver carga de CPU
+    - [ ] Manual de usuario
+    - [ ] Usar Leds
+    - [ ] Aramr presentacion
+    - [ ] Armar diagrama de arquitectura/drivers/fsm 
+    - [ ] Agregar animacion, correccion de mensajes de error y otros mensajes
+    - [ ] Test, mucho test
+    - [ ] "Emprolijar"
+    - [ ] Compilar sin warnings
+
 EN TODOS LADOS: 
     - [x] AGREGAR EVENT QUEUE.
 
 En add user:
-    - [ ]Cambiar nombre a main menu
+    - [x] Cambiar nombre a main menu
 
 
 En id_state.c, pin_state.c y user_input:
@@ -50,7 +61,7 @@ En open_state.c
     - [x] Led Off al terminar el timer
 
 En config_me.c
-    - [ ] Todo
+    - [x] Todo
 
 En config_device.c:
     - [x] Mostrar en el display las opciones y un titulo

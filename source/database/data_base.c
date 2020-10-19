@@ -43,7 +43,7 @@ static dataBase_t dataBase;
 static int8_t currentIdIndex = -1;
 static dataBase_t database;
 static int8_t validNumberArray[MAX_CARD_NUMBER];
-static uint8_t blockedUsersIndexes[MAX_BLOCKED_USERS];
+static int8_t blockedUsersIndexes[MAX_BLOCKED_USERS];
 
 
 /*******************************************************************************
@@ -79,7 +79,7 @@ static int getEffectiveArrayLength(int8_t *inputArray, int totalArraySize)
     bool foundLast = false;
     while (!foundLast && length < totalArraySize)
     {
-        uint8_t lastPosition = inputArray[length];
+        int8_t lastPosition = inputArray[length];
         if (lastPosition == NO_INPUT_CHAR || lastPosition == BACKSPACE || lastPosition == NO_USER_INDEX)
             foundLast = true;
         else
@@ -348,6 +348,11 @@ bool verifyCardNumber(int8_t cardNumber[], uint8_t numCharactersCardNumber)
         if (equalID)
         {
             currentIdIndex = user;
+            if (isCurrentUserBlocked())
+            {
+                currentIdIndex = -1;
+                return false;
+            }
             return true;
         }
     }

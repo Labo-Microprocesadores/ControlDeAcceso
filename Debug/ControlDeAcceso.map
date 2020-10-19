@@ -1098,7 +1098,7 @@ END GROUP
                 0x14001000                __top_FLEX_RAM = 0x14001000
                 0x14001000                __top_RAM3 = 0x14001000
 
-.text           0x00000000     0x6200
+.text           0x00000000     0x6220
  FILL mask 0xff
                 0x00000000                __vectors_start__ = ABSOLUTE (.)
  *(SORT_BY_ALIGNMENT(.isr_vector))
@@ -1108,13 +1108,13 @@ END GROUP
                 0x00000198                . = ALIGN (0x4)
                 0x00000198                __section_table_start = .
                 0x00000198                __data_section_table = .
-                0x00000198        0x4 LONG 0x6200 LOADADDR (.data)
+                0x00000198        0x4 LONG 0x6220 LOADADDR (.data)
                 0x0000019c        0x4 LONG 0x20000000 ADDR (.data)
                 0x000001a0        0x4 LONG 0x520 SIZEOF (.data)
-                0x000001a4        0x4 LONG 0x6200 LOADADDR (.data_RAM2)
+                0x000001a4        0x4 LONG 0x6220 LOADADDR (.data_RAM2)
                 0x000001a8        0x4 LONG 0x1fff0000 ADDR (.data_RAM2)
                 0x000001ac        0x4 LONG 0x0 SIZEOF (.data_RAM2)
-                0x000001b0        0x4 LONG 0x6200 LOADADDR (.data_RAM3)
+                0x000001b0        0x4 LONG 0x6220 LOADADDR (.data_RAM3)
                 0x000001b4        0x4 LONG 0x14000000 ADDR (.data_RAM3)
                 0x000001b8        0x4 LONG 0x0 SIZEOF (.data_RAM3)
                 0x000001bc                __data_section_table_end = .
@@ -1394,816 +1394,814 @@ END GROUP
                 0x000029c8       0x9c ./source/database/data_base.o
                 0x000029c8                getIdByCardNumber
  .text.UnblockUser
-                0x00002a64       0x64 ./source/database/data_base.o
+                0x00002a64       0x68 ./source/database/data_base.o
                 0x00002a64                UnblockUser
- .text.IsAdmin  0x00002ac8       0x38 ./source/database/data_base.o
-                0x00002ac8                IsAdmin
+ .text.IsAdmin  0x00002acc       0x38 ./source/database/data_base.o
+                0x00002acc                IsAdmin
  .text.checkAddUser
-                0x00002b00      0x134 ./source/database/data_base.o
-                0x00002b00                checkAddUser
+                0x00002b04      0x134 ./source/database/data_base.o
+                0x00002b04                checkAddUser
  .text.validateAll
-                0x00002c34       0x68 ./source/database/data_base.o
-                0x00002c34                validateAll
+                0x00002c38       0x68 ./source/database/data_base.o
+                0x00002c38                validateAll
  .text.changePin
-                0x00002c9c       0x6c ./source/database/data_base.o
-                0x00002c9c                changePin
+                0x00002ca0       0x6c ./source/database/data_base.o
+                0x00002ca0                changePin
  .text.verifyCardNumber
-                0x00002d08       0xd0 ./source/database/data_base.o
-                0x00002d08                verifyCardNumber
+                0x00002d0c       0xd0 ./source/database/data_base.o
+                0x00002d0c                verifyCardNumber
  .text.removeUser
-                0x00002dd8       0x3c ./source/database/data_base.o
-                0x00002dd8                removeUser
+                0x00002ddc       0x3c ./source/database/data_base.o
+                0x00002ddc                removeUser
  .text.moveAllUsersOnePlace
-                0x00002e14      0x18c ./source/database/data_base.o
+                0x00002e18      0x18c ./source/database/data_base.o
  .text.SysTick_Init
-                0x00002fa0       0x3c ./source/MCAL/SysTick.o
-                0x00002fa0                SysTick_Init
+                0x00002fa4       0x3c ./source/MCAL/SysTick.o
+                0x00002fa4                SysTick_Init
  .text.SysTick_AddCallback
-                0x00002fdc       0x88 ./source/MCAL/SysTick.o
-                0x00002fdc                SysTick_AddCallback
+                0x00002fe0       0x88 ./source/MCAL/SysTick.o
+                0x00002fe0                SysTick_AddCallback
  .text.SysTick_Handler
-                0x00003064       0xcc ./source/MCAL/SysTick.o
-                0x00003064                SysTick_Handler
+                0x00003068       0xcc ./source/MCAL/SysTick.o
+                0x00003068                SysTick_Handler
  .text.__NVIC_EnableIRQ
-                0x00003130       0x3c ./source/MCAL/gpio.o
+                0x00003134       0x3c ./source/MCAL/gpio.o
  .text.__NVIC_GetEnableIRQ
-                0x0000316c       0x40 ./source/MCAL/gpio.o
+                0x00003170       0x40 ./source/MCAL/gpio.o
  .text.gpioMode
-                0x000031ac      0x17c ./source/MCAL/gpio.o
-                0x000031ac                gpioMode
+                0x000031b0      0x17c ./source/MCAL/gpio.o
+                0x000031b0                gpioMode
  .text.gpioToggle
-                0x00003328       0x48 ./source/MCAL/gpio.o
-                0x00003328                gpioToggle
+                0x0000332c       0x48 ./source/MCAL/gpio.o
+                0x0000332c                gpioToggle
  .text.gpioRead
-                0x00003370       0x48 ./source/MCAL/gpio.o
-                0x00003370                gpioRead
+                0x00003374       0x48 ./source/MCAL/gpio.o
+                0x00003374                gpioRead
  .text.gpioWrite
-                0x000033b8       0x5c ./source/MCAL/gpio.o
-                0x000033b8                gpioWrite
- .text.gpioIRQ  0x00003414       0x90 ./source/MCAL/gpio.o
-                0x00003414                gpioIRQ
+                0x000033bc       0x5c ./source/MCAL/gpio.o
+                0x000033bc                gpioWrite
+ .text.gpioIRQ  0x00003418       0x90 ./source/MCAL/gpio.o
+                0x00003418                gpioIRQ
  .text.interruptHandler
-                0x000034a4       0x90 ./source/MCAL/gpio.o
-                0x000034a4                interruptHandler
+                0x000034a8       0x90 ./source/MCAL/gpio.o
+                0x000034a8                interruptHandler
  .text.addUserId_initLogin
-                0x00003534       0x28 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
-                0x00003534                addUserId_initLogin
+                0x00003538       0x28 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+                0x00003538                addUserId_initLogin
  .text.addUserId_increaseCurrent
-                0x0000355c       0x40 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
-                0x0000355c                addUserId_increaseCurrent
+                0x00003560       0x40 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+                0x00003560                addUserId_increaseCurrent
  .text.addUserId_decreaseCurrent
-                0x0000359c       0x40 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
-                0x0000359c                addUserId_decreaseCurrent
+                0x000035a0       0x40 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+                0x000035a0                addUserId_decreaseCurrent
  .text.addUserId_confirmID
-                0x000035dc       0x64 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
-                0x000035dc                addUserId_confirmID
+                0x000035e0       0x64 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+                0x000035e0                addUserId_confirmID
  .text.addUserId_acceptNumber
-                0x00003640       0x40 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
-                0x00003640                addUserId_acceptNumber
+                0x00003644       0x40 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+                0x00003644                addUserId_acceptNumber
  .text.addUserId_getIDArray
-                0x00003680       0x14 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
-                0x00003680                addUserId_getIDArray
+                0x00003684       0x14 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+                0x00003684                addUserId_getIDArray
  .text.showTitle
-                0x00003694       0x48 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+                0x00003698       0x48 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
  .text.stopShowingTitle
-                0x000036dc       0x30 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+                0x000036e0       0x30 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
  .text.userInteractionStopsTitle
-                0x0000370c       0x28 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+                0x00003710       0x28 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
  .text.userInteractionStopErrorIndication
-                0x00003734       0x2c ./source/FSM/States/add_user_state/substates/add_user_id_state.o
- .text.idFail   0x00003760       0x4c ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+                0x00003738       0x2c ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+ .text.idFail   0x00003764       0x4c ./source/FSM/States/add_user_state/substates/add_user_id_state.o
  .text.idAlreadyExists
-                0x000037ac       0x4c ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+                0x000037b0       0x4c ./source/FSM/States/add_user_state/substates/add_user_id_state.o
  .text.addUsr_initState
-                0x000037f8       0x3c ./source/FSM/States/add_user_state/substates/add_user_main_state.o
-                0x000037f8                addUsr_initState
+                0x000037fc       0x3c ./source/FSM/States/add_user_state/substates/add_user_main_state.o
+                0x000037fc                addUsr_initState
  .text.addUsr_cardSwipe
-                0x00003834       0xd8 ./source/FSM/States/add_user_state/substates/add_user_main_state.o
-                0x00003834                addUsr_cardSwipe
+                0x00003838       0xd8 ./source/FSM/States/add_user_state/substates/add_user_main_state.o
+                0x00003838                addUsr_cardSwipe
  .text.addUsr_getCardNumber
-                0x0000390c       0x14 ./source/FSM/States/add_user_state/substates/add_user_main_state.o
-                0x0000390c                addUsr_getCardNumber
+                0x00003910       0x14 ./source/FSM/States/add_user_state/substates/add_user_main_state.o
+                0x00003910                addUsr_getCardNumber
  .text.showTitle
-                0x00003920       0x4c ./source/FSM/States/add_user_state/substates/add_user_main_state.o
+                0x00003924       0x4c ./source/FSM/States/add_user_state/substates/add_user_main_state.o
  .text.stopShowingTitle
-                0x0000396c       0x1c ./source/FSM/States/add_user_state/substates/add_user_main_state.o
+                0x00003970       0x1c ./source/FSM/States/add_user_state/substates/add_user_main_state.o
  .text.userInteractionStopsTitle
-                0x00003988       0x24 ./source/FSM/States/add_user_state/substates/add_user_main_state.o
+                0x0000398c       0x24 ./source/FSM/States/add_user_state/substates/add_user_main_state.o
  .text.userInteractionStopErrorIndication
-                0x000039ac       0x2c ./source/FSM/States/add_user_state/substates/add_user_main_state.o
+                0x000039b0       0x2c ./source/FSM/States/add_user_state/substates/add_user_main_state.o
  .text.addCardFail
-                0x000039d8       0x4c ./source/FSM/States/add_user_state/substates/add_user_main_state.o
+                0x000039dc       0x4c ./source/FSM/States/add_user_state/substates/add_user_main_state.o
  .text.cardIsUsed
-                0x00003a24       0x4c ./source/FSM/States/add_user_state/substates/add_user_main_state.o
+                0x00003a28       0x4c ./source/FSM/States/add_user_state/substates/add_user_main_state.o
  .text.addUserPin_initPinInput
-                0x00003a70       0x28 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
-                0x00003a70                addUserPin_initPinInput
+                0x00003a74       0x28 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+                0x00003a74                addUserPin_initPinInput
  .text.addUserPin_confirmPin
-                0x00003a98       0x70 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
-                0x00003a98                addUserPin_confirmPin
+                0x00003a9c       0x70 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+                0x00003a9c                addUserPin_confirmPin
  .text.addUserPin_acceptNumber
-                0x00003b08       0x5c ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
-                0x00003b08                addUserPin_acceptNumber
+                0x00003b0c       0x5c ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+                0x00003b0c                addUserPin_acceptNumber
  .text.addUserPin_increaseCurrent
-                0x00003b64       0x40 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
-                0x00003b64                addUserPin_increaseCurrent
+                0x00003b68       0x40 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+                0x00003b68                addUserPin_increaseCurrent
  .text.addUserPin_decreaseCurrent
-                0x00003ba4       0x40 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
-                0x00003ba4                addUserPin_decreaseCurrent
+                0x00003ba8       0x40 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+                0x00003ba8                addUserPin_decreaseCurrent
  .text.showTitle
-                0x00003be4       0x48 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+                0x00003be8       0x48 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
  .text.stopShowingTitle
-                0x00003c2c       0x30 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+                0x00003c30       0x30 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
  .text.userInteractionStopsTitle
-                0x00003c5c       0x28 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+                0x00003c60       0x28 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
  .text.userInteractionStopErrorIndication
-                0x00003c84       0x2c ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
- .text.pinFail  0x00003cb0       0x4c ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+                0x00003c88       0x2c ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+ .text.pinFail  0x00003cb4       0x4c ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
  .text.subFSM_GetInitState
-                0x00003cfc       0x14 ./source/FSM/States/add_user_state/add_user_fsm_table.o
-                0x00003cfc                subFSM_GetInitState
+                0x00003d00       0x14 ./source/FSM/States/add_user_state/add_user_fsm_table.o
+                0x00003d00                subFSM_GetInitState
  .text.addUser_initFSM
-                0x00003d10       0x1c ./source/FSM/States/add_user_state/add_user_state.o
-                0x00003d10                addUser_initFSM
+                0x00003d14       0x1c ./source/FSM/States/add_user_state/add_user_state.o
+                0x00003d14                addUser_initFSM
  .text.addUser_onLKP
-                0x00003d2c       0x20 ./source/FSM/States/add_user_state/add_user_state.o
-                0x00003d2c                addUser_onLKP
+                0x00003d30       0x20 ./source/FSM/States/add_user_state/add_user_state.o
+                0x00003d30                addUser_onLKP
  .text.addUser_onPress
-                0x00003d4c       0x20 ./source/FSM/States/add_user_state/add_user_state.o
-                0x00003d4c                addUser_onPress
+                0x00003d50       0x20 ./source/FSM/States/add_user_state/add_user_state.o
+                0x00003d50                addUser_onPress
  .text.addUser_onEncoderRight
-                0x00003d6c       0x20 ./source/FSM/States/add_user_state/add_user_state.o
-                0x00003d6c                addUser_onEncoderRight
+                0x00003d70       0x20 ./source/FSM/States/add_user_state/add_user_state.o
+                0x00003d70                addUser_onEncoderRight
  .text.addUser_onEncoderLeft
-                0x00003d8c       0x20 ./source/FSM/States/add_user_state/add_user_state.o
-                0x00003d8c                addUser_onEncoderLeft
+                0x00003d90       0x20 ./source/FSM/States/add_user_state/add_user_state.o
+                0x00003d90                addUser_onEncoderLeft
  .text.addUser_onCardSwipe
-                0x00003dac       0x20 ./source/FSM/States/add_user_state/add_user_state.o
-                0x00003dac                addUser_onCardSwipe
+                0x00003db0       0x20 ./source/FSM/States/add_user_state/add_user_state.o
+                0x00003db0                addUser_onCardSwipe
  .text.addUser_onReturn
-                0x00003dcc       0x20 ./source/FSM/States/add_user_state/add_user_state.o
-                0x00003dcc                addUser_onReturn
+                0x00003dd0       0x20 ./source/FSM/States/add_user_state/add_user_state.o
+                0x00003dd0                addUser_onReturn
  .text.addUser_onIdOk
-                0x00003dec       0x20 ./source/FSM/States/add_user_state/add_user_state.o
-                0x00003dec                addUser_onIdOk
+                0x00003df0       0x20 ./source/FSM/States/add_user_state/add_user_state.o
+                0x00003df0                addUser_onIdOk
  .text.addUser_onIdFail
-                0x00003e0c       0x20 ./source/FSM/States/add_user_state/add_user_state.o
-                0x00003e0c                addUser_onIdFail
+                0x00003e10       0x20 ./source/FSM/States/add_user_state/add_user_state.o
+                0x00003e10                addUser_onIdFail
  .text.addUser_onCardFail
-                0x00003e2c       0x20 ./source/FSM/States/add_user_state/add_user_state.o
-                0x00003e2c                addUser_onCardFail
+                0x00003e30       0x20 ./source/FSM/States/add_user_state/add_user_state.o
+                0x00003e30                addUser_onCardFail
  .text.initConfigDevice
-                0x00003e4c       0x40 ./source/FSM/States/config_device_state.o
-                0x00003e4c                initConfigDevice
+                0x00003e50       0x40 ./source/FSM/States/config_device_state.o
+                0x00003e50                initConfigDevice
  .text.configDev_nextOption
-                0x00003e8c       0x2c ./source/FSM/States/config_device_state.o
-                0x00003e8c                configDev_nextOption
+                0x00003e90       0x2c ./source/FSM/States/config_device_state.o
+                0x00003e90                configDev_nextOption
  .text.configDev_previousOption
-                0x00003eb8       0x2c ./source/FSM/States/config_device_state.o
-                0x00003eb8                configDev_previousOption
+                0x00003ebc       0x2c ./source/FSM/States/config_device_state.o
+                0x00003ebc                configDev_previousOption
  .text.showCurrentOption
-                0x00003ee4       0x38 ./source/FSM/States/config_device_state.o
+                0x00003ee8       0x38 ./source/FSM/States/config_device_state.o
  .text.configMe_initState
-                0x00003f1c       0x28 ./source/FSM/States/config_me_state.o
-                0x00003f1c                configMe_initState
+                0x00003f20       0x28 ./source/FSM/States/config_me_state.o
+                0x00003f20                configMe_initState
  .text.configMe_confirmPin
-                0x00003f44       0x48 ./source/FSM/States/config_me_state.o
-                0x00003f44                configMe_confirmPin
+                0x00003f48       0x48 ./source/FSM/States/config_me_state.o
+                0x00003f48                configMe_confirmPin
  .text.configMe_acceptNumber
-                0x00003f8c       0x40 ./source/FSM/States/config_me_state.o
-                0x00003f8c                configMe_acceptNumber
+                0x00003f90       0x40 ./source/FSM/States/config_me_state.o
+                0x00003f90                configMe_acceptNumber
  .text.configMe_increaseCurrent
-                0x00003fcc       0x40 ./source/FSM/States/config_me_state.o
-                0x00003fcc                configMe_increaseCurrent
+                0x00003fd0       0x40 ./source/FSM/States/config_me_state.o
+                0x00003fd0                configMe_increaseCurrent
  .text.configMe_decreaseCurrent
-                0x0000400c       0x40 ./source/FSM/States/config_me_state.o
-                0x0000400c                configMe_decreaseCurrent
+                0x00004010       0x40 ./source/FSM/States/config_me_state.o
+                0x00004010                configMe_decreaseCurrent
  .text.showTitle
-                0x0000404c       0x4c ./source/FSM/States/config_me_state.o
+                0x00004050       0x4c ./source/FSM/States/config_me_state.o
  .text.stopShowingTitle
-                0x00004098       0x30 ./source/FSM/States/config_me_state.o
+                0x0000409c       0x30 ./source/FSM/States/config_me_state.o
  .text.userInteractionStopsTitle
-                0x000040c8       0x28 ./source/FSM/States/config_me_state.o
+                0x000040cc       0x28 ./source/FSM/States/config_me_state.o
  .text.userInteractionStopErrorIndication
-                0x000040f0       0x2c ./source/FSM/States/config_me_state.o
- .text.pinFail  0x0000411c       0x4c ./source/FSM/States/config_me_state.o
+                0x000040f4       0x2c ./source/FSM/States/config_me_state.o
+ .text.pinFail  0x00004120       0x4c ./source/FSM/States/config_me_state.o
  .text.deleteUser_initState
-                0x00004168       0x28 ./source/FSM/States/delete_user_state.o
-                0x00004168                deleteUser_initState
+                0x0000416c       0x28 ./source/FSM/States/delete_user_state.o
+                0x0000416c                deleteUser_initState
  .text.deleteUser_increaseCurrent
-                0x00004190       0x40 ./source/FSM/States/delete_user_state.o
-                0x00004190                deleteUser_increaseCurrent
+                0x00004194       0x40 ./source/FSM/States/delete_user_state.o
+                0x00004194                deleteUser_increaseCurrent
  .text.deleteUser_decreaseCurrent
-                0x000041d0       0x40 ./source/FSM/States/delete_user_state.o
-                0x000041d0                deleteUser_decreaseCurrent
+                0x000041d4       0x40 ./source/FSM/States/delete_user_state.o
+                0x000041d4                deleteUser_decreaseCurrent
  .text.deleteUser_confirm
-                0x00004210       0x48 ./source/FSM/States/delete_user_state.o
-                0x00004210                deleteUser_confirm
+                0x00004214       0x48 ./source/FSM/States/delete_user_state.o
+                0x00004214                deleteUser_confirm
  .text.deleteUser_acceptNumber
-                0x00004258       0x40 ./source/FSM/States/delete_user_state.o
-                0x00004258                deleteUser_acceptNumber
+                0x0000425c       0x40 ./source/FSM/States/delete_user_state.o
+                0x0000425c                deleteUser_acceptNumber
  .text.deleteUser_checkCardID
-                0x00004298       0xbc ./source/FSM/States/delete_user_state.o
-                0x00004298                deleteUser_checkCardID
+                0x0000429c       0xbc ./source/FSM/States/delete_user_state.o
+                0x0000429c                deleteUser_checkCardID
  .text.showTitle
-                0x00004354       0x48 ./source/FSM/States/delete_user_state.o
+                0x00004358       0x48 ./source/FSM/States/delete_user_state.o
  .text.stopShowingTitle
-                0x0000439c       0x30 ./source/FSM/States/delete_user_state.o
+                0x000043a0       0x30 ./source/FSM/States/delete_user_state.o
  .text.userInteractionStopsTitle
-                0x000043cc       0x28 ./source/FSM/States/delete_user_state.o
+                0x000043d0       0x28 ./source/FSM/States/delete_user_state.o
  .text.userInteractionStopErrorIndication
-                0x000043f4       0x2c ./source/FSM/States/delete_user_state.o
- .text.idFail   0x00004420       0x4c ./source/FSM/States/delete_user_state.o
+                0x000043f8       0x2c ./source/FSM/States/delete_user_state.o
+ .text.idFail   0x00004424       0x4c ./source/FSM/States/delete_user_state.o
  .text.idCardFail
-                0x0000446c       0x4c ./source/FSM/States/delete_user_state.o
+                0x00004470       0x4c ./source/FSM/States/delete_user_state.o
  .text.initFailState
-                0x000044b8       0x64 ./source/FSM/States/fail_state.o
-                0x000044b8                initFailState
+                0x000044bc       0x64 ./source/FSM/States/fail_state.o
+                0x000044bc                initFailState
  .text.finishFail
-                0x0000451c       0x30 ./source/FSM/States/fail_state.o
-                0x0000451c                finishFail
+                0x00004520       0x30 ./source/FSM/States/fail_state.o
+                0x00004520                finishFail
  .text.initLogin
-                0x0000454c       0x28 ./source/FSM/States/id_state.o
-                0x0000454c                initLogin
+                0x00004550       0x28 ./source/FSM/States/id_state.o
+                0x00004550                initLogin
  .text.id_increaseCurrent
-                0x00004574       0x40 ./source/FSM/States/id_state.o
-                0x00004574                id_increaseCurrent
+                0x00004578       0x40 ./source/FSM/States/id_state.o
+                0x00004578                id_increaseCurrent
  .text.id_decreaseCurrent
-                0x000045b4       0x40 ./source/FSM/States/id_state.o
-                0x000045b4                id_decreaseCurrent
+                0x000045b8       0x40 ./source/FSM/States/id_state.o
+                0x000045b8                id_decreaseCurrent
  .text.id_confirmID
-                0x000045f4       0x50 ./source/FSM/States/id_state.o
-                0x000045f4                id_confirmID
+                0x000045f8       0x50 ./source/FSM/States/id_state.o
+                0x000045f8                id_confirmID
  .text.id_acceptNumber
-                0x00004644       0x40 ./source/FSM/States/id_state.o
-                0x00004644                id_acceptNumber
+                0x00004648       0x40 ./source/FSM/States/id_state.o
+                0x00004648                id_acceptNumber
  .text.id_checkCardID
-                0x00004684       0xb0 ./source/FSM/States/id_state.o
-                0x00004684                id_checkCardID
+                0x00004688       0xb0 ./source/FSM/States/id_state.o
+                0x00004688                id_checkCardID
  .text.showTitle
-                0x00004734       0x48 ./source/FSM/States/id_state.o
+                0x00004738       0x48 ./source/FSM/States/id_state.o
  .text.stopShowingTitle
-                0x0000477c       0x30 ./source/FSM/States/id_state.o
+                0x00004780       0x30 ./source/FSM/States/id_state.o
  .text.userInteractionStopsTitle
-                0x000047ac       0x28 ./source/FSM/States/id_state.o
+                0x000047b0       0x28 ./source/FSM/States/id_state.o
  .text.userInteractionStopErrorIndication
-                0x000047d4       0x2c ./source/FSM/States/id_state.o
- .text.idFail   0x00004800       0x4c ./source/FSM/States/id_state.o
+                0x000047d8       0x2c ./source/FSM/States/id_state.o
+ .text.idFail   0x00004804       0x4c ./source/FSM/States/id_state.o
  .text.idCardFail
-                0x0000484c       0x4c ./source/FSM/States/id_state.o
+                0x00004850       0x4c ./source/FSM/States/id_state.o
  .text.menu_initState
-                0x00004898       0x30 ./source/FSM/States/menu_state.o
-                0x00004898                menu_initState
+                0x0000489c       0x30 ./source/FSM/States/menu_state.o
+                0x0000489c                menu_initState
  .text.menu_nextOption
-                0x000048c8       0x60 ./source/FSM/States/menu_state.o
-                0x000048c8                menu_nextOption
+                0x000048cc       0x60 ./source/FSM/States/menu_state.o
+                0x000048cc                menu_nextOption
  .text.menu_previousOption
-                0x00004928       0x5c ./source/FSM/States/menu_state.o
-                0x00004928                menu_previousOption
+                0x0000492c       0x5c ./source/FSM/States/menu_state.o
+                0x0000492c                menu_previousOption
  .text.menu_selectOption
-                0x00004984       0x80 ./source/FSM/States/menu_state.o
-                0x00004984                menu_selectOption
+                0x00004988       0x80 ./source/FSM/States/menu_state.o
+                0x00004988                menu_selectOption
  .text.showTitle
-                0x00004a04       0x5c ./source/FSM/States/menu_state.o
+                0x00004a08       0x5c ./source/FSM/States/menu_state.o
  .text.showCurrentOption
-                0x00004a60       0xa8 ./source/FSM/States/menu_state.o
+                0x00004a64       0xa8 ./source/FSM/States/menu_state.o
  .text.stopShowingTitle
-                0x00004b08       0x1c ./source/FSM/States/menu_state.o
+                0x00004b0c       0x1c ./source/FSM/States/menu_state.o
  .text.userInteractionStopsTitle
-                0x00004b24       0x24 ./source/FSM/States/menu_state.o
+                0x00004b28       0x24 ./source/FSM/States/menu_state.o
  .text.openDoor
-                0x00004b48       0x20 ./source/FSM/States/open_state.o
-                0x00004b48                openDoor
+                0x00004b4c       0x20 ./source/FSM/States/open_state.o
+                0x00004b4c                openDoor
  .text.initPinInput
-                0x00004b68       0x20 ./source/FSM/States/pin_state.o
-                0x00004b68                initPinInput
+                0x00004b6c       0x20 ./source/FSM/States/pin_state.o
+                0x00004b6c                initPinInput
  .text.pin_confirmPin
-                0x00004b88       0x40 ./source/FSM/States/pin_state.o
-                0x00004b88                pin_confirmPin
+                0x00004b8c       0x40 ./source/FSM/States/pin_state.o
+                0x00004b8c                pin_confirmPin
  .text.pin_acceptNumber
-                0x00004bc8       0x48 ./source/FSM/States/pin_state.o
-                0x00004bc8                pin_acceptNumber
+                0x00004bcc       0x48 ./source/FSM/States/pin_state.o
+                0x00004bcc                pin_acceptNumber
  .text.pin_increaseCurrent
-                0x00004c10       0x30 ./source/FSM/States/pin_state.o
-                0x00004c10                pin_increaseCurrent
+                0x00004c14       0x30 ./source/FSM/States/pin_state.o
+                0x00004c14                pin_increaseCurrent
  .text.pin_decreaseCurrent
-                0x00004c40       0x30 ./source/FSM/States/pin_state.o
-                0x00004c40                pin_decreaseCurrent
+                0x00004c44       0x30 ./source/FSM/States/pin_state.o
+                0x00004c44                pin_decreaseCurrent
  .text.showTitle
-                0x00004c70       0x48 ./source/FSM/States/pin_state.o
+                0x00004c74       0x48 ./source/FSM/States/pin_state.o
  .text.stopShowingTitle
-                0x00004cb8       0x28 ./source/FSM/States/pin_state.o
+                0x00004cbc       0x28 ./source/FSM/States/pin_state.o
  .text.userInteractionStopsTitle
-                0x00004ce0       0x24 ./source/FSM/States/pin_state.o
+                0x00004ce4       0x24 ./source/FSM/States/pin_state.o
  .text.showWelcomeAnimation
-                0x00004d04       0x28 ./source/FSM/States/welcome_state.o
-                0x00004d04                showWelcomeAnimation
+                0x00004d08       0x28 ./source/FSM/States/welcome_state.o
+                0x00004d08                showWelcomeAnimation
  .text.FSM_GetInitState
-                0x00004d2c       0x14 ./source/FSM/fsm_table.o
-                0x00004d2c                FSM_GetInitState
+                0x00004d30       0x14 ./source/FSM/fsm_table.o
+                0x00004d30                FSM_GetInitState
  .text.App_Init
-                0x00004d40       0x64 ./source/App.o
-                0x00004d40                App_Init
- .text.App_Run  0x00004da4       0x38 ./source/App.o
-                0x00004da4                App_Run
+                0x00004d44       0x64 ./source/App.o
+                0x00004d44                App_Init
+ .text.App_Run  0x00004da8       0x38 ./source/App.o
+                0x00004da8                App_Run
  .text.fillQueue
-                0x00004ddc       0x94 ./source/App.o
+                0x00004de0       0x94 ./source/App.o
  .text.initQueue
-                0x00004e70       0x50 ./source/queue.o
-                0x00004e70                initQueue
+                0x00004e74       0x50 ./source/queue.o
+                0x00004e74                initQueue
  .text.emitEvent
-                0x00004ec0       0x70 ./source/queue.o
-                0x00004ec0                emitEvent
+                0x00004ec4       0x70 ./source/queue.o
+                0x00004ec4                emitEvent
  .text.getEvent
-                0x00004f30       0x3c ./source/queue.o
-                0x00004f30                getEvent
+                0x00004f34       0x3c ./source/queue.o
+                0x00004f34                getEvent
  .text.queueIsEmpty
-                0x00004f6c       0x34 ./source/queue.o
-                0x00004f6c                queueIsEmpty
+                0x00004f70       0x34 ./source/queue.o
+                0x00004f70                queueIsEmpty
  .text.SystemInit
-                0x00004fa0       0x3c ./CMSIS/system_MK64F12.o
-                0x00004fa0                SystemInit
- .text._initio  0x00004fdc       0x78 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(initio.o)
-                0x00004fdc                _initio
- .text.setvbuf  0x00005054       0x40 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(setvbuf.o)
-                0x00005054                setvbuf
- .text.fflush   0x00005094       0x44 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fflush.o)
-                0x00005094                fflush
- .text.fseek    0x000050d8      0x100 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fseek.o)
-                0x000050d8                fseek
- .text.ftell    0x000051d8       0x44 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(ftell.o)
-                0x000051d8                ftell
+                0x00004fa4       0x3c ./CMSIS/system_MK64F12.o
+                0x00004fa4                SystemInit
+ .text._initio  0x00004fe0       0x78 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(initio.o)
+                0x00004fe0                _initio
+ .text.setvbuf  0x00005058       0x40 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(setvbuf.o)
+                0x00005058                setvbuf
+ .text.fflush   0x00005098       0x44 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fflush.o)
+                0x00005098                fflush
+ .text.fseek    0x000050dc      0x100 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fseek.o)
+                0x000050dc                fseek
+ .text.ftell    0x000051dc       0x44 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(ftell.o)
+                0x000051dc                ftell
  .text._Cwritebuf
-                0x0000521c       0x6c c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_writebuf.o)
-                0x0000521c                _Cwritebuf
- .text.main     0x00005288       0x1a ./source/startup/main.o
-                0x00005288                main
+                0x00005220       0x6c c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_writebuf.o)
+                0x00005220                _Cwritebuf
+ .text.main     0x0000528c       0x1a ./source/startup/main.o
+                0x0000528c                main
  .text.HardFault_Handler
-                0x000052a2       0x2c ./source/startup/semihost_hardfault.o
-                0x000052a2                HardFault_Handler
+                0x000052a6       0x2c ./source/startup/semihost_hardfault.o
+                0x000052a6                HardFault_Handler
  .text.DMA0_IRQHandler
-                0x000052ce        0x8 ./source/startup/startup_mk64f12.o
-                0x000052ce                DMA0_IRQHandler
+                0x000052d2        0x8 ./source/startup/startup_mk64f12.o
+                0x000052d2                DMA0_IRQHandler
  .text.DMA1_IRQHandler
-                0x000052d6        0x8 ./source/startup/startup_mk64f12.o
-                0x000052d6                DMA1_IRQHandler
+                0x000052da        0x8 ./source/startup/startup_mk64f12.o
+                0x000052da                DMA1_IRQHandler
  .text.DMA2_IRQHandler
-                0x000052de        0x8 ./source/startup/startup_mk64f12.o
-                0x000052de                DMA2_IRQHandler
+                0x000052e2        0x8 ./source/startup/startup_mk64f12.o
+                0x000052e2                DMA2_IRQHandler
  .text.DMA3_IRQHandler
-                0x000052e6        0x8 ./source/startup/startup_mk64f12.o
-                0x000052e6                DMA3_IRQHandler
+                0x000052ea        0x8 ./source/startup/startup_mk64f12.o
+                0x000052ea                DMA3_IRQHandler
  .text.DMA4_IRQHandler
-                0x000052ee        0x8 ./source/startup/startup_mk64f12.o
-                0x000052ee                DMA4_IRQHandler
+                0x000052f2        0x8 ./source/startup/startup_mk64f12.o
+                0x000052f2                DMA4_IRQHandler
  .text.DMA5_IRQHandler
-                0x000052f6        0x8 ./source/startup/startup_mk64f12.o
-                0x000052f6                DMA5_IRQHandler
+                0x000052fa        0x8 ./source/startup/startup_mk64f12.o
+                0x000052fa                DMA5_IRQHandler
  .text.DMA6_IRQHandler
-                0x000052fe        0x8 ./source/startup/startup_mk64f12.o
-                0x000052fe                DMA6_IRQHandler
+                0x00005302        0x8 ./source/startup/startup_mk64f12.o
+                0x00005302                DMA6_IRQHandler
  .text.DMA7_IRQHandler
-                0x00005306        0x8 ./source/startup/startup_mk64f12.o
-                0x00005306                DMA7_IRQHandler
+                0x0000530a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000530a                DMA7_IRQHandler
  .text.DMA8_IRQHandler
-                0x0000530e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000530e                DMA8_IRQHandler
+                0x00005312        0x8 ./source/startup/startup_mk64f12.o
+                0x00005312                DMA8_IRQHandler
  .text.DMA9_IRQHandler
-                0x00005316        0x8 ./source/startup/startup_mk64f12.o
-                0x00005316                DMA9_IRQHandler
+                0x0000531a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000531a                DMA9_IRQHandler
  .text.DMA10_IRQHandler
-                0x0000531e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000531e                DMA10_IRQHandler
+                0x00005322        0x8 ./source/startup/startup_mk64f12.o
+                0x00005322                DMA10_IRQHandler
  .text.DMA11_IRQHandler
-                0x00005326        0x8 ./source/startup/startup_mk64f12.o
-                0x00005326                DMA11_IRQHandler
+                0x0000532a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000532a                DMA11_IRQHandler
  .text.DMA12_IRQHandler
-                0x0000532e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000532e                DMA12_IRQHandler
+                0x00005332        0x8 ./source/startup/startup_mk64f12.o
+                0x00005332                DMA12_IRQHandler
  .text.DMA13_IRQHandler
-                0x00005336        0x8 ./source/startup/startup_mk64f12.o
-                0x00005336                DMA13_IRQHandler
+                0x0000533a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000533a                DMA13_IRQHandler
  .text.DMA14_IRQHandler
-                0x0000533e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000533e                DMA14_IRQHandler
+                0x00005342        0x8 ./source/startup/startup_mk64f12.o
+                0x00005342                DMA14_IRQHandler
  .text.DMA15_IRQHandler
-                0x00005346        0x8 ./source/startup/startup_mk64f12.o
-                0x00005346                DMA15_IRQHandler
+                0x0000534a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000534a                DMA15_IRQHandler
  .text.DMA_Error_IRQHandler
-                0x0000534e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000534e                DMA_Error_IRQHandler
+                0x00005352        0x8 ./source/startup/startup_mk64f12.o
+                0x00005352                DMA_Error_IRQHandler
  .text.MCM_IRQHandler
-                0x00005356        0x8 ./source/startup/startup_mk64f12.o
-                0x00005356                MCM_IRQHandler
+                0x0000535a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000535a                MCM_IRQHandler
  .text.FTFE_IRQHandler
-                0x0000535e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000535e                FTFE_IRQHandler
+                0x00005362        0x8 ./source/startup/startup_mk64f12.o
+                0x00005362                FTFE_IRQHandler
  .text.Read_Collision_IRQHandler
-                0x00005366        0x8 ./source/startup/startup_mk64f12.o
-                0x00005366                Read_Collision_IRQHandler
+                0x0000536a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000536a                Read_Collision_IRQHandler
  .text.LVD_LVW_IRQHandler
-                0x0000536e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000536e                LVD_LVW_IRQHandler
+                0x00005372        0x8 ./source/startup/startup_mk64f12.o
+                0x00005372                LVD_LVW_IRQHandler
  .text.LLWU_IRQHandler
-                0x00005376        0x8 ./source/startup/startup_mk64f12.o
-                0x00005376                LLWU_IRQHandler
+                0x0000537a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000537a                LLWU_IRQHandler
  .text.WDOG_EWM_IRQHandler
-                0x0000537e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000537e                WDOG_EWM_IRQHandler
+                0x00005382        0x8 ./source/startup/startup_mk64f12.o
+                0x00005382                WDOG_EWM_IRQHandler
  .text.RNG_IRQHandler
-                0x00005386        0x8 ./source/startup/startup_mk64f12.o
-                0x00005386                RNG_IRQHandler
+                0x0000538a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000538a                RNG_IRQHandler
  .text.I2C0_IRQHandler
-                0x0000538e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000538e                I2C0_IRQHandler
+                0x00005392        0x8 ./source/startup/startup_mk64f12.o
+                0x00005392                I2C0_IRQHandler
  .text.I2C1_IRQHandler
-                0x00005396        0x8 ./source/startup/startup_mk64f12.o
-                0x00005396                I2C1_IRQHandler
+                0x0000539a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000539a                I2C1_IRQHandler
  .text.SPI0_IRQHandler
-                0x0000539e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000539e                SPI0_IRQHandler
+                0x000053a2        0x8 ./source/startup/startup_mk64f12.o
+                0x000053a2                SPI0_IRQHandler
  .text.SPI1_IRQHandler
-                0x000053a6        0x8 ./source/startup/startup_mk64f12.o
-                0x000053a6                SPI1_IRQHandler
+                0x000053aa        0x8 ./source/startup/startup_mk64f12.o
+                0x000053aa                SPI1_IRQHandler
  .text.I2S0_Tx_IRQHandler
-                0x000053ae        0x8 ./source/startup/startup_mk64f12.o
-                0x000053ae                I2S0_Tx_IRQHandler
+                0x000053b2        0x8 ./source/startup/startup_mk64f12.o
+                0x000053b2                I2S0_Tx_IRQHandler
  .text.I2S0_Rx_IRQHandler
-                0x000053b6        0x8 ./source/startup/startup_mk64f12.o
-                0x000053b6                I2S0_Rx_IRQHandler
+                0x000053ba        0x8 ./source/startup/startup_mk64f12.o
+                0x000053ba                I2S0_Rx_IRQHandler
  .text.UART0_LON_IRQHandler
-                0x000053be        0x8 ./source/startup/startup_mk64f12.o
-                0x000053be                UART0_LON_IRQHandler
+                0x000053c2        0x8 ./source/startup/startup_mk64f12.o
+                0x000053c2                UART0_LON_IRQHandler
  .text.UART0_RX_TX_IRQHandler
-                0x000053c6        0x8 ./source/startup/startup_mk64f12.o
-                0x000053c6                UART0_RX_TX_IRQHandler
+                0x000053ca        0x8 ./source/startup/startup_mk64f12.o
+                0x000053ca                UART0_RX_TX_IRQHandler
  .text.UART0_ERR_IRQHandler
-                0x000053ce        0x8 ./source/startup/startup_mk64f12.o
-                0x000053ce                UART0_ERR_IRQHandler
+                0x000053d2        0x8 ./source/startup/startup_mk64f12.o
+                0x000053d2                UART0_ERR_IRQHandler
  .text.UART1_RX_TX_IRQHandler
-                0x000053d6        0x8 ./source/startup/startup_mk64f12.o
-                0x000053d6                UART1_RX_TX_IRQHandler
+                0x000053da        0x8 ./source/startup/startup_mk64f12.o
+                0x000053da                UART1_RX_TX_IRQHandler
  .text.UART1_ERR_IRQHandler
-                0x000053de        0x8 ./source/startup/startup_mk64f12.o
-                0x000053de                UART1_ERR_IRQHandler
+                0x000053e2        0x8 ./source/startup/startup_mk64f12.o
+                0x000053e2                UART1_ERR_IRQHandler
  .text.UART2_RX_TX_IRQHandler
-                0x000053e6        0x8 ./source/startup/startup_mk64f12.o
-                0x000053e6                UART2_RX_TX_IRQHandler
+                0x000053ea        0x8 ./source/startup/startup_mk64f12.o
+                0x000053ea                UART2_RX_TX_IRQHandler
  .text.UART2_ERR_IRQHandler
-                0x000053ee        0x8 ./source/startup/startup_mk64f12.o
-                0x000053ee                UART2_ERR_IRQHandler
+                0x000053f2        0x8 ./source/startup/startup_mk64f12.o
+                0x000053f2                UART2_ERR_IRQHandler
  .text.UART3_RX_TX_IRQHandler
-                0x000053f6        0x8 ./source/startup/startup_mk64f12.o
-                0x000053f6                UART3_RX_TX_IRQHandler
+                0x000053fa        0x8 ./source/startup/startup_mk64f12.o
+                0x000053fa                UART3_RX_TX_IRQHandler
  .text.UART3_ERR_IRQHandler
-                0x000053fe        0x8 ./source/startup/startup_mk64f12.o
-                0x000053fe                UART3_ERR_IRQHandler
+                0x00005402        0x8 ./source/startup/startup_mk64f12.o
+                0x00005402                UART3_ERR_IRQHandler
  .text.ADC0_IRQHandler
-                0x00005406        0x8 ./source/startup/startup_mk64f12.o
-                0x00005406                ADC0_IRQHandler
+                0x0000540a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000540a                ADC0_IRQHandler
  .text.CMP0_IRQHandler
-                0x0000540e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000540e                CMP0_IRQHandler
+                0x00005412        0x8 ./source/startup/startup_mk64f12.o
+                0x00005412                CMP0_IRQHandler
  .text.CMP1_IRQHandler
-                0x00005416        0x8 ./source/startup/startup_mk64f12.o
-                0x00005416                CMP1_IRQHandler
+                0x0000541a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000541a                CMP1_IRQHandler
  .text.FTM0_IRQHandler
-                0x0000541e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000541e                FTM0_IRQHandler
+                0x00005422        0x8 ./source/startup/startup_mk64f12.o
+                0x00005422                FTM0_IRQHandler
  .text.FTM1_IRQHandler
-                0x00005426        0x8 ./source/startup/startup_mk64f12.o
-                0x00005426                FTM1_IRQHandler
+                0x0000542a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000542a                FTM1_IRQHandler
  .text.FTM2_IRQHandler
-                0x0000542e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000542e                FTM2_IRQHandler
+                0x00005432        0x8 ./source/startup/startup_mk64f12.o
+                0x00005432                FTM2_IRQHandler
  .text.CMT_IRQHandler
-                0x00005436        0x8 ./source/startup/startup_mk64f12.o
-                0x00005436                CMT_IRQHandler
+                0x0000543a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000543a                CMT_IRQHandler
  .text.RTC_IRQHandler
-                0x0000543e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000543e                RTC_IRQHandler
+                0x00005442        0x8 ./source/startup/startup_mk64f12.o
+                0x00005442                RTC_IRQHandler
  .text.RTC_Seconds_IRQHandler
-                0x00005446        0x8 ./source/startup/startup_mk64f12.o
-                0x00005446                RTC_Seconds_IRQHandler
+                0x0000544a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000544a                RTC_Seconds_IRQHandler
  .text.PIT0_IRQHandler
-                0x0000544e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000544e                PIT0_IRQHandler
+                0x00005452        0x8 ./source/startup/startup_mk64f12.o
+                0x00005452                PIT0_IRQHandler
  .text.PIT1_IRQHandler
-                0x00005456        0x8 ./source/startup/startup_mk64f12.o
-                0x00005456                PIT1_IRQHandler
+                0x0000545a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000545a                PIT1_IRQHandler
  .text.PIT2_IRQHandler
-                0x0000545e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000545e                PIT2_IRQHandler
+                0x00005462        0x8 ./source/startup/startup_mk64f12.o
+                0x00005462                PIT2_IRQHandler
  .text.PIT3_IRQHandler
-                0x00005466        0x8 ./source/startup/startup_mk64f12.o
-                0x00005466                PIT3_IRQHandler
+                0x0000546a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000546a                PIT3_IRQHandler
  .text.PDB0_IRQHandler
-                0x0000546e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000546e                PDB0_IRQHandler
+                0x00005472        0x8 ./source/startup/startup_mk64f12.o
+                0x00005472                PDB0_IRQHandler
  .text.USB0_IRQHandler
-                0x00005476        0x8 ./source/startup/startup_mk64f12.o
-                0x00005476                USB0_IRQHandler
+                0x0000547a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000547a                USB0_IRQHandler
  .text.USBDCD_IRQHandler
-                0x0000547e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000547e                USBDCD_IRQHandler
+                0x00005482        0x8 ./source/startup/startup_mk64f12.o
+                0x00005482                USBDCD_IRQHandler
  .text.Reserved71_IRQHandler
-                0x00005486        0x8 ./source/startup/startup_mk64f12.o
-                0x00005486                Reserved71_IRQHandler
+                0x0000548a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000548a                Reserved71_IRQHandler
  .text.DAC0_IRQHandler
-                0x0000548e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000548e                DAC0_IRQHandler
+                0x00005492        0x8 ./source/startup/startup_mk64f12.o
+                0x00005492                DAC0_IRQHandler
  .text.MCG_IRQHandler
-                0x00005496        0x8 ./source/startup/startup_mk64f12.o
-                0x00005496                MCG_IRQHandler
+                0x0000549a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000549a                MCG_IRQHandler
  .text.LPTMR0_IRQHandler
-                0x0000549e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000549e                LPTMR0_IRQHandler
+                0x000054a2        0x8 ./source/startup/startup_mk64f12.o
+                0x000054a2                LPTMR0_IRQHandler
  .text.SWI_IRQHandler
-                0x000054a6        0x8 ./source/startup/startup_mk64f12.o
-                0x000054a6                SWI_IRQHandler
+                0x000054aa        0x8 ./source/startup/startup_mk64f12.o
+                0x000054aa                SWI_IRQHandler
  .text.SPI2_IRQHandler
-                0x000054ae        0x8 ./source/startup/startup_mk64f12.o
-                0x000054ae                SPI2_IRQHandler
+                0x000054b2        0x8 ./source/startup/startup_mk64f12.o
+                0x000054b2                SPI2_IRQHandler
  .text.UART4_RX_TX_IRQHandler
-                0x000054b6        0x8 ./source/startup/startup_mk64f12.o
-                0x000054b6                UART4_RX_TX_IRQHandler
+                0x000054ba        0x8 ./source/startup/startup_mk64f12.o
+                0x000054ba                UART4_RX_TX_IRQHandler
  .text.UART4_ERR_IRQHandler
-                0x000054be        0x8 ./source/startup/startup_mk64f12.o
-                0x000054be                UART4_ERR_IRQHandler
+                0x000054c2        0x8 ./source/startup/startup_mk64f12.o
+                0x000054c2                UART4_ERR_IRQHandler
  .text.UART5_RX_TX_IRQHandler
-                0x000054c6        0x8 ./source/startup/startup_mk64f12.o
-                0x000054c6                UART5_RX_TX_IRQHandler
+                0x000054ca        0x8 ./source/startup/startup_mk64f12.o
+                0x000054ca                UART5_RX_TX_IRQHandler
  .text.UART5_ERR_IRQHandler
-                0x000054ce        0x8 ./source/startup/startup_mk64f12.o
-                0x000054ce                UART5_ERR_IRQHandler
+                0x000054d2        0x8 ./source/startup/startup_mk64f12.o
+                0x000054d2                UART5_ERR_IRQHandler
  .text.CMP2_IRQHandler
-                0x000054d6        0x8 ./source/startup/startup_mk64f12.o
-                0x000054d6                CMP2_IRQHandler
+                0x000054da        0x8 ./source/startup/startup_mk64f12.o
+                0x000054da                CMP2_IRQHandler
  .text.FTM3_IRQHandler
-                0x000054de        0x8 ./source/startup/startup_mk64f12.o
-                0x000054de                FTM3_IRQHandler
+                0x000054e2        0x8 ./source/startup/startup_mk64f12.o
+                0x000054e2                FTM3_IRQHandler
  .text.DAC1_IRQHandler
-                0x000054e6        0x8 ./source/startup/startup_mk64f12.o
-                0x000054e6                DAC1_IRQHandler
+                0x000054ea        0x8 ./source/startup/startup_mk64f12.o
+                0x000054ea                DAC1_IRQHandler
  .text.ADC1_IRQHandler
-                0x000054ee        0x8 ./source/startup/startup_mk64f12.o
-                0x000054ee                ADC1_IRQHandler
+                0x000054f2        0x8 ./source/startup/startup_mk64f12.o
+                0x000054f2                ADC1_IRQHandler
  .text.I2C2_IRQHandler
-                0x000054f6        0x8 ./source/startup/startup_mk64f12.o
-                0x000054f6                I2C2_IRQHandler
+                0x000054fa        0x8 ./source/startup/startup_mk64f12.o
+                0x000054fa                I2C2_IRQHandler
  .text.CAN0_ORed_Message_buffer_IRQHandler
-                0x000054fe        0x8 ./source/startup/startup_mk64f12.o
-                0x000054fe                CAN0_ORed_Message_buffer_IRQHandler
+                0x00005502        0x8 ./source/startup/startup_mk64f12.o
+                0x00005502                CAN0_ORed_Message_buffer_IRQHandler
  .text.CAN0_Bus_Off_IRQHandler
-                0x00005506        0x8 ./source/startup/startup_mk64f12.o
-                0x00005506                CAN0_Bus_Off_IRQHandler
+                0x0000550a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000550a                CAN0_Bus_Off_IRQHandler
  .text.CAN0_Error_IRQHandler
-                0x0000550e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000550e                CAN0_Error_IRQHandler
+                0x00005512        0x8 ./source/startup/startup_mk64f12.o
+                0x00005512                CAN0_Error_IRQHandler
  .text.CAN0_Tx_Warning_IRQHandler
-                0x00005516        0x8 ./source/startup/startup_mk64f12.o
-                0x00005516                CAN0_Tx_Warning_IRQHandler
+                0x0000551a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000551a                CAN0_Tx_Warning_IRQHandler
  .text.CAN0_Rx_Warning_IRQHandler
-                0x0000551e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000551e                CAN0_Rx_Warning_IRQHandler
+                0x00005522        0x8 ./source/startup/startup_mk64f12.o
+                0x00005522                CAN0_Rx_Warning_IRQHandler
  .text.CAN0_Wake_Up_IRQHandler
-                0x00005526        0x8 ./source/startup/startup_mk64f12.o
-                0x00005526                CAN0_Wake_Up_IRQHandler
+                0x0000552a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000552a                CAN0_Wake_Up_IRQHandler
  .text.SDHC_IRQHandler
-                0x0000552e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000552e                SDHC_IRQHandler
+                0x00005532        0x8 ./source/startup/startup_mk64f12.o
+                0x00005532                SDHC_IRQHandler
  .text.ENET_1588_Timer_IRQHandler
-                0x00005536        0x8 ./source/startup/startup_mk64f12.o
-                0x00005536                ENET_1588_Timer_IRQHandler
+                0x0000553a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000553a                ENET_1588_Timer_IRQHandler
  .text.ENET_Transmit_IRQHandler
-                0x0000553e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000553e                ENET_Transmit_IRQHandler
+                0x00005542        0x8 ./source/startup/startup_mk64f12.o
+                0x00005542                ENET_Transmit_IRQHandler
  .text.ENET_Receive_IRQHandler
-                0x00005546        0x8 ./source/startup/startup_mk64f12.o
-                0x00005546                ENET_Receive_IRQHandler
+                0x0000554a        0x8 ./source/startup/startup_mk64f12.o
+                0x0000554a                ENET_Receive_IRQHandler
  .text.ENET_Error_IRQHandler
-                0x0000554e        0x8 ./source/startup/startup_mk64f12.o
-                0x0000554e                ENET_Error_IRQHandler
- .text.Led_On   0x00005556       0x1c ./source/drivers/Led.o
-                0x00005556                Led_On
- .text.Led_Off  0x00005572       0x1c ./source/drivers/Led.o
-                0x00005572                Led_Off
+                0x00005552        0x8 ./source/startup/startup_mk64f12.o
+                0x00005552                ENET_Error_IRQHandler
+ .text.Led_On   0x0000555a       0x1c ./source/drivers/Led.o
+                0x0000555a                Led_On
+ .text.Led_Off  0x00005576       0x1c ./source/drivers/Led.o
+                0x00005576                Led_Off
  .text.Led_Toggle
-                0x0000558e       0x1a ./source/drivers/Led.o
-                0x0000558e                Led_Toggle
+                0x00005592       0x1a ./source/drivers/Led.o
+                0x00005592                Led_Toggle
  .text.OnForDefinedTimeCalledFromPISR
-                0x000055a8       0x4e ./source/drivers/Led.o
+                0x000055ac       0x4e ./source/drivers/Led.o
  .text.BlinkCalledFromPISR
-                0x000055f6       0x74 ./source/drivers/Led.o
+                0x000055fa       0x74 ./source/drivers/Led.o
  .text.RepetitionBlinkCalledFromPISR
-                0x0000566a       0x7c ./source/drivers/Led.o
+                0x0000566e       0x7c ./source/drivers/Led.o
  .text.InfiniteBlinkCalledFromPISR
-                0x000056e6       0x4a ./source/drivers/Led.o
+                0x000056ea       0x4a ./source/drivers/Led.o
  .text.getArrayEffectiveLength
-                0x00005730       0x54 ./source/drivers/Timer.o
+                0x00005734       0x54 ./source/drivers/Timer.o
  .text.checkIdArrayFormat
-                0x00005784       0x26 ./source/database/data_base.o
+                0x00005788       0x26 ./source/database/data_base.o
  .text.getEffectiveArrayLength
-                0x000057aa       0x48 ./source/database/data_base.o
+                0x000057ae       0x6a ./source/database/data_base.o
  .text.validateNewId
-                0x000057f2       0x38 ./source/database/data_base.o
-                0x000057f2                validateNewId
+                0x00005818       0x38 ./source/database/data_base.o
+                0x00005818                validateNewId
  .text.checkPinArrayFormat
-                0x0000582a       0x2c ./source/database/data_base.o
-                0x0000582a                checkPinArrayFormat
+                0x00005850       0x2c ./source/database/data_base.o
+                0x00005850                checkPinArrayFormat
  .text.getArrayEffectiveLength
-                0x00005856       0x54 ./source/MCAL/SysTick.o
+                0x0000587c       0x54 ./source/MCAL/SysTick.o
  .text.PORTA_IRQHandler
-                0x000058aa       0x1e ./source/MCAL/gpio.o
-                0x000058aa                PORTA_IRQHandler
+                0x000058d0       0x1e ./source/MCAL/gpio.o
+                0x000058d0                PORTA_IRQHandler
  .text.PORTB_IRQHandler
-                0x000058c8       0x1e ./source/MCAL/gpio.o
-                0x000058c8                PORTB_IRQHandler
+                0x000058ee       0x1e ./source/MCAL/gpio.o
+                0x000058ee                PORTB_IRQHandler
  .text.PORTC_IRQHandler
-                0x000058e6       0x1e ./source/MCAL/gpio.o
-                0x000058e6                PORTC_IRQHandler
+                0x0000590c       0x1e ./source/MCAL/gpio.o
+                0x0000590c                PORTC_IRQHandler
  .text.PORTD_IRQHandler
-                0x00005904       0x1e ./source/MCAL/gpio.o
-                0x00005904                PORTD_IRQHandler
+                0x0000592a       0x1e ./source/MCAL/gpio.o
+                0x0000592a                PORTD_IRQHandler
  .text.PORTE_IRQHandler
-                0x00005922       0x1e ./source/MCAL/gpio.o
-                0x00005922                PORTE_IRQHandler
+                0x00005948       0x1e ./source/MCAL/gpio.o
+                0x00005948                PORTE_IRQHandler
  .text.userInteractionStopErrorIndicationAndRestart
-                0x00005940       0x10 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+                0x00005966       0x10 ./source/FSM/States/add_user_state/substates/add_user_id_state.o
  .text.userInteractionStopErrorIndicationAndRestart
-                0x00005950       0x10 ./source/FSM/States/add_user_state/substates/add_user_main_state.o
+                0x00005976       0x10 ./source/FSM/States/add_user_state/substates/add_user_main_state.o
  .text.userInteractionStopErrorIndicationAndRestart
-                0x00005960       0x10 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+                0x00005986       0x10 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
  .text.subFSM_StartInitState
-                0x00005970        0xc ./source/FSM/States/add_user_state/add_user_fsm_table.o
-                0x00005970                subFSM_StartInitState
+                0x00005996        0xc ./source/FSM/States/add_user_state/add_user_fsm_table.o
+                0x00005996                subFSM_StartInitState
  .text.do_nothing
-                0x0000597c        0xe ./source/FSM/States/add_user_state/add_user_fsm_table.o
+                0x000059a2        0xe ./source/FSM/States/add_user_state/add_user_fsm_table.o
  .text.return_to_last
-                0x0000598a        0xe ./source/FSM/States/add_user_state/add_user_fsm_table.o
+                0x000059b0        0xe ./source/FSM/States/add_user_state/add_user_fsm_table.o
  .text.configDev_selectOption
-                0x00005998       0x12 ./source/FSM/States/config_device_state.o
-                0x00005998                configDev_selectOption
+                0x000059be       0x12 ./source/FSM/States/config_device_state.o
+                0x000059be                configDev_selectOption
  .text.userInteractionStopErrorIndicationAndRestart
-                0x000059aa       0x10 ./source/FSM/States/config_me_state.o
+                0x000059d0       0x10 ./source/FSM/States/config_me_state.o
  .text.userInteractionStopErrorIndicationAndRestart
-                0x000059ba       0x10 ./source/FSM/States/delete_user_state.o
+                0x000059e0       0x10 ./source/FSM/States/delete_user_state.o
  .text.userInteractionStopErrorIndicationAndRestart
-                0x000059ca       0x10 ./source/FSM/States/id_state.o
+                0x000059f0       0x10 ./source/FSM/States/id_state.o
  .text.accessTimeOut
-                0x000059da       0x14 ./source/FSM/States/open_state.o
-                0x000059da                accessTimeOut
+                0x00005a00       0x14 ./source/FSM/States/open_state.o
+                0x00005a00                accessTimeOut
  .text.inputIncreaseCurrent
-                0x000059ee       0x8a ./source/FSM/States/user_input.o
-                0x000059ee                inputIncreaseCurrent
+                0x00005a14       0x8a ./source/FSM/States/user_input.o
+                0x00005a14                inputIncreaseCurrent
  .text.inputDecreaseCurrent
-                0x00005a78       0x8c ./source/FSM/States/user_input.o
-                0x00005a78                inputDecreaseCurrent
+                0x00005a9e       0x8c ./source/FSM/States/user_input.o
+                0x00005a9e                inputDecreaseCurrent
  .text.inputResetArray
-                0x00005b04       0x3c ./source/FSM/States/user_input.o
-                0x00005b04                inputResetArray
+                0x00005b2a       0x3c ./source/FSM/States/user_input.o
+                0x00005b2a                inputResetArray
  .text.inputAcceptNumber
-                0x00005b40       0xa8 ./source/FSM/States/user_input.o
-                0x00005b40                inputAcceptNumber
+                0x00005b66       0xa8 ./source/FSM/States/user_input.o
+                0x00005b66                inputAcceptNumber
  .text.getEffectiveArrayLength
-                0x00005be8       0x60 ./source/FSM/States/user_input.o
+                0x00005c0e       0x60 ./source/FSM/States/user_input.o
  .text.deleteLastChar
-                0x00005c48       0x52 ./source/FSM/States/user_input.o
+                0x00005c6e       0x52 ./source/FSM/States/user_input.o
  .text.cardSwipe
-                0x00005c9a       0x92 ./source/FSM/States/welcome_state.o
-                0x00005c9a                cardSwipe
- .text.fsm      0x00005d2c       0x3c ./source/FSM/fsm.o
-                0x00005d2c                fsm
+                0x00005cc0       0x92 ./source/FSM/States/welcome_state.o
+                0x00005cc0                cardSwipe
+ .text.fsm      0x00005d52       0x3c ./source/FSM/fsm.o
+                0x00005d52                fsm
  .text.FSM_StartInitState
-                0x00005d68        0xc ./source/FSM/fsm_table.o
-                0x00005d68                FSM_StartInitState
+                0x00005d8e        0xc ./source/FSM/fsm_table.o
+                0x00005d8e                FSM_StartInitState
  .text.do_nothing
-                0x00005d74        0xe ./source/FSM/fsm_table.o
+                0x00005d9a        0xe ./source/FSM/fsm_table.o
  .text.timeOutCallback
-                0x00005d82        0xe ./source/App.o
+                0x00005da8        0xe ./source/App.o
  .text.SystemInitHook
-                0x00005d90        0xe ./CMSIS/system_MK64F12.o
-                0x00005d90                SystemInitHook
- .text.__main   0x00005d9e        0xe c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(_cr__main.o)
-                0x00005d9e                __CR_SEMIHOST
-                0x00005d9e                __main
- .text.memcpy   0x00005dac        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memcpy.o)
-                0x00005dac                memcpy
- .text.memset   0x00005db0        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memset.o)
-                0x00005db0                memset
- .text._fdopen  0x00005db4       0x68 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_fdopen.o)
-                0x00005db4                _fdopen
- .text.fclose   0x00005e1c       0x58 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fclose.o)
-                0x00005e1c                fclose
- .text.remove   0x00005e74       0x14 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(remove.o)
-                0x00005e74                remove
- .text.strlen   0x00005e88       0x4a c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(strlen.o)
-                0x00005e88                strlen
+                0x00005db6        0xe ./CMSIS/system_MK64F12.o
+                0x00005db6                SystemInitHook
+ .text.__main   0x00005dc4        0xe c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(_cr__main.o)
+                0x00005dc4                __CR_SEMIHOST
+                0x00005dc4                __main
+ .text.memcpy   0x00005dd2        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memcpy.o)
+                0x00005dd2                memcpy
+ .text.memset   0x00005dd6        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(memset.o)
+                0x00005dd6                memset
+ .text._fdopen  0x00005dda       0x68 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_fdopen.o)
+                0x00005dda                _fdopen
+ .text.fclose   0x00005e42       0x58 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(fclose.o)
+                0x00005e42                fclose
+ .text.remove   0x00005e9a       0x14 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(remove.o)
+                0x00005e9a                remove
+ .text.strlen   0x00005eae       0x4a c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(strlen.o)
+                0x00005eae                strlen
  .text._do_fflush
-                0x00005ed2       0x40 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_do_fflush.o)
-                0x00005ed2                _do_fflush
- .text._fflush  0x00005f12       0x52 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_fflush.o)
-                0x00005f12                _fflush
- .text.free     0x00005f64       0x30 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o)
-                0x00005f64                free
+                0x00005ef8       0x40 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_do_fflush.o)
+                0x00005ef8                _do_fflush
+ .text._fflush  0x00005f38       0x52 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_fflush.o)
+                0x00005f38                _fflush
+ .text.free     0x00005f8a       0x30 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(alloc.o)
+                0x00005f8a                free
  .text._deferredlazyseek
-                0x00005f94       0x40 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_deferredlazyseek.o)
-                0x00005f94                _deferredlazyseek
+                0x00005fba       0x40 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(_deferredlazyseek.o)
+                0x00005fba                _deferredlazyseek
  .text.__aeabi_memcpy
-                0x00005fd4       0x34 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(memcpy.o)
-                0x00005fd4                __aeabi_memcpy
-                0x00005fde                __aeabi_memcpy8
-                0x00005fde                __aeabi_memcpy4
+                0x00005ffa       0x34 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(memcpy.o)
+                0x00005ffa                __aeabi_memcpy
+                0x00006004                __aeabi_memcpy8
+                0x00006004                __aeabi_memcpy4
  .text.__aeabi_memset_lowlevel
-                0x00006008       0x32 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(memcpy.o)
-                0x00006008                __aeabi_lowlevel_memset
+                0x0000602e       0x32 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m/fpv4-sp/hard\libcr_eabihelpers.a(memcpy.o)
+                0x0000602e                __aeabi_lowlevel_memset
  .text.__sys_close
-                0x0000603a        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_close.o)
-                0x0000603a                __sys_close
+                0x00006060        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_close.o)
+                0x00006060                __sys_close
  .text.__sys_flen
-                0x00006046        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_flen.o)
-                0x00006046                __sys_flen
+                0x0000606c        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_flen.o)
+                0x0000606c                __sys_flen
  .text.__sys_istty
-                0x00006052        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_istty.o)
-                0x00006052                __sys_istty
+                0x00006078        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_istty.o)
+                0x00006078                __sys_istty
  .text.__sys_remove
-                0x0000605e        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_remove.o)
-                0x0000605e                __sys_remove
+                0x00006084        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_remove.o)
+                0x00006084                __sys_remove
  .text.__sys_seek
-                0x0000606a        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_seek.o)
-                0x0000606a                __sys_seek
+                0x00006090        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_seek.o)
+                0x00006090                __sys_seek
  .text.__sys_tmpnam
-                0x00006076        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_tmpnam.o)
-                0x00006076                __sys_tmpnam
+                0x0000609c        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_tmpnam.o)
+                0x0000609c                __sys_tmpnam
  .text.__sys_write
-                0x00006082        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_write.o)
-                0x00006082                __sys_write
+                0x000060a8        0xc c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__sys_write.o)
+                0x000060a8                __sys_write
  *(SORT_BY_ALIGNMENT(.rodata) SORT_BY_ALIGNMENT(.rodata.*) SORT_BY_ALIGNMENT(.constdata) SORT_BY_ALIGNMENT(.constdata.*))
- *fill*         0x0000608e        0x2 ff
  .rodata.numbers
-                0x00006090        0xa ./source/drivers/seven_seg_display.o
- *fill*         0x0000609a        0x2 ff
+                0x000060b4        0xa ./source/drivers/seven_seg_display.o
+ *fill*         0x000060be        0x2 ff
  .rodata.letters
-                0x0000609c       0x1a ./source/drivers/seven_seg_display.o
- *fill*         0x000060b6        0x2 ff
+                0x000060c0       0x1a ./source/drivers/seven_seg_display.o
+ *fill*         0x000060da        0x2 ff
  .rodata.extras
-                0x000060b8        0x4 ./source/drivers/seven_seg_display.o
- .rodata        0x000060bc       0x1f ./source/FSM/States/add_user_state/substates/add_user_id_state.o
- *fill*         0x000060db        0x1 ff
- .rodata        0x000060dc       0x25 ./source/FSM/States/add_user_state/substates/add_user_main_state.o
- *fill*         0x00006101        0x3 ff
- .rodata        0x00006104       0x13 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
- *fill*         0x00006117        0x1 ff
- .rodata        0x00006118       0x12 ./source/FSM/States/config_me_state.o
- *fill*         0x0000612a        0x2 ff
- .rodata        0x0000612c       0x2c ./source/FSM/States/delete_user_state.o
- .rodata        0x00006158       0x1b ./source/FSM/States/fail_state.o
- *fill*         0x00006173        0x1 ff
- .rodata        0x00006174       0x20 ./source/FSM/States/id_state.o
- .rodata        0x00006194       0x50 ./source/FSM/States/menu_state.o
- .rodata        0x000061e4        0x5 ./source/FSM/States/pin_state.o
- *fill*         0x000061e9        0x3 ff
- .rodata        0x000061ec        0x6 ./source/FSM/States/welcome_state.o
- *fill*         0x000061f2        0x2 ff
+                0x000060dc        0x4 ./source/drivers/seven_seg_display.o
+ .rodata        0x000060e0       0x1f ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+ *fill*         0x000060ff        0x1 ff
+ .rodata        0x00006100       0x25 ./source/FSM/States/add_user_state/substates/add_user_main_state.o
+ *fill*         0x00006125        0x3 ff
+ .rodata        0x00006128       0x13 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+ *fill*         0x0000613b        0x1 ff
+ .rodata        0x0000613c       0x12 ./source/FSM/States/config_me_state.o
+ *fill*         0x0000614e        0x2 ff
+ .rodata        0x00006150       0x2c ./source/FSM/States/delete_user_state.o
+ .rodata        0x0000617c       0x1b ./source/FSM/States/fail_state.o
+ *fill*         0x00006197        0x1 ff
+ .rodata        0x00006198       0x20 ./source/FSM/States/id_state.o
+ .rodata        0x000061b8       0x50 ./source/FSM/States/menu_state.o
+ .rodata        0x00006208        0x5 ./source/FSM/States/pin_state.o
+ *fill*         0x0000620d        0x3 ff
+ .rodata        0x00006210        0x6 ./source/FSM/States/welcome_state.o
+ *fill*         0x00006216        0x2 ff
  .rodata.__num_Ciob_streams
-                0x000061f4        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__ciob.o)
-                0x000061f4                __num_Ciob_streams
+                0x00006218        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_semihost_nf.a(__ciob.o)
+                0x00006218                __num_Ciob_streams
  .rodata._initio.str1.1
-                0x000061f8        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(initio.o)
-                0x00006200                . = ALIGN (0x8)
- *fill*         0x000061fc        0x4 ff
+                0x0000621c        0x4 c:/nxp/mcuxpressoide_10.2.0_759/ide/tools/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m/fpv4-sp/hard\libcr_c.a(initio.o)
+                0x00006220                . = ALIGN (0x8)
 
-.glue_7         0x00006200        0x0
- .glue_7        0x00006200        0x0 linker stubs
+.glue_7         0x00006220        0x0
+ .glue_7        0x00006220        0x0 linker stubs
 
-.glue_7t        0x00006200        0x0
- .glue_7t       0x00006200        0x0 linker stubs
+.glue_7t        0x00006220        0x0
+ .glue_7t       0x00006220        0x0 linker stubs
 
-.vfp11_veneer   0x00006200        0x0
- .vfp11_veneer  0x00006200        0x0 linker stubs
+.vfp11_veneer   0x00006220        0x0
+ .vfp11_veneer  0x00006220        0x0 linker stubs
 
-.v4_bx          0x00006200        0x0
- .v4_bx         0x00006200        0x0 linker stubs
+.v4_bx          0x00006220        0x0
+ .v4_bx         0x00006220        0x0 linker stubs
 
-.iplt           0x00006200        0x0
- .iplt          0x00006200        0x0 ./source/startup/hardware.o
+.iplt           0x00006220        0x0
+ .iplt          0x00006220        0x0 ./source/startup/hardware.o
 
-.rel.dyn        0x00006200        0x0
- .rel.iplt      0x00006200        0x0 ./source/startup/hardware.o
+.rel.dyn        0x00006220        0x0
+ .rel.iplt      0x00006220        0x0 ./source/startup/hardware.o
 
 .ARM.extab
  *(SORT_BY_ALIGNMENT(.ARM.extab*) SORT_BY_ALIGNMENT(.gnu.linkonce.armextab.*))
-                0x00006200                __exidx_start = .
+                0x00006220                __exidx_start = .
 
 .ARM.exidx
  *(SORT_BY_ALIGNMENT(.ARM.exidx*) SORT_BY_ALIGNMENT(.gnu.linkonce.armexidx.*))
-                0x00006200                __exidx_end = .
-                0x00006200                _etext = .
+                0x00006220                __exidx_end = .
+                0x00006220                _etext = .
 
 .m_usb_data
  *(SORT_BY_ALIGNMENT(m_usb_bdt))
 
-.data_RAM2      0x1fff0000        0x0 load address 0x00006200
+.data_RAM2      0x1fff0000        0x0 load address 0x00006220
  FILL mask 0xff
                 [!provide]                PROVIDE (__start_data_RAM2, .)
  *(SORT_BY_ALIGNMENT(.ramfunc.$RAM2))
@@ -2213,7 +2211,7 @@ END GROUP
                 0x1fff0000                . = ALIGN (0x8)
                 [!provide]                PROVIDE (__end_data_RAM2, .)
 
-.data_RAM3      0x14000000        0x0 load address 0x00006200
+.data_RAM3      0x14000000        0x0 load address 0x00006220
  FILL mask 0xff
                 [!provide]                PROVIDE (__start_data_RAM3, .)
  *(SORT_BY_ALIGNMENT(.ramfunc.$RAM3))
@@ -2229,7 +2227,7 @@ END GROUP
                 0x20000000                . = ALIGN (0x4)
                 0x20000000                _end_uninit_RESERVED = .
 
-.data           0x20000000      0x520 load address 0x00006200
+.data           0x20000000      0x520 load address 0x00006220
  FILL mask 0xff
                 0x20000000                _data = .
  *(SORT_BY_ALIGNMENT(vtable))
@@ -2314,7 +2312,7 @@ END GROUP
                 0x20000520                . = ALIGN (0x8)
                 0x20000520                _edata = .
 
-.igot.plt       0x20000520        0x0 load address 0x00006720
+.igot.plt       0x20000520        0x0 load address 0x00006740
  .igot.plt      0x20000520        0x0 ./source/startup/hardware.o
 
 .bss_RAM2       0x1fff0000        0x0
@@ -2517,8 +2515,8 @@ END GROUP
                 0x2002f000                . = ALIGN (0x8)
                 0x20030000                _vStackTop = (. + _StackSize)
                 0x00000000                _image_start = LOADADDR (.text)
-                0x00006720                _image_end = (LOADADDR (.data) + SIZEOF (.data))
-                0x00006720                _image_size = (_image_end - _image_start)
+                0x00006740                _image_end = (LOADADDR (.data) + SIZEOF (.data))
+                0x00006740                _image_size = (_image_end - _image_start)
 OUTPUT(ControlDeAcceso.axf elf32-littlearm)
 
 .debug_info     0x00000000     0x9880
@@ -2774,7 +2772,7 @@ OUTPUT(ControlDeAcceso.axf elf32-littlearm)
  .debug_macro   0x00013140       0x7b ./source/queue.o
  .debug_macro   0x000131bb       0x98 ./CMSIS/system_MK64F12.o
 
-.debug_line     0x00000000     0x5aa7
+.debug_line     0x00000000     0x5ab5
  .debug_line    0x00000000      0x221 ./source/startup/hardware.o
  .debug_line    0x00000221      0x1c2 ./source/startup/main.o
  .debug_line    0x000003e3       0x5c ./source/startup/semihost_hardfault.o
@@ -2786,29 +2784,29 @@ OUTPUT(ControlDeAcceso.axf elf32-littlearm)
  .debug_line    0x000016c3      0x1d2 ./source/drivers/encoder.o
  .debug_line    0x00001895      0x2fe ./source/drivers/lector.o
  .debug_line    0x00001b93      0x408 ./source/drivers/seven_seg_display.o
- .debug_line    0x00001f9b      0x42f ./source/database/data_base.o
- .debug_line    0x000023ca      0x33c ./source/MCAL/SysTick.o
- .debug_line    0x00002706      0x322 ./source/MCAL/gpio.o
- .debug_line    0x00002a28      0x32b ./source/FSM/States/add_user_state/substates/add_user_id_state.o
- .debug_line    0x00002d53      0x2fa ./source/FSM/States/add_user_state/substates/add_user_main_state.o
- .debug_line    0x0000304d      0x335 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
- .debug_line    0x00003382      0x281 ./source/FSM/States/add_user_state/add_user_fsm_table.o
- .debug_line    0x00003603      0x2de ./source/FSM/States/add_user_state/add_user_state.o
- .debug_line    0x000038e1      0x1ef ./source/FSM/States/config_device_state.o
- .debug_line    0x00003ad0      0x2bf ./source/FSM/States/config_me_state.o
- .debug_line    0x00003d8f      0x330 ./source/FSM/States/delete_user_state.o
- .debug_line    0x000040bf      0x1e0 ./source/FSM/States/fail_state.o
- .debug_line    0x0000429f      0x31a ./source/FSM/States/id_state.o
- .debug_line    0x000045b9      0x2a6 ./source/FSM/States/menu_state.o
- .debug_line    0x0000485f      0x191 ./source/FSM/States/open_state.o
- .debug_line    0x000049f0      0x275 ./source/FSM/States/pin_state.o
- .debug_line    0x00004c65      0x23e ./source/FSM/States/user_input.o
- .debug_line    0x00004ea3      0x1ef ./source/FSM/States/welcome_state.o
- .debug_line    0x00005092      0x117 ./source/FSM/fsm.o
- .debug_line    0x000051a9      0x29b ./source/FSM/fsm_table.o
- .debug_line    0x00005444      0x2b7 ./source/App.o
- .debug_line    0x000056fb      0x19b ./source/queue.o
- .debug_line    0x00005896      0x211 ./CMSIS/system_MK64F12.o
+ .debug_line    0x00001f9b      0x43d ./source/database/data_base.o
+ .debug_line    0x000023d8      0x33c ./source/MCAL/SysTick.o
+ .debug_line    0x00002714      0x322 ./source/MCAL/gpio.o
+ .debug_line    0x00002a36      0x32b ./source/FSM/States/add_user_state/substates/add_user_id_state.o
+ .debug_line    0x00002d61      0x2fa ./source/FSM/States/add_user_state/substates/add_user_main_state.o
+ .debug_line    0x0000305b      0x335 ./source/FSM/States/add_user_state/substates/add_user_pin_state.o
+ .debug_line    0x00003390      0x281 ./source/FSM/States/add_user_state/add_user_fsm_table.o
+ .debug_line    0x00003611      0x2de ./source/FSM/States/add_user_state/add_user_state.o
+ .debug_line    0x000038ef      0x1ef ./source/FSM/States/config_device_state.o
+ .debug_line    0x00003ade      0x2bf ./source/FSM/States/config_me_state.o
+ .debug_line    0x00003d9d      0x330 ./source/FSM/States/delete_user_state.o
+ .debug_line    0x000040cd      0x1e0 ./source/FSM/States/fail_state.o
+ .debug_line    0x000042ad      0x31a ./source/FSM/States/id_state.o
+ .debug_line    0x000045c7      0x2a6 ./source/FSM/States/menu_state.o
+ .debug_line    0x0000486d      0x191 ./source/FSM/States/open_state.o
+ .debug_line    0x000049fe      0x275 ./source/FSM/States/pin_state.o
+ .debug_line    0x00004c73      0x23e ./source/FSM/States/user_input.o
+ .debug_line    0x00004eb1      0x1ef ./source/FSM/States/welcome_state.o
+ .debug_line    0x000050a0      0x117 ./source/FSM/fsm.o
+ .debug_line    0x000051b7      0x29b ./source/FSM/fsm_table.o
+ .debug_line    0x00005452      0x2b7 ./source/App.o
+ .debug_line    0x00005709      0x19b ./source/queue.o
+ .debug_line    0x000058a4      0x211 ./CMSIS/system_MK64F12.o
 
 .debug_str      0x00000000    0x7bbcc
  .debug_str     0x00000000    0x77e1c ./source/startup/hardware.o
