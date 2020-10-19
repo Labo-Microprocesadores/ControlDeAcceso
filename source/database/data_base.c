@@ -3,21 +3,22 @@
   @brief    Application functions
   @author   Grupo 2
  ******************************************************************************/
-
+/*******************************************************************************
+ * INCLUDE HEADER FILES
+ ******************************************************************************/
 #include "data_base.h"
 #include "Timer.h"
 
+/*******************************************************************************
+ * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
+ ******************************************************************************/
 #define MAX_BLOCKED_USERS   30
 #define BLOCK_TIME  10000   //1min
 #define NO_USER_INDEX   -1
 
-static dataBase_t dataBase;
-static int8_t currentIdIndex = -1;
-static dataBase_t database;
-static int8_t validNumberArray[MAX_CARD_NUMBER];
-static uint8_t blockedUsersIndexes[MAX_BLOCKED_USERS];
-
-
+/*******************************************************************************
+ * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
+ ******************************************************************************/
 
 static int getEffectiveArrayLength(int8_t * inputArray, int totalArraySize);
 
@@ -33,6 +34,66 @@ static bool checkIdArrayFormat(int8_t userID[]);
 static int getEffectiveArrayLength(int8_t *inputArray, int totalArraySize);
 
 static void moveAllUsersOnePlace(void);
+
+/*******************************************************************************
+ * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
+ ******************************************************************************/
+
+static dataBase_t dataBase;
+static int8_t currentIdIndex = -1;
+static dataBase_t database;
+static int8_t validNumberArray[MAX_CARD_NUMBER];
+static uint8_t blockedUsersIndexes[MAX_BLOCKED_USERS];
+
+
+/*******************************************************************************
+ *******************************************************************************
+                        LOCAL FUNCTION DEFINITIONS
+ *******************************************************************************
+ ******************************************************************************/
+
+static bool checkIdArrayFormat(int8_t userID[])
+{
+    int currentArrayLength = getEffectiveArrayLength(userID, ID_ARRAY_SIZE);
+    if (currentArrayLength != ID_ARRAY_SIZE)
+        return false;
+
+    return true;
+}
+
+
+
+
+static bool checkCardNumberArrayFormat(int8_t userCardNumber[])
+{
+    int currentArrayLength = getEffectiveArrayLength(userCardNumber, MAX_CARD_NUMBER);
+    if (currentArrayLength != MAX_CARD_NUMBER)
+        return false;
+
+    return true;
+}
+
+static int getEffectiveArrayLength(int8_t *inputArray, int totalArraySize)
+{
+    int length = 0;
+    bool foundLast = false;
+    while (!foundLast && length < totalArraySize)
+    {
+        uint8_t lastPosition = inputArray[length];
+        if (lastPosition == NO_INPUT_CHAR || lastPosition == BACKSPACE || lastPosition == NO_USER_INDEX)
+            foundLast = true;
+        else
+            length++;
+    }
+    return length;
+}
+
+/*******************************************************************************
+ *******************************************************************************
+                        GLOBAL FUNCTION DEFINITIONS
+ *******************************************************************************
+ ******************************************************************************/
+
 
 void initializeDataBase(void)
 {
@@ -53,7 +114,7 @@ void initializeDataBase(void)
     }
 }
 
-bool verifyID(int8_t usersID[])
+bool verifyID(int8_t userID[])
 {
     uint8_t  user;
     uint8_t end = dataBase.lastItem >= MAX_NUM_USERS?  MAX_NUM_USERS  - 1 : dataBase.lastItem;
@@ -65,7 +126,7 @@ bool verifyID(int8_t usersID[])
         uint8_t count = 0;
         while (count < ID_ARRAY_SIZE && equalID)
         {
-            if (dataBase.userList[user].userID[count] != usersID[count])   //If the ID is different
+            if (dataBase.userList[user].userID[count] != userID[count])   //If the ID is different
                 equalID = false;
             count ++;                
         }
@@ -215,41 +276,7 @@ bool checkPinArrayFormat(int8_t userPIN[])
     return true;
 }
 
-static bool checkIdArrayFormat(int8_t userID[])
-{
-    int currentArrayLength = getEffectiveArrayLength(userID, ID_ARRAY_SIZE);
-    if (currentArrayLength != ID_ARRAY_SIZE)
-        return false;
 
-    return true;
-}
-
-
-
-
-static bool checkCardNumberArrayFormat(int8_t userCardNumber[])
-{
-    int currentArrayLength = getEffectiveArrayLength(userCardNumber, MAX_CARD_NUMBER);
-    if (currentArrayLength != MAX_CARD_NUMBER)
-        return false;
-
-    return true;
-}
-
-static int getEffectiveArrayLength(int8_t *inputArray, int totalArraySize)
-{
-    int length = 0;
-    bool foundLast = false;
-    while (!foundLast && length < totalArraySize)
-    {
-        uint8_t lastPosition = inputArray[length];
-        if (lastPosition == NO_INPUT_CHAR || lastPosition == BACKSPACE || lastPosition == NO_USER_INDEX)
-            foundLast = true;
-        else
-            length++;
-    }
-    return length;
-}
 
 Status changePin(int8_t* userNewPin)
 {
@@ -347,3 +374,6 @@ static void moveAllUsersOnePlace(void)
         }
     }
 }
+
+/*******************************************************************************
+ *******************************************************************************/
