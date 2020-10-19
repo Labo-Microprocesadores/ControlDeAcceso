@@ -18,6 +18,7 @@
 #define BLINK_TIME 60
 #define PERIOD 5
 #define MOVE_SPEED 700
+#define ANIMATION_SPEED 50
 
 
 /*************************************************
@@ -42,7 +43,9 @@ static const uint8_t letters[] = {0x77, 0x7C, 0x39, 0x5E, 0x79, 0x71, 0x3D, 0x76
 								  0x3E, 0x00, 0x00, 0x00, 0x6E, 0x00};
 
 								// '-'     Back  "_"	otros
-static const uint8_t extras[] = {  0x40,   0x18 , 0x08, 0x00};
+//static const uint8_t extras[] = {  0x40,   0x18 , 0x08, 0x00};
+static const uint8_t extras[] = {0x00, 0x01, 0x02, 0x04, 0x10, 0x20, 0x40, 0x18 , 0x08, 0x00};
+
 
 static sevenSeg_t screen[BACK_BUFFER+10];
 static uint8_t pos = 0;
@@ -58,6 +61,8 @@ static int8_t moves_remainig = 0;
 static int16_t moving_counter = 0;
 static bool bouncing = false;
 static int8_t move_b = 0;
+static bool animation = false;
+static uint8_t animation_counter = 0;
 
 static uint8_t 	cursor_pos = 0;
 static bool 	cursor = false;
@@ -330,6 +335,17 @@ void SevenSegDisplay_PISR(void)
 		}
 	}
 
+	if(animation)
+	{
+		//animation_counter++;
+		if(--moving_counter <= 0)
+		{
+			animation_counter++;
+			moving_counter = ANIMATION_SPEED;
+		}
+		SevenSegDisplay_AnimationCircles();
+	}
+
 	currBright--;
 	if(--window == 0)
 	{
@@ -368,9 +384,40 @@ uint8_t SevenSegDisplay_chat2sevseg(char code)
 	{
 		return letters[code-'a'];
 	}
-	else if((int8_t)code < 0 && (int8_t)code > -4)
+	else if((int8_t)code < 0 && (int8_t)code > -10)
 	{
-		return extras[(int8_t)code+3];
+		return extras[(int8_t)code+9];
 	}
 	return NONE;
+}
+
+void SevenSegDisplay_AnimationCircles(void)
+{
+	animation = true;
+
+	static uint8_t animation_word[12][4]={{_F,_O,_O,_O},
+											{_E,_O,_O,_O},
+											{_D,_O,_O,_O},
+											{_O,_D,_O,_O},
+											{_O,_O,_D,_O},
+											{_O,_O,_O,_D},
+											{_O,_O,_O, _C},
+											{_O,_O,_O, _B},
+											{_O,_O,_O, _A},
+											{_O,_A,_O,_O},
+											{_A,_O,_O,_O},};
+
+	//uint8_t datos[4];
+	if(animation_counter>=12)
+	{
+		animation_counter=0;
+	}
+	//SevenSegDisplay_EraseScreen();
+	SevenSegDisplay_WriteBuffer(animation_word[animation_counter], 4,0);
+	//i++;
+}
+
+void SevenSegDisplay_StopAnimation(void)
+{
+	animation = false;
 }
