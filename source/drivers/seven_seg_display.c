@@ -20,6 +20,17 @@
 #define MOVE_SPEED 700
 #define ANIMATION_SPEED 50
 
+#define NONE	0x00
+#define _O				-9
+#define _A				-8//(uint8_t)0x01
+#define _B				-7//(uint8_t)0x02
+#define _C				-6//(uint8_t)0x04
+#define _D				-1//(uint8_t)0x08
+#define _E				-5//(uint8_t)0x10
+#define _F				-4//(uint8_t)0x20
+#define _G				-3//(uint8_t)0x40
+
+#define MASK			(uint8_t)0x01
 
 /*************************************************
  *  	LOCAL FUNCTION DECLARATION
@@ -337,13 +348,12 @@ void SevenSegDisplay_PISR(void)
 
 	if(animation)
 	{
-		//animation_counter++;
 		if(--moving_counter <= 0)
 		{
 			animation_counter++;
 			moving_counter = ANIMATION_SPEED;
+			SevenSegDisplay_AnimationCircles();
 		}
-		SevenSegDisplay_AnimationCircles();
 	}
 
 	currBright--;
@@ -407,14 +417,12 @@ void SevenSegDisplay_AnimationCircles(void)
 											{_O,_A,_O,_O},
 											{_A,_O,_O,_O},};
 
-	//uint8_t datos[4];
 	if(animation_counter>=12)
 	{
 		animation_counter=0;
 	}
-	//SevenSegDisplay_EraseScreen();
 	SevenSegDisplay_WriteBuffer(animation_word[animation_counter], 4,0);
-	//i++;
+
 }
 
 void SevenSegDisplay_StopAnimation(void)

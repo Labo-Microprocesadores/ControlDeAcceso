@@ -17,37 +17,6 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 
-#define NONE			(uint8_t)0x00
-#define ZERO			(uint8_t)0x3F
-#define ONE				(uint8_t)0x06
-#define TWO				(uint8_t)0x5B
-#define THREE			(uint8_t)0x4F
-#define FOUR			(uint8_t)0x66
-#define FIVE			(uint8_t)0x6D
-#define SIX				(uint8_t)0x7D
-#define SEVEN			(uint8_t)0x07
-#define EIGHT			(uint8_t)0x7F
-#define NINE			(uint8_t)0x6F
-#define LINE			(uint8_t)0x08
-#define I				(uint8_t)0x30				
-#define D				(uint8_t)0x5D
-#define P				(uint8_t)0x73
-#define N				(uint8_t)0x37
-#define C				(uint8_t)0x39
-#define F				(uint8_t)0x71
-#define G				(uint8_t)0x3D
-#define H				(uint8_t)0x76
-#define _O				-9
-#define _A				-8//(uint8_t)0x01
-#define _B				-7//(uint8_t)0x02
-#define _C				-6//(uint8_t)0x04
-#define _D				-1//(uint8_t)0x08
-#define _E				-5//(uint8_t)0x10
-#define _F				-4//(uint8_t)0x20
-#define _G				-3//(uint8_t)0x40
-
-#define MASK			(uint8_t)0x01
-
 #define SEG_LEN			8
 #define SEL_LEN			2
 
