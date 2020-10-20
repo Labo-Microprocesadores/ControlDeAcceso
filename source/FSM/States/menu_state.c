@@ -129,7 +129,7 @@ void menu_selectOption(void)
                 emitEvent(DELETE_USER_SELECTED_EV);
                 break;
             case CONFIG_PIN:
-                emitEvent(CONFIG_ME_SELECTED_EV);
+                emitEvent(CONFIG_PIN_SELECTED_EV);
                 break;
             case LOG_OUT:
                 emitEvent(LOG_OUT_EV);
@@ -170,7 +170,7 @@ static void showCurrentOption(void)
         SevenSegDisplay_WriteBuffer("OPEN", 4, 0);
         break;
     case CONFIG_DEVICE:
-        SevenSegDisplay_WriteBufferAndMove("BRIGHTNESS", 10, 0, BOUNCE);
+        SevenSegDisplay_WriteBufferAndMove("BRIGHT", 6, 0, BOUNCE);
         break;
     case ADD_USER:
         SevenSegDisplay_WriteBufferAndMove("ADD USER", 8, 0, BOUNCE);
@@ -179,7 +179,7 @@ static void showCurrentOption(void)
         SevenSegDisplay_WriteBufferAndMove("DELETE USER", 11, 0, BOUNCE);
         break;
     case CONFIG_PIN:
-        SevenSegDisplay_WriteBufferAndMove("CONFIG PIN", 10, 0, BOUNCE);
+        SevenSegDisplay_WriteBufferAndMove("CHANGE PIN", 10, 0, BOUNCE);
         break;
     case LOG_OUT:
         SevenSegDisplay_WriteBufferAndMove("LOG OUT", 7, 0, BOUNCE);

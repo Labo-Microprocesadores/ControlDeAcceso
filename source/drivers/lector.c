@@ -57,7 +57,12 @@ void Lector_Init(void)
 
 bool Lector_Event(void)
 {
-	return event;
+	if(event)
+	{
+		event = false;
+		return true;
+	}
+	return false;
 }
 
 bool Lector_GetData(card_t * data)

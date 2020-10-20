@@ -20,8 +20,7 @@ void showWelcomeAnimation(void)
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBufferAndMove("HELLO", 5, 0, BOUNCE);
-    //TODO: Show animation indicating "Welcome, swipe your id card or click the button to enter it manually" or similar.
+    SevenSegDisplay_WriteBufferAndMove("  Hi  ", 6, 0, BOUNCE);
 }
 
 
@@ -53,5 +52,4 @@ void cardSwipe(void)
     {
         emitEvent(CARD_FAIL_EV);
     }
-    //TODO: Show animation indicating "YOUR id is 1123123" or similar, recover id from card (no se si esta se hace aca pero bueno), and compare with database. Define wether this event switches to id state or pin state.
 }

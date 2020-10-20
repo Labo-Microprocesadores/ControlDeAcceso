@@ -7,7 +7,7 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-#define TITLE_TIME  2000
+#define TITLE_TIME  5000
 /*******************************************************************************
  * INCLUDE HEADER FILES
  ******************************************************************************/
@@ -128,9 +128,9 @@ void configMe_decreaseCurrent(void)
 static void showTitle(void)
 {
     SevenSegDisplay_EraseScreen();
-    SevenSegDisplay_WriteBufferAndMove("NEW PIN", 7, 0, BOUNCE);
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_CursorOff();
+    SevenSegDisplay_WriteBufferAndMove("NEW PIN", 7, 0, BOUNCE);
     showingTitle = true;
     titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);
 }
