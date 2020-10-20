@@ -11,6 +11,7 @@
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
 void initFailState(void);
+void failAnimation(void);
 void finishFail(void);
 
 #endif /* FAIL_STATE_H_*/

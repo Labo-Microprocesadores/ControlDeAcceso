@@ -22,7 +22,7 @@ static int errorIndicationTimerID;
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-#define TITLE_TIME  5000
+#define TITLE_TIME  6000
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
@@ -47,11 +47,23 @@ void initFailState(void)
     {
         SevenSegDisplay_WriteBufferAndMove("TRY AGAIN.", 9, 0, SHIFT_L);
     }
-    errorIndicationTimerID = Timer_AddCallback(&finishFail, TITLE_TIME, true);
+   // errorIndicationTimerID = Timer_AddCallback(&finishFail, TITLE_TIME, true);
+    errorIndicationTimerID = Timer_AddCallback(&failAnimation, TITLE_TIME, true);
+}
+
+void failAnimation(void)
+{
+	errorIndicationTimerID = false;
+	SevenSegDisplay_EraseScreen();
+	SevenSegDisplay_SetPos(0);
+	SevenSegDisplay_AnimationCircles();
+	errorIndicationTimerID = -1;
+	errorIndicationTimerID = Timer_AddCallback(&finishFail, 600, true);
 }
 
 void finishFail(void)
 {
+	SevenSegDisplay_StopAnimation();
     Timer_Delete(errorIndicationTimerID);
     if (isCurrentUserBlocked())
         emitEvent(USR_BLOCKED_EV);
