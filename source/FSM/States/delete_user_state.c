@@ -152,11 +152,14 @@ void deleteUser_checkCardID(void)
         {
             numero[i] = myCard.card_number[i];
         }
-        
-        if(verifyCardNumber(numero, length))
+        for(;i<MAX_CARD_NUMBER;i++)
         {
-            removeUser(getIdByCardNumber(numero));//?esto esta bien? 
-            ////emitEvent(ID_OK_EV);
+        	numero[i]=-1;
+        }
+        int8_t * idptr = getIdByCardNumber(numero);//?esto esta bien?
+        if(idptr != NULL && removeUser(idptr) == DELETE_SUCCESSFULL)
+        {
+        	emitEvent(ID_OK_EV);
         }
         else
         {
@@ -182,7 +185,7 @@ static void showTitle(void)
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_CursorOff();
-    SevenSegDisplay_WriteBuffer("ENTER ID OR CARD", 16, 0);
+    SevenSegDisplay_WriteBufferAndMove("ENTER ID OR CARD", 16, 0, BOUNCE);
     showingTitle = true;
     titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);
 }

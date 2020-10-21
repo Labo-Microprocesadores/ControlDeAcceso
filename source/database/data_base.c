@@ -350,13 +350,16 @@ bool verifyCardNumber(int8_t cardNumber[], uint8_t numCharactersCardNumber)
 
 Status removeUser(int8_t userID[])
 {
+	uint8_t index = currentIdIndex;
     //call to verify ID to know if userID is on the array of users and to know it index with currentIdIndex
     if(verifyID(userID))
     {
         moveAllUsersOnePlace();
         dataBase.lastItem--;
+        currentIdIndex = index;
         return DELETE_SUCCESSFULL;
     }
+    currentIdIndex = index;
     return ID_NOT_FOUND;
 }
 
