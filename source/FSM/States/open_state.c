@@ -33,13 +33,13 @@
  ******************************************************************************/
 void openDoor(void)
 {
-    MplxLed_On(LED_TWO);
+    MplxLed_On(LED_TWO);    //"Opens" the door
     Timer_AddCallback(&accessTimeOut, OPEN_TIME, true);
 }
 
 void accessTimeOut(void)
 {
-    MplxLed_Off(LED_TWO);
+    MplxLed_Off(LED_TWO);   //"Closes the door."
     emitEvent(TIMER_ACCESS_EV);
 }
 

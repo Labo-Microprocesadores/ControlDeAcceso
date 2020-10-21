@@ -1,6 +1,13 @@
 /***************************************************************************/ /**
   @file     delete_user_state.c
   @brief    Delete user state functions
+            The main function of the state is to delete an user.
+            The cycle of the process is: 
+                1. Shows title
+                2. Admin inserts ID or the card of the user to delete.
+                3a. ID ok -> Deletes the user and returns to the menu.
+                3b. ID fail -> Shows error message and starts the cycle again.
+            Any interaction of the user with the device during an error message or title will be interprated as an indication to stop the message/title.
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/
 
@@ -44,6 +51,7 @@ static void stopShowingTitle(void);
 
 /**
  * @brief Stops showing the title of the state in the display due to a user's interaction. The input starts.
+ * The main reason of creating another function for this is to avoid cancelling a callback (of the timer) inside of it (callback).
  */
 static void userInteractionStopsTitle(void);
 
@@ -54,6 +62,7 @@ static void userInteractionStopErrorIndicationAndRestart(void);
 
 /**
  * @brief Stops showing the error indication in the display due to a user's interaction. The state doesn't 'restart'.
+ * The main reason of creating another function for this is to avoid cancelling a callback (of the timer) inside of it (callback).
  */
 static void userInteractionStopsErrorIndication(void);
 
@@ -117,7 +126,6 @@ void deleteUser_confirm(void)
     }
 }
 
-
 void deleteUser_acceptNumber(void)
 {
     if (showingTitle)
@@ -160,17 +168,14 @@ void deleteUser_checkCardID(void)
         }
         else
         {
-            idFail();
+            idFail();   //The ID is invalid or doesn't exist.
         }
     }
     else
     {
-        idCardFail();
+        idCardFail();   //The lector failed to read the card.
     }
-
-    //TODO Checks if the read ID (from card) is correct and corresponds to a user or an admin in the database. Adds a ID_OK or a ID_FAIL event to the event queue of the FSM.
 }
-
 
 /*******************************************************************************
  *******************************************************************************
@@ -182,16 +187,16 @@ static void showTitle(void)
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_CursorOff();
-    SevenSegDisplay_WriteBuffer("ENTER ID OR CARD", 16, 0);
+    SevenSegDisplay_WriteBuffer("ENTER ID OR CARD", 16, 0); //Shows title.
     showingTitle = true;
-    titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);
+    titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);  //Starts the callback to stop the title.
 }
 
 static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBuffer(id, ID_ARRAY_SIZE, 0);
+    SevenSegDisplay_WriteBuffer(id, ID_ARRAY_SIZE, 0);  //Initializes the input.
     SevenSegDisplay_CursorOn();
     showingTitle = false;
 }
@@ -201,19 +206,18 @@ static void userInteractionStopsTitle(void)
     Timer_Delete(titleTimerID);
     titleTimerID = -1;
     stopShowingTitle();
-    SevenSegDisplay_CursorOn();
 }
 
 static void userInteractionStopErrorIndicationAndRestart(void)
 {
     userInteractionStopsErrorIndication();
-    initLogin();
+    deleteUser_initState(); //Restarts the state cycle.
 }
 
 static void userInteractionStopsErrorIndication(void)
 {
-       SevenSegDisplay_EraseScreen();
-    Timer_Delete(errorIndicationTimerID);
+    SevenSegDisplay_EraseScreen();
+    Timer_Delete(errorIndicationTimerID);   //Cancels the callback.
     showingErrorIndication = false;
     errorIndicationTimerID = -1;
 }
@@ -223,9 +227,9 @@ static void idFail(void)
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBufferAndMove("NO ID FOUND", 11, 0, BOUNCE);
+    SevenSegDisplay_WriteBufferAndMove("NO ID FOUND", 11, 0, BOUNCE);   //Shows error indication message.
     showingErrorIndication = true;
-    errorIndicationTimerID = Timer_AddCallback(&deleteUser_initState, TITLE_TIME, true);
+    errorIndicationTimerID = Timer_AddCallback(&deleteUser_initState, TITLE_TIME, true);    //Starts the callback to restart the state's cycle.
 }
 
 static void idCardFail(void)
@@ -233,7 +237,7 @@ static void idCardFail(void)
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBufferAndMove("CARD FAILED", 11, 0, BOUNCE);
+    SevenSegDisplay_WriteBufferAndMove("CARD FAILED", 11, 0, BOUNCE); //Shows error indication message.
     showingErrorIndication = true;
-    errorIndicationTimerID = Timer_AddCallback(&deleteUser_initState, TITLE_TIME, true);
+    errorIndicationTimerID = Timer_AddCallback(&deleteUser_initState, TITLE_TIME, true);     //Starts the callback to restart the state's cycle.
 }

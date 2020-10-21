@@ -1,6 +1,15 @@
 /***************************************************************************/ /**
   @file     pin_state.c
   @brief    Pin state functions
+            The main function of the state is to receive the input of a PIN.
+            The cycle of the process is: 
+                1. Shows title
+                2. User inserts PIN.
+                3a. PIN ok -> Starts the menu.
+                3b. PIN fail
+                    3ba. The user got blocked -> Ends the session and starts the "welcome" screen.
+                    3bb. The user didn't get blocked -> Shows error message and starts the cycle again.
+            Any interaction of the user with the device during an error message, title or animation will be interprated as an indication to stop the message/title/animation.
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/
 
@@ -46,7 +55,8 @@ static void showTitle(void);
 static void stopShowingTitle(void);
 
 /**
- * @brief Function executed when the PIN is not correct. The main reason of creating another function for this is to avoid cancelling a callback (of the timer) inside of it (callback).
+ * @brief Function executed when the PIN is not correct. 
+ * The main reason of creating another function for this is to avoid cancelling a callback (of the timer) inside of it (callback).
  */
 static void userInteractionStopsTitle(void);
 
@@ -61,7 +71,8 @@ static void pinFail(void);
 static void stopErrorIndication(void);
 
 /**
- * @brief Stops showing the error indication in the display due to a user's interaction. The main reason of creating another function for this is to avoid cancelling a callback (of the timer) inside of it (callback).
+ * @brief Stops showing the error indication in the display due to a user's interaction. 
+ * The main reason of creating another function for this is to avoid cancelling a callback (of the timer) inside of it (callback).
  */
 static void userInteractionStopsErrorIndication(void);
 
@@ -76,7 +87,8 @@ static void startFailAnimation();
 static void finishFailAnimation(void);
 
 /**
- * @brief Finishes the animation due to a user's interaction. The main reason of creating another function for this is to avoid cancelling a callback (of the timer) inside of it (callback).
+ * @brief Finishes the animation due to a user's interaction. 
+ * The main reason of creating another function for this is to avoid cancelling a callback (of the timer) inside of it (callback).
  */
 static void userInteractionFinishesFailAnimation(void);
 
@@ -109,7 +121,6 @@ void pin_confirmPin(void)
         if (!verifyPIN(pin))
         {
             pinFail();
-            //emitEvent(FAIL_PIN_EV);
         }
         else
         {
@@ -175,11 +186,11 @@ int8_t *pin_getPinArray(int *sizeOfReturningArray)
 static void showTitle(void)
 {
     SevenSegDisplay_EraseScreen();
-    SevenSegDisplay_WriteBuffer("PIN ", 4, 0);
+    SevenSegDisplay_WriteBuffer("PIN ", 4, 0);  //Shows the title
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_CursorOff();
     showingTitle = true;
-    titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);
+    titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true); //Starts the callback to stop the title.
 }
 
 static void stopShowingTitle(void)
@@ -204,28 +215,27 @@ static void pinFail(void)
     SevenSegDisplay_CursorOff();
     if (isCurrentUserBlocked())
     {
-        SevenSegDisplay_WriteBufferAndMove("BLOCKED USER.", 13, 0, SHIFT_L);
+        SevenSegDisplay_WriteBufferAndMove("BLOCKED USER.", 13, 0, SHIFT_L);    //Shows message.
     }
     else
     {
-        SevenSegDisplay_WriteBufferAndMove("TRY AGAIN.", 9, 0, SHIFT_L);
+        SevenSegDisplay_WriteBufferAndMove("TRY AGAIN.", 9, 0, SHIFT_L);        //Shows error message.
     }
    // errorIndicationTimerID = Timer_AddCallback(&finishFail, TITLE_TIME, true);
-    errorIndicationTimerID = Timer_AddCallback(&stopErrorIndication, TITLE_TIME, true);
+    errorIndicationTimerID = Timer_AddCallback(&stopErrorIndication, TITLE_TIME, true); //Starts the callback to stop the error message.
 }
-
 
 static void stopErrorIndication(void)
 {
     showingErrorIndication = false;
 	SevenSegDisplay_EraseScreen();
 	SevenSegDisplay_SetPos(0);
-	startFailAnimation();
+	startFailAnimation();   //Starts a fast animation.
 }
 
 static void userInteractionStopsErrorIndication(void)
 {
-    Timer_Delete(errorIndicationTimerID);
+    Timer_Delete(errorIndicationTimerID);   //Cancels the callback.
     errorIndicationTimerID = -1;
     stopErrorIndication();
 }
@@ -233,7 +243,7 @@ static void userInteractionStopsErrorIndication(void)
 static void startFailAnimation(void)
 {
     SevenSegDisplay_AnimationCircles();
-	animationTimerID = Timer_AddCallback(&finishFailAnimation, 600, true);
+	animationTimerID = Timer_AddCallback(&finishFailAnimation, 600, true);  //Starts the callback to stop the animation.
 }
 
 static void finishFailAnimation(void)
@@ -241,15 +251,15 @@ static void finishFailAnimation(void)
     showingAnimation = false;
     SevenSegDisplay_StopAnimation();
     if (isCurrentUserBlocked())
-        emitEvent(USR_BLOCKED_EV);
+        emitEvent(USR_BLOCKED_EV);     //The user got blocked -> Starts the welcome screen.
     else
-        initPinInput();
+        initPinInput();                 //The user didn't get blocked -> Starts the state's cycle again.
 }
 
 
 static void userInteractionFinishesFailAnimation(void)
 {
-    Timer_Delete(animationTimerID);
+    Timer_Delete(animationTimerID); //Cancels the callback.
     animationTimerID = -1;
     finishFailAnimation();
 }

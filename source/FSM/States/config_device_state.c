@@ -1,6 +1,7 @@
 /***************************************************************************/ /**
   @file     config_device.c
   @brief    config device state functions
+            The main function of the state is to change the brightness of the display.
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/
 
@@ -28,15 +29,15 @@ typedef enum
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
-static uint8_t currentOptionIndex = 0;
+static uint8_t currentOptionIndex = 0;  //Stores the index of the current brightness option.
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
 /**
- * @brief Shows the current option of the welcome in the display.
+ * @brief Sets the current option of the brightness in the display.
  */
-static void showCurrentOption(void);
+static void setCurrentOption(void);
 /*******************************************************************************
  * FUNCTIONS WITH GLOBAL SCOPE
  ******************************************************************************/
@@ -51,27 +52,25 @@ void initConfigDevice(void)
     SevenSegDisplay_ChangeCharacter(2,8);
     SevenSegDisplay_ChangeCharacter(3,8);
     
-    showCurrentOption();
+    setCurrentOption();
 }
 
 void configDev_nextOption(void)
 {
-   
-        if (currentOptionIndex == OPTIONS_ARRAY_SIZE - 1)
+        if (currentOptionIndex == OPTIONS_ARRAY_SIZE - 1)   //Last option + Next -> First option.
             currentOptionIndex = 0;
         else
             currentOptionIndex++;
-        showCurrentOption();
-    
+        setCurrentOption();
 }
 
 void configDev_previousOption(void)
 {
-    if (currentOptionIndex == 0)
+    if (currentOptionIndex == 0)    //First option + Previous -> Last option.
         currentOptionIndex = OPTIONS_ARRAY_SIZE - 1;
     else
         currentOptionIndex--;
-    showCurrentOption();
+    setCurrentOption();
 }
 
 void configDev_selectOption(void)
@@ -86,7 +85,7 @@ void configDev_selectOption(void)
  *******************************************************************************
  ******************************************************************************/
 
-static void showCurrentOption(void)
+static void setCurrentOption(void)
 {
     switch (currentOptionIndex)
     {
