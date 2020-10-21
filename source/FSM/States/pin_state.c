@@ -230,7 +230,7 @@ static void stopErrorIndication(void)
     showingErrorIndication = false;
 	SevenSegDisplay_EraseScreen();
 	SevenSegDisplay_SetPos(0);
-	startFailAnimation();   //Starts a fast animation.
+	startFailAnimation();   //Starts an animation.
 }
 
 static void userInteractionStopsErrorIndication(void)
