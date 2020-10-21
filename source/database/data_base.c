@@ -13,7 +13,7 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 #define MAX_BLOCKED_USERS   30
-#define BLOCK_TIME  10000   //1min
+#define BLOCK_TIME  60000   //1min
 #define NO_USER_INDEX   -1
 
 /*******************************************************************************

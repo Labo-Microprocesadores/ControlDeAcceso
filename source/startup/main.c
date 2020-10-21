@@ -16,7 +16,6 @@ int main (void)
 {
 
     hw_Init();
-    printf("%d",3);
     hw_DisableInterrupts();
     App_Init(); /* Program-specific setup */
     hw_EnableInterrupts();

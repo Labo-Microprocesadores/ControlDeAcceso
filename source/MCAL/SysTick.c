@@ -215,7 +215,6 @@ __ISR__ SysTick_Handler(void)
 		}
 	}
 	#ifdef TESTPOINT
-	printf("%d",4);
 	gpioWrite(__TP__,LOW);
 	#endif
 }

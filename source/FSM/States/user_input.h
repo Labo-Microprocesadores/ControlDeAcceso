@@ -13,9 +13,9 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-#define NO_INPUT_CHAR (int8_t)-1
-#define BACKSPACE (int8_t)-2
-#define MID_LINE (int8_t)-3
+#define NO_INPUT_CHAR -1
+#define BACKSPACE -2
+#define MID_LINE -3
 //CHAR ORDER: 0 1 2 3 4 5 6 7 8 9 BACKSPACE
 
 /*******************************************************************************
@@ -56,6 +56,7 @@ void inputResetArray(int8_t *inputArraey, uint8_t *currentPosition, int totalArr
  * @param totalArraySize: The previosly fixed size of the inputArray.
  * @return The amount of elements different from NO_INPUT_CHAR and BACKSPACE in the input array (its effective length). The elements must be consecutive
  */
-static int getEffectiveArrayLength(int8_t *inputArray, int totalArraySize);
+int getEffectiveArrayLength(int8_t *inputArray, int totalArraySize);
+
 
 #endif //USER_INPUT_H_
