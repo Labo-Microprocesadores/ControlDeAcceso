@@ -62,7 +62,7 @@ static void userInteractionStopsTitle(void);
 /**
  * @brief Shows the current option of the welcome in the display.
  */
-static void showCurrentOption(void);
+static void setCurrentOption(void);
 /*******************************************************************************
  * FUNCTIONS WITH GLOBAL SCOPE
  ******************************************************************************/
@@ -86,7 +86,7 @@ void menu_nextOption(void)
             currentOptionIndex = 0;
         else
             currentOptionIndex++;
-        showCurrentOption();
+        setCurrentOption();
     }
     
 }
@@ -102,7 +102,7 @@ void menu_previousOption(void)
             currentOptionIndex = max - 1;
         else
             currentOptionIndex--;
-        showCurrentOption();
+        setCurrentOption();
     } 
 }
 
@@ -160,7 +160,7 @@ static void showTitle(void)
     titleTimerID = Timer_AddCallback(&stopShowingTitle,TITLE_TIME, true );
 }
 
-static void showCurrentOption(void)
+static void setCurrentOption(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
@@ -191,7 +191,7 @@ static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
     showingTitle = false;
-    showCurrentOption();
+    setCurrentOption();
 }
 
 static void userInteractionStopsTitle(void)

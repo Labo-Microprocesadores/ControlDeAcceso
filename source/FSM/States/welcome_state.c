@@ -23,8 +23,6 @@ void showWelcomeAnimation(void)
     SevenSegDisplay_WriteBufferAndMove("  Hi  ", 6, 0, BOUNCE);
 }
 
-
-
 void cardSwipe(void)
 {
     card_t myCard;

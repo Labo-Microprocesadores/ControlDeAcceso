@@ -51,12 +51,8 @@ static void userInteractionStopsTitle(void);
 /**
  * @brief Stops showing the error indication in the display due to a user's interaction. The state 'restarts'.
  */
-static void userInteractionStopErrorIndicationAndRestart(void);
-
-/**
- * @brief Stops showing the error indication in the display due to a user's interaction. The state doesn't 'restart'.
- */
 static void userInteractionStopsErrorIndication(void);
+
 /**
  * @brief Function executed when the PIN is not correct.
  */
@@ -173,18 +169,13 @@ static void userInteractionStopsTitle(void)
     SevenSegDisplay_CursorOn();
 }
 
-static void userInteractionStopErrorIndicationAndRestart(void)
-{
-    userInteractionStopsErrorIndication();
-    initLogin();
-}
-
 static void userInteractionStopsErrorIndication(void)
 {
     SevenSegDisplay_EraseScreen();
     Timer_Delete(errorIndicationTimerID);
     showingErrorIndication = false;
     errorIndicationTimerID = -1;
+    addUserPin_initPinInput();
 }
 
 static void pinFail(void)

@@ -1,6 +1,13 @@
 /***************************************************************************/ /**
   @file     config_me_state.c
-  @brief    Config me state functions
+  @brief    Config me state functions.
+            The main function of the state is to change the user's PIN.
+            The cycle of the process is: 
+                1. Shows title
+                2. User inserts new PIN.
+                3a. PIN ok -> Returns to the menu.
+                3b. PIN fail -> Shows error message and starts the cycle again.
+            Any interaction of the user with the device during an error message or title will be interprated as an indication to stop the message/title.
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/
 
@@ -43,16 +50,12 @@ static void stopShowingTitle(void);
 
 /**
  * @brief Stops showing the title of the state in the display due to a user's interaction. The input starts.
+ * The main reason of creating another function for this is to avoid cancelling a callback (of the timer) inside of it (callback).
  */
 static void userInteractionStopsTitle(void);
 
 /**
  * @brief Stops showing the error indication in the display due to a user's interaction. The state 'restarts'.
- */
-static void userInteractionStopErrorIndicationAndRestart(void);
-
-/**
- * @brief Stops showing the error indication in the display due to a user's interaction. The state doesn't 'restart'.
  */
 static void userInteractionStopsErrorIndication(void);
 
@@ -71,8 +74,8 @@ static void pinFail(void);
 void configMe_initState(void)
 {
     showingErrorIndication = false;
-	inputResetArray(newPin, &currentPos, PIN_ARRAY_SIZE);
-    showTitle();
+	inputResetArray(newPin, &currentPos, PIN_ARRAY_SIZE);   //Initializes the input array.
+    showTitle();    //Shows the state's title.
 }
 
 void configMe_confirmPin(void)
@@ -80,13 +83,13 @@ void configMe_confirmPin(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();  
+        userInteractionStopsErrorIndication(); 
     else
     {
-        if (changePin(newPin) == PIN_CHANGED_SUCCESFULLY)
-             emitEvent(RETURN_TO_LAST_STATE_EV);
+        if (changePin(newPin) == PIN_CHANGED_SUCCESFULLY)   //The new pin format is correct.
+            emitEvent(RETURN_TO_LAST_STATE_EV); //Returns to the menu.
         else
-            pinFail();
+            pinFail();  //Invalid pin format.
     }
     
 }
@@ -96,7 +99,7 @@ void configMe_acceptNumber(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();  
+        userInteractionStopsErrorIndication();  
     else
         inputAcceptNumber(newPin, &currentPos, PIN_ARRAY_SIZE);
 }
@@ -106,7 +109,7 @@ void configMe_increaseCurrent(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();  
+        userInteractionStopsErrorIndication();  
     else
         inputIncreaseCurrent(newPin, currentPos);
 }
@@ -116,7 +119,7 @@ void configMe_decreaseCurrent(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();  
+        userInteractionStopsErrorIndication();  
     else
         inputDecreaseCurrent(newPin, currentPos);
 }
@@ -130,40 +133,35 @@ static void showTitle(void)
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_CursorOff();
-    SevenSegDisplay_WriteBufferAndMove("NEW PIN", 7, 0, BOUNCE);
+    SevenSegDisplay_WriteBufferAndMove("NEW PIN", 7, 0, BOUNCE);    //Shows title.
     showingTitle = true;
-    titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);
+    titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);  //Sets the callback to stop the title and start the input.
 }
 
 static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBuffer(newPin, PIN_ARRAY_SIZE, 0);
-    SevenSegDisplay_CursorOn();
+    SevenSegDisplay_WriteBuffer(newPin, PIN_ARRAY_SIZE, 0); //Initializes the input.
+    SevenSegDisplay_CursorOn(); 
     showingTitle = false;
 }
 
 static void userInteractionStopsTitle(void)
 {
-    Timer_Delete(titleTimerID);
+    Timer_Delete(titleTimerID); //Cancels the callback.
     titleTimerID = -1;
-    stopShowingTitle();
-    SevenSegDisplay_CursorOn();
+    stopShowingTitle(); 
 }
 
-static void userInteractionStopErrorIndicationAndRestart(void)
-{
-    userInteractionStopsErrorIndication();
-    initLogin();
-}
 
 static void userInteractionStopsErrorIndication(void)
 {
     SevenSegDisplay_EraseScreen();
-    Timer_Delete(errorIndicationTimerID);
+    Timer_Delete(errorIndicationTimerID);   //Cancels the callaback.
     showingErrorIndication = false;
     errorIndicationTimerID = -1;
+    configMe_initState();   //Starts the state's cycle again.
 }
 
 
@@ -172,7 +170,7 @@ static void pinFail(void)
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBufferAndMove("PIN ERROR", 16, 0, BOUNCE);
+    SevenSegDisplay_WriteBufferAndMove("PIN ERROR", 16, 0, BOUNCE); //Starts error indication message
     showingErrorIndication = true;
-    errorIndicationTimerID = Timer_AddCallback(&configMe_initState, TITLE_TIME, true);
+    errorIndicationTimerID = Timer_AddCallback(&configMe_initState, TITLE_TIME, true);  //Sets the callback to start the state's cycle again.
 }
