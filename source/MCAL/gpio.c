@@ -139,9 +139,7 @@ void interruptHandler(uint8_t port)
 		}
 		isfr >>= 1;
 	}
-	printf("%d",2);
 	#ifdef TESTPOINT
-	printf("%d",1);
 	gpioWrite(__TP__, LOW);
 	#endif
 }
