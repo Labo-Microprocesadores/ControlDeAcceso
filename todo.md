@@ -77,4 +77,8 @@ En DataBase.h
 En App.c
     - [x] eventos de timer se agregan solos a cola????    
     - [ ] poner el nuevo driver de button y ver si hacer uno generico o preguntar con el boton
-    - [x] hacer funcion que llene la cola de eventos, revisando timers, botones, etc    
+    - [x] hacer funcion que llene la cola de eventos, revisando timers, botones, etc 
+
+Branch Led:
+
+    - [ ] Mergear ambos branch
