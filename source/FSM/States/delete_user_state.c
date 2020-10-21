@@ -55,7 +55,7 @@ static void userInteractionStopErrorIndicationAndRestart(void);
 /**
  * @brief Stops showing the error indication in the display due to a user's interaction. The state doesn't 'restart'.
  */
-static void userInteractionStopErrorIndication(void);
+static void userInteractionStopsErrorIndication(void);
 
 /**
  * @brief Function executed when the ID is not correct.
@@ -140,7 +140,7 @@ void deleteUser_checkCardID(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
-        userInteractionStopErrorIndication();
+        userInteractionStopsErrorIndication();
     card_t myCard;
     bool ok = Lector_GetData(&myCard);
     if(ok)
@@ -206,11 +206,11 @@ static void userInteractionStopsTitle(void)
 
 static void userInteractionStopErrorIndicationAndRestart(void)
 {
-    userInteractionStopErrorIndication();
+    userInteractionStopsErrorIndication();
     initLogin();
 }
 
-static void userInteractionStopErrorIndication(void)
+static void userInteractionStopsErrorIndication(void)
 {
        SevenSegDisplay_EraseScreen();
     Timer_Delete(errorIndicationTimerID);

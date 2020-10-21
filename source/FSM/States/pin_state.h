@@ -37,11 +37,6 @@ void pin_acceptNumber(void);
  *        Adds a PIN_OK or a PIN_FAIL event to the event queue of the FSM.
  */
 void pin_confirmPin(void);
-/**
- * @brief Function executed when a timeout event is received.
- */
-void pin_timerTimeout(void);
-
 
 /**
  * @brief Returns the array of the Pin.

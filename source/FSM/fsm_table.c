@@ -7,7 +7,6 @@
 #include "states/pin_state.h"
 #include "states/open_state.h"
 #include "queue.h"
-#include "states/fail_state.h"
 #include "states/config_device_state.h"
 #include "States/config_me_state.h"
 #include "States/add_user_state/add_user_state.h"
@@ -22,7 +21,6 @@ extern STATE pin[];
 extern STATE menu[];
 extern STATE welcome[];
 extern STATE cfg_me[];
-extern STATE fail[];
 extern STATE cfg_usr[];
 extern STATE cfg_device[];
 extern STATE add_user[];
@@ -74,21 +72,9 @@ STATE pin[] =
 	{LKP_EV, 					pin, 		pin_confirmPin}, 
 	{PIN_OK_EV, 				menu, 		menu_initState},
 	{RETURN_TO_LAST_STATE_EV,	id, 		initLogin},
-	{FAIL_PIN_EV, 				fail, 		initFailState},
+	{USR_BLOCKED_EV, 			welcome, 	showWelcomeAnimation},
 	{TIMEOUT_EV, 				welcome, 	showWelcomeAnimation},
 	{FIN_TABLA, 				pin, 		do_nothing}
-};
-
-/*** Fail ***/
-STATE fail[] =
-{
-	{PRESS_EV,			fail, 		finishFail},
-	{ENCODER_RIGHT_EV,	fail,		finishFail}, 
-    {ENCODER_LEFT_EV,	fail, 		finishFail}, 
-	{TIMEOUT_EV, 		welcome, 	showWelcomeAnimation},
-	{USR_BLOCKED_EV,	welcome,	showWelcomeAnimation},
-	{RETRY_PIN_EV, 		pin, 		initPinInput},
-	{FIN_TABLA, 		pin, 		do_nothing}
 };
 
 /*** MENU ***/
