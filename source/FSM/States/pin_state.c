@@ -221,7 +221,7 @@ static void pinFail(void)
     {
         SevenSegDisplay_WriteBufferAndMove("TRY AGAIN.", 9, 0, SHIFT_L);        //Shows error message.
     }
-   // errorIndicationTimerID = Timer_AddCallback(&finishFail, TITLE_TIME, true);
+    showingErrorIndication = true;
     errorIndicationTimerID = Timer_AddCallback(&stopErrorIndication, TITLE_TIME, true); //Starts the callback to stop the error message.
 }
 
@@ -241,7 +241,8 @@ static void userInteractionStopsErrorIndication(void)
 }
 
 static void startFailAnimation(void)
-{
+{   
+    showingAnimation = true;
     SevenSegDisplay_AnimationCircles();
 	animationTimerID = Timer_AddCallback(&finishFailAnimation, 600, true);  //Starts the callback to stop the animation.
 }
