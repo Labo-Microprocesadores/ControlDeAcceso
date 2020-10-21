@@ -13,6 +13,11 @@
 #include "SysTick.h"
 #include "hardware.h"
 
+#ifdef TESTPOINT
+#include "gpio.h"
+#define __TP__ PORTNUM2PIN(PC,4)
+#endif
+
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
@@ -194,6 +199,9 @@ static int getArrayEffectiveLength(SysTickElement sysTickElements[])
 
 __ISR__ SysTick_Handler(void)
 {
+	#ifdef TESTPOINT
+	gpioWrite(__TP__,HIGH);
+	#endif
 	for (int i = 0; i < (getArrayEffectiveLength(sysTickElements)); i++) //Iterates through all the elements.
 	{
 		if (!sysTickElements[i].paused)
@@ -206,4 +214,8 @@ __ISR__ SysTick_Handler(void)
 			sysTickElements[i].counter++;
 		}
 	}
+	#ifdef TESTPOINT
+	printf("%d",4);
+	gpioWrite(__TP__,LOW);
+	#endif
 }
