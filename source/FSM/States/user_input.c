@@ -23,6 +23,7 @@
  */
 static void deleteLastChar(int8_t *inputArray, int totalArraySize);
 
+
 /*******************************************************************************
  *******************************************************************************
                         GLOBAL FUNCTION DEFINITIONS
@@ -85,7 +86,7 @@ void inputAcceptNumber(int8_t *inputArray, uint8_t *currentPosition, int totalAr
     }
 }
 
-static int getEffectiveArrayLength(int8_t *inputArray, int totalArraySize)
+int getEffectiveArrayLength(int8_t *inputArray, int totalArraySize)
 {
     int length = 0;
     bool foundLast = false;

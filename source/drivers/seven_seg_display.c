@@ -172,7 +172,7 @@ void SevenSegDisplay_SetBright(bright_t new_bright)
 	brightness = new_bright;
 }
 
-void SevenSegDisplay_WriteBuffer(signed char new_chars[], uint8_t amount, uint8_t offset)
+void SevenSegDisplay_WriteBuffer(char new_chars[], uint8_t amount, uint8_t offset)
 {
 	if((offset+amount) < BACK_BUFFER)
 	{
@@ -185,7 +185,7 @@ void SevenSegDisplay_WriteBuffer(signed char new_chars[], uint8_t amount, uint8_
 	}
 }
 
-void SevenSegDisplay_WriteBufferAndMove(signed char new_chars[], uint8_t amount, uint8_t offset, uint8_t move_type)
+void SevenSegDisplay_WriteBufferAndMove(char new_chars[], uint8_t amount, uint8_t offset, uint8_t move_type)
 {
 	bouncing = false;
 	SevenSegDisplay_WriteBuffer(new_chars, amount, offset);
@@ -384,7 +384,7 @@ uint8_t SevenSegDisplay_chat2sevseg(char code)
 {
 	if(code >= 0 && code <= 9)
 	{
-		return numbers[code];
+		return numbers[code+0];
 	}
 	else if(code >= 'A' && code <= 'Z')
 	{
@@ -405,7 +405,7 @@ void SevenSegDisplay_AnimationCircles(void)
 {
 	animation = true;
 
-	static uint8_t animation_word[12][4]={{_F,_O,_O,_O},
+	static char animation_word[12][4]={{_F,_O,_O,_O},
 											{_E,_O,_O,_O},
 											{_D,_O,_O,_O},
 											{_O,_D,_O,_O},

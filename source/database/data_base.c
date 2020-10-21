@@ -13,7 +13,7 @@
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 #define MAX_BLOCKED_USERS   30
-#define BLOCK_TIME  10000   //1min
+#define BLOCK_TIME  60000   //1min
 #define NO_USER_INDEX   -1
 
 /*******************************************************************************
@@ -56,18 +56,6 @@ static bool checkIdArrayFormat(int8_t userID[])
 {
     int currentArrayLength = getEffectiveArrayLength(userID, ID_ARRAY_SIZE);
     if (currentArrayLength != ID_ARRAY_SIZE)
-        return false;
-
-    return true;
-}
-
-
-
-
-static bool checkCardNumberArrayFormat(int8_t userCardNumber[])
-{
-    int currentArrayLength = getEffectiveArrayLength(userCardNumber, MAX_CARD_NUMBER);
-    if (currentArrayLength != MAX_CARD_NUMBER)
         return false;
 
     return true;
