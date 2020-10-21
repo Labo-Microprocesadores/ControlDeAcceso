@@ -28,7 +28,6 @@ typedef enum
   ID_FAIL_EV,
   PIN_OK_EV,
   FAIL_PIN_EV,
-  RETRY_PIN_EV,
   
   RETURN_TO_LAST_STATE_EV,
   USR_BLOCKED_EV,
