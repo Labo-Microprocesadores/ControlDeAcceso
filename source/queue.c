@@ -24,16 +24,16 @@ void initQueue(void)
 {
   int i;
 
-  event_t *tempaux = &queue;
+  event_t *tempaux = queue;
 
   for (i = 0; i < QUEUE_SIZE; i++)
   {
     tempaux++->ack = true; //debo hacer esto para asegurarme de que todas las celdas de la cola esten habilitadas para ser escritas
   }
 
-  eventQueue.queue = &queue; //la cola de eventos
-  eventQueue.p2get = &queue; //los punteros para leer y escribir estan en el mismo lugar (cola vacia)
-  eventQueue.p2write = &queue;
+  eventQueue.queue = queue; //la cola de eventos
+  eventQueue.p2get = queue; //los punteros para leer y escribir estan en el mismo lugar (cola vacia)
+  eventQueue.p2write = queue;
 }
 
 bool emitEvent(EventType type)
