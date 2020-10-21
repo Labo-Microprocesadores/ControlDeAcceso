@@ -61,18 +61,6 @@ static bool checkIdArrayFormat(int8_t userID[])
     return true;
 }
 
-
-
-
-static bool checkCardNumberArrayFormat(int8_t userCardNumber[])
-{
-    int currentArrayLength = getEffectiveArrayLength(userCardNumber, MAX_CARD_NUMBER);
-    if (currentArrayLength != MAX_CARD_NUMBER)
-        return false;
-
-    return true;
-}
-
 static int getEffectiveArrayLength(int8_t *inputArray, int totalArraySize)
 {
     int length = 0;

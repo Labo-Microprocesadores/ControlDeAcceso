@@ -22,6 +22,11 @@
 #include "MplxLed.h"
 #include "board.h"
 
+#ifdef TESTPOINT
+#include "gpio.h"
+#define __TP__ PORTNUM2PIN(PC,4)
+#endif
+
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
@@ -63,6 +68,9 @@ void App_Init(void)
   currentState = FSM_GetInitState();
   FSM_StartInitState();
   userTimeOutTimerID = Timer_AddCallback(&timeOutCallback, TIMER_TIMEOUT, false);
+	#ifdef TESTPOINT
+	gpioMode(__TP__,OUTPUT);
+	#endif
 }
 
 /* Función que se llama constantemente en un ciclo infinito */
