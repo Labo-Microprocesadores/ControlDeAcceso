@@ -48,7 +48,7 @@ typedef enum
   OPEN_SELECTED_EV,
   TIMER_ACCESS_EV,
   LOG_OUT_EV
-} EventType; //VER SI ESTO ES LO MEJOR, O SI ES MEJOR UNA ESTRUCTURA EVENTO MAS COMPLEJA, ADEMAS FALTA DIFERENCIAR LOS DISTINTOS EVENTOS DE TIMER
+} EventType; 
 
 typedef struct EVENT
 {
@@ -68,7 +68,7 @@ typedef struct
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 
-#define QUEUE_SIZE 100 //cambiar este define por la cantidad de posiciones deseadas en la cola, recomiendo entre 100 y 200 para este programa
+#define QUEUE_SIZE 50 
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE

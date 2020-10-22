@@ -34,15 +34,16 @@
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  ******************************************************************************/
+
 /**
  * @brief function that fills the event queue with events from hardware.
  */
 static void fillQueue(void);
+
 static void timeOutCallback(void);
-/*******************************************************************************
- * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
- ******************************************************************************/
+
 static STATE *currentState;
+
 static int userTimeOutTimerID;
 /*******************************************************************************
  *******************************************************************************
@@ -55,7 +56,6 @@ void App_Init(void)
 {
 	initializeDataBase();
   initQueue();
-
   SevenSegDisplay_Init();
   Led_Init();
   Timer_Init();
@@ -64,7 +64,6 @@ void App_Init(void)
   Encoder_Init();
   buttonsInit();
   buttonConfiguration(ENCODER_SW, LKP, 20); //20*50=1seg
-
   currentState = FSM_GetInitState();
   FSM_StartInitState();
   userTimeOutTimerID = Timer_AddCallback(&timeOutCallback, TIMER_TIMEOUT, false);
@@ -105,7 +104,7 @@ void fillQueue(void)
 		 emitEvent(ENCODER_LEFT_EV);
 	}
   }
-  if (wasTap(ENCODER_SW)) //TODO poner el nuevo driver de button y ver si hacer uno generico o preguntar con el boton
+  if (wasTap(ENCODER_SW)) 
   {
 	  Timer_Reset(userTimeOutTimerID);
 	  emitEvent(PRESS_EV);
