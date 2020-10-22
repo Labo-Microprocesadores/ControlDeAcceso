@@ -14,7 +14,7 @@
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
-/* Each TimerElement is used to store the callback which Timer needs to call.
+/** Each TimerElement is used to store the callback which Timer needs to call.
  * @variable callbackID. An unique ID of the element.
  * @variable callback. The function to be called.
  * @variable counterLimit.  The quotient between the callback period and the Timer's ISR period.

@@ -36,19 +36,19 @@ typedef struct
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
 
-/*
+/**
  * @brief Inicializa el driver del lector de tarjetas
  */
 void Lector_Init(void);
 
-/*
+/**
  * @brief Funcion para verificar la exitencia de un evento generado por el driver
  * @return Existe el evento
  */
 bool Lector_Event(void);
 
 
-/*
+/**
  * @brief Recupera informacion generada en un evento
  * @param data, puntero a una estructura card_t para escribir los datos genrados
  * @return Devuelve true en caso exitoso, false si hubo un error al leer los datos
