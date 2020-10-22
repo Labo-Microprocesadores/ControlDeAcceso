@@ -17,9 +17,7 @@
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
 static STATE *currentState;
-static bool showingTitle, showingErrorIndication;
-static int8_t id[ID_ARRAY_SIZE];
-static uint8_t currentPos = 0;
+
 /*******************************************************************************
  * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
  **********************************************************************/

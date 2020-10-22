@@ -26,7 +26,7 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-#define TITLE_TIME  6000
+#define TITLE_TIME  8000
 
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
@@ -154,7 +154,7 @@ void deleteUser_checkCardID(void)
     if(ok)
     {
         // agarro numero de tarjeta
-        uint8_t numero[19];
+        int8_t numero[19];
         uint8_t i,length = myCard.number_len;
         for(i = 0; i<length; i++)
         {
@@ -190,7 +190,7 @@ static void showTitle(void)
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_CursorOff();
-    SevenSegDisplay_WriteBufferAndMove("ENTER ID OR CARD", 16, 0, BOUNCE);
+    SevenSegDisplay_WriteBufferAndMove("ID OR CARD", 10, 0, BOUNCE);
     showingTitle = true;
     titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);  //Starts the callback to stop the title.
 }
@@ -199,7 +199,7 @@ static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBuffer(id, ID_ARRAY_SIZE, 0);  //Initializes the input.
+    SevenSegDisplay_WriteBuffer((char *)id, ID_ARRAY_SIZE, 0);  //Initializes the input.
     SevenSegDisplay_CursorOn();
     showingTitle = false;
 }

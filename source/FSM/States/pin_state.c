@@ -14,10 +14,6 @@
  ******************************************************************************/
 
 /*******************************************************************************
- * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
- ******************************************************************************/
-#define TITLE_TIME  2000
-/*******************************************************************************
  * INCLUDE HEADER FILES
  ******************************************************************************/
 #include <stdbool.h>
@@ -33,7 +29,7 @@
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
-#define TITLE_TIME  6000
+#define PIN_TITLE_TIME  6000
 /*******************************************************************************
  * GLOBAL VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
@@ -142,7 +138,7 @@ void pin_acceptNumber(void)
         userInteractionFinishesFailAnimation();
     else
     {
-        int8_t aux[] = {MID_LINE};
+        char aux[] = {MID_LINE};
         inputAcceptNumber(pin, &currentPos, PIN_ARRAY_SIZE);
         SevenSegDisplay_WriteBuffer(aux, 1, currentPos-1);
     }
@@ -197,13 +193,13 @@ static void showTitle(void)
     //!ojo agregado
     Led_Off(LED_BLUE);
     Led_InfiniteBlink(LED_GREEN, NORMAL);
-    titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true); //Starts the callback to stop the title.
+    titleTimerID = Timer_AddCallback(&stopShowingTitle, PIN_TITLE_TIME, true); //Starts the callback to stop the title.
 }
 
 static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
-    SevenSegDisplay_WriteBuffer(pin, PIN_ARRAY_SIZE, 0);
+    SevenSegDisplay_WriteBuffer((char *)pin, PIN_ARRAY_SIZE, 0);
     SevenSegDisplay_CursorOn();
     showingTitle = false;
     //!ojo agregado
@@ -243,7 +239,7 @@ static void pinFail(void)
     //!ojo agregado
     Led_Off(LED_BLUE);
     Led_InfiniteBlink(LED_RED, NORMAL);
-    errorIndicationTimerID = Timer_AddCallback(&stopErrorIndication, TITLE_TIME, true); //Starts the callback to stop the error message.
+    errorIndicationTimerID = Timer_AddCallback(&stopErrorIndication, PIN_TITLE_TIME, true); //Starts the callback to stop the error message.
 }
 
 static void stopErrorIndication(void)

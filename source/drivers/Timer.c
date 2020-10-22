@@ -37,7 +37,7 @@ static int idCounter;
 bool Timer_Init (void)
 {
 	SysTick_Init();	//Initialization of Systick's driver.
-	int systickCallbackID = SysTick_AddCallback(&Timer_PISR, TIMER_ISR_PERIOD);	//Requests SysTick to periodically call the Timer's ISR.
+	SysTick_AddCallback(&Timer_PISR, TIMER_ISR_PERIOD);	//Requests SysTick to periodically call the Timer's ISR.
 	idCounter = 1;
 	return true;
 }

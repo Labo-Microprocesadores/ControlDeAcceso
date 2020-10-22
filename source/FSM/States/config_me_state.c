@@ -125,7 +125,7 @@ void configMe_decreaseCurrent(void)
 }
 /*******************************************************************************
  *******************************************************************************
-                        LOCAL FUNCTION DEFINITIONS
+ *                         LOCAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
 static void showTitle(void)
@@ -133,7 +133,7 @@ static void showTitle(void)
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_CursorOff();
-    SevenSegDisplay_WriteBufferAndMove("NEW PIN", 7, 0, BOUNCE);    //Shows title.
+    SevenSegDisplay_WriteBufferAndMove("INSERT PIN", 10, 0, BOUNCE);    //Shows title.
     showingTitle = true;
     titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);  //Sets the callback to stop the title and start the input.
 }
@@ -142,7 +142,7 @@ static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBuffer(newPin, PIN_ARRAY_SIZE, 0); //Initializes the input.
+    SevenSegDisplay_WriteBuffer((char *)newPin, PIN_ARRAY_SIZE, 0); //Initializes the input.
     SevenSegDisplay_CursorOn(); 
     showingTitle = false;
 }

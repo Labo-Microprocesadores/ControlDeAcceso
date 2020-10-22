@@ -6,10 +6,12 @@
 #ifndef ADD_USER_MAIN_MENU_STATE_H
 #define ADD_USER_MAIN_MENU_STATE_H
 
+#include <stdint.h>
+
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
  ******************************************************************************/
 void addUsr_initState(void);
 void addUsr_cardSwipe(void);
-short * addUsr_getCardNumber(void);
+int8_t * addUsr_getCardNumber(void);
 #endif /* ADD_USER_MAIN_MENU_STATE_H */

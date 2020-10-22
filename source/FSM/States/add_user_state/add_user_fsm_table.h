@@ -9,5 +9,5 @@
 #include "fsm.h"
 
 STATE *subFSM_GetInitState(void);
-void subFMS_StartInitState();
+void subFSM_StartInitState();
 #endif /* ADD_USER_FSMTABLE_H_ */

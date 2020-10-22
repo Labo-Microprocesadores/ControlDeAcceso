@@ -102,7 +102,7 @@ void addUserPin_acceptNumber(void)
     	userInteractionStopsErrorIndication();
     else
     {
-        int8_t aux[] = {MID_LINE};
+        char aux[] = {MID_LINE};
         inputAcceptNumber(pin, &currentPos, PIN_ARRAY_SIZE);
         SevenSegDisplay_WriteBuffer(aux, 1, currentPos-1);
     }
@@ -156,7 +156,7 @@ static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBuffer(pin, PIN_ARRAY_SIZE, 0);
+    SevenSegDisplay_WriteBuffer((char *)pin, PIN_ARRAY_SIZE, 0);
     SevenSegDisplay_CursorOn();
     showingTitle = false;
 }

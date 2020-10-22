@@ -164,7 +164,7 @@ void id_checkCardID(void)
     if(ok)
     {
         // agarro numero de tarjeta
-        uint8_t numero[19];
+        int8_t numero[19];
         uint8_t i,length = myCard.number_len;
         for(i = 0; i<length; i++)
         {
@@ -208,7 +208,7 @@ static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBuffer(id, ID_ARRAY_SIZE, 0);
+    SevenSegDisplay_WriteBuffer((char *)id, ID_ARRAY_SIZE, 0);
     SevenSegDisplay_CursorOn();
     showingTitle = false;
 }

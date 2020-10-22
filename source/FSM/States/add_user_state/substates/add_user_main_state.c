@@ -23,8 +23,6 @@
 *       VARIABLE WITH LOCAL SCOPE
 *******************************************************************************/
 static int8_t cardNumber[MAX_CARD_NUMBER_LEN];
-//static bool showingTitle, showingErrorIndication;
-static int titleTimerID = -1;
 static int errorIndicationTimerID = -1;
 
 /*******************************************************************************
@@ -86,7 +84,7 @@ void addUsr_cardSwipe(void)
     }
 }
 
-short * addUsr_getCardNumber(void)
+int8_t * addUsr_getCardNumber(void)
 {
     return cardNumber;
 }

@@ -42,7 +42,7 @@ void inputIncreaseCurrent(int8_t *inputArray, uint8_t currentPosition)
     else
         inputArray[currentPosition] = BACKSPACE;
 
-    SevenSegDisplay_WriteBuffer(&inputArray[currentPosition], 1, currentPosition);
+    SevenSegDisplay_WriteBuffer((char *)&inputArray[currentPosition], 1, currentPosition);
 }
 
 void inputDecreaseCurrent(int8_t *inputArray, uint8_t currentPosition)
@@ -54,7 +54,7 @@ void inputDecreaseCurrent(int8_t *inputArray, uint8_t currentPosition)
     else if (inputArray[currentPosition] == BACKSPACE)
         inputArray[currentPosition] = 9;
 
-    SevenSegDisplay_WriteBuffer(&inputArray[currentPosition], 1, currentPosition);
+    SevenSegDisplay_WriteBuffer((char *)&inputArray[currentPosition], 1, currentPosition);
 
 }
 
@@ -82,7 +82,7 @@ void inputAcceptNumber(int8_t *inputArray, uint8_t *currentPosition, int totalAr
         SevenSegDisplay_CursorInc();
         (*currentPosition)++;
         inputArray[*currentPosition] = NO_INPUT_CHAR;
-        SevenSegDisplay_WriteBuffer(&inputArray[*currentPosition], 1, *currentPosition);
+        SevenSegDisplay_WriteBuffer((char *)&inputArray[*currentPosition], 1, *currentPosition);
     }
 }
 
@@ -117,7 +117,7 @@ static void deleteLastChar(int8_t *inputArray, int totalArraySize)
     else
     {
         inputArray[currentArrayLength - 1] = NO_INPUT_CHAR;
-        SevenSegDisplay_WriteBuffer(&inputArray[currentArrayLength - 1], 1, currentArrayLength - 1);
+        SevenSegDisplay_WriteBuffer((char *)&inputArray[currentArrayLength - 1], 1, currentArrayLength - 1);
         
     }
 }

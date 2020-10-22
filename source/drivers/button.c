@@ -88,7 +88,7 @@ bool wasPressed(pin_t button)
 			return aux ;
 		}
 	}
-
+	return false;
 }
 
 bool wasTap(pin_t button)
@@ -104,6 +104,7 @@ bool wasTap(pin_t button)
 			return aux ;
 		}
 	}
+	return false;
 }
 
 
@@ -128,6 +129,7 @@ bool wasReleased(pin_t button)
 		var=false;
 		return false;
 	}
+	return false;
 }
 
 bool wasLkp(pin_t button)
@@ -145,6 +147,7 @@ bool wasLkp(pin_t button)
 			return aux ;
 		}
 	}
+	return false;
 }
 
 

@@ -150,7 +150,7 @@ static void stopShowingTitle(void)
 {
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBuffer(id, ID_ARRAY_SIZE, 0);
+    SevenSegDisplay_WriteBuffer((char *)id, ID_ARRAY_SIZE, 0);
     SevenSegDisplay_CursorOn();
     showingTitle = false;
 }
