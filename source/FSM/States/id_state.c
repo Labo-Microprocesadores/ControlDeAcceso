@@ -263,7 +263,7 @@ static void id_fail_animate(void)
 	showingErrorIndication = true;
 	errorIndicationTimerID = Timer_AddCallback(&initLogin, 600, true);
     //!ojo agregado
-    Led_InfiniteBlink(LED_RED, NORMAL);
+	Led_StopInfiniteBlink(LED_RED);
 }
 
 static void idCardFail(void)
