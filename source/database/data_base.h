@@ -100,7 +100,10 @@ bool verifyPIN(int8_t userPIN[]);
  */
 bool isCurrentUserBlocked(void);
 
-//! comentar
+/**
+ * @brief This function returns the number of attempts of the current user
+ * @return the number of attempts made by the current user
+ */
 uint8_t AttemptsOnCurrent(void);
 
 /**
@@ -166,7 +169,11 @@ bool verifyCardNumber(int8_t cardNumber[], uint8_t numCharactersCardNumber);
  */
 Status removeUser(int8_t userID[]);
 
-//! Add comment
+/**
+ * @brief this function returns the id of a user with the cardNumber that is passed as a parameter
+ * @param cardNumber to find the user id
+ * @return the user id or NULL if the cardNumber is not on the database
+ */
 int8_t * getIdByCardNumber(int8_t cardNumber[]);
 
 /**
