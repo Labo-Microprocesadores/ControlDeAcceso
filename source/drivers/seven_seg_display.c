@@ -7,7 +7,6 @@
 #include "seven_seg_display.h"
 #include "SysTick.h"
 #include "gpio.h"
-#include "Timer.h"
 #include "board.h"
 
 /*******************************************************************************
