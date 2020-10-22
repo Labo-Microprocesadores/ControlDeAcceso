@@ -28,8 +28,8 @@
 #include "queue.h"
 #include "seven_seg_display.h"
 //!ojo agregado
-#include "./drivers/Led.h"
-
+#include "Led.h"
+#include "MplxLed.h"
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
@@ -126,6 +126,7 @@ void pin_confirmPin(void)
         }
         else
         {
+        	MplxLed_StopAllProcessedFromAllLeds();
             emitEvent(PIN_OK_EV);
         }
     }    
@@ -231,8 +232,10 @@ static void pinFail(void)
     else
     {
         //!ojo agregado
-        int8_t att = attemptsOnCurrent();
-        //TODO agregar aca algo que prenda "att" leds
+        int8_t att = AttemptsOnCurrent();
+        uint8_t i;
+        for(i = 0; i<att; i++)
+        	MplxLed_On(i);
         SevenSegDisplay_WriteBufferAndMove("TRY AGAIN.", 9, 0, SHIFT_L);        //Shows error message.
     }
     showingErrorIndication = true;
@@ -283,7 +286,7 @@ static void finishFailAnimation(void)
         initPinInput();                 //The user didn't get blocked -> Starts the state's cycle again.
     //!ojo agregado
     Led_StopInfiniteBlink(LED_RED);
-    Led_On(LED_BLUE);
+
 }
 
 
@@ -294,7 +297,6 @@ static void userInteractionFinishesFailAnimation(void)
     finishFailAnimation();
     //!ojo agregado
     Led_StopInfiniteBlink(LED_RED);
-    Led_On(LED_BLUE);
 }
 
 

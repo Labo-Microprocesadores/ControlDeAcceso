@@ -12,7 +12,7 @@
 #include "seven_seg_display.h"
 #include "Timer.h"
 #include "data_base.h"
-#include "./drivers/Led.h"
+#include "Led.h"
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
@@ -160,7 +160,7 @@ static void showTitle(void)
     }
     //!ojo agregado
     Led_Off(LED_BLUE);
-    Led_Infiniteblink(LED_GREEN, NORMAL);
+    Led_InfiniteBlink(LED_GREEN, NORMAL);
     titleTimerID = Timer_AddCallback(&stopShowingTitle,TITLE_TIME, true );
 }
 

@@ -151,6 +151,7 @@ bool verifyPIN(int8_t userPIN[])
         }
     }
     //if no one was diferent then all of them were equals
+    dataBase.userList[currentIdIndex].Attempts = 0;
     return true;
 }
 
