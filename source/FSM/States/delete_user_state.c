@@ -14,6 +14,7 @@
 /*******************************************************************************
  * INCLUDE HEADER FILES
  ******************************************************************************/
+
 #include <stdbool.h>
 #include "Timer.h"
 #include "delete_user_state.h"
@@ -80,8 +81,6 @@ static void idCardFail(void);
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-//!OJO EN TODAS ESTA HABRIA QUE RESETEAR EL TIMER DE TIMEOUT Y EN ALGUNAS ACTUALIZAR EL DISPLAY
-//TODO AGREGAR ESO
 
 void deleteUser_initState(void)
 {

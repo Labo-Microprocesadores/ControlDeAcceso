@@ -1,6 +1,6 @@
 /***************************************************************************/ /**
-  @file     admin_state.c
-  @brief    Admin state functions.
+  @file     menu_state.c
+  @brief    menu_state
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/
 

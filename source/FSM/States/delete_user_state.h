@@ -1,20 +1,22 @@
-/********/ /*
+/***************************************************************************/ /**
   @file     delete_user_state.h
   @brief    delete user state header
   @author   Grupo 2 - Lab de Micros
- **********/
+ ******************************************************************************/
 #ifndef DELETE_USER_H
 #define DELETE_USER_H
-/*********
+
+/*******************************************************************************
  * INCLUDE HEADER FILES
- **********/
+ ******************************************************************************/
 #include <stdint.h>
 
 //CHAR ORDER: 0 1 2 3 4 5 6 7 8 9 BACKSPACE
 
-/*********
+/*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
- **********/
+******************************************************************************/
+
 /**
  * @brief Initialization of the state.
  */
@@ -41,6 +43,9 @@ void deleteUser_confirm(void);
  */
 void deleteUser_checkCardID(void);
 
+/**
+ * @brief returns a pointer to the id array
+ */
 int8_t * deleteUser_getIdArray(int *sizeOfReturningArray);
 
 
