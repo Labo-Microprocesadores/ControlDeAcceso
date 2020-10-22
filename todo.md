@@ -72,7 +72,7 @@ En DataBase.c
 
 En DataBase.h
     - [x] Completar Comentarios en database.h
-    - [ ] Completar el comentario faltante en la funcion getIdByCardNumber(int8_t cardNumber[])  
+    - [x] Completar el comentario faltante en la funcion getIdByCardNumber(int8_t cardNumber[])  
 
 En App.c
     - [x] eventos de timer se agregan solos a cola????    

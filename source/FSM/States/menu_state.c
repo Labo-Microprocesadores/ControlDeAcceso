@@ -158,7 +158,6 @@ static void showTitle(void)
     {
         SevenSegDisplay_WriteBuffer("USER", 4, 0);
     }
-    //!ojo agregado
     Led_Off(LED_BLUE);
     Led_InfiniteBlink(LED_GREEN, NORMAL);
     titleTimerID = Timer_AddCallback(&stopShowingTitle,TITLE_TIME, true );

@@ -27,10 +27,11 @@ static void systick_callback(void)
 {
 
 	int i;
-
+	//for the buttons array
 	for( i=0 ; i<BUTTON_NUM ; i++ )
 	{
 		bool pinState = !gpioRead(buttons[i].pin);
+		//if the was pressed and the button is not been pressed now
 		if( buttons[i].lastState && !pinState)
 		{
 			buttons[i].wasTap = (buttons[i].currentCount < buttons[i].lkpTime);
@@ -39,12 +40,15 @@ static void systick_callback(void)
 			buttons[i].currentCount = 0;
 			buttons[i].lastState = false;
 		}
+		// if the button is been pressed now
 		else if( pinState )
 		{
+			//if the button is a long key press button and the currentCount is equal to the long key press time.
 			if( buttons[i].typefunction == LKP && (++buttons[i].currentCount) == buttons[i].lkpTime )
 			{
 				buttons[i].wasLkp = true;
 			}
+			//if the button is a TYPEMATIC and the currentCount is equal to TYPEMATIC time.
 			else if( buttons[i].typefunction == TYPEMATIC && ++buttons[i].currentCount == buttons[i].typeTime)
 			{
 				 buttons[i].wasPressed= true;
