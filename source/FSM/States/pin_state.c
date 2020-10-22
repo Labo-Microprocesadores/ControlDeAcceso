@@ -230,6 +230,8 @@ static void pinFail(void)
         SevenSegDisplay_WriteBufferAndMove("TRY AGAIN.", 9, 0, SHIFT_L);        //Shows error message.
     }
     showingErrorIndication = true;
+    //!ojo agregado
+    Led_InfiniteBlink(LED_RED, NORMAL);
     errorIndicationTimerID = Timer_AddCallback(&stopErrorIndication, TITLE_TIME, true); //Starts the callback to stop the error message.
 }
 
@@ -238,6 +240,8 @@ static void stopErrorIndication(void)
     showingErrorIndication = false;
 	SevenSegDisplay_EraseScreen();
 	SevenSegDisplay_SetPos(0);
+    //!ojo agregado
+    Led_StopInfiniteBlink(LED_RED);
 	startFailAnimation();   //Starts an animation.
 }
 
@@ -267,6 +271,8 @@ static void finishFailAnimation(void)
         emitEvent(USR_BLOCKED_EV);     //The user got blocked -> Starts the welcome screen.
     else
         initPinInput();                 //The user didn't get blocked -> Starts the state's cycle again.
+    //!ojo agregado
+    Led_StopInfiniteBlink(LED_RED);
 }
 
 
@@ -275,6 +281,8 @@ static void userInteractionFinishesFailAnimation(void)
     Timer_Delete(animationTimerID); //Cancels the callback.
     animationTimerID = -1;
     finishFailAnimation();
+    //!ojo agregado
+    Led_StopInfiniteBlink(LED_RED);
 }
 
 
