@@ -80,6 +80,8 @@ static void id_fail_animate(void);
 
 void initLogin(void)
 {
+    //!ojo agregado
+    Led_On(LED_BLUE);
 	SevenSegDisplay_StopAnimation();
     showingErrorIndication = false;
     inputResetArray(id, &currentPos, ID_ARRAY_SIZE);
@@ -198,8 +200,6 @@ static void showTitle(void)
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_CursorOff();
     SevenSegDisplay_WriteBuffer("ID  ", 4, 0);
-     //!ojo agregado
-    Led_On(LED_BLUE);
     showingTitle = true;
     titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);
 }
@@ -211,8 +211,6 @@ static void stopShowingTitle(void)
     SevenSegDisplay_WriteBuffer(id, ID_ARRAY_SIZE, 0);
     SevenSegDisplay_CursorOn();
     showingTitle = false;
-    //!ojo agregado
-    Led_Off(LED_BLUE);
 }
 
 static void userInteractionStopsTitle(void)
@@ -221,8 +219,6 @@ static void userInteractionStopsTitle(void)
     titleTimerID = -1;
     stopShowingTitle();
     SevenSegDisplay_CursorOn();
-     //!ojo agregado
-    Led_Off(LED_BLUE);
 }
 
 static void userInteractionStopErrorIndicationAndRestart(void)
@@ -231,6 +227,7 @@ static void userInteractionStopErrorIndicationAndRestart(void)
     initLogin();
     //!ojo agregado
     Led_StopInfiniteBlink(LED_RED);
+    Led_On(LED_BLUE);
 }
 
 static void userInteractionStopsErrorIndication(void)
@@ -241,6 +238,7 @@ static void userInteractionStopsErrorIndication(void)
     errorIndicationTimerID = -1;
     //!ojo agregado
     Led_StopInfiniteBlink(LED_RED);
+    Led_On(LED_BLUE);
 }
 
 static void idFail(void)
@@ -252,6 +250,7 @@ static void idFail(void)
     showingErrorIndication = true;
     errorIndicationTimerID = Timer_AddCallback(&id_fail_animate, TITLE_TIME, true);
     //!ojo agregado
+    Led_Off(LED_BLUE);
     Led_InfiniteBlink(LED_RED, NORMAL);
 }
 
@@ -265,6 +264,7 @@ static void id_fail_animate(void)
 	errorIndicationTimerID = Timer_AddCallback(&initLogin, 600, true);
     //!ojo agregado
 	Led_StopInfiniteBlink(LED_RED);
+    Led_On(LED_BLUE);
 }
 
 static void idCardFail(void)
@@ -277,5 +277,6 @@ static void idCardFail(void)
     //errorIndicationTimerID = Timer_AddCallback(&initLogin, TITLE_TIME, true);
     errorIndicationTimerID = Timer_AddCallback(&id_fail_animate, TITLE_TIME, true);
      //!ojo agregado
+    Led_Off(LED_BLUE);
     Led_InfiniteBlink(LED_RED, NORMAL);
 }

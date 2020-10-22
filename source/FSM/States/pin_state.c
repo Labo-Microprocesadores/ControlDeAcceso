@@ -193,7 +193,8 @@ static void showTitle(void)
     SevenSegDisplay_CursorOff();
     showingTitle = true;
     //!ojo agregado
-    Led_On(LED_BLUE);
+    Led_Off(LED_BLUE);
+    Led_InfiniteBlink(LED_GREEN, NORMAL);
     titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true); //Starts the callback to stop the title.
 }
 
@@ -204,7 +205,8 @@ static void stopShowingTitle(void)
     SevenSegDisplay_CursorOn();
     showingTitle = false;
     //!ojo agregado
-    Led_Off(LED_BLUE);
+    Led_StopInfiniteBlink(LED_GREEN); 
+    Led_On(LED_BLUE);
 }
 
 static void userInteractionStopsTitle(void)
@@ -213,7 +215,8 @@ static void userInteractionStopsTitle(void)
     titleTimerID = -1;
     stopShowingTitle();
     //!ojo agregado
-    Led_Off(LED_BLUE);
+    Led_StopInfiniteBlink(LED_GREEN); 
+    Led_On(LED_BLUE);
 }
 
 static void pinFail(void)
@@ -231,6 +234,7 @@ static void pinFail(void)
     }
     showingErrorIndication = true;
     //!ojo agregado
+    Led_Off(LED_BLUE);
     Led_InfiniteBlink(LED_RED, NORMAL);
     errorIndicationTimerID = Timer_AddCallback(&stopErrorIndication, TITLE_TIME, true); //Starts the callback to stop the error message.
 }
@@ -242,6 +246,7 @@ static void stopErrorIndication(void)
 	SevenSegDisplay_SetPos(0);
     //!ojo agregado
     Led_StopInfiniteBlink(LED_RED);
+    Led_On(LED_BLUE);
 	startFailAnimation();   //Starts an animation.
 }
 
@@ -252,6 +257,7 @@ static void userInteractionStopsErrorIndication(void)
     stopErrorIndication();
     //!ojo agregado
     Led_StopInfiniteBlink(LED_RED);
+    Led_On(LED_BLUE);
 }
 
 static void startFailAnimation(void)
@@ -259,6 +265,7 @@ static void startFailAnimation(void)
     showingAnimation = true;
     SevenSegDisplay_AnimationCircles();
     //!ojo agregado
+    Led_Off(LED_BLUE);
     Led_InfiniteBlink(LED_RED, NORMAL);
 	animationTimerID = Timer_AddCallback(&finishFailAnimation, 600, true);  //Starts the callback to stop the animation.
 }
@@ -273,6 +280,7 @@ static void finishFailAnimation(void)
         initPinInput();                 //The user didn't get blocked -> Starts the state's cycle again.
     //!ojo agregado
     Led_StopInfiniteBlink(LED_RED);
+    Led_On(LED_BLUE);
 }
 
 
@@ -283,6 +291,7 @@ static void userInteractionFinishesFailAnimation(void)
     finishFailAnimation();
     //!ojo agregado
     Led_StopInfiniteBlink(LED_RED);
+    Led_On(LED_BLUE);
 }
 
 
