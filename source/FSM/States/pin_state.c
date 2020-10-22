@@ -230,6 +230,7 @@ static void pinFail(void)
     }
     else
     {
+        int8_t att = attemptsOnCurrent();
         SevenSegDisplay_WriteBufferAndMove("TRY AGAIN.", 9, 0, SHIFT_L);        //Shows error message.
     }
     showingErrorIndication = true;

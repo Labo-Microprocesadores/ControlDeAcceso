@@ -164,6 +164,11 @@ bool isCurrentUserBlocked(void)
     return false;
 }
 
+uint8_t AttemptsOnCurrent(void)
+{
+    return dataBase.userList[currentIdIndex].Attempts;
+}
+
 int8_t * getIdByCardNumber(int8_t cardNumber[])
 {
     uint8_t  user;
