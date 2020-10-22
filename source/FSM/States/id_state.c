@@ -15,7 +15,6 @@
 #include "seven_seg_display.h"
 #include "data_base.h"
 #include "queue.h"
-//!ojo agregado
 #include "./drivers/Led.h"
 
 /*******************************************************************************
@@ -80,7 +79,6 @@ static void id_fail_animate(void);
 
 void initLogin(void)
 {
-    //!ojo agregado
     Led_On(LED_BLUE);
 	SevenSegDisplay_StopAnimation();
     showingErrorIndication = false;
@@ -225,7 +223,6 @@ static void userInteractionStopErrorIndicationAndRestart(void)
 {
     userInteractionStopsErrorIndication();
     initLogin();
-    //!ojo agregado
     Led_StopInfiniteBlink(LED_RED);
     Led_On(LED_BLUE);
 }
@@ -236,7 +233,6 @@ static void userInteractionStopsErrorIndication(void)
     Timer_Delete(errorIndicationTimerID);
     showingErrorIndication = false;
     errorIndicationTimerID = -1;
-    //!ojo agregado
     Led_StopInfiniteBlink(LED_RED);
     Led_On(LED_BLUE);
 }
@@ -249,7 +245,6 @@ static void idFail(void)
     SevenSegDisplay_WriteBufferAndMove("NO ID FOUND", 11, 0, SHIFT_L);
     showingErrorIndication = true;
     errorIndicationTimerID = Timer_AddCallback(&id_fail_animate, TITLE_TIME, true);
-    //!ojo agregado
     Led_Off(LED_BLUE);
     Led_InfiniteBlink(LED_RED, NORMAL);
 }
@@ -262,7 +257,6 @@ static void id_fail_animate(void)
 	SevenSegDisplay_AnimationCircles();
 	showingErrorIndication = true;
 	errorIndicationTimerID = Timer_AddCallback(&initLogin, 600, true);
-    //!ojo agregado
 	Led_StopInfiniteBlink(LED_RED);
     Led_On(LED_BLUE);
 }
@@ -276,7 +270,6 @@ static void idCardFail(void)
     showingErrorIndication = true;
     //errorIndicationTimerID = Timer_AddCallback(&initLogin, TITLE_TIME, true);
     errorIndicationTimerID = Timer_AddCallback(&id_fail_animate, TITLE_TIME, true);
-     //!ojo agregado
     Led_Off(LED_BLUE);
     Led_InfiniteBlink(LED_RED, NORMAL);
 }
