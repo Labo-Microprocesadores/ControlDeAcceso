@@ -229,7 +229,8 @@ static void userInteractionStopErrorIndicationAndRestart(void)
 {
     userInteractionStopsErrorIndication();
     initLogin();
-    
+    //!ojo agregado
+    Led_StopInfiniteBlink(LED_RED);
 }
 
 static void userInteractionStopsErrorIndication(void)
