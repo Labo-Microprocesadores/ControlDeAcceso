@@ -230,7 +230,9 @@ static void pinFail(void)
     }
     else
     {
+        //!ojo agregado
         int8_t att = attemptsOnCurrent();
+        //TODO agregar aca algo que prenda "att" leds
         SevenSegDisplay_WriteBufferAndMove("TRY AGAIN.", 9, 0, SHIFT_L);        //Shows error message.
     }
     showingErrorIndication = true;
