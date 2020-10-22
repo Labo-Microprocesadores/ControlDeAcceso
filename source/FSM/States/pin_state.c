@@ -189,6 +189,7 @@ int8_t *pin_getPinArray(int *sizeOfReturningArray)
 static void showTitle(void)
 {
     SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_BlinkScreen(false);
     SevenSegDisplay_WriteBuffer("PIN ", 4, 0);  //Shows the title
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_CursorOff();
