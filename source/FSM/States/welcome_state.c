@@ -12,6 +12,7 @@
 #include "data_base.h"
 #include "queue.h"
 #include "seven_seg_display.h"
+#include "./drivers/Led.h"
 /*******************************************************************************
  * FUNCTIONS WITH GLOBAL SCOPE
  ******************************************************************************/

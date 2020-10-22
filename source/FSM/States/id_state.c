@@ -15,6 +15,8 @@
 #include "seven_seg_display.h"
 #include "data_base.h"
 #include "queue.h"
+//!ojo agregado
+#include "./drivers/Led.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -196,6 +198,8 @@ static void showTitle(void)
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_CursorOff();
     SevenSegDisplay_WriteBuffer("ID  ", 4, 0);
+     //!ojo agregado
+    Led_On(LED_BLUE);
     showingTitle = true;
     titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true);
 }
@@ -207,6 +211,8 @@ static void stopShowingTitle(void)
     SevenSegDisplay_WriteBuffer(id, ID_ARRAY_SIZE, 0);
     SevenSegDisplay_CursorOn();
     showingTitle = false;
+    //!ojo agregado
+    Led_Off(LED_BLUE);
 }
 
 static void userInteractionStopsTitle(void)
@@ -215,20 +221,25 @@ static void userInteractionStopsTitle(void)
     titleTimerID = -1;
     stopShowingTitle();
     SevenSegDisplay_CursorOn();
+     //!ojo agregado
+    Led_Off(LED_BLUE);
 }
 
 static void userInteractionStopErrorIndicationAndRestart(void)
 {
     userInteractionStopsErrorIndication();
     initLogin();
+    
 }
 
 static void userInteractionStopsErrorIndication(void)
 {
-       SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_EraseScreen();
     Timer_Delete(errorIndicationTimerID);
     showingErrorIndication = false;
     errorIndicationTimerID = -1;
+    //!ojo agregado
+    Led_StopInfiniteBlink(LED_RED);
 }
 
 static void idFail(void)
@@ -239,6 +250,8 @@ static void idFail(void)
     SevenSegDisplay_WriteBufferAndMove("NO ID FOUND", 11, 0, SHIFT_L);
     showingErrorIndication = true;
     errorIndicationTimerID = Timer_AddCallback(&id_fail_animate, TITLE_TIME, true);
+    //!ojo agregado
+    Led_InfiniteBlink(LED_RED, NORMAL);
 }
 
 static void id_fail_animate(void)
@@ -249,6 +262,8 @@ static void id_fail_animate(void)
 	SevenSegDisplay_AnimationCircles();
 	showingErrorIndication = true;
 	errorIndicationTimerID = Timer_AddCallback(&initLogin, 600, true);
+    //!ojo agregado
+    Led_InfiniteBlink(LED_RED, NORMAL);
 }
 
 static void idCardFail(void)
@@ -260,4 +275,6 @@ static void idCardFail(void)
     showingErrorIndication = true;
     //errorIndicationTimerID = Timer_AddCallback(&initLogin, TITLE_TIME, true);
     errorIndicationTimerID = Timer_AddCallback(&id_fail_animate, TITLE_TIME, true);
+     //!ojo agregado
+    Led_InfiniteBlink(LED_RED, NORMAL);
 }

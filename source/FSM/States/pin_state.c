@@ -27,6 +27,8 @@
 #include "data_base.h"
 #include "queue.h"
 #include "seven_seg_display.h"
+//!ojo agregado
+#include "./drivers/Led.h"
 
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
@@ -190,6 +192,8 @@ static void showTitle(void)
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_CursorOff();
     showingTitle = true;
+    //!ojo agregado
+    Led_On(LED_BLUE);
     titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true); //Starts the callback to stop the title.
 }
 
@@ -199,6 +203,8 @@ static void stopShowingTitle(void)
     SevenSegDisplay_WriteBuffer(pin, PIN_ARRAY_SIZE, 0);
     SevenSegDisplay_CursorOn();
     showingTitle = false;
+    //!ojo agregado
+    Led_Off(LED_BLUE);
 }
 
 static void userInteractionStopsTitle(void)
@@ -206,6 +212,8 @@ static void userInteractionStopsTitle(void)
     Timer_Delete(titleTimerID);
     titleTimerID = -1;
     stopShowingTitle();
+    //!ojo agregado
+    Led_Off(LED_BLUE);
 }
 
 static void pinFail(void)
@@ -238,12 +246,16 @@ static void userInteractionStopsErrorIndication(void)
     Timer_Delete(errorIndicationTimerID);   //Cancels the callback.
     errorIndicationTimerID = -1;
     stopErrorIndication();
+    //!ojo agregado
+    Led_StopInfiniteBlink(LED_RED);
 }
 
 static void startFailAnimation(void)
 {   
     showingAnimation = true;
     SevenSegDisplay_AnimationCircles();
+    //!ojo agregado
+    Led_InfiniteBlink(LED_RED, NORMAL);
 	animationTimerID = Timer_AddCallback(&finishFailAnimation, 600, true);  //Starts the callback to stop the animation.
 }
 
