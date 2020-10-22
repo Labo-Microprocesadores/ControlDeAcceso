@@ -13,7 +13,8 @@
 /*******************************************************************************
  * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
  ******************************************************************************/
-/* Structure to store the variables needed to make the "On For Defined Time" process work.
+
+/** Structure to store the variables needed to make the "On For Defined Time" process work.
  * @variable onTime. The time in ms. for the LED to be ON.
  * @variable onTimeCounterLimit. 	The quotient between the "on" time and the Led's ISR period.
 * 									Indicates the amount of times the Led's ISR must occur before the LED turns off.
@@ -27,7 +28,7 @@ typedef struct OnForDefinedTimeProperties
 	unsigned int onTimeCounter;
 } OnForDefinedTimeProperties;
 
-/* Structure to store the variables needed to make the "Blink" process work.
+/** Structure to store the variables needed to make the "Blink" process work.
  * @variable blinkTimes. How many times the LED must turn on.
  * @variable blinkCounter. How many times the LED has turned on.
  * @variable blinkPeriod. The duration of an ON-OFF process during the blink.
@@ -45,7 +46,7 @@ typedef struct BlinkProperties
 	int blinkTimeCounter;
 } BlinkProperties;
 
-/* Structure to store the variables needed to make the "Repetition Blink" process work.
+/** Structure to store the variables needed to make the "Repetition Blink" process work.
  * @variable repetitionTimes. How many times a blink process must occur.
  * @variable repetitionCounter. How many times  a blink process has occurred.
  * @variable repetitionPeriod. The duration of a repetition blink process. The sum of the blinking and the following OFF time.
@@ -63,7 +64,7 @@ typedef struct RepetitionBlinkProperties
 	int repetitionBlinkTimeCounter;
 } RepetitionBlinkProperties;
 
-/* Structure to store the variables needed to make the "Infinite Blink" process work.
+/** Structure to store the variables needed to make the "Infinite Blink" process work.
  * @variable blinkSpeed. he speed of the blink.
  * @variable togglePeriod. The duration of an ON or OFF process during the blink.
  * @variable toggleTimeCounterLimit. 	The quotient between the togglePeriod and the Led's ISR period.
@@ -77,7 +78,7 @@ typedef struct InfiniteBlinkProperties
 	int toggleTimeCounter;
 } InfiniteBlinkProperties;
 
-/* Structure to store the variables of a LED.
+/** Structure to store the variables of a LED.
  * @variable ledID. An id indicating to which LED the structure corresponds.
  * @variable isOnForDefinedTime. Flag indicating whether a "On For Defined Time" process is taking place or not.
  * @variable isBlinking. Flag indicating whether a "Blink" process is taking place or not.
@@ -142,9 +143,9 @@ static void InfiniteBlinkCalledFromPISR(LedElement *ledElement);
 * PRIVATE VARIABLES WITH FILE LEVEL SCOPE
  ******************************************************************************/
 
-/*A LedElement's array to store the information and state of each led.*/
+/** A LedElement's array to store the information and state of each led.*/
 static LedElement ledElements[3];
-/* Default structures for the LEDs to be created with.
+/** Default structures for the LEDs to be created with.
  * These may change if a "On For Defined Time", "Blink", or "Repetition Blink" process is requested.
  */
 static OnForDefinedTimeProperties defaultOnForDefinedTimeProperties = {0, 0, 0};
@@ -231,7 +232,7 @@ LedError Led_CustomBlink(LedID ledID, int blinkTimes, int blinkPeriod, int onTim
 	if (quotient <= 0)
 		return LedPeriodError; //blinkPeriod must be greater than LED_ISR_PERIOD.
 
-	/* Defines a "Blink" process variables.
+	/** Defines a "Blink" process variables.
 	 * A "Blink" process consists of a LED being turned on and off repeatedly. In other words, multiple "On For Defined Time" processes taking place repeatedly.
 	 * A "On For Defined Time" process consists of a LED being ON during a defined time. After this time has elapsed, the LED is turned off.
 	 */
@@ -264,7 +265,7 @@ LedError Led_CustomRepetitionBlink(LedID ledID, int repetitionTimes, int repetit
 	if (quotient <= 0)
 		return LedPeriodError; //repetitionPeriod must be greater than LED_ISR_PERIOD.
 
-	/* Defines a "Repetition Blink" process variables.
+	/** Defines a "Repetition Blink" process variables.
 	 * A "Repetition Blink" process consists of multiple "Blink" processes taking place repeatedly.
 	 * A "Blink" process consists of a LED being turned on and off repeatedly. In other words, multiple "On For Defined Time" processes taking place repeatedly.
 	 * A "On For Defined Time" process consists of a LED being ON during a defined time. After this time has elapsed, the LED is turned off.
