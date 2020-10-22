@@ -7,10 +7,20 @@
 #ifndef FSM_H_
 #define FSM_H_
 
+/*******************************************************************************
+ * INCLUDE HEADER FILES
+ ******************************************************************************/
+
 #include <stdint.h>
 
-
+/*******************************************************************************
+ * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
+ ******************************************************************************/
 #define FIN_TABLA 0xFF
+
+/*******************************************************************************
+ * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
+ ******************************************************************************/
 
 typedef uint8_t event;
 typedef struct state_diagram_edge STATE;
@@ -22,7 +32,9 @@ struct state_diagram_edge
   void (*p_rut_accion)(void);
 };
 
-
+/*******************************************************************************
+ * FUNCTION PROTOTYPES WITH GLOBAL SCOPE
+ ******************************************************************************/
 // Interfaz
 STATE *fsm(STATE *p_tabla_estado, event evento_actual);
 

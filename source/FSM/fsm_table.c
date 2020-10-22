@@ -1,3 +1,12 @@
+/***************************************************************************/ /**
+  @file     fsm.h
+  @brief    FSM header.
+  @author   Grupo 2 - Lab de Micros
+ ******************************************************************************/
+
+/*******************************************************************************
+ * INCLUDE HEADER FILES
+ ******************************************************************************/
 #include <stdio.h>
 #include <States/menu_state.h>
 #include <States/welcome_state.h>
@@ -12,7 +21,14 @@
 #include "States/add_user_state/add_user_state.h"
 #include "states/delete_user_state.h"
 
+/*******************************************************************************
+ * FUNCTION PROTOTYPES FOR PRIVATE FUNCTIONS WITH FILE LEVEL SCOPE
+ ******************************************************************************/
+static void do_nothing(void);
 
+/*******************************************************************************
+ * ENUMERATIONS AND STRUCTURES AND TYPEDEFS
+ ******************************************************************************/
 /*Foward Declarations*/
 
 extern STATE welcome[];
@@ -28,12 +44,9 @@ extern STATE open[];
 extern STATE delete_user[];
 
 
-// prototipos
-static void do_nothing(void);
-
 /*** tablas de estado ***/
 
-/*** welcome ***/
+/*** Welcome ***/
 
  STATE welcome[]=
 {
@@ -77,7 +90,7 @@ STATE pin[] =
 	{FIN_TABLA, 				pin, 		do_nothing}
 };
 
-/*** MENU ***/
+/*** Menu ***/
 
 STATE menu[] =
 {	/* Eventos externos */
@@ -96,14 +109,14 @@ STATE menu[] =
 	{FIN_TABLA, 						menu, 		do_nothing}
 };
 
-/*** OPEN ***/
+/*** Open ***/
 STATE open[] =
 {
 	{TIMER_ACCESS_EV,	welcome,	showWelcomeAnimation},
 	{FIN_TABLA, 		open, 		do_nothing}
 };
 
-/*User config me*/
+/*** User config me ***/
 STATE cfg_me[] = 
 {
 	{PRESS_EV,					cfg_me, 	configMe_acceptNumber},
@@ -115,7 +128,7 @@ STATE cfg_me[] =
 	{FIN_TABLA, 				cfg_me, 	do_nothing}
 };
 
-/*Config usr*/
+/*** Config usr ***/
 STATE add_user[] = 
 {	
 	{PRESS_EV, 					add_user, 	addUser_onPress},
@@ -131,7 +144,8 @@ STATE add_user[] =
 	{TIMEOUT_EV,				welcome, 	showWelcomeAnimation},
 	{FIN_TABLA, 				add_user, 	do_nothing}
 };
-/*Config device*/
+
+/*** Config device ***/
 STATE cfg_device[] = 
 {
 	{PRESS_EV,						cfg_device, 	configDev_selectOption},
@@ -156,11 +170,20 @@ STATE delete_user[] =
 	{FIN_TABLA, 					delete_user, 	do_nothing}
 };
 
+
+
+/*******************************************************************************
+ *******************************************************************************
+                        GLOBAL FUNCTION DEFINITIONS
+ *******************************************************************************
+ ******************************************************************************/
+
 //========interfaz=================
 STATE *FSM_GetInitState(void)
 {
 	 return(welcome);
 }
+
 
 ///=========Rutinas de accion===============
 void FSM_StartInitState()
@@ -168,7 +191,11 @@ void FSM_StartInitState()
 	showWelcomeAnimation();
 }
 
-
+/*******************************************************************************
+ *******************************************************************************
+                        LOCAL FUNCTION DEFINITIONS
+ *******************************************************************************
+ ******************************************************************************/
 /*Dummy function*/
 static void do_nothing(void)
 {
