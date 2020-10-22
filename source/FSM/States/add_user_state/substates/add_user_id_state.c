@@ -81,7 +81,7 @@ void addUserId_increaseCurrent(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();  
+    	userInteractionStopsErrorIndication();
     else
         inputIncreaseCurrent(id, currentPos);
 }
@@ -91,7 +91,7 @@ void addUserId_decreaseCurrent(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();  
+    	userInteractionStopsErrorIndication();
     else
         inputDecreaseCurrent(id, currentPos);
 }
@@ -101,7 +101,7 @@ void addUserId_confirmID(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();    
+    	userInteractionStopsErrorIndication();
     else
     {
         Status idValidation = validateNewId(id);
@@ -120,7 +120,7 @@ void addUserId_acceptNumber(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();
+    	userInteractionStopsErrorIndication();
     else
         inputAcceptNumber(id, &currentPos, ID_ARRAY_SIZE);
 }
