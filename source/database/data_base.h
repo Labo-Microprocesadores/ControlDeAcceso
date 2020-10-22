@@ -100,6 +100,9 @@ bool verifyPIN(int8_t userPIN[]);
  */
 bool isCurrentUserBlocked(void);
 
+//! comentar
+uint8_t AttemptsOnCurrent(void);
+
 /**
  * @brief This is used in a time callback to unblock (pop) the fist user added to the BlockedUsers array
  */

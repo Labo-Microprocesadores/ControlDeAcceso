@@ -78,7 +78,7 @@ void addUserPin_confirmPin(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();  
+    	userInteractionStopsErrorIndication();
     else
     {
         if (checkPinArrayFormat(pin))
@@ -99,7 +99,7 @@ void addUserPin_acceptNumber(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();  
+    	userInteractionStopsErrorIndication();
     else
     {
         int8_t aux[] = {MID_LINE};
@@ -114,7 +114,7 @@ void addUserPin_increaseCurrent(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();  
+    	userInteractionStopsErrorIndication();
     else
         inputIncreaseCurrent(pin, currentPos);
 }
@@ -124,7 +124,7 @@ void addUserPin_decreaseCurrent(void)
     if (showingTitle)
         userInteractionStopsTitle();
     else if (showingErrorIndication)
-        userInteractionStopErrorIndicationAndRestart();  
+    	userInteractionStopsErrorIndication();
     else
         inputDecreaseCurrent(pin, currentPos);
 }

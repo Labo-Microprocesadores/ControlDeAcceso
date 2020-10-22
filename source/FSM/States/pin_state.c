@@ -27,7 +27,9 @@
 #include "data_base.h"
 #include "queue.h"
 #include "seven_seg_display.h"
-
+//!ojo agregado
+#include "Led.h"
+#include "MplxLed.h"
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
@@ -124,6 +126,7 @@ void pin_confirmPin(void)
         }
         else
         {
+        	MplxLed_StopAllProcessedFromAllLeds();
             emitEvent(PIN_OK_EV);
         }
     }    
@@ -186,10 +189,14 @@ int8_t *pin_getPinArray(int *sizeOfReturningArray)
 static void showTitle(void)
 {
     SevenSegDisplay_EraseScreen();
+    SevenSegDisplay_BlinkScreen(false);
     SevenSegDisplay_WriteBuffer("PIN ", 4, 0);  //Shows the title
     SevenSegDisplay_SetPos(0);
     SevenSegDisplay_CursorOff();
     showingTitle = true;
+    //!ojo agregado
+    Led_Off(LED_BLUE);
+    Led_InfiniteBlink(LED_GREEN, NORMAL);
     titleTimerID = Timer_AddCallback(&stopShowingTitle, TITLE_TIME, true); //Starts the callback to stop the title.
 }
 
@@ -199,6 +206,9 @@ static void stopShowingTitle(void)
     SevenSegDisplay_WriteBuffer(pin, PIN_ARRAY_SIZE, 0);
     SevenSegDisplay_CursorOn();
     showingTitle = false;
+    //!ojo agregado
+    Led_StopInfiniteBlink(LED_GREEN); 
+    Led_On(LED_BLUE);
 }
 
 static void userInteractionStopsTitle(void)
@@ -206,6 +216,9 @@ static void userInteractionStopsTitle(void)
     Timer_Delete(titleTimerID);
     titleTimerID = -1;
     stopShowingTitle();
+    //!ojo agregado
+    Led_StopInfiniteBlink(LED_GREEN); 
+    Led_On(LED_BLUE);
 }
 
 static void pinFail(void)
@@ -219,9 +232,17 @@ static void pinFail(void)
     }
     else
     {
+        //!ojo agregado
+        int8_t att = AttemptsOnCurrent();
+        uint8_t i;
+        for(i = 0; i<att; i++)
+        	MplxLed_On(i);
         SevenSegDisplay_WriteBufferAndMove("TRY AGAIN.", 9, 0, SHIFT_L);        //Shows error message.
     }
     showingErrorIndication = true;
+    //!ojo agregado
+    Led_Off(LED_BLUE);
+    Led_InfiniteBlink(LED_RED, NORMAL);
     errorIndicationTimerID = Timer_AddCallback(&stopErrorIndication, TITLE_TIME, true); //Starts the callback to stop the error message.
 }
 
@@ -230,6 +251,9 @@ static void stopErrorIndication(void)
     showingErrorIndication = false;
 	SevenSegDisplay_EraseScreen();
 	SevenSegDisplay_SetPos(0);
+    //!ojo agregado
+    Led_StopInfiniteBlink(LED_RED);
+    Led_On(LED_BLUE);
 	startFailAnimation();   //Starts an animation.
 }
 
@@ -238,12 +262,18 @@ static void userInteractionStopsErrorIndication(void)
     Timer_Delete(errorIndicationTimerID);   //Cancels the callback.
     errorIndicationTimerID = -1;
     stopErrorIndication();
+    //!ojo agregado
+    Led_StopInfiniteBlink(LED_RED);
+    Led_On(LED_BLUE);
 }
 
 static void startFailAnimation(void)
 {   
     showingAnimation = true;
     SevenSegDisplay_AnimationCircles();
+    //!ojo agregado
+    Led_Off(LED_BLUE);
+    Led_InfiniteBlink(LED_RED, NORMAL);
 	animationTimerID = Timer_AddCallback(&finishFailAnimation, 600, true);  //Starts the callback to stop the animation.
 }
 
@@ -255,6 +285,9 @@ static void finishFailAnimation(void)
         emitEvent(USR_BLOCKED_EV);     //The user got blocked -> Starts the welcome screen.
     else
         initPinInput();                 //The user didn't get blocked -> Starts the state's cycle again.
+    //!ojo agregado
+    Led_StopInfiniteBlink(LED_RED);
+
 }
 
 
@@ -263,6 +296,8 @@ static void userInteractionFinishesFailAnimation(void)
     Timer_Delete(animationTimerID); //Cancels the callback.
     animationTimerID = -1;
     finishFailAnimation();
+    //!ojo agregado
+    Led_StopInfiniteBlink(LED_RED);
 }
 
 

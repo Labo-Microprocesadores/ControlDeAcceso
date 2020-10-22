@@ -12,6 +12,7 @@
 #include "seven_seg_display.h"
 #include "Timer.h"
 #include "data_base.h"
+#include "Led.h"
 /*******************************************************************************
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
@@ -157,6 +158,9 @@ static void showTitle(void)
     {
         SevenSegDisplay_WriteBuffer("USER", 4, 0);
     }
+    //!ojo agregado
+    Led_Off(LED_BLUE);
+    Led_InfiniteBlink(LED_GREEN, NORMAL);
     titleTimerID = Timer_AddCallback(&stopShowingTitle,TITLE_TIME, true );
 }
 
@@ -192,6 +196,9 @@ static void stopShowingTitle(void)
     SevenSegDisplay_EraseScreen();
     showingTitle = false;
     setCurrentOption();
+    //!ojo agregado
+    Led_StopInfiniteBlink(LED_GREEN);
+    Led_On(LED_BLUE);
 }
 
 static void userInteractionStopsTitle(void)

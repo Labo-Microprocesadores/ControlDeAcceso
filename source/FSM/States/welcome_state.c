@@ -12,11 +12,17 @@
 #include "data_base.h"
 #include "queue.h"
 #include "seven_seg_display.h"
+#include "./drivers/Led.h"
+#include "Led.h"
+#include "MplxLed.h"
 /*******************************************************************************
  * FUNCTIONS WITH GLOBAL SCOPE
  ******************************************************************************/
 void showWelcomeAnimation(void)
 {
+	Led_StopAllProcessedFromAllLeds();
+	MplxLed_StopAllProcessedFromAllLeds();
+
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
     SevenSegDisplay_SetPos(0);

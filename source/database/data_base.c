@@ -151,6 +151,7 @@ bool verifyPIN(int8_t userPIN[])
         }
     }
     //if no one was diferent then all of them were equals
+    dataBase.userList[currentIdIndex].Attempts = 0;
     return true;
 }
 
@@ -162,6 +163,11 @@ bool isCurrentUserBlocked(void)
         return true;
     }
     return false;
+}
+
+uint8_t AttemptsOnCurrent(void)
+{
+    return dataBase.userList[currentIdIndex].Attempts;
 }
 
 int8_t * getIdByCardNumber(int8_t cardNumber[])
