@@ -34,7 +34,7 @@ Aquí podrá ver un conjunto de imágenes que muestran como trabaja el sistema. 
 
 ### Imagenes
 
-![Mensaje de inicio](images/Hi.png)
+![Mensaje de inicio](images/HI.png)
 
 ![DSAD](images/GIF-HI.gif)
 
