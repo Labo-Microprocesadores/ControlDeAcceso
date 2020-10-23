@@ -1,15 +1,15 @@
 # TODOs
 
 COSAS PARA HACER
-    - [ ] Ver carga de CPU
-    - [ ] Manual de usuario
-    - [ ] Usar Leds
-    - [ ] Aramr presentacion
-    - [ ] Armar diagrama de arquitectura/drivers/fsm 
-    - [ ] Agregar animacion, correccion de mensajes de error y otros mensajes
-    - [ ] Test, mucho test
-    - [ ] "Emprolijar"
-    - [ ] Compilar sin warnings
+    - [x] Ver carga de CPU
+    - [x] Manual de usuario
+    - [x] Usar Leds
+    - [x] Armar presentacion
+    - [x] Armar diagrama de arquitectura/drivers/fsm 
+    - [x] Agregar animacion, correccion de mensajes de error y otros mensajes
+    - [x] Test, mucho test
+    - [x] "Emprolijar"
+    - [x] Compilar sin warnings
 
 EN TODOS LADOS: 
     - [x] AGREGAR EVENT QUEUE.
@@ -20,7 +20,7 @@ En add user:
 
 En id_state.c, pin_state.c y user_input:
     - [x] Resetear el timer de timeout en algunas funciones 
-    - [ ] En algunas actualizar el display
+    - [x] En algunas actualizar el display
     - [x] Chequear ID con la base de datos 
     - [x] Tirar eventos a la fsm para cambiar de estados 
     - [x] Hacer checkCardID
@@ -81,4 +81,4 @@ En App.c
 
 Branch Led:
 
-    - [ ] Mergear ambos branch
+    - [x] Mergear ambos branch
