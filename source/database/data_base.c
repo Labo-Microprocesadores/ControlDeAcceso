@@ -371,31 +371,31 @@ Status removeUser(int8_t userID[])
 
 static void moveAllUsersOnePlace(void)
 {
-    uint8_t count;
+    uint8_t count, user;
     //if the element wasn't the last one
     if(currentIdIndex != MAX_NUM_USERS -1)
     {
-        for(count = currentIdIndex; count < dataBase.lastItem; count++)
+        for(user = currentIdIndex; user < dataBase.lastItem; user++)
         {
             //move userPIN value
-            for(count=0; count < ID_ARRAY_SIZE-1; count++)
+            for(count=0; count < ID_ARRAY_SIZE; count++)
             {
-                dataBase.userList[currentIdIndex].userID[count] = dataBase.userList[currentIdIndex+1].userID[count];
+                dataBase.userList[user].userID[count] = dataBase.userList[user+1].userID[count];
             }
             //move userPIN value
-            for(count=0; count < PIN_ARRAY_SIZE-1; count++)
+            for(count=0; count < PIN_ARRAY_SIZE; count++)
             {
-                dataBase.userList[currentIdIndex].userPIN[count] = dataBase.userList[currentIdIndex+1].userPIN[count];
+                dataBase.userList[user].userPIN[count] = dataBase.userList[user+1].userPIN[count];
             }
             //move cardNumber
-            for(count=0; count < MAX_CARD_NUMBER-1; count++)
+            for(count=0; count < MAX_CARD_NUMBER; count++)
             {
-                dataBase.userList[currentIdIndex].cardNumber[count] = dataBase.userList[currentIdIndex+1].cardNumber[count];
+                dataBase.userList[user].cardNumber[count] = dataBase.userList[user+1].cardNumber[count];
             }
             //move typeOfUser
-            dataBase.userList[currentIdIndex].typeOfUser = dataBase.userList[currentIdIndex +1].typeOfUser;
+            dataBase.userList[user].typeOfUser = dataBase.userList[user +1].typeOfUser;
             //move attempts
-            dataBase.userList[currentIdIndex].Attempts = dataBase.userList[currentIdIndex +1].Attempts;
+            dataBase.userList[user].Attempts = dataBase.userList[user +1].Attempts;
         }
     }
 }
