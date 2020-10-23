@@ -6,9 +6,9 @@
 </h1>
 
 <p align="center">
-  <a href="#what-is-it">¿Qué es esto?</a> •
-  <a href="#getting-started">¿Como correrlo?</a> •
-  <a href="#preview">Preview</a> •
+  <a href="#¿Qué-es-esto?">¿Qué es esto?</a> •
+  <a href="#Como-correrlo?">¿Como correrlo?</a> •
+  <a href="#vista-previa">Vista Previa</a> •
 </p>
 
 
@@ -28,16 +28,28 @@ Para correr el programa se necesita disponer de una placa de desarrollo Freedom 
 
 Para utilizarlo se ha de cargar el programa en la placa, para ello se la puede conectar a la computadora y abrir el proyecto con MCUExpreso, el cual es un ID que permite añadir el software a la placa de desarrollo.
 
-## Preview
+## Vista Previa?
 
 Aquí podrá ver un conjunto de imágenes que muestran como trabaja el sistema. y un link a un video del sistema funcionando.
 
+<br>
+
 ### Imagenes
+<br>
 
 ![Mensaje de inicio](images/HI.png)
 
+<br>
+
+### Gifs
+
 ![DSAD](images/GIF-HI.gif)
 
+<br>
+
+## Video
+
+Puedes ver el sistema funcionando completamente pulsando en [este link](www.youtube.com).
 
 
 
