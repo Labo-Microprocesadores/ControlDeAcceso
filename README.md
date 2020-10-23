@@ -26,18 +26,18 @@ see documentation [puede ver la presentacion aquí](ControlDeAcceso_Grupo2.pdf).
 
 Para correr el programa se necesita disponer de una placa de desarrollo Freedom K64F, una placa que presente un encoder para el control del programa y 4 displays de 7 segmentos todos conectados a un bus de salida para la conexion con la placa, y un lector de tarjetas magnéticas en caso de que se quiera utilizar esta funcionalidad.
 
-Para correrlo se ha de cargar el programa en la placa, para ello se la puede conectar a la computadora y abrir el proyecto con MCUExpreso, el cual es un ID que permite añadir el software a la placa de desarrollo.
+Para utilizarlo se ha de cargar el programa en la placa, para ello se la puede conectar a la computadora y abrir el proyecto con MCUExpreso, el cual es un ID que permite añadir el software a la placa de desarrollo.
 
 ## Preview
 
+Aquí podrá ver un conjunto de imágenes que muestran como trabaja el sistema. y un link a un video del sistema funcionando.
 
-### Portrait View
+### Imagenes
 
-![App Working](Demo/ExpensesApp.gif)
+![Mensaje de inicio](images/Hi.PNG)
 
-### Landscape View
+![DSAD](images/GIF-HI.gif)
 
-![App Working](Demo/LandscapeExpenses.gif)
 
 
 
