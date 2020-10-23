@@ -19,8 +19,8 @@ En este repositorio se encuentra una implementación del control de acceso a un 
 
 Para ello se carga el programa en una placa de desarrollo Freedom K64F.
 
-Dentro de este repositorio se puede encontrar un Manual de Usuario y una presentacion utilizada para explicar las funcionalidades del sistema.
-see documentation [Puede ver la presentacion aquí](ControlDeAcceso_Grupo2.pdf).
+Dentro de este repositorio se puede encontrar un Manual de Usuario [el cual puede ver en este link](Manual_de_Usuario.pdf), y una presentacion utilizada para explicar las funcionalidades del sistema.
+see documentation [puede ver la presentacion aquí](ControlDeAcceso_Grupo2.pdf).
 
 ## ¿Como correrlo?
 
