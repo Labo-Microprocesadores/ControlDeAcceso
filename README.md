@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="#¿Qué-es-esto?">¿Qué es esto?</a> •
-  <a href="#Como-correrlo?">¿Como correrlo?</a> •
+  <a href="#como-correrlo">Como correrlo</a> •
   <a href="#vista-previa">Vista Previa</a> •
 </p>
 
@@ -22,7 +22,7 @@ Para ello se carga el programa en una placa de desarrollo Freedom K64F.
 Dentro de este repositorio se puede encontrar un Manual de Usuario [el cual puede ver en este link](Manual_de_Usuario.pdf), y una presentacion utilizada para explicar las funcionalidades del sistema.
 see documentation [puede ver la presentacion aquí](ControlDeAcceso_Grupo2.pdf).
 
-## ¿Como correrlo?
+## Como correrlo
 
 Para correr el programa se necesita disponer de una placa de desarrollo Freedom K64F, una placa que presente un encoder para el control del programa y 4 displays de 7 segmentos todos conectados a un bus de salida para la conexion con la placa, y un lector de tarjetas magnéticas en caso de que se quiera utilizar esta funcionalidad.
 
