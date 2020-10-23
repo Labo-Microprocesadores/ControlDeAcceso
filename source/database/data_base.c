@@ -41,7 +41,6 @@ static void moveAllUsersOnePlace(void);
 
 static dataBase_t dataBase;
 static int8_t currentIdIndex = -1;
-static dataBase_t database;
 static int8_t validNumberArray[MAX_CARD_NUMBER];
 static int8_t blockedUsersIndexes[MAX_BLOCKED_USERS];
 
@@ -188,7 +187,7 @@ int8_t * getIdByCardNumber(int8_t cardNumber[])
         }
         if(equalCardNumber)
         {
-            return database.userList[user].userID;
+            return dataBase.userList[user].userID;
         }    
     }
     return NULL;
@@ -242,14 +241,14 @@ Status checkAddUser(int8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint
     //store typeOfUser
     dataBase.userList[dataBase.lastItem].typeOfUser = typeOfUser;
     //set Attempts
-    dataBase.userList[database.lastItem].Attempts = 0;
+    dataBase.userList[dataBase.lastItem].Attempts = 0;
     return STORE_SUCCESSFULL;       
 }
 
 Status validateAll(int8_t userID[], int8_t userPIN[], int8_t cardNumber[], uint8_t numCharactersCardNumber, hierarchy_t typeOfUser)
 {
     //check Database space
-    if (database.lastItem == MAX_NUM_USERS - 1)
+    if (dataBase.lastItem == MAX_NUM_USERS - 1)
         return DATABASE_FULL;
     /***************************************************************************/
     //                           Validate UserID
