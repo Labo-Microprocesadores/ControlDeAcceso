@@ -164,7 +164,7 @@ void deleteUser_checkCardID(void)
         {
         	numero[i]=-1;
         }
-        int8_t * idptr = getIdByCardNumber(numero);//?esto esta bien?
+        int8_t * idptr = getIdByCardNumber(numero);
         if(idptr != NULL && removeUser(idptr) == DELETE_SUCCESSFULL)
         {
         	emitEvent(ID_OK_EV);

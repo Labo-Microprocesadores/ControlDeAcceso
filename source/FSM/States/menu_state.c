@@ -133,7 +133,7 @@ void menu_selectOption(void)
                 emitEvent(CONFIG_PIN_SELECTED_EV);
                 break;
             case LOG_OUT:
-                emitEvent(LOG_OUT_EV);
+                emitEvent(TIMEOUT_EV);
                 break;
         }
     }

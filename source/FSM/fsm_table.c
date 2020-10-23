@@ -86,8 +86,7 @@ STATE menu[] =
     {ENCODER_LEFT_EV,					menu, 		menu_previousOption}, 
 	/* Eventos de user y admin */ 
 	{OPEN_SELECTED_EV,					open,		openDoor},
-	{LOG_OUT_EV, 						welcome, 	showWelcomeAnimation},
-    {CONFIG_PIN_SELECTED_EV,			cfg_me,		configMe_initState},
+	{CONFIG_PIN_SELECTED_EV,			cfg_me,		configMe_initState},
 	/* Eventos exclusivos de admin*/ 
 	{ADD_USER_SELECTED_EV,				add_user,	addUser_initFSM},
     {DELETE_USER_SELECTED_EV,			delete_user,deleteUser_initState},
@@ -99,7 +98,7 @@ STATE menu[] =
 /*** OPEN ***/
 STATE open[] =
 {
-	{TIMER_ACCESS_EV,	welcome,	showWelcomeAnimation},
+	{TIMEOUT_EV,	welcome,	showWelcomeAnimation},
 	{FIN_TABLA, 		open, 		do_nothing}
 };
 

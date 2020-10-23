@@ -40,7 +40,7 @@ void openDoor(void)
 void accessTimeOut(void)
 {
     MplxLed_Off(LED_TWO);   //"Closes the door."
-    emitEvent(TIMER_ACCESS_EV);
+    emitEvent(TIMEOUT_EV);
 }
 
 /*******************************************************************************
