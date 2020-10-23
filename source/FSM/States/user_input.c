@@ -29,8 +29,7 @@ static void deleteLastChar(int8_t *inputArray, int totalArraySize);
                         GLOBAL FUNCTION DEFINITIONS
  *******************************************************************************
  ******************************************************************************/
-//!OJO EN TODAS ESTA HABRIA QUE RESETEAR EL TIMER DE TIMEOUT Y EN ALGUNAS ACTUALIZAR EL DISPLAY
-//TODO AGREGAR ESO
+
 void inputIncreaseCurrent(int8_t *inputArray, uint8_t currentPosition)
 {
     if (inputArray[currentPosition] == BACKSPACE)

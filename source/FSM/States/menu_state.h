@@ -1,6 +1,6 @@
 /***************************************************************************/ /**
-  @file     admin_state.h
-  @brief    Admin state header
+  @file     menu_state.h
+  @brief    menu state
   @author   Grupo 2 - Lab de Micros
  ******************************************************************************/
 #ifndef ADMIN_STATE_H

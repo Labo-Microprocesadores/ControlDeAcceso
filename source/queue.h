@@ -1,3 +1,8 @@
+/***************************************************************************//**
+  @file     queue.h
+  @brief
+  @author   Grupo 2 - Lab de Micros
+ ******************************************************************************/
 #ifndef EVENTQUEUE_H
 #define EVENTQUEUE_H
 
@@ -60,7 +65,7 @@ typedef struct
  * CONSTANT AND MACRO DEFINITIONS USING #DEFINE
  ******************************************************************************/
 
-#define QUEUE_SIZE 100 //cambiar este define por la cantidad de posiciones deseadas en la cola, recomiendo entre 100 y 200 para este programa
+#define QUEUE_SIZE 50 
 
 /*******************************************************************************
  * FUNCTION PROTOTYPES WITH GLOBAL SCOPE

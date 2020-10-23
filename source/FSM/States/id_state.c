@@ -182,8 +182,6 @@ void id_checkCardID(void)
     {
         idCardFail();
     }
-
-    //TODO Checks if the read ID (from card) is correct and corresponds to a user or an admin in the database. Adds a ID_OK or a ID_FAIL event to the event queue of the FSM.
 }
 
 
