@@ -240,7 +240,14 @@ static void idFail(void)
     SevenSegDisplay_EraseScreen();
     SevenSegDisplay_CursorOff();
     SevenSegDisplay_SetPos(0);
-    SevenSegDisplay_WriteBufferAndMove("NO ID FOUND", 11, 0, SHIFT_L);
+    if(isCurrentUserBlocked())
+    {
+    	SevenSegDisplay_WriteBufferAndMove("USER BLOCKED", 12, 0, SHIFT_L);
+    }
+    else
+    {
+    	SevenSegDisplay_WriteBufferAndMove("NO ID FOUND", 11, 0, SHIFT_L);
+    }
     showingErrorIndication = true;
     errorIndicationTimerID = Timer_AddCallback(&id_fail_animate, TITLE_TIME, true);
     Led_Off(LED_BLUE);

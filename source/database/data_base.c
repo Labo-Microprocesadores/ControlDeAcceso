@@ -343,7 +343,7 @@ bool verifyCardNumber(int8_t cardNumber[], uint8_t numCharactersCardNumber)
             currentIdIndex = user;
             if (isCurrentUserBlocked())
             {
-                currentIdIndex = -1;
+                //currentIdIndex = -1;
                 return false;
             }
             return true;
