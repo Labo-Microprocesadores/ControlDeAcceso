@@ -1,3 +1,13 @@
+# ControlDeAcceso
+<h1 align="center">
+  <br>
+  <img src="images/Grupo2.png" alt="Expenses" width="200">
+  <br>
+  <p align="center">Control De Acceso<p>
+</h1>
+
+
+
 <p align="center">
   <a href="#¿Qué-es-esto?">¿Qué es esto?</a> •
   <a href="#como-correrlo">Como correrlo</a> •
