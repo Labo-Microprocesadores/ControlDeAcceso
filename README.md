@@ -1,10 +1,3 @@
-<h1 align="center">
-  <br>
-  <img src="images/Grupo2.png" alt="Expenses" width="200">
-  <br>
-  <p align="center">Control De Acceso<p>
-</h1>
-
 <p align="center">
   <a href="#¿Qué-es-esto?">¿Qué es esto?</a> •
   <a href="#como-correrlo">Como correrlo</a> •
@@ -51,7 +44,9 @@ Aquí podrá ver un conjunto de imágenes que muestran como trabaja el sistema. 
 
 Puedes ver el sistema funcionando completamente pulsando en [este link](www.youtube.com).
 
+El sistema tiene un sistema de bloqueo que bloquea la entrada del usuario luego de que el mismo intentó ingresar su ID mas de 3 veces. <a href="https://drive.google.com/file/d/1FspWqMw6TUyTeOLRhaYkeKkwg4OWUwp-/view?usp=sharing">Esto se puede ver en el siguiente link</a>
 
+El sistema también permite saber si la tarjeta no fue pasada correctamente, esto se puede ver en el <a href="https://drive.google.com/file/d/19-RFVGY65pbczh_6hq6oZze5xewdgScV/view?usp=sharing">siguiente link</a>.
 
 
 
