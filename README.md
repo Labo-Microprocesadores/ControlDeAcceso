@@ -52,11 +52,11 @@ Aquí podrá ver un conjunto de imágenes que muestran como trabaja el sistema. 
 
 ## Video
 
-Puedes ver el sistema funcionando completamente pulsando en [este link](www.youtube.com).
+Puedes ver el sistema funcionando completamente pulsando en <a href="https://drive.google.com/file/d/1YRFAOJsLhzxXJQEQma3iq3jIj7lEqxuT/view?usp=sharing">este link</a>.
 
 El sistema tiene un sistema de bloqueo que bloquea la entrada del usuario luego de que el mismo intentó ingresar su ID mas de 3 veces. <a href="https://drive.google.com/file/d/1FspWqMw6TUyTeOLRhaYkeKkwg4OWUwp-/view?usp=sharing">Esto se puede ver en el siguiente link</a>
 
-El sistema también permite saber si la tarjeta no fue pasada correctamente, esto se puede ver en el <a href="https://drive.google.com/file/d/19-RFVGY65pbczh_6hq6oZze5xewdgScV/view?usp=sharing">siguiente link</a>.
+El equipo también permite saber si la tarjeta no fue pasada correctamente, esto se puede ver en el <a href="https://drive.google.com/file/d/19-RFVGY65pbczh_6hq6oZze5xewdgScV/view?usp=sharing">siguiente link</a>.
 
-
+El sistema posee tambien un timer para detectar la inactividad dentro de la cuenta de un usuario. Esto se puede ver en detalle en <a href="https://drive.google.com/file/d/1L8sCa1Myb6f5I0L6tv9MnCTyQDbVxRHp/view?usp=sharing">el siguiente video</a>. 
 
